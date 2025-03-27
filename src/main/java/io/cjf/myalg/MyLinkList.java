@@ -2,10 +2,39 @@ package io.cjf.myalg;
 
 class MyLinkList {
     MyLinkNode head;
-    int elCount;
+    int size;
 
     public MyLinkList() {
         head = null;
-        elCount = 0;
+        size = 0;
+    }
+
+    public MyLinkNode getLastNode() {
+        MyLinkNode last = head;
+        for (int i = 0; i < size; i++) {
+            if (last.next != null) {
+                last = last.next;
+            }
+        }
+        return last;
+    }
+
+    public void addEl(MyLinkNode el) {
+        //在链表末尾节点指向此节点
+        MyLinkNode lastNode = getLastNode();
+        if (lastNode == null) {
+            head = el;
+        } else {
+            lastNode.next = el;
+        }
+        size++;
+    }
+
+    public void traverse() {
+        MyLinkNode currentNode = head;
+        for (int i = 0; i < size; i++) {
+            System.out.print(currentNode.val+",");
+            currentNode = currentNode.next;
+        }
     }
 }
