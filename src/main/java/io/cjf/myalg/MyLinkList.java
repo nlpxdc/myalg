@@ -11,10 +11,8 @@ class MyLinkList {
 
     public MyLinkNode getLastNode() {
         MyLinkNode last = head;
-        for (int i = 0; i < size; i++) {
-            if (last.next != null) {
-                last = last.next;
-            }
+        for (int i = 0; i < size && last.next != null; i++, last = last.next) {
+
         }
         return last;
     }
@@ -32,9 +30,8 @@ class MyLinkList {
 
     public void traverse() {
         MyLinkNode currentNode = head;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size && currentNode != null; i++, currentNode = currentNode.next) {
             System.out.print(currentNode.val+",");
-            currentNode = currentNode.next;
         }
     }
 }
