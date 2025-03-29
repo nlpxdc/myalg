@@ -6,6 +6,16 @@ class MyArrFile {
         myArrList.addEl(new MyArrNode(18));
 
         myArrList.traverse();
+        System.out.println();
+
+        myArrList.removeEl();
+
+        myArrList.traverse();
+        System.out.println();
+
+        myArrList.addEl(new MyArrNode(17));
+        myArrList.traverse();
+        System.out.println();
     }
 }
 
@@ -28,6 +38,10 @@ class MyArrList {
 
     void addEl(MyArrNode el) {
         nodeAry[size++] = el;
+    }
+
+    void removeEl() {
+        nodeAry[--size] = null;
     }
 
     void traverse() {
