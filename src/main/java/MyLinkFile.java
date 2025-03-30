@@ -1,15 +1,23 @@
 class MyLinkFileApp {
     public static void main(String[] args) {
+//        MyLinkList myLinkList = new MyLinkList();
+//        myLinkList.addEl(new MyLinkNode(4));
+//        myLinkList.addEl(new MyLinkNode(2));
+//        myLinkList.addEl(new MyLinkNode(17));
+//        myLinkList.traverse();
+//
+//        myLinkList.removeEl();
+//        myLinkList.traverse();
+//
+//        myLinkList.addEl(new MyLinkNode(19));
+//        myLinkList.traverse();
+
         MyLinkList myLinkList = new MyLinkList();
-        myLinkList.addEl(new MyLinkNode(4));
-        myLinkList.addEl(new MyLinkNode(2));
-        myLinkList.addEl(new MyLinkNode(17));
+        myLinkList.addEl(new MyLinkNode(5));
+
         myLinkList.traverse();
 
         myLinkList.removeEl();
-        myLinkList.traverse();
-
-        myLinkList.addEl(new MyLinkNode(19));
         myLinkList.traverse();
 
     }
@@ -62,8 +70,13 @@ class MyLinkList {
 
     void removeEl() {
         MyLinkNode beforeLast = getBeforeLast();
+        MyLinkNode last = getLast();
         if (beforeLast == null) {
-            //nothing to do
+            if (last == null) {
+                //nothing to do
+            } else {
+                head = null;
+            }
         } else {
             beforeLast.next = null;
             size--;
