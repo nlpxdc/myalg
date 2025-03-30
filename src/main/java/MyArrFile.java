@@ -6,16 +6,9 @@ class MyArrFile {
         myArrList.addEl(new MyArrNode(18));
 
         myArrList.traverse();
-        System.out.println();
 
-        myArrList.removeEl();
-
+        myArrList.removeByIdx(1);
         myArrList.traverse();
-        System.out.println();
-
-        myArrList.addEl(new MyArrNode(17));
-        myArrList.traverse();
-        System.out.println();
     }
 }
 
@@ -44,9 +37,25 @@ class MyArrList {
         nodeAry[--size] = null;
     }
 
+    void removeByIdx(int idx) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能是负数");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
+        nodeAry[idx] = null;
+        for (int i = idx; i < size - 1 ; i++) {
+            nodeAry[i] = nodeAry[i+1];
+        }
+        size--;
+    }
+
     void traverse() {
         for (int i = 0; i < size; i++) {
             System.out.print(nodeAry[i].val+",");
         }
+        System.out.println();
+        System.out.println("---");
     }
 }
