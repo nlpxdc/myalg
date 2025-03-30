@@ -68,19 +68,25 @@ class MyLinkList {
         size++;
     }
 
-    void removeEl() {
+    boolean removeEl() {
+        boolean result;
         MyLinkNode beforeLast = getBeforeLast();
         MyLinkNode last = getLast();
         if (beforeLast == null) {
             if (last == null) {
                 //nothing to do
+                result = false;
             } else {
                 head = null;
+                size--;
+                result = true;
             }
         } else {
             beforeLast.next = null;
             size--;
+            result = true;
         }
+        return result;
     }
 
     void traverse() {
