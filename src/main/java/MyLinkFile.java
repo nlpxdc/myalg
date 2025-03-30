@@ -5,6 +5,13 @@ class MyLinkFileApp {
         myLinkList.addEl(new MyLinkNode(2));
         myLinkList.addEl(new MyLinkNode(17));
         myLinkList.traverse();
+
+        myLinkList.removeEl();
+        myLinkList.traverse();
+
+        myLinkList.addEl(new MyLinkNode(19));
+        myLinkList.traverse();
+
     }
 }
 
@@ -26,6 +33,15 @@ class MyLinkList {
         size = 0;
     }
 
+    MyLinkNode getBeforeLast() {
+        MyLinkNode beforeLast = null;
+        MyLinkNode last = head;
+        for (int i = 0; i < size && last != null && last.next != null; i++, last = last.next) {
+            beforeLast = last;
+        }
+        return beforeLast;
+    }
+
     MyLinkNode getLast() {
         MyLinkNode last = head;
         for (int i = 0; i < size && last != null && last.next != null; i++, last = last.next) {
@@ -42,6 +58,16 @@ class MyLinkList {
             last.next = el;
         }
         size++;
+    }
+
+    void removeEl() {
+        MyLinkNode beforeLast = getBeforeLast();
+        if (beforeLast == null) {
+            //nothing to do
+        } else {
+            beforeLast.next = null;
+            size--;
+        }
     }
 
     void traverse() {
