@@ -7,8 +7,8 @@ class MyArrFile {
 
         myArrList.traverse();
 
-        int i = myArrList.idxOfVal(3);
-        int i1 = myArrList.idxOfVal(4);
+        myArrList.removeByVal(18);
+        myArrList.traverse();
     }
 }
 
@@ -64,7 +64,9 @@ class MyArrList {
 
     void removeByVal(int val) {
         //循环迭代便利找到val的idx
+        int idx = idxOfVal(val);
         //删除idx
+        removeByIdx(idx);
     }
 
     void traverse() {
