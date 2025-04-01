@@ -6,7 +6,7 @@ class MyLinkFileApp {
         myLinkList.addEl(new MyLinkNode(17));
         myLinkList.traverse();
 
-        myLinkList.removeByIdx(1);
+        myLinkList.removeByVal(17);
         myLinkList.traverse();
 
     }
@@ -119,6 +119,22 @@ class MyLinkList {
         }
         beforeIdxNode.next = beforeIdxNode.next.next;
         size--;
+    }
+
+    void removeByVal(int val) {
+        //循环迭代遍历列表节点
+        MyLinkNode pre = null;
+        MyLinkNode current = head;
+        for (int i = 0; i < size && current != null ; i++, pre = current, current = current.next) {
+            //值相等的时候，前置节点的next指向本节点的next
+            if (current.val == val) {
+                if (pre == null) {
+                    head = current.next;
+                } else {
+                    pre.next = current.next;
+                }
+            }
+        }
     }
 
 
