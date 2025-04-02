@@ -7,7 +7,7 @@ class MyArrFile {
 
         myArrList.traverse();
 
-        myArrList.removeByVal(18);
+        myArrList.reverse();
         myArrList.traverse();
     }
 }
@@ -67,6 +67,14 @@ class MyArrList {
         int idx = idxOfVal(val);
         //删除idx
         removeByIdx(idx);
+    }
+
+    void reverse() {
+        for (int i = 0, j = size-1; i < size && j >= 0 && i < j; i++, j--) {
+            int t = nodeAry[i].val;
+            nodeAry[i].val = nodeAry[j].val;
+            nodeAry[j].val = t;
+        }
     }
 
     void traverse() {
