@@ -5,11 +5,12 @@ class MyLinkFileApp {
         myLinkList.addEl(new MyLinkNode(2));
         MyLinkNode myLinkNode = new MyLinkNode(17);
         myLinkList.addEl(myLinkNode);
-//        myLinkNode.next = myLinkList.head;
+        myLinkNode.next = myLinkList.head;
 
         boolean beCircle = myLinkList.beCircle();
         System.out.println(beCircle);
 
+        myLinkList.traverse();
 
     }
 }
