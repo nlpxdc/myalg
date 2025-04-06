@@ -3,11 +3,13 @@ class MyLinkFileApp {
         MyLinkList myLinkList = new MyLinkList();
         myLinkList.addEl(new MyLinkNode(4));
         myLinkList.addEl(new MyLinkNode(2));
-        myLinkList.addEl(new MyLinkNode(17));
-        myLinkList.traverse();
+        MyLinkNode myLinkNode = new MyLinkNode(17);
+        myLinkList.addEl(myLinkNode);
+//        myLinkNode.next = myLinkList.head;
 
-        myLinkList.reverse();
-        myLinkList.traverse();
+        boolean beCircle = myLinkList.beCircle();
+        System.out.println(beCircle);
+
 
     }
 }
@@ -152,6 +154,20 @@ class MyLinkList {
             current = t;
         }
         head = pre;
+    }
+
+    boolean beCircle() {
+        if (head == null) {
+            return false;
+        }
+        MyLinkNode slow = head;
+        MyLinkNode fast = head.next;
+        for (int i = 0; i < size && slow != null && fast != null && fast.next != null; i++, slow = slow.next, fast = fast.next.next) {
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
     }
 
     void traverse() {
