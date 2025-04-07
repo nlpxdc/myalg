@@ -7,7 +7,7 @@ class MyArrFile {
 
         myArrList.traverse();
 
-        myArrList.reverse();
+        myArrList.updateValByIdx(1, 7);
         myArrList.traverse();
     }
 }
@@ -75,6 +75,10 @@ class MyArrList {
             nodeAry[i].val = nodeAry[j].val;
             nodeAry[j].val = t;
         }
+    }
+
+    void updateValByIdx(int idx, int newVal) {
+        nodeAry[idx].val = newVal;
     }
 
     void traverse() {
