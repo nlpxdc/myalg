@@ -78,6 +78,12 @@ class MyArrList {
     }
 
     void updateValByIdx(int idx, int newVal) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
         nodeAry[idx].val = newVal;
     }
 

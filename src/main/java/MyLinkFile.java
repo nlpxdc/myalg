@@ -5,10 +5,10 @@ class MyLinkFileApp {
         myLinkList.addEl(new MyLinkNode(2));
         MyLinkNode myLinkNode = new MyLinkNode(17);
         myLinkList.addEl(myLinkNode);
-        myLinkNode.next = myLinkList.head;
 
-        boolean beCircle = myLinkList.beCircle();
-        System.out.println(beCircle);
+        myLinkList.traverse();
+
+        myLinkList.updateValByIdx(1, 8);
 
         myLinkList.traverse();
 
@@ -89,7 +89,7 @@ class MyLinkList {
             throw new RuntimeException("idx不能大于等于size");
         }
         MyLinkNode current = head;
-        for (int i = 0; i < idx; i++, current = current.next) {
+        for (int i = 0; i < idx && current != null; i++, current = current.next) {
 
         }
         return current;
@@ -169,6 +169,15 @@ class MyLinkList {
             }
         }
         return false;
+    }
+
+    void updateValByIdx(int idx, int newVal) {
+        MyLinkNode current = getByIdx(idx);
+        if (current == null) {
+            throw new RuntimeException("找不到当前节点idx");
+        } else {
+            current.val = newVal;
+        }
     }
 
     void traverse() {
