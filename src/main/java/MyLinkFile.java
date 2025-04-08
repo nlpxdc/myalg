@@ -8,7 +8,7 @@ class MyLinkFileApp {
 
         myLinkList.traverse();
 
-        myLinkList.updateValByIdx(1, 8);
+        myLinkList.addEl(3, 9);
 
         myLinkList.traverse();
 
@@ -48,6 +48,31 @@ class MyLinkList {
 
         }
         return last;
+    }
+
+    void addEl(int idx, int val) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx > size) {
+            throw new RuntimeException("idx不能大于size");
+        }
+
+        //新建一个节点
+        MyLinkNode addNode = new MyLinkNode(val);
+        if (idx == 0) {
+            addNode.next = head;
+            head = addNode;
+        } else {
+            //获取弟idx-1个节点
+            MyLinkNode preIdxNode = getByIdx(idx-1);
+            //新建节点指向idx节点
+            addNode.next = preIdxNode.next;
+            //preIdx节点指向新建节点
+            preIdxNode.next = addNode;
+        }
+
+        size++;
     }
 
     void addEl(MyLinkNode el) {
