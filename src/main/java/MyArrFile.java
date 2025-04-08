@@ -7,7 +7,7 @@ class MyArrFile {
 
         myArrList.traverse();
 
-        myArrList.updateValByIdx(1, 7);
+        myArrList.addEl(0, 7);
         myArrList.traverse();
     }
 }
@@ -27,6 +27,28 @@ class MyArrList {
     MyArrList() {
         nodeAry = new MyArrNode[10000];
         size = 0;
+    }
+
+    void addEl(int idx, int val) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx > size) {
+            throw new RuntimeException("idx不能大于size");
+        }
+        for (int i = size-1; idx <= i; i--) {
+            if (nodeAry[i+1] == null) {
+                nodeAry[i+1] = new MyArrNode(nodeAry[i].val);
+            } else {
+                nodeAry[i+1].val = nodeAry[i].val;
+            }
+        }
+        if (nodeAry[idx] == null) {
+            nodeAry[idx] = new MyArrNode(val);
+        } else {
+            nodeAry[idx].val = val;
+        }
+        size++;
     }
 
     void addEl(MyArrNode el) {
