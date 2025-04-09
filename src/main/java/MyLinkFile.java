@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class MyLinkFileApp {
     public static void main(String[] args) {
         MyLinkList myLinkList = new MyLinkList();
@@ -8,7 +10,7 @@ class MyLinkFileApp {
 
         myLinkList.traverse();
 
-        myLinkList.addEl(3, 9);
+        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(new int[]{0, 2});
 
         myLinkList.traverse();
 
@@ -118,6 +120,27 @@ class MyLinkList {
 
         }
         return current;
+    }
+
+    MyLinkNode[] batchGetByIdxList(int[] idxList) {
+        if (Arrays.stream(idxList).distinct().toArray().length != idxList.length) {
+            throw new RuntimeException("idx不能有重复的值");
+        }
+        if (Arrays.stream(idxList).anyMatch(t -> t < 0 || t >= size)) {
+            throw new RuntimeException("idx不能小于0或者大于等于size");
+        }
+        if (idxList.length > size) {
+            throw new RuntimeException("idxList数量不能大于size");
+        }
+        MyLinkNode[] ret = new MyLinkNode[idxList.length];
+
+        //1. 循环处理，调用单个getByIdx
+        for (int i = 0; i < idxList.length; i++) {
+            int idx = idxList[i];
+            MyLinkNode node = getByIdx(idx);
+            ret[i] = node;
+        }
+        return ret;
     }
 
     void removeByIdx(int idx) {
