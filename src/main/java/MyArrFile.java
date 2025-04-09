@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 class MyArrFile {
     public static void main(String[] args) {
         MyArrList myArrList = new MyArrList();
@@ -7,7 +10,7 @@ class MyArrFile {
 
         myArrList.traverse();
 
-        MyArrNode byIdx = myArrList.getByIdx(1);
+        MyArrNode[] myArrNodes = myArrList.batchGetByIdxList(new int[]{0, 2});
         myArrList.traverse();
     }
 }
@@ -81,6 +84,27 @@ class MyArrList {
             throw new RuntimeException("idx不能大于等于size");
         }
         return nodeAry[idx];
+    }
+
+    MyArrNode[] batchGetByIdxList(int[] idxList) {
+        if (Arrays.stream(idxList).distinct().toArray().length != idxList.length) {
+            throw new RuntimeException("idx不能有重复的值");
+        }
+        if (Arrays.stream(idxList).anyMatch(t -> t < 0 || t >= size)) {
+            throw new RuntimeException("idx不能小于0或者大于等于size");
+        }
+        if (idxList.length > size) {
+            throw new RuntimeException("idxList数量不能大于size");
+        }
+        MyArrNode[] ret = new MyArrNode[idxList.length];
+
+        //1. 循环处理，调用单个getByIdx
+        for (int i = 0; i < idxList.length; i++) {
+            int idx = idxList[i];
+            MyArrNode node = getByIdx(idx);
+            ret[i] = node;
+        }
+        return ret;
     }
 
     int idxOfVal(int val) {
