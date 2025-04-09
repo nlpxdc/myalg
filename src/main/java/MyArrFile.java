@@ -74,6 +74,12 @@ class MyArrList {
     }
 
     MyArrNode getByIdx(int idx) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
         return nodeAry[idx];
     }
 
