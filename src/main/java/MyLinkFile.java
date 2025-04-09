@@ -140,7 +140,7 @@ class MyLinkList {
             MyLinkNode node = getByIdx(idx);
             ret[i] = node;
         }
-        //todo 优化一次循环
+        //todo 优化一次遍历
         return ret;
     }
 
