@@ -7,7 +7,7 @@ class MyArrFile {
 
         myArrList.traverse();
 
-        myArrList.addEl(0, 7);
+        MyArrNode byIdx = myArrList.getByIdx(1);
         myArrList.traverse();
     }
 }
@@ -71,6 +71,10 @@ class MyArrList {
             nodeAry[i] = nodeAry[i+1];
         }
         size--;
+    }
+
+    MyArrNode getByIdx(int idx) {
+        return nodeAry[idx];
     }
 
     int idxOfVal(int val) {
