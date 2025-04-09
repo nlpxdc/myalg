@@ -104,6 +104,7 @@ class MyArrList {
             MyArrNode node = getByIdx(idx);
             ret[i] = node;
         }
+        //todo 优化一次循环
         return ret;
     }
 
