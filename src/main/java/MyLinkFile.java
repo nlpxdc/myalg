@@ -26,6 +26,17 @@ class MyLinkNode {
     }
 }
 
+class MyUtil {
+    static boolean hasVal(int[] numAry, int v) {
+        for (int i = 0; i < numAry.length; i++) {
+            if (numAry[i] == v) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 class MyLinkList {
     MyLinkNode head;
     int size;
@@ -135,12 +146,20 @@ class MyLinkList {
         MyLinkNode[] ret = new MyLinkNode[idxList.length];
 
         //1. 循环处理，调用单个getByIdx
-        for (int i = 0; i < idxList.length; i++) {
-            int idx = idxList[i];
-            MyLinkNode node = getByIdx(idx);
-            ret[i] = node;
+//        for (int i = 0; i < idxList.length; i++) {
+//            int idx = idxList[i];
+//            MyLinkNode node = getByIdx(idx);
+//            ret[i] = node;
+//        }
+
+        //2优化一次遍历
+        MyLinkNode current = head;
+
+        for (int i = 0, j = 0; i < size && current != null; i++, current = current.next) {
+            if (MyUtil.hasVal(idxList, i)) {
+                ret[j++] = current;
+            }
         }
-        //todo 优化一次遍历
         return ret;
     }
 
