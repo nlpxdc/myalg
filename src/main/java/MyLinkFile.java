@@ -65,7 +65,8 @@ class MyUtil {
 //                    int t = numAry[i];
 //                    numAry[i] = numAry[j];
 //                    numAry[j] = t;
-                    swap(numAry, i, j);
+//                    swap(numAry, i, j);
+                    swap3(numAry, i, j);
                 }
             }
         }
@@ -75,6 +76,24 @@ class MyUtil {
         int t = numAry[idxl];
         numAry[idxl] = numAry[idxr];
         numAry[idxr] = t;
+    }
+
+    static void swap1(int[] numAry, int idxl, int idxr) {
+        numAry[idxl] = numAry[idxl] + numAry[idxr];
+        numAry[idxr] = numAry[idxl] - numAry[idxr];
+        numAry[idxl] = numAry[idxl] - numAry[idxr];
+    }
+
+    static void swap2(int[] numAry, int idxl, int idxr) {
+        numAry[idxl] = numAry[idxl] * numAry[idxr];
+        numAry[idxr] = numAry[idxl] / numAry[idxr];
+        numAry[idxl] = numAry[idxl] / numAry[idxr];
+    }
+
+    static void swap3(int[] numAry, int idxl, int idxr) {
+        numAry[idxl] = numAry[idxl] ^ numAry[idxr];
+        numAry[idxr] = numAry[idxl] ^ numAry[idxr];
+        numAry[idxl] = numAry[idxl] ^ numAry[idxr];
     }
 
 }
