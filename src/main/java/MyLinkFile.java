@@ -10,7 +10,7 @@ class MyLinkFileApp {
 
         myLinkList.traverse();
 
-        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(new int[]{0, 2});
+        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(new int[]{2, 0});
 
         myLinkList.traverse();
 
@@ -34,6 +34,15 @@ class MyUtil {
             }
         }
         return false;
+    }
+
+    static boolean beSortSmallToBig(int[] numAry) {
+        for (int i = 0; i < numAry.length - 1; i++) {
+            if (numAry[i] >= numAry[i+1]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
@@ -143,6 +152,9 @@ class MyLinkList {
         if (idxList.length > size) {
             throw new RuntimeException("idxList数量不能大于size");
         }
+        if (!MyUtil.beSortSmallToBig(idxList)) {
+            throw new RuntimeException("idxList必须是单调递增的");
+        }
         MyLinkNode[] ret = new MyLinkNode[idxList.length];
 
         //1. 循环处理，调用单个getByIdx
@@ -154,7 +166,6 @@ class MyLinkList {
 
         //2优化一次遍历
         MyLinkNode current = head;
-
         for (int i = 0, j = 0; i < size && current != null; i++, current = current.next) {
             if (MyUtil.hasVal(idxList, i)) {
                 ret[j++] = current;
