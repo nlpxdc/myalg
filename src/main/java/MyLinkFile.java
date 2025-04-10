@@ -10,7 +10,11 @@ class MyLinkFileApp {
 
         myLinkList.traverse();
 
-        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(new int[]{0, 2});
+//        new int[]{0, 2}
+        int[] idxList = {2, 0};
+        MyUtil.bubbleSort(idxList);
+
+        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(idxList);
 
         myLinkList.traverse();
 
@@ -44,6 +48,28 @@ class MyUtil {
         }
         return true;
     }
+
+    static boolean beSortBigToSmall(int[] numAry) {
+        for (int i = 0; i < numAry.length; i++) {
+            if (numAry[i] <= numAry[i+1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static void bubbleSort(int[] numAry) {
+        for (int i = 0; i < numAry.length; i++) {
+            for (int j = i+1; j < numAry.length; j++) {
+                if (numAry[i] > numAry[j]) {
+                    int t = numAry[i];
+                    numAry[i] = numAry[j];
+                    numAry[j] = t;
+                }
+            }
+        }
+    }
+
 }
 
 class MyLinkList {
