@@ -10,7 +10,7 @@ class MyLinkFileApp {
 
         myLinkList.traverse();
 
-        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(new int[]{2, 0});
+        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(new int[]{0, 2});
 
         myLinkList.traverse();
 
@@ -166,7 +166,8 @@ class MyLinkList {
 
         //2优化一次遍历
         MyLinkNode current = head;
-        for (int i = 0, j = 0; i < size && current != null; i++, current = current.next) {
+//        for (int i = 0, j = 0; i < size && current != null; i++, current = current.next) {
+        for (int i = 0, j = 0; i <= idxList[idxList.length-1] && current != null; i++, current = current.next) {
             if (MyUtil.hasVal(idxList, i)) {
                 ret[j++] = current;
             }
