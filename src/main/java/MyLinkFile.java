@@ -62,12 +62,19 @@ class MyUtil {
         for (int i = 0; i < numAry.length; i++) {
             for (int j = i+1; j < numAry.length; j++) {
                 if (numAry[i] > numAry[j]) {
-                    int t = numAry[i];
-                    numAry[i] = numAry[j];
-                    numAry[j] = t;
+//                    int t = numAry[i];
+//                    numAry[i] = numAry[j];
+//                    numAry[j] = t;
+                    swap(numAry, i, j);
                 }
             }
         }
+    }
+
+    static void swap(int[] numAry, int idxl, int idxr) {
+        int t = numAry[idxl];
+        numAry[idxl] = numAry[idxr];
+        numAry[idxr] = t;
     }
 
 }
