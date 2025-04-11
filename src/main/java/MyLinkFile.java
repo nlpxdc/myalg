@@ -66,7 +66,7 @@ class MyUtil {
 //                    numAry[i] = numAry[j];
 //                    numAry[j] = t;
 //                    swap(numAry, i, j);
-                    swap3(numAry, i, j);
+                    swap(numAry, i, j);
                 }
             }
         }
