@@ -3,15 +3,20 @@ import java.util.List;
 
 class MyArrFile {
     public static void main(String[] args) {
-        MyArrList myArrList = new MyArrList();
-        myArrList.addEl(new MyArrNode(5));
-        myArrList.addEl(new MyArrNode(3));
-        myArrList.addEl(new MyArrNode(18));
+//        MyArrList myArrList = new MyArrList();
+//        myArrList.addEl(new MyArrNode(5));
+//        myArrList.addEl(new MyArrNode(3));
+//        myArrList.addEl(new MyArrNode(18));
+//
+//        myArrList.traverse();
+//
+//        MyArrNode[] myArrNodes = myArrList.batchGetByIdxList(new int[]{0, 2});
+//        myArrList.traverse();
 
-        myArrList.traverse();
+        int[] upList = {1,2,2,3,3,5,5,7};
+        int[] downList = {2,4,5,5,6,8,8};
+        int[] mergeList = MyArrUtil.mergeSort(upList, downList);
 
-        MyArrNode[] myArrNodes = myArrList.batchGetByIdxList(new int[]{0, 2});
-        myArrList.traverse();
     }
 }
 
@@ -20,6 +25,31 @@ class MyArrNode {
 
     MyArrNode(int val) {
         this.val = val;
+    }
+}
+
+class MyArrUtil {
+    static int[] mergeSort(int[] upList, int[] downList) {
+        int[] ret =new int[upList.length+downList.length];
+        for (int i = 0, idxUp = 0, idxDown = 0; i < ret.length; i++) {
+            if (idxUp >= upList.length && idxDown < downList.length) {
+                ret[i] = downList[idxDown++];
+                continue;
+            }
+            if (idxDown >= downList.length && idxUp < upList.length) {
+                ret[i] = upList[idxUp++];
+                continue;
+            }
+            if (upList[idxUp] == downList[idxDown]) {
+                ret[i++] = upList[idxUp++];
+                ret[i] = downList[idxDown++];
+            } else if (upList[idxUp] < downList[idxDown]) {
+                ret[i] = upList[idxUp++];
+            } else {
+                ret[i] = downList[idxDown++];
+            }
+        }
+        return ret;
     }
 }
 

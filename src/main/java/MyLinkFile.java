@@ -12,7 +12,7 @@ class MyLinkFileApp {
 
 //        new int[]{0, 2}
         int[] idxList = {2, 0};
-        MyUtil.bubbleSort(idxList);
+        MyLinkUtil.bubbleSort(idxList);
 
         MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(idxList);
 
@@ -30,7 +30,7 @@ class MyLinkNode {
     }
 }
 
-class MyUtil {
+class MyLinkUtil {
     static boolean hasVal(int[] numAry, int v) {
         for (int i = 0; i < numAry.length; i++) {
             if (numAry[i] == v) {
@@ -204,7 +204,7 @@ class MyLinkList {
         if (idxList.length > size) {
             throw new RuntimeException("idxList数量不能大于size");
         }
-        if (!MyUtil.beSortSmallToBig(idxList)) {
+        if (!MyLinkUtil.beSortSmallToBig(idxList)) {
             throw new RuntimeException("idxList必须是单调递增的");
         }
         MyLinkNode[] ret = new MyLinkNode[idxList.length];
@@ -220,7 +220,7 @@ class MyLinkList {
         MyLinkNode current = head;
 //        for (int i = 0, j = 0; i < size && current != null; i++, current = current.next) {
         for (int i = 0, j = 0; i <= idxList[idxList.length-1] && current != null; i++, current = current.next) {
-            if (MyUtil.hasVal(idxList, i)) {
+            if (MyLinkUtil.hasVal(idxList, i)) {
                 ret[j++] = current;
             }
         }
@@ -310,6 +310,10 @@ class MyLinkList {
         } else {
             current.val = newVal;
         }
+    }
+
+    void mergeSortList() {
+
     }
 
     void traverse() {
