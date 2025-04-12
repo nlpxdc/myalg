@@ -2,22 +2,40 @@ import java.util.Arrays;
 
 class MyLinkFileApp {
     public static void main(String[] args) {
-        MyLinkList myLinkList = new MyLinkList();
-        myLinkList.addEl(new MyLinkNode(4));
-        myLinkList.addEl(new MyLinkNode(2));
-        MyLinkNode myLinkNode = new MyLinkNode(17);
-        myLinkList.addEl(myLinkNode);
+//        MyLinkList myLinkList = new MyLinkList();
+//        myLinkList.addEl(new MyLinkNode(4));
+//        myLinkList.addEl(new MyLinkNode(2));
+//        MyLinkNode myLinkNode = new MyLinkNode(17);
+//        myLinkList.addEl(myLinkNode);
+//
+//        myLinkList.traverse();
+//
+////        new int[]{0, 2}
+//        int[] idxList = {2, 0};
+//        MyLinkUtil.bubbleSort(idxList);
+//
+//        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(idxList);
+//
+//        myLinkList.traverse();
 
+        MyLinkList upList = new MyLinkList();
+        upList.addEl(new MyLinkNode(1));
+        upList.addEl(new MyLinkNode(2));
+        upList.addEl(new MyLinkNode(3));
+        upList.addEl(new MyLinkNode(3));
+        upList.addEl(new MyLinkNode(5));
+        upList.addEl(new MyLinkNode(7));
+
+        MyLinkList downList = new MyLinkList();
+        downList.addEl(new MyLinkNode(2));
+        downList.addEl(new MyLinkNode(4));
+        downList.addEl(new MyLinkNode(6));
+        downList.addEl(new MyLinkNode(7));
+        downList.addEl(new MyLinkNode(7));
+        downList.addEl(new MyLinkNode(8));
+
+        MyLinkList myLinkList = MyLinkUtil.mergeSort(upList, downList);
         myLinkList.traverse();
-
-//        new int[]{0, 2}
-        int[] idxList = {2, 0};
-        MyLinkUtil.bubbleSort(idxList);
-
-        MyLinkNode[] myLinkNodes = myLinkList.batchGetByIdxList(idxList);
-
-        myLinkList.traverse();
-
     }
 }
 
@@ -94,6 +112,44 @@ class MyLinkUtil {
         numAry[idxl] = numAry[idxl] ^ numAry[idxr];
         numAry[idxr] = numAry[idxl] ^ numAry[idxr];
         numAry[idxl] = numAry[idxl] ^ numAry[idxr];
+    }
+
+    static MyLinkList mergeSort(MyLinkList upList, MyLinkList downList) {
+        MyLinkNode virtualHead = new MyLinkNode(Integer.MIN_VALUE);
+        MyLinkNode current = virtualHead;
+        MyLinkNode upNode = upList.head;
+        MyLinkNode downNode = downList.head;
+        for (int i = 0; (i < upList.size + downList.size) && (upNode != null || downNode != null); i++, current=current.next) {
+            if (upNode == null && downNode != null) {
+                current.next = new MyLinkNode(downNode.val);
+                downNode = downNode.next;
+                continue;
+            }
+            if (downNode == null && upNode != null) {
+                current.next = new MyLinkNode(upNode.val);
+                upNode = upNode.next;
+                continue;
+            }
+
+            if (upNode.val == downNode.val) {
+                current.next = new MyLinkNode(upNode.val);
+                current = current.next;
+                upNode = upNode.next;
+                current.next = new MyLinkNode(downNode.val);
+                downNode = downNode.next;
+            } else if (upNode.val < downNode.val) {
+                current.next = new MyLinkNode(upNode.val);
+                upNode = upNode.next;
+            } else {
+                current.next = new MyLinkNode(downNode.val);
+                downNode = downNode.next;
+            }
+        }
+
+        MyLinkList ret = new MyLinkList();
+        ret.head = virtualHead.next;
+        ret.size = upList.size + downList.size;
+        return ret;
     }
 
 }
@@ -310,10 +366,6 @@ class MyLinkList {
         } else {
             current.val = newVal;
         }
-    }
-
-    void mergeSortList() {
-
     }
 
     void traverse() {
