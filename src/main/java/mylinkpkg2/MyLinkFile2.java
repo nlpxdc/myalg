@@ -16,8 +16,8 @@ class MyLinkApp {
 
         myLinkList.traverse();
 
-        boolean beCircle = myLinkList.hasCircleNotHead();
-        System.out.println(beCircle);
+        MyLinkList retList = myLinkList.hasCircleNotHeadRetList();
+        retList.traverse();
     }
 }
 
@@ -368,6 +368,29 @@ class MyLinkList {
             }
         }
         return false;
+    }
+
+    MyLinkList hasCircleNotHeadRetList() {
+        if (head == null) {
+            return null;
+        }
+        MyLinkNode slow = head;
+        MyLinkNode fast = head.next;
+        for (int i = 0; i < size; i++, slow = slow.next, fast = fast.next.next) {
+            if (fast == slow && slow.next != head) {
+                MyLinkList ret = new MyLinkList();
+                ret.head = slow;
+                MyLinkNode current = slow;
+                for (int j = 0, currentIdx = 0 ; j < size; j++, current = current.next, currentIdx++) {
+                    if (current.next == slow) {
+                        ret.size = currentIdx + 1;
+                        break;
+                    }
+                }
+                return  ret;
+            }
+        }
+        return null;
     }
 
     void updateValByIdx(int idx, int newVal) {
