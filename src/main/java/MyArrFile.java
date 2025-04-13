@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
-class MyArrFile {
+class MyArrApp {
     public static void main(String[] args) {
 //        MyArrList myArrList = new MyArrList();
 //        myArrList.addEl(new MyArrNode(5));
