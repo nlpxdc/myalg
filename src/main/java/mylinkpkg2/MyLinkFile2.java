@@ -16,7 +16,7 @@ class MyLinkApp {
 
         myLinkList.traverse();
 
-        boolean beCircle = myLinkList.beCircle();
+        boolean beCircle = myLinkList.hasCircleNotHead();
         System.out.println(beCircle);
     }
 }
@@ -341,6 +341,7 @@ class MyLinkList {
         return false;
     }
 
+//    hasCircleIsHead
     boolean beCircle() {
         if (head == null) {
             return false;
@@ -349,6 +350,20 @@ class MyLinkList {
         MyLinkNode fast = head.next;
         for (int i = 0; i < size && slow != null && fast != null && fast.next != null; i++, slow=slow.next, fast=fast.next.next) {
             if (fast == slow && slow.next == head) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean hasCircleNotHead() {
+        if (head == null) {
+            return false;
+        }
+        MyLinkNode slow = head;
+        MyLinkNode fast = head.next;
+        for (int i = 0; i < size; i++, slow = slow.next, fast = fast.next.next) {
+            if (fast == slow && slow.next != head) {
                 return true;
             }
         }
