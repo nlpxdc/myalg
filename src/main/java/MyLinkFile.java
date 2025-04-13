@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-class MyLinkFileApp {
+class MyLinkApp {
     public static void main(String[] args) {
 //        MyLinkList myLinkList = new MyLinkList();
 //        myLinkList.addEl(new MyLinkNode(4));
