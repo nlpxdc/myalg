@@ -12,11 +12,12 @@ class MyDLinkNode {
 
 class MyDLinkList {
     MyDLinkNode head;
+    MyDLinkNode last;
     int size;
 
     MyDLinkList() {
         head = null;
+        last = null;
         size = 0;
     }
 }
-
