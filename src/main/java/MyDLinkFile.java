@@ -1,13 +1,31 @@
 class MyDLinkApp {
     public static void main(String[] args) {
-        System.out.println("aa");
+        MyDLinkNode node0 = new MyDLinkNode(1);
+        MyDLinkNode node1 = new MyDLinkNode(2);
+        MyDLinkNode node2 = new MyDLinkNode(5);
+        node0.next = node1;
+        node1.next =  node2;
+        node2.prev = node1;
+        node1.prev = node0;
+
+        MyDLinkList myDLinkList = new MyDLinkList();
+        myDLinkList.head = node0;
+        myDLinkList.last = node2;
+        myDLinkList.size = 3;
+
+        myDLinkList.traverseNext();
+        myDLinkList.traversePrev();
     }
 }
 
 class MyDLinkNode {
     int val;
-    MyDLinkNode pre;
+    MyDLinkNode prev;
     MyDLinkNode next;
+
+    MyDLinkNode(int val) {
+        this.val = val;
+    }
 }
 
 class MyDLinkList {
@@ -19,5 +37,21 @@ class MyDLinkList {
         head = null;
         last = null;
         size = 0;
+    }
+
+    void traverseNext() {
+        MyDLinkNode current = head;
+        for (int i = 0; i < size && current != null; i++, current = current.next) {
+            System.out.print(current.val+"->");
+        }
+        System.out.println();
+    }
+
+    void traversePrev() {
+        MyDLinkNode current = last;
+        for (int i = 0; i < size && current != null; i++, current=current.prev) {
+            System.out.print(current.val+"->");
+        }
+        System.out.println();
     }
 }
