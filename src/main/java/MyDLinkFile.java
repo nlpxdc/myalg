@@ -19,8 +19,8 @@ class MyDLinkApp {
         node1.next = node2;
         node2.prev = node1;
 
-//        node2.next = node0;
-//        node0.prev = node2;
+        node2.next = node0;
+        node0.prev = node2;
 
         MyDLinkList myDLinkList = new MyDLinkList();
         myDLinkList.head = node0;
@@ -32,7 +32,7 @@ class MyDLinkApp {
         myDLinkList.traverseNext();
         myDLinkList.traversePrev();
 //        myDLinkList.traverseNextAllTheTime();
-//        myDLinkList.traversePrevAllTheTime();
+        myDLinkList.traversePrevAllTheTime();
     }
 }
 
@@ -64,8 +64,11 @@ class MyDLinkList {
             size=1;
             return;
         }
+        MyDLinkNode origLastNext = last.next;
         last.next = node;
         node.prev = last;
+        node.next = origLastNext;
+        head.prev = head.prev == null ? null : node;
         last = node;
         size++;
     }
