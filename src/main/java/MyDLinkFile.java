@@ -63,7 +63,7 @@ class MyDLinkList {
     }
 
     void addHeadEl(MyDLinkNode node) {
-        if (head == null && last == null) {
+        if (head == null) {
             head = node;
             last = node;
             size=1;
@@ -76,7 +76,7 @@ class MyDLinkList {
     }
 
     void addLastEl(MyDLinkNode node) {
-        if (head == null && last == null) {
+        if (last == null) {
             head = node;
             last = node;
             size=1;
