@@ -5,8 +5,10 @@ class MyDLinkApp {
         MyDLinkNode node2 = new MyDLinkNode(5);
         node0.next = node1;
         node1.next =  node2;
+        node2.next = node0;
         node2.prev = node1;
         node1.prev = node0;
+        node0.prev = node2;
 
         MyDLinkList myDLinkList = new MyDLinkList();
         myDLinkList.head = node0;
@@ -15,6 +17,8 @@ class MyDLinkApp {
 
         myDLinkList.traverseNext();
         myDLinkList.traversePrev();
+//        myDLinkList.traverseNextAllTheTime();
+        myDLinkList.traversePrevAllTheTime();
     }
 }
 
@@ -54,4 +58,31 @@ class MyDLinkList {
         }
         System.out.println();
     }
+
+    void traverseNextAllTheTime() {
+        MyDLinkNode current = head;
+        for (; current != null ; current = current.next ) {
+            System.out.print(current.val+"->");
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println();
+    }
+
+    void traversePrevAllTheTime() {
+        MyDLinkNode current = last;
+        for (; current != null ; current = current.prev ) {
+            System.out.print(current.val+"->");
+            try {
+                Thread.sleep(27_0);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println();
+    }
+
 }
