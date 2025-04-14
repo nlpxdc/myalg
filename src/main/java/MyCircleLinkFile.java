@@ -5,5 +5,5 @@ class MyCircleLinkApp {
 }
 
 class MyCircleLinkNode {
-    
+
 }
