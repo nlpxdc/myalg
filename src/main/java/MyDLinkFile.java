@@ -1,13 +1,25 @@
 class MyDLinkApp {
     public static void main(String[] args) {
+//        MyDLinkNode node0 = new MyDLinkNode(1);
+//        MyDLinkNode node1 = new MyDLinkNode(2);
+//        MyDLinkNode node2 = new MyDLinkNode(5);
+//        node0.next = node1;
+//        node1.next =  node2;
+//        node2.next = node0;
+//        node2.prev = node1;
+//        node1.prev = node0;
+//        node0.prev = node2;
+
         MyDLinkNode node0 = new MyDLinkNode(1);
         MyDLinkNode node1 = new MyDLinkNode(2);
         MyDLinkNode node2 = new MyDLinkNode(5);
         node0.next = node1;
-        node1.next =  node2;
-        node2.next = node0;
-        node2.prev = node1;
         node1.prev = node0;
+
+        node1.next = node2;
+        node2.prev = node1;
+        
+        node2.next = node0;
         node0.prev = node2;
 
         MyDLinkList myDLinkList = new MyDLinkList();
@@ -64,7 +76,7 @@ class MyDLinkList {
         for (; current != null ; current = current.next ) {
             System.out.print(current.val+"->");
             try {
-                Thread.sleep(300);
+                Thread.sleep(27_0);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
