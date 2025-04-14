@@ -18,19 +18,21 @@ class MyDLinkApp {
 
         node1.next = node2;
         node2.prev = node1;
-        
-        node2.next = node0;
-        node0.prev = node2;
+
+//        node2.next = node0;
+//        node0.prev = node2;
 
         MyDLinkList myDLinkList = new MyDLinkList();
         myDLinkList.head = node0;
         myDLinkList.last = node2;
         myDLinkList.size = 3;
 
+        myDLinkList.addEl(new MyDLinkNode(8));
+
         myDLinkList.traverseNext();
         myDLinkList.traversePrev();
 //        myDLinkList.traverseNextAllTheTime();
-        myDLinkList.traversePrevAllTheTime();
+//        myDLinkList.traversePrevAllTheTime();
     }
 }
 
@@ -53,6 +55,19 @@ class MyDLinkList {
         head = null;
         last = null;
         size = 0;
+    }
+
+    void addEl(MyDLinkNode node) {
+        if (head == null) {
+            head = node;
+            last = node;
+            size=1;
+            return;
+        }
+        last.next = node;
+        node.prev = last;
+        last = node;
+        size++;
     }
 
     void traverseNext() {
