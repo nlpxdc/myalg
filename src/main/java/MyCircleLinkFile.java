@@ -12,6 +12,7 @@ class MyCircleLinkApp {
         myCircleLinkList.size = 3;
 
         myCircleLinkList.addHeadEl(new MyCircleLinkNode(0));
+        myCircleLinkList.addLastEl(new MyCircleLinkNode(9));
 
 //        myCircleLinkList.traverse();
         myCircleLinkList.traverseAllTheTime();
@@ -50,6 +51,16 @@ class MyCircleLinkList {
         current.next = node;
         node.next = head;
         head = node;
+        size++;
+    }
+
+    void addLastEl(MyCircleLinkNode node) {
+        MyCircleLinkNode current = head;
+        for (int i = 0; i < size-1 && current!=null && current.next!=null; i++, current=current.next) {
+
+        }
+        current.next = node;
+        node.next = head;
         size++;
     }
 
