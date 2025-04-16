@@ -20,6 +20,7 @@ class MyCircleDLinkApp {
         myCircleDLinkList.size = 3;
 
         myCircleDLinkList.traverseFromHead();
+        myCircleDLinkList.traverseFromLast();
     }
 
 }
@@ -48,6 +49,14 @@ class MyCircleDLinkList {
     void traverseFromHead() {
         MyCircleDLinkNode current = head;
         for (int i = 0; i < size && current != null; i++, current = current.next) {
+            System.out.print(current.val+"->");
+        }
+        System.out.println();
+    }
+
+    void traverseFromLast() {
+        MyCircleDLinkNode current = last;
+        for (int i = 0; i < size && current != null; i++, current=current.prev) {
             System.out.print(current.val+"->");
         }
         System.out.println();
