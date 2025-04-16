@@ -56,9 +56,6 @@ class MyCircleDLinkList {
     }
 
     void addHeadEl(MyCircleDLinkNode node) {
-        if (last != null && last.next != head && last.prev != null || head != null && head.prev != last && head.next != null) {
-            throw new RuntimeException("");
-        }
         if (head == null ) {
             node.next = node;
             node.prev = node;
@@ -75,9 +72,6 @@ class MyCircleDLinkList {
     }
 
     void addLastEl(MyCircleDLinkNode node) {
-        if (last != null && last.next != head && last.prev != null || head != null && head.prev != last && head.next != null) {
-            throw new RuntimeException("");
-        }
         if (last == null) {
             node.next = node;
             node.prev = node;
