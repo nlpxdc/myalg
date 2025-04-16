@@ -22,6 +22,12 @@ class MyCircleDLinkApp {
         myCircleDLinkList.traverseFromHead();
         myCircleDLinkList.traverseFromLast();
 
+        myCircleDLinkList.addHeadEl(new MyCircleDLinkNode(0));
+        myCircleDLinkList.addLastEl(new MyCircleDLinkNode(9));
+
+        myCircleDLinkList.traverseFromHead();
+        myCircleDLinkList.traverseFromLast();
+
 //        myCircleDLinkList.traverseFromHeadAllTheTime();
         myCircleDLinkList.traverseFromLastAllTheTime();
     }
@@ -47,6 +53,38 @@ class MyCircleDLinkList {
         head = null;
         last = null;
         size = 0;
+    }
+
+    void addHeadEl(MyCircleDLinkNode node) {
+        if (head == null) {
+            node.next = node;
+            node.prev = node;
+            head = node;
+            last = node;
+            size = 1;
+        }
+        node.next = head;
+        head.prev = node;
+        head = node;
+        node.prev = last;
+        last.next = node;
+        size++;
+    }
+
+    void addLastEl(MyCircleDLinkNode node) {
+        if (last == null) {
+            node.next = node;
+            node.prev = node;
+            head = node;
+            last = node;
+            size = 1;
+        }
+        last.next = node;
+        node.prev = last;
+        last = node;
+        node.next = head;
+        head.prev = node;
+        size++;
     }
 
     void traverseFromHead() {
