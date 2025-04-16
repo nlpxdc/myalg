@@ -21,6 +21,9 @@ class MyCircleDLinkApp {
 
         myCircleDLinkList.traverseFromHead();
         myCircleDLinkList.traverseFromLast();
+
+//        myCircleDLinkList.traverseFromHeadAllTheTime();
+        myCircleDLinkList.traverseFromLastAllTheTime();
     }
 
 }
@@ -54,10 +57,36 @@ class MyCircleDLinkList {
         System.out.println();
     }
 
+    void traverseFromHeadAllTheTime() {
+        MyCircleDLinkNode current = head;
+        for (;  current != null; current = current.next) {
+            System.out.print(current.val+"->");
+            try {
+                Thread.sleep(27_0);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println();
+    }
+
     void traverseFromLast() {
         MyCircleDLinkNode current = last;
         for (int i = 0; i < size && current != null; i++, current=current.prev) {
             System.out.print(current.val+"->");
+        }
+        System.out.println();
+    }
+
+    void traverseFromLastAllTheTime() {
+        MyCircleDLinkNode current = last;
+        for (;  current != null;  current=current.prev) {
+            System.out.print(current.val+"->");
+            try {
+                Thread.sleep(27_0);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         System.out.println();
     }
