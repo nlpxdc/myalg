@@ -55,6 +55,11 @@ class MyCircleLinkList {
     }
 
     void addLastEl(MyCircleLinkNode node) {
+        if (head == null) {
+            node.next = node;
+            head = node;
+            size = 1;
+        }
         MyCircleLinkNode current = head;
         for (int i = 0; i < size-1 && current!=null && current.next!=null; i++, current=current.next) {
 
