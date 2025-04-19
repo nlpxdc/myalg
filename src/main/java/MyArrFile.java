@@ -156,7 +156,7 @@ class MyArrList {
     }
 
     void reverse() {
-        for (int i = 0, j = size-1; i < size && j >= 0 && i < j; i++, j--) {
+        for (int i = 0, j = size-1; i < size/2 && j >= 0 && i < j; i++, j--) {
             int t = nodeAry[i].val;
             nodeAry[i].val = nodeAry[j].val;
             nodeAry[j].val = t;
