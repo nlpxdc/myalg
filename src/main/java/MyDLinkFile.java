@@ -37,7 +37,8 @@ class MyDLinkApp {
 
 //        myDLinkList.reverseByValue();
 //        myDLinkList.reverseByNodeNext();
-        myDLinkList.reverseByNodePrev();
+//        myDLinkList.reverseByNodePrev();
+        myDLinkList.reverseByNodeMid();
         myDLinkList.traverseNext();
         myDLinkList.traversePrev();
 
@@ -149,6 +150,33 @@ class MyDLinkList {
         MyDLinkNode origLast = last;
         last = head;
         head = origLast;
+    }
+
+    void reverseByNodeMid() {
+        MyDLinkNode left = head;
+        MyDLinkNode right = last;
+        for (int i = 0; i < size/2+1 && left != null && right != null; i++) {
+            if (left == right) {
+                MyDLinkNode origLeftNext = left.next;
+                left.next = left.prev;
+                left.prev = origLeftNext;
+            } else {
+                MyDLinkNode origLeftNext = left.next;
+                left.next = left.prev;
+                left.prev = origLeftNext;
+                left = origLeftNext;
+                MyDLinkNode origRightPrev = right.prev;
+                right.prev = right.next;
+                right.next = origRightPrev;
+                right = origRightPrev;
+            }
+        }
+//        MyDLinkNode origLast = last;
+//        last = head;
+//        head = origLast;
+        MyDLinkNode origHead = head;
+        head = last;
+        last = origHead;
     }
 
 //    void traverseNextAllTheTime() {
