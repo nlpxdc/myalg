@@ -329,20 +329,20 @@ class MyLinkList {
     }
 
     void reverse() {
-        MyLinkNode pre = null;
+        MyLinkNode prev = null;
         MyLinkNode current = head;
         for (int i = 0; i < size && current != null; i++) {
             //保留当前节点的next指针的后置节点
             MyLinkNode t = current.next;
             //把当前节点的next指针指向前一个节点
-            current.next = pre;
+            current.next = prev;
             //迭代进入下一次循环
             //前置节点设置成当前节点
-            pre = current;
+            prev = current;
             //current设置成后置节点
             current = t;
         }
-        head = pre;
+        head = prev;
     }
 
     boolean beCircle() {
