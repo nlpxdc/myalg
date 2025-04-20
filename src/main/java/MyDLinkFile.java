@@ -157,9 +157,14 @@ class MyDLinkList {
         MyDLinkNode right = last;
         for (int i = 0; i < size/2+1 && left != null && right != null; i++) {
             if (left == right) {
-                MyDLinkNode origLeftNext = left.next;
-                left.next = left.prev;
-                left.prev = origLeftNext;
+//                MyDLinkNode origLeftNext = left.next;
+//                left.next = left.prev;
+//                left.prev = origLeftNext;
+                MyDLinkNode origRightPrev = right.prev;
+                right.prev = right.next;
+                right.next = origRightPrev;
+
+                break;
             } else {
                 MyDLinkNode origLeftNext = left.next;
                 left.next = left.prev;
