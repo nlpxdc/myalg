@@ -4,5 +4,5 @@ interface MyStack2 {
 }
 
 interface MyStack3 {
-    
+
 }
