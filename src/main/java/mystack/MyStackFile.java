@@ -56,6 +56,9 @@ interface MyStack<T extends Node> {
 
 class MyAryStack implements MyStack<AryNode> {
 
+    AryNode[] aryNodes = new AryNode[10000];
+    int size = 0;
+
 
     @Override
     public void push(AryNode el) {
