@@ -16,9 +16,9 @@ class MyStackApp {
 interface MyStack<T extends Node> {
     void push(T el);
 
-    void pop();
+    T pop();
 
-    void peek();
+    T peek();
 
     void traverse();
 }
@@ -32,13 +32,13 @@ class MyAryStack implements MyStack<AryNode> {
     }
 
     @Override
-    public void pop() {
-
+    public AryNode pop() {
+        return null;
     }
 
     @Override
-    public void peek() {
-
+    public AryNode peek() {
+        return null;
     }
 
     @Override
@@ -49,19 +49,20 @@ class MyAryStack implements MyStack<AryNode> {
 
 class MyLinkStack implements MyStack<LinkNode> {
 
+
     @Override
     public void push(LinkNode el) {
 
     }
 
     @Override
-    public void pop() {
-
+    public LinkNode pop() {
+        return null;
     }
 
     @Override
-    public void peek() {
-
+    public LinkNode peek() {
+        return null;
     }
 
     @Override
@@ -72,19 +73,20 @@ class MyLinkStack implements MyStack<LinkNode> {
 
 class MyDLinkStack implements MyStack<DLinkNode> {
 
+
     @Override
     public void push(DLinkNode el) {
-        
-    }
-
-    @Override
-    public void pop() {
 
     }
 
     @Override
-    public void peek() {
+    public DLinkNode pop() {
+        return null;
+    }
 
+    @Override
+    public DLinkNode peek() {
+        return null;
     }
 
     @Override
