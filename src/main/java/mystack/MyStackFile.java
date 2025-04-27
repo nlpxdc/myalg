@@ -12,6 +12,9 @@ class MyStackApp {
         MyStack<AryNode> myStack = null;
         myStackApp.<AryNode>fund3(myStack);
         myStackApp.fund3(myStack);
+        AryNode aryNode = myStackApp.func4(myStack);
+        MyStack<Node> myStack2 = null;
+        Node aryNode2 = myStackApp.<Node>func4(myStack2);
     }
 
     private void func0 (MyStack<?> myStack) {
