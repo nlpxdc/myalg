@@ -9,6 +9,18 @@ class MyStackApp {
     public static void main(String[] args) {
         System.out.println("aaa");
     }
+
+    private void func0 (MyStack<?> myStack) {
+
+    }
+
+    private void func1(MyStack<? extends LinkNode> myStack) {
+
+    }
+
+    private void func2(MyStack<? super DLinkNode> myStack) {
+
+    }
 }
 
 
@@ -94,3 +106,4 @@ class MyDLinkStack implements MyStack<DLinkNode> {
 
     }
 }
+
