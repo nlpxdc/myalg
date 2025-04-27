@@ -8,6 +8,10 @@ import common2.Node;
 class MyStackApp {
     public static void main(String[] args) {
         System.out.println("aaa");
+        MyStackApp myStackApp = new MyStackApp();
+        MyStack<AryNode> myStack = null;
+        myStackApp.<AryNode>fund3(myStack);
+        myStackApp.fund3(myStack);
     }
 
     private void func0 (MyStack<?> myStack) {
@@ -20,6 +24,18 @@ class MyStackApp {
 
     private void func2(MyStack<? super DLinkNode> myStack) {
 
+    }
+
+    private <T extends Node> void fund3(MyStack<? extends T> myStack) {
+
+    }
+
+    private <T> T func4(MyStack<? super T> myStack) {
+        return null;
+    }
+
+    private <T extends AryNode> T func5(MyStack<? extends T> myStack) {
+        return null;
     }
 }
 
