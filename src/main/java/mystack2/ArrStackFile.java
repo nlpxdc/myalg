@@ -1,6 +1,6 @@
 package mystack2;
 
-class MyArrStackApp {
+class ArrStackApp {
     public static void main(String[] args) {
         AryStack aryStack = new AryStack();
         aryStack.push(new Node(1));
