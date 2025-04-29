@@ -111,6 +111,7 @@ class MyDLinkList {
         return current;
     }
 
+    //不建议，不要用count思考，用idx思考
     MyDLinkNode getByIdxPrex2(int idx) {
         if (idx < 0) {
             throw new RuntimeException("idx不能小于0");
@@ -125,6 +126,7 @@ class MyDLinkList {
         return current;
     }
 
+    //建议，用idx思考，倒过来也是idx思考
     MyDLinkNode getByIdxPrex3(int idx) {
         if (idx < 0) {
             throw new RuntimeException("idx不能小于0");
