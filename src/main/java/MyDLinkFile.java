@@ -31,16 +31,28 @@ class MyDLinkApp {
         myDLinkList.addLastEl(new MyDLinkNode(8));
 
         myDLinkList.traverseNext();
-        myDLinkList.traversePrev();
+//        myDLinkList.traversePrev();
 //        myDLinkList.traverseNextAllTheTime();
 //        myDLinkList.traversePrevAllTheTime();
 
 //        myDLinkList.reverseByValue();
 //        myDLinkList.reverseByNodeNext();
 //        myDLinkList.reverseByNodePrev();
-        myDLinkList.reverseByNodeMid();
-        myDLinkList.traverseNext();
-        myDLinkList.traversePrev();
+//        myDLinkList.reverseByNodeMid();
+//        myDLinkList.traverseNext();
+//        myDLinkList.traversePrev();
+
+//        MyDLinkNode byIdxNext = myDLinkList.getByIdxNext(1);
+//        MyDLinkNode byIdxNext1 = myDLinkList.getByIdxNext(3);
+
+//        MyDLinkNode byIdxPrex = myDLinkList.getByIdxPrex(1);
+//        MyDLinkNode byIdxPrex1 = myDLinkList.getByIdxPrex(3);
+
+        MyDLinkNode byIdxPrex2 = myDLinkList.getByIdxPrex2(1);
+        MyDLinkNode byIdxPrex21 = myDLinkList.getByIdxPrex2(3);
+
+//        MyDLinkNode byIdxPrex2 = myDLinkList.getByIdxPrex3(1);
+//        MyDLinkNode byIdxPrex21 = myDLinkList.getByIdxPrex3(3);
 
 
     }
@@ -69,6 +81,62 @@ class MyDLinkList {
 
     void addEl(int idx, int val) {
 
+    }
+
+    MyDLinkNode getByIdxNext(int idx) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
+        MyDLinkNode current = head;
+        for (int i = 0; i < size && i < idx && current != null; i++, current = current.next) {
+
+        }
+        return current;
+    }
+
+    MyDLinkNode getByIdxPrex(int idx) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
+        MyDLinkNode current = last;
+        for (int i = 0; i < size && i < idx && current != null; i++, current = current.prev) {
+
+        }
+        return current;
+    }
+
+    MyDLinkNode getByIdxPrex2(int idx) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
+        MyDLinkNode current = last;
+        for (int i = 1; i <= size && i <= size-(idx+1) && current != null; i++, current = current.prev) {
+
+        }
+        return current;
+    }
+
+    MyDLinkNode getByIdxPrex3(int idx) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
+        MyDLinkNode current = last;
+        for (int i = size-1; i > 0 && i > idx && current != null; i--, current = current.prev) {
+
+        }
+        return current;
     }
 
     void addHeadEl(MyDLinkNode node) {
