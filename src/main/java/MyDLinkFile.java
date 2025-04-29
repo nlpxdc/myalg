@@ -45,11 +45,14 @@ class MyDLinkApp {
 //        MyDLinkNode byIdxNext = myDLinkList.getByIdxNext(1);
 //        MyDLinkNode byIdxNext1 = myDLinkList.getByIdxNext(3);
 
+        MyDLinkNode byIdxNext2 = myDLinkList.getByIdxNext2(1);
+        MyDLinkNode byIdxNext21 = myDLinkList.getByIdxNext2(3);
+
 //        MyDLinkNode byIdxPrex = myDLinkList.getByIdxPrex(1);
 //        MyDLinkNode byIdxPrex1 = myDLinkList.getByIdxPrex(3);
 
-        MyDLinkNode byIdxPrex2 = myDLinkList.getByIdxPrex2(1);
-        MyDLinkNode byIdxPrex21 = myDLinkList.getByIdxPrex2(3);
+//        MyDLinkNode byIdxPrex2 = myDLinkList.getByIdxPrex2(1);
+//        MyDLinkNode byIdxPrex21 = myDLinkList.getByIdxPrex2(3);
 
 //        MyDLinkNode byIdxPrex2 = myDLinkList.getByIdxPrex3(1);
 //        MyDLinkNode byIdxPrex21 = myDLinkList.getByIdxPrex3(3);
@@ -92,6 +95,20 @@ class MyDLinkList {
         }
         MyDLinkNode current = head;
         for (int i = 0; i < size && i < idx && current != null; i++, current = current.next) {
+
+        }
+        return current;
+    }
+
+    MyDLinkNode getByIdxNext2(int idx) {
+        if (idx < 0) {
+            throw new RuntimeException("idx不能小于0");
+        }
+        if (idx >= size) {
+            throw new RuntimeException("idx不能大于等于size");
+        }
+        MyDLinkNode current = head;
+        for (int i = 1; i <= size && i <= idx && current != null; i++, current = current.next) {
 
         }
         return current;
