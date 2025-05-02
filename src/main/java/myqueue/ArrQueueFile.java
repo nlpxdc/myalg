@@ -56,7 +56,9 @@ class ArrQueue {
             throw new RuntimeException("no tail");
         }
         Node ret = nodeAry[size-1];
-        size--;
+//        nodeAry[size-1] = null;
+//        size--;
+        nodeAry[--size] = null;
         return ret;
     }
 
