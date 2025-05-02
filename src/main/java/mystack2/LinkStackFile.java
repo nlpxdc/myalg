@@ -75,7 +75,7 @@ class LinkStack {
     void traverse() {
         LinkNode current = head;
         for (int i = 0; i < size && current != null; i++, current = current.next) {
-            System.out.print(current.val+",");
+            System.out.print(current.val+"->");
         }
         System.out.println();
     }
