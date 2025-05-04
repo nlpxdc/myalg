@@ -393,6 +393,8 @@ class MyLinkList {
         return null;
     }
 
+    //todo 计算循环链表的入还第一个节点
+
     void updateValByIdx(int idx, int newVal) {
         MyLinkNode current = getByIdx(idx);
         if (current == null) {
