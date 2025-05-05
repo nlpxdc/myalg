@@ -157,7 +157,7 @@ class MyLinkUtil {
 
 class MyLinkList {
     MyLinkNode head;
-    int size;
+    int size; //?
 
     MyLinkList() {
         head = null;

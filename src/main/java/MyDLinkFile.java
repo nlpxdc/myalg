@@ -63,7 +63,7 @@ class MyDLinkNode {
 class MyDLinkList {
     MyDLinkNode head;
     MyDLinkNode last;
-    int size;
+    int size; //?
 
     MyDLinkList() {
         head = null;

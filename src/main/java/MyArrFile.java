@@ -56,7 +56,7 @@ class MyArrUtil {
 
 class MyArrList {
     MyArrNode[] nodeAry;
-    int size;
+    int size; //?
 
     MyArrList() {
         nodeAry = new MyArrNode[10000];
