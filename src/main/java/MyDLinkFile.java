@@ -53,6 +53,7 @@ class MyDLinkNode {
     int val;
     MyDLinkNode prev;
     MyDLinkNode next;
+    //idx? no can
 
     MyDLinkNode(int val) {
         this.val = val;

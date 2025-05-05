@@ -42,6 +42,7 @@ class MyLinkApp {
 class MyLinkNode {
     int val;
     MyLinkNode next;
+    //idx? no can
 
     MyLinkNode(int val) {
         this.val = val;

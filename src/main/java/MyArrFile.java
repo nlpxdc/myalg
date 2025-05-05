@@ -22,6 +22,7 @@ class MyArrApp {
 
 class MyArrNode {
     int val;
+    //idx? no can
 
     MyArrNode(int val) {
         this.val = val;
