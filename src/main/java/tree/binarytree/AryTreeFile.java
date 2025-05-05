@@ -8,6 +8,7 @@ class AryTreeApp {
 
 class Node {
     int val;
+    //depth? no
 
     Node(int val) {
         this.val = val;
@@ -15,5 +16,6 @@ class Node {
 }
 
 class AryTree {
-
+    //size? no? yes?
+    //maxDepth? no?
 }
