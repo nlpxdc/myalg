@@ -13,5 +13,5 @@ class DeLinkTreeNode {
 }
 
 class DeLinkKwayTree {
-    
+
 }

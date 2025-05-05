@@ -1,6 +1,6 @@
 package tree.binarytree;
 
-class AryTreeFile {
+class AryTreeApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
