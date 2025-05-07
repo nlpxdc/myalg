@@ -18,4 +18,16 @@ class Node {
 class AryTree {
     //size? no? yes?
     //maxDepth? no?
+    Node[] nodeAry;
+    int size;
+
+    public AryTree() {
+        nodeAry = new Node[1000];
+        size = 0;
+    }
+
+    void traverseBfs() {
+
+    }
+
 }
