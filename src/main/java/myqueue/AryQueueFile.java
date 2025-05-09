@@ -1,26 +1,26 @@
 package myqueue;
 
-class ArrQueueApp {
+class AryQueueApp {
     public static void main(String[] args) {
-        ArrQueue arrQueue = new ArrQueue();
-        arrQueue.offer(new Node(0));
-        arrQueue.offer(new Node(1));
-        arrQueue.offer(new Node(1));
-        arrQueue.offer(new Node(2));
+        AryQueue aryQueue = new AryQueue();
+        aryQueue.offer(new Node(0));
+        aryQueue.offer(new Node(1));
+        aryQueue.offer(new Node(1));
+        aryQueue.offer(new Node(2));
 
-        arrQueue.traverse();
+        aryQueue.traverse();
 
-        Node poll = arrQueue.poll();
-        arrQueue.traverse();
+        Node poll = aryQueue.poll();
+        aryQueue.traverse();
 
-        Node head = arrQueue.getHead();
-        Node tail = arrQueue.getTail();
+        Node head = aryQueue.getHead();
+        Node tail = aryQueue.getTail();
 
-        Node poll1 = arrQueue.poll();
-        arrQueue.traverse();
+        Node poll1 = aryQueue.poll();
+        aryQueue.traverse();
 
-        Node poll2 = arrQueue.poll();
-        arrQueue.traverse();
+        Node poll2 = aryQueue.poll();
+        aryQueue.traverse();
     }
 }
 
@@ -32,11 +32,11 @@ class Node {
     }
 }
 
-class ArrQueue {
+class AryQueue {
     Node[] nodeAry;
     int size;
 
-    ArrQueue() {
+    AryQueue() {
         nodeAry = new Node[1000];
         size = 0;
     }
