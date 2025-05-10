@@ -60,7 +60,7 @@ class LinkTree {
                 tempQueue.offer(new DeLinkNode(treeNode.right));
             }
         }
-        
+        System.out.println();
     }
 }
 
