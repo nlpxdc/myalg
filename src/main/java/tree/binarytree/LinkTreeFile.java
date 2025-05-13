@@ -62,6 +62,19 @@ class LinkTree {
         }
         System.out.println();
     }
+
+    void traverseDfsPreOrder() {
+
+    }
+
+    void traverseDfsPostOrder() {
+
+    }
+
+    void traverseDfsInOrder() {
+
+    }
+    
 }
 
 //class Node {

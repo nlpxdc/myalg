@@ -56,4 +56,16 @@ class AryTree {
         System.out.println();
     }
 
+    void traverseDfsPreOrder() {
+
+    }
+
+    void traverseDfsPostOrder() {
+
+    }
+
+    void traverseDfsInOrder() {
+
+    }
+
 }
