@@ -1,4 +1,4 @@
-package tree.binarytree;
+package tree.kwaytree;
 
 class UpLinkTreeApp {
     public static void main(String[] args) {
