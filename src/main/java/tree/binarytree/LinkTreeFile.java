@@ -2,14 +2,36 @@ package tree.binarytree;
 
 class LinkTreeApp {
     public static void main(String[] args) {
-        TreeNode treeNodea1 = new TreeNode(1);
+//        TreeNode treeNodea1 = new TreeNode(1);
+//
+//        TreeNode treeNodeb1 = new TreeNode(2);
+//        TreeNode treeNodeb2 = new TreeNode(3);
+//
+//        TreeNode treeNodec1 = new TreeNode(4);
+//        TreeNode treeNodec2 = new TreeNode(5);
+//        TreeNode treeNodec3 = new TreeNode(6);
+//        TreeNode treeNodec4 = new TreeNode(7);
+//
+//        treeNodea1.left = treeNodeb1;
+//        treeNodea1.right = treeNodeb2;
+//
+//        treeNodeb1.left = treeNodec1;
+//        treeNodeb1.right = treeNodec2;
+//        treeNodeb2.left = treeNodec3;
+//        treeNodeb2.right = treeNodec4;
+//
+//        LinkTree linkTree = new LinkTree();
+//        linkTree.root = treeNodea1;
+//        linkTree.size = 7;
+
+        TreeNode treeNodea1 = new TreeNode(4);
 
         TreeNode treeNodeb1 = new TreeNode(2);
-        TreeNode treeNodeb2 = new TreeNode(3);
+        TreeNode treeNodeb2 = new TreeNode(6);
 
-        TreeNode treeNodec1 = new TreeNode(4);
-        TreeNode treeNodec2 = new TreeNode(5);
-        TreeNode treeNodec3 = new TreeNode(6);
+        TreeNode treeNodec1 = new TreeNode(1);
+        TreeNode treeNodec2 = new TreeNode(3);
+        TreeNode treeNodec3 = new TreeNode(5);
         TreeNode treeNodec4 = new TreeNode(7);
 
         treeNodea1.left = treeNodeb1;
@@ -24,7 +46,10 @@ class LinkTreeApp {
         linkTree.root = treeNodea1;
         linkTree.size = 7;
 
-        linkTree.traverseBfs();
+//        linkTree.traverseBfs();
+//        linkTree.traverseDfsPreOrder();
+//        linkTree.traverseDfsPostOrder();
+        linkTree.traverseDfsInOrder();
     }
 }
 
@@ -64,15 +89,48 @@ class LinkTree {
     }
 
     void traverseDfsPreOrder() {
+        innerTraversePreOrder(root);
+        System.out.println();
+    }
 
+    void innerTraversePreOrder(TreeNode node) {
+        System.out.print(node.val+",");
+        if (node.left != null) {
+            innerTraversePreOrder(node.left);
+        }
+        if (node.right != null) {
+            innerTraversePreOrder(node.right);
+        }
     }
 
     void traverseDfsPostOrder() {
+        innerTraversePostOrder(root);
+        System.out.println();
+    }
 
+    void innerTraversePostOrder(TreeNode node) {
+        if (node.left != null) {
+            innerTraversePostOrder(node.left);
+        }
+        if (node.right != null) {
+            innerTraversePostOrder(node.right);
+        }
+        System.out.print(node.val+",");
     }
 
     void traverseDfsInOrder() {
+        innerTraverseInOrder(root);
+        System.out.println();
+    }
 
+    void innerTraverseInOrder(TreeNode node) {
+        if (node.left != null) {
+            innerTraverseInOrder(node.left);
+        }
+        System.out.print(node.val+",");
+        if (node.right != null) {
+            innerTraverseInOrder(node.right);
+        }
     }
     
 }
