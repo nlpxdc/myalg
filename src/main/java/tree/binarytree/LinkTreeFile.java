@@ -112,6 +112,7 @@ class LinkTree {
                 stack.push(node.left);
             }
         }
+        System.out.println();
     }
 
     void innerTraversePreOrder(TreeNode node) {
@@ -127,6 +128,16 @@ class LinkTree {
     void traverseDfsPostOrder() {
         innerTraversePostOrder(root);
         System.out.println();
+    }
+
+    void traverseDfsPostOrderStack() {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+
+        for (int i = 0; i < size && !stack.isEmpty(); i++) {
+
+            System.out.println();
+        }
     }
 
     void innerTraversePostOrder(TreeNode node) {
