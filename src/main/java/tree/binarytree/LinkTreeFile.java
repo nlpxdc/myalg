@@ -1,37 +1,17 @@
 package tree.binarytree;
 
+import java.util.LinkedList;
+
 class LinkTreeApp {
     public static void main(String[] args) {
-//        TreeNode treeNodea1 = new TreeNode(1);
-//
-//        TreeNode treeNodeb1 = new TreeNode(2);
-//        TreeNode treeNodeb2 = new TreeNode(3);
-//
-//        TreeNode treeNodec1 = new TreeNode(4);
-//        TreeNode treeNodec2 = new TreeNode(5);
-//        TreeNode treeNodec3 = new TreeNode(6);
-//        TreeNode treeNodec4 = new TreeNode(7);
-//
-//        treeNodea1.left = treeNodeb1;
-//        treeNodea1.right = treeNodeb2;
-//
-//        treeNodeb1.left = treeNodec1;
-//        treeNodeb1.right = treeNodec2;
-//        treeNodeb2.left = treeNodec3;
-//        treeNodeb2.right = treeNodec4;
-//
-//        LinkTree linkTree = new LinkTree();
-//        linkTree.root = treeNodea1;
-//        linkTree.size = 7;
-
-        TreeNode treeNodea1 = new TreeNode(4);
+        TreeNode treeNodea1 = new TreeNode(1);
 
         TreeNode treeNodeb1 = new TreeNode(2);
-        TreeNode treeNodeb2 = new TreeNode(6);
+        TreeNode treeNodeb2 = new TreeNode(3);
 
-        TreeNode treeNodec1 = new TreeNode(1);
-        TreeNode treeNodec2 = new TreeNode(3);
-        TreeNode treeNodec3 = new TreeNode(5);
+        TreeNode treeNodec1 = new TreeNode(4);
+        TreeNode treeNodec2 = new TreeNode(5);
+        TreeNode treeNodec3 = new TreeNode(6);
         TreeNode treeNodec4 = new TreeNode(7);
 
         treeNodea1.left = treeNodeb1;
@@ -46,10 +26,33 @@ class LinkTreeApp {
         linkTree.root = treeNodea1;
         linkTree.size = 7;
 
+//        TreeNode treeNodea1 = new TreeNode(4);
+//
+//        TreeNode treeNodeb1 = new TreeNode(2);
+//        TreeNode treeNodeb2 = new TreeNode(6);
+//
+//        TreeNode treeNodec1 = new TreeNode(1);
+//        TreeNode treeNodec2 = new TreeNode(3);
+//        TreeNode treeNodec3 = new TreeNode(5);
+//        TreeNode treeNodec4 = new TreeNode(7);
+//
+//        treeNodea1.left = treeNodeb1;
+//        treeNodea1.right = treeNodeb2;
+//
+//        treeNodeb1.left = treeNodec1;
+//        treeNodeb1.right = treeNodec2;
+//        treeNodeb2.left = treeNodec3;
+//        treeNodeb2.right = treeNodec4;
+//
+//        LinkTree linkTree = new LinkTree();
+//        linkTree.root = treeNodea1;
+//        linkTree.size = 7;
+
 //        linkTree.traverseBfs();
 //        linkTree.traverseDfsPreOrder();
+        linkTree.traverseDfsPreOrderStack();
 //        linkTree.traverseDfsPostOrder();
-        linkTree.traverseDfsInOrder();
+//        linkTree.traverseDfsInOrder();
     }
 }
 
@@ -91,6 +94,24 @@ class LinkTree {
     void traverseDfsPreOrder() {
         innerTraversePreOrder(root);
         System.out.println();
+    }
+
+    void traverseDfsPreOrderStack() {
+        //定义借助的临时stack
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        //初始化stack
+        stack.push(root);
+
+        for (int i = 0; i < size && !stack.isEmpty(); i++) {
+            TreeNode node = stack.pop();
+            System.out.print(node.val+",");
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
     }
 
     void innerTraversePreOrder(TreeNode node) {
