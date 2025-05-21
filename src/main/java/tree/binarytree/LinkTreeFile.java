@@ -92,7 +92,7 @@ class LinkTree {
     }
 
     void traverseDfsPreOrder() {
-        innerTraversePreOrder(root);
+        innerTraverseDfsPreOrder(root);
         System.out.println();
     }
 
@@ -115,18 +115,18 @@ class LinkTree {
         System.out.println();
     }
 
-    void innerTraversePreOrder(TreeNode node) {
+    void innerTraverseDfsPreOrder(TreeNode node) {
         System.out.print(node.val+",");
         if (node.left != null) {
-            innerTraversePreOrder(node.left);
+            innerTraverseDfsPreOrder(node.left);
         }
         if (node.right != null) {
-            innerTraversePreOrder(node.right);
+            innerTraverseDfsPreOrder(node.right);
         }
     }
 
     void traverseDfsPostOrder() {
-        innerTraversePostOrder(root);
+        innerTraverseDfsPostOrder(root);
         System.out.println();
     }
 
@@ -140,28 +140,28 @@ class LinkTree {
         }
     }
 
-    void innerTraversePostOrder(TreeNode node) {
+    void innerTraverseDfsPostOrder(TreeNode node) {
         if (node.left != null) {
-            innerTraversePostOrder(node.left);
+            innerTraverseDfsPostOrder(node.left);
         }
         if (node.right != null) {
-            innerTraversePostOrder(node.right);
+            innerTraverseDfsPostOrder(node.right);
         }
         System.out.print(node.val+",");
     }
 
     void traverseDfsInOrder() {
-        innerTraverseInOrder(root);
+        innerTraverseDfsInOrder(root);
         System.out.println();
     }
 
-    void innerTraverseInOrder(TreeNode node) {
+    void innerTraverseDfsInOrder(TreeNode node) {
         if (node.left != null) {
-            innerTraverseInOrder(node.left);
+            innerTraverseDfsInOrder(node.left);
         }
         System.out.print(node.val+",");
         if (node.right != null) {
-            innerTraverseInOrder(node.right);
+            innerTraverseDfsInOrder(node.right);
         }
     }
     
