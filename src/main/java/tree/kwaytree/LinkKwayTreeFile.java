@@ -1,5 +1,7 @@
 package tree.kwaytree;
 
+import java.util.List;
+
 class LinkKwayTreeApp {
     public static void main(String[] args) {
         System.out.println("aa");
@@ -9,7 +11,8 @@ class LinkKwayTreeApp {
 //递归嵌套定义
 class LinkTreeNode {
     int val;
-    LinkTreeNode[] children; //也可以用java.util.List
+//    LinkTreeNode[] children; //也可以用java.util.List
+    List<LinkTreeNode> children;
 
     LinkTreeNode(int val) {
         this.val = val;
