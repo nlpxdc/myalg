@@ -24,4 +24,24 @@ class LinkKwayTree {
     //一个根节点root即可确定 最关键
     //带上size元信息，最重要
     //适合小量全部的内存
+    LinkTreeNode root;
+    int size;
+
+    //BFS
+    void traverseBfs() {
+
+    }
+
+    //DFS
+    //pre order
+    void innerTraverseDfsPreOrder(LinkTreeNode node) {}
+    void traverseDfsPreOrder() {}
+    void traverseDfsPreOrderStack() {}
+    //post order
+    void innerTraverseDfsPostOrder(LinkTreeNode node) {}
+    void traverseDfsPostOrder() {}
+    void traverseDfsPostOrderStack() {}
+
+    //no in order
+
 }

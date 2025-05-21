@@ -1,5 +1,7 @@
 package tree.kwaytree;
 
+import java.util.LinkedList;
+
 class DeLinkKwayApp {
     public static void main(String[] args) {
         System.out.println("aa");
@@ -8,7 +10,8 @@ class DeLinkKwayApp {
 
 class DeLinkTreeNode {
     int val;
-    DeLinkTreeNode[] children;
+//    DeLinkTreeNode[] children;
+    LinkedList<DeLinkTreeNode> children;
     DeLinkTreeNode parent; //可回溯
 }
 
