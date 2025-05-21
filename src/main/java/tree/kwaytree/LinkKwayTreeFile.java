@@ -11,8 +11,8 @@ class LinkKwayTreeApp {
 //递归嵌套定义
 class LinkTreeNode {
     int val;
-//    LinkTreeNode[] children; //也可以用java.util.List
-    List<LinkTreeNode> children;
+    LinkTreeNode[] children; //也可以用java.util.List
+//    List<LinkTreeNode> children;
 
     LinkTreeNode(int val) {
         this.val = val;
@@ -34,12 +34,34 @@ class LinkKwayTree {
 
     //DFS
     //pre order
-    void innerTraverseDfsPreOrder(LinkTreeNode node) {}
-    void traverseDfsPreOrder() {}
+    void innerTraverseDfsPreOrder(LinkTreeNode node) {
+        System.out.print(node.val+",");
+        if (node.children != null && node.children.length > 0) {
+            for (int i = 0; i < node.children.length; i++) {
+                LinkTreeNode child = node.children[i];
+                innerTraverseDfsPreOrder(child);
+            }
+        }
+    }
+    void traverseDfsPreOrder() {
+        innerTraverseDfsPreOrder(root);
+        System.out.println();
+    }
     void traverseDfsPreOrderStack() {}
     //post order
-    void innerTraverseDfsPostOrder(LinkTreeNode node) {}
-    void traverseDfsPostOrder() {}
+    void innerTraverseDfsPostOrder(LinkTreeNode node) {
+        if (node.children != null && node.children.length > 0) {
+            for (int i = 0; i < node.children.length; i++) {
+                LinkTreeNode child = node.children[i];
+                innerTraverseDfsPostOrder(child);
+            }
+        }
+        System.out.print(node.val+",");
+    }
+    void traverseDfsPostOrder() {
+        innerTraverseDfsPostOrder(root);
+        System.out.println();
+    }
     void traverseDfsPostOrderStack() {}
 
     //no in order
