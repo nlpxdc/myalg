@@ -50,7 +50,7 @@ class LinkTreeApp {
 
 //        linkTree.traverseBfs();
 //        linkTree.traverseDfsPreOrder();
-        linkTree.traverseDfsPreOrderStack();
+//        linkTree.traverseDfsPreOrderStack();
 //        linkTree.traverseDfsPostOrder();
 //        linkTree.traverseDfsInOrder();
     }
@@ -69,7 +69,8 @@ class TreeNode {
 class LinkTree {
     TreeNode root;
     int size;
-    
+
+    //Bfs
     void traverseBfs() {
         if (root == null) {
             throw new RuntimeException("empty tree");
@@ -91,28 +92,29 @@ class LinkTree {
         System.out.println();
     }
 
+    //Dfs pre order
     void traverseDfsPreOrder() {
         innerTraverseDfsPreOrder(root);
         System.out.println();
     }
 
     void traverseDfsPreOrderStack() {
-        //定义借助的临时stack
-        LinkedList<TreeNode> stack = new LinkedList<>();
-        //初始化stack
-        stack.push(root);
-
-        for (int i = 0; i < size && !stack.isEmpty(); i++) {
-            TreeNode node = stack.pop();
-            System.out.print(node.val+",");
-            if (node.right != null) {
-                stack.push(node.right);
-            }
-            if (node.left != null) {
-                stack.push(node.left);
-            }
-        }
-        System.out.println();
+//        //定义借助的临时stack
+//        LinkedList<TreeNode> stack = new LinkedList<>();
+//        //初始化stack
+//        stack.push(root);
+//
+//        for (int i = 0; i < size && !stack.isEmpty(); i++) {
+//            TreeNode node = stack.pop();
+//            System.out.print(node.val+",");
+//            if (node.right != null) {
+//                stack.push(node.right);
+//            }
+//            if (node.left != null) {
+//                stack.push(node.left);
+//            }
+//        }
+//        System.out.println();
     }
 
     void innerTraverseDfsPreOrder(TreeNode node) {
@@ -125,19 +127,20 @@ class LinkTree {
         }
     }
 
+    //Dfs post order
     void traverseDfsPostOrder() {
         innerTraverseDfsPostOrder(root);
         System.out.println();
     }
 
     void traverseDfsPostOrderStack() {
-        LinkedList<TreeNode> stack = new LinkedList<>();
-        stack.push(root);
-
-        for (int i = 0; i < size && !stack.isEmpty(); i++) {
-
-            System.out.println();
-        }
+//        LinkedList<TreeNode> stack = new LinkedList<>();
+//        stack.push(root);
+//
+//        for (int i = 0; i < size && !stack.isEmpty(); i++) {
+//
+//            System.out.println();
+//        }
     }
 
     void innerTraverseDfsPostOrder(TreeNode node) {
@@ -150,9 +153,14 @@ class LinkTree {
         System.out.print(node.val+",");
     }
 
+    //Dfs in order
     void traverseDfsInOrder() {
         innerTraverseDfsInOrder(root);
         System.out.println();
+    }
+
+    void traverseDfsInOrderStack() {
+        
     }
 
     void innerTraverseDfsInOrder(TreeNode node) {
