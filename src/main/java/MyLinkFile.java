@@ -386,7 +386,7 @@ class MyLinkList {
         System.out.print(node.val+",");
         if (node.next != null) {
             //单分支递归，最后调用，尾递归，可以优化，实际不优化，其实就是我之前写的迭代方式的算法，可以从这个地方等价变换过去
-            innerTraverseRecur(node.next); //核心思想可优化
+            innerTraverseRecur(node.next); //核心思想可优化，性能好
         }
     }
 
@@ -400,7 +400,7 @@ class MyLinkList {
     void innerTraverseRecurBack(MyLinkNode node) {
         if (node.next != null) {
             //单分支递归，最开始调用，也可以是中间，反正不是最后，非尾递归，不可以优化，实际也不优化，其实就是我之前写的反转的迭代方式的算法，可以从这个地方等价变换过去
-            innerTraverseRecurBack(node.next); //核心思想不可优化
+            innerTraverseRecurBack(node.next); //核心思想不可优化，性能差
         }
         //相当于后序遍历（倒序遍历），反序遍历，逆序遍历
         System.out.print(node.val+",");
