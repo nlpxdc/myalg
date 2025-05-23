@@ -26,16 +26,18 @@ class MyLinkApp {
         upList.addEl(new MyLinkNode(5));
         upList.addEl(new MyLinkNode(7));
 
-        MyLinkList downList = new MyLinkList();
-        downList.addEl(new MyLinkNode(2));
-        downList.addEl(new MyLinkNode(4));
-        downList.addEl(new MyLinkNode(6));
-        downList.addEl(new MyLinkNode(7));
-        downList.addEl(new MyLinkNode(7));
-        downList.addEl(new MyLinkNode(8));
+        upList.traverseRecur();
 
-        MyLinkList myLinkList = MyLinkUtil.mergeSort(upList, downList);
-        myLinkList.traverse();
+//        MyLinkList downList = new MyLinkList();
+//        downList.addEl(new MyLinkNode(2));
+//        downList.addEl(new MyLinkNode(4));
+//        downList.addEl(new MyLinkNode(6));
+//        downList.addEl(new MyLinkNode(7));
+//        downList.addEl(new MyLinkNode(7));
+//        downList.addEl(new MyLinkNode(8));
+
+//        MyLinkList myLinkList = MyLinkUtil.mergeSort(upList, downList);
+//        myLinkList.traverse();
     }
 }
 
@@ -376,6 +378,17 @@ class MyLinkList {
         }
         System.out.println();
         System.out.println("---");
+    }
+
+    void innerTraverseRecur(MyLinkNode node) {
+        System.out.print(node.val+",");
+        if (node.next != null) {
+            innerTraverseRecur(node.next);
+        }
+    }
+
+    void traverseRecur() {
+        innerTraverseRecur(head);
     }
 
 
