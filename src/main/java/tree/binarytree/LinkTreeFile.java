@@ -99,6 +99,7 @@ class LinkTree {
     }
 
     //借助栈模拟递归
+    //但是这里是多分支递归，所以这里可以借助栈记录递归的反向顺序，而不是模拟递归
     void innerTraverseDfsPreOrder(TreeNode node) {
         System.out.print(node.val+",");
         if (node.left != null) {
@@ -148,6 +149,7 @@ class LinkTree {
     }
 
     //后续遍历，借助两个额外变量？（k-way多路树，借助k个多个额外变量？）
+    //既用栈模拟递归，又用栈记录递归的反向顺序
     void innerTraverseDfsPostOrder(TreeNode node) {
         if (node.left != null) {
             innerTraverseDfsPostOrder(node.left);

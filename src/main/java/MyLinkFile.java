@@ -384,6 +384,7 @@ class MyLinkList {
 
     //前序，可以不借助额外的变量，自己够了？
     //也可以借助栈模拟递归
+    //用栈模拟递归，实现前序就没什么太大的必要了，多余
     void innerTraverseRecur(MyLinkNode node) {
         //相当于前序遍历，正序遍历，顺序遍历
         System.out.print(node.val+",");
@@ -401,6 +402,7 @@ class MyLinkList {
     }
 
     //后序，转成迭代方式时，一定借助额外临时变量（不是栈本身用来模拟递归，一定是再额外的另外的）
+    //用栈模拟递归，可以比较容易的实现较难的后序
     void innerTraverseRecurBack(MyLinkNode node) {
         if (node.next != null) {
             //单分支递归，最开始调用，也可以是中间，反正不是最后，非尾递归，不可以优化，实际也不优化，其实就是我之前写的反转的迭代方式的算法，可以从这个地方等价变换过去
