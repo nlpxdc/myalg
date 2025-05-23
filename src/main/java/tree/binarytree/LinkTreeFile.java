@@ -98,7 +98,20 @@ class LinkTree {
         System.out.println();
     }
 
+    void innerTraverseDfsPreOrder(TreeNode node) {
+        System.out.print(node.val+",");
+        if (node.left != null) {
+            innerTraverseDfsPreOrder(node.left);
+        }
+        if (node.right != null) {
+            innerTraverseDfsPreOrder(node.right);
+        }
+    }
+
     void traverseDfsPreOrderStack() {
+        System.out.print(root.val+",");
+        LinkedList<TreeNode> treeNodes = new LinkedList<>();
+
 //        //定义借助的临时stack
 //        LinkedList<TreeNode> stack = new LinkedList<>();
 //        //初始化stack
@@ -115,16 +128,6 @@ class LinkTree {
 //            }
 //        }
 //        System.out.println();
-    }
-
-    void innerTraverseDfsPreOrder(TreeNode node) {
-        System.out.print(node.val+",");
-        if (node.left != null) {
-            innerTraverseDfsPreOrder(node.left);
-        }
-        if (node.right != null) {
-            innerTraverseDfsPreOrder(node.right);
-        }
     }
 
     //Dfs post order
