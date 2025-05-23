@@ -383,6 +383,7 @@ class MyLinkList {
     }
 
     //前序，可以不借助额外的变量，自己够了？
+    //也可以借助栈模拟递归
     void innerTraverseRecur(MyLinkNode node) {
         //相当于前序遍历，正序遍历，顺序遍历
         System.out.print(node.val+",");
