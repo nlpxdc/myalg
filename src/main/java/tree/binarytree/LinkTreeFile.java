@@ -171,6 +171,7 @@ class LinkTree {
     }
 
     //树的中序，借助1个额外变量？
+    //借助栈模拟递归，单无需栈记录递归的反向顺序，因为只有一个没顺序可言
     void innerTraverseDfsInOrder(TreeNode node) {
         if (node.left != null) {
             innerTraverseDfsInOrder(node.left);
