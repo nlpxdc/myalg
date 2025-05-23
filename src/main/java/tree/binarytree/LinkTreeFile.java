@@ -98,6 +98,7 @@ class LinkTree {
         System.out.println();
     }
 
+    //借助栈模拟递归
     void innerTraverseDfsPreOrder(TreeNode node) {
         System.out.print(node.val+",");
         if (node.left != null) {
