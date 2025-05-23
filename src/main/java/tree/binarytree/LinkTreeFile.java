@@ -146,6 +146,7 @@ class LinkTree {
 //        }
     }
 
+    //后续遍历，借助两个额外变量？（k-way多路树，借助k个多个额外变量？）
     void innerTraverseDfsPostOrder(TreeNode node) {
         if (node.left != null) {
             innerTraverseDfsPostOrder(node.left);
@@ -166,6 +167,7 @@ class LinkTree {
 
     }
 
+    //树的中序，借助1个额外变量？
     void innerTraverseDfsInOrder(TreeNode node) {
         if (node.left != null) {
             innerTraverseDfsInOrder(node.left);
