@@ -333,6 +333,7 @@ class MyLinkList {
     }
 
     void reverse() {
+        //有个额外临时变量
         MyLinkNode prev = null;
         MyLinkNode current = head;
         for (int i = 0; i < size && current != null; i++) {
@@ -397,6 +398,7 @@ class MyLinkList {
         System.out.println();
     }
 
+    //转成迭代方式时，一定借助额外临时变量（不是栈本身用来模拟递归，一定是再额外的另外的）
     void innerTraverseRecurBack(MyLinkNode node) {
         if (node.next != null) {
             //单分支递归，最开始调用，也可以是中间，反正不是最后，非尾递归，不可以优化，实际也不优化，其实就是我之前写的反转的迭代方式的算法，可以从这个地方等价变换过去
