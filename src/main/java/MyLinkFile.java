@@ -27,6 +27,7 @@ class MyLinkApp {
         upList.addEl(new MyLinkNode(7));
 
         upList.traverseRecur();
+        upList.traverseRecurBack();
 
 //        MyLinkList downList = new MyLinkList();
 //        downList.addEl(new MyLinkNode(2));
@@ -389,6 +390,19 @@ class MyLinkList {
 
     void traverseRecur() {
         innerTraverseRecur(head);
+        System.out.println();
+    }
+
+    void innerTraverseRecurBack(MyLinkNode node) {
+        if (node.next != null) {
+            innerTraverseRecurBack(node.next);
+        }
+        System.out.print(node.val+",");
+    }
+
+    void traverseRecurBack() {
+        innerTraverseRecurBack(head);
+        System.out.println();
     }
 
 
