@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.LinkedList;
 
 class MyLinkApp {
     public static void main(String[] args) {
@@ -28,6 +29,7 @@ class MyLinkApp {
 
         upList.traverseRecur();
         upList.traverseRecurBack();
+        upList.traverseBackStack();
 
 //        MyLinkList downList = new MyLinkList();
 //        downList.addEl(new MyLinkNode(2));
@@ -416,6 +418,19 @@ class MyLinkList {
         //todo 加总数控制
         innerTraverseRecurBack(head);
 
+        System.out.println();
+    }
+
+    void traverseBackStack() {
+        LinkedList<MyLinkNode> stack = new LinkedList<>();
+        MyLinkNode current = head;
+        for (int i = 0; i < size && current != null; i++, current = current.next) {
+            stack.push(current);
+        }
+        for (int i = 0; i < size; i++) {
+            MyLinkNode node = stack.pop();
+            System.out.print(node.val+",");
+        }
         System.out.println();
     }
 
