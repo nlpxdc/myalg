@@ -28,6 +28,7 @@ class MyLinkApp {
         upList.addEl(new MyLinkNode(7));
 
         upList.traverseRecur();
+        upList.traverseQueue();
         upList.traverseRecurBack();
         upList.traverseBackStack();
 
@@ -403,6 +404,19 @@ class MyLinkList {
         System.out.println();
     }
 
+    void traverseQueue() {
+        LinkedList<MyLinkNode> queue = new LinkedList<>();
+        MyLinkNode current = head;
+        for (int i = 0; i < size && current != null; i++, current = current.next) {
+            queue.offer(current);
+        }
+        for (int i = 0; i < size && !queue.isEmpty(); i++) {
+            MyLinkNode node = queue.poll();
+            System.out.print(node.val+",");
+        }
+        System.out.println();
+    }
+
     //后序，转成迭代方式时，一定借助额外临时变量（不是栈本身用来模拟递归，一定是再额外的另外的）
     //用栈模拟递归，可以比较容易的实现较难的后序，就是反过来的特性
     void innerTraverseRecurBack(MyLinkNode node) {
@@ -427,7 +441,7 @@ class MyLinkList {
         for (int i = 0; i < size && current != null; i++, current = current.next) {
             stack.push(current);
         }
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size && !stack.isEmpty(); i++) {
             MyLinkNode node = stack.pop();
             System.out.print(node.val+",");
         }
