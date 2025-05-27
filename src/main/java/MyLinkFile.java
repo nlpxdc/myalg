@@ -29,6 +29,7 @@ class MyLinkApp {
 
         upList.traverseRecur();
         upList.traverseQueue();
+        upList.traverseQueue2();
         upList.traverseRecurBack();
         upList.traverseBackStack();
 
@@ -414,6 +415,25 @@ class MyLinkList {
             MyLinkNode node = queue.poll();
             System.out.print(node.val+",");
         }
+        System.out.println();
+    }
+
+    void traverseQueue2() {
+        LinkedList<MyLinkNode> queue = new LinkedList<>();
+
+        //init
+        queue.offer(head);
+
+        //iterate loop
+        for (int i = 0; i < size && !queue.isEmpty(); i++) {
+            MyLinkNode node = queue.poll();
+            System.out.print(node.val+",");
+
+            if (node.next != null) {
+                queue.offer(node.next);
+            }
+        }
+
         System.out.println();
     }
 
