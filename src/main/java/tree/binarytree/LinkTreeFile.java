@@ -53,6 +53,9 @@ class LinkTreeApp {
 //        linkTree.traverseDfsPreOrderStack();
 //        linkTree.traverseDfsPostOrder();
 //        linkTree.traverseDfsInOrder();
+
+        linkTree.traverseBfs();
+        linkTree.traverseBfsLevelOrder2();
     }
 }
 
@@ -90,6 +93,40 @@ class LinkTree {
             }
         }
         System.out.println();
+    }
+
+    void traverseBfsLevelOrder2() {
+        if (root == null) {
+            throw new RuntimeException("empty tree");
+        }
+
+        LinkedList<TreeNode> currentLevelQueue = new LinkedList<>();
+        LinkedList<TreeNode> downLevelQueue = new LinkedList<>();
+
+
+        //init 初始化
+        currentLevelQueue.offer(root);
+
+        //iterate loop
+        for (int i = 0; i < size; i++) {
+            //打印当前层
+            for (int j = 0; j < size && !currentLevelQueue.isEmpty(); j++) {
+                TreeNode node = currentLevelQueue.poll();
+                System.out.print(node.val+",");
+                //保留下层打印节点
+                if (node.left != null) {
+                    downLevelQueue.offer(node.left);
+                }
+                if (node.right != null){
+                    downLevelQueue.offer(node.right);
+                }
+            }
+            System.out.println();
+            for (int j = 0; j < size && !downLevelQueue.isEmpty(); j++) {
+                currentLevelQueue.offer(downLevelQueue.poll());
+            }
+        }
+
     }
 
     //Dfs pre order
