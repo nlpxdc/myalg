@@ -55,6 +55,7 @@ class LinkTreeApp {
 //        linkTree.traverseDfsInOrder();
 
         linkTree.traverseBfs();
+        linkTree.traverseBfsLevelOrder1();
         linkTree.traverseBfsLevelOrder2();
     }
 }
@@ -93,6 +94,31 @@ class LinkTree {
             }
         }
         System.out.println();
+    }
+
+    void traverseBfsLevelOrder1() {
+        if (root == null) {
+            return;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+
+        //init
+        queue.offer(root);
+
+        for (int i = 0; i < size && !queue.isEmpty(); i++) {
+            TreeNode node = queue.poll();
+            System.out.print(node.val+",");
+
+            if (node.left != null) {
+                queue.offer(node.left);
+            }
+            if (node.right != null) {
+                queue.offer(node.right);
+            }
+        }
+
+        System.out.println();
+
     }
 
     void traverseBfsLevelOrder2() {
