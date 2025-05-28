@@ -126,6 +126,10 @@ class LinkTree {
                 currentLevelQueue.offer(downLevelQueue.poll());
             }
         }
+    }
+
+    //按层次进行层序遍历，只用一个队列的情况下做到，树的节点需要额外信息加上深度，写的时候就要维护，写扩散
+    void traverseBfsLevelOrder3() {
 
     }
 
