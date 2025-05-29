@@ -54,9 +54,12 @@ class LinkTreeApp {
 //        linkTree.traverseDfsPostOrder();
 //        linkTree.traverseDfsInOrder();
 
-        linkTree.traverseBfs();
-        linkTree.traverseBfsLevelOrder1();
-        linkTree.traverseBfsLevelOrder2();
+//        linkTree.traverseBfs();
+//        linkTree.traverseBfsLevelOrder1();
+//        linkTree.traverseBfsLevelOrder2();
+
+        linkTree.traverseDfsPreOrder();
+        linkTree.traverseDfsPreOrderStack1();
     }
 }
 
@@ -178,10 +181,29 @@ class LinkTree {
         System.out.println();
     }
 
-    void traverseDfsPreOrderStack() {
-        System.out.print(root.val+",");
-        LinkedList<TreeNode> treeNodes = new LinkedList<>();
+    void traverseDfsPreOrderStack1() {
+        LinkedList<TreeNode> stack = new LinkedList<>();
 
+        //init
+        stack.push(root);
+
+        //iter loop
+        for (int i = 0; i < size && !stack.isEmpty(); i++) {
+            TreeNode node = stack.poll();
+            System.out.print(node.val+",");
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+
+        System.out.println();
+    }
+
+//    void traverseDfsPreOrderStack() {
 //        //定义借助的临时stack
 //        LinkedList<TreeNode> stack = new LinkedList<>();
 //        //初始化stack
@@ -198,7 +220,7 @@ class LinkTree {
 //            }
 //        }
 //        System.out.println();
-    }
+//    }
 
     //Dfs post order
     void traverseDfsPostOrder() {
