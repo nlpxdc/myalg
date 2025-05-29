@@ -160,12 +160,6 @@ class LinkTree {
 
     }
 
-    //Dfs pre order
-    void traverseDfsPreOrder() {
-        innerTraverseDfsPreOrder(root);
-        System.out.println();
-    }
-
     //借助栈模拟递归
     //但是这里是多分支递归，所以这里可以借助栈记录递归的反向顺序，而不是模拟递归
     void innerTraverseDfsPreOrder(TreeNode node) {
@@ -176,6 +170,12 @@ class LinkTree {
         if (node.right != null) {
             innerTraverseDfsPreOrder(node.right);
         }
+    }
+
+    //Dfs pre order
+    void traverseDfsPreOrder() {
+        innerTraverseDfsPreOrder(root);
+        System.out.println();
     }
 
     void traverseDfsPreOrderStack() {
