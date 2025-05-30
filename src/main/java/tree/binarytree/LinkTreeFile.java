@@ -59,7 +59,7 @@ class LinkTreeApp {
 //        linkTree.traverseBfsLevelOrder2();
 
         linkTree.traverseDfsPreOrder();
-        linkTree.traverseDfsPreOrderStack1();
+        linkTree.traverseDfsPreOrderStack();
     }
 }
 
@@ -181,7 +181,7 @@ class LinkTree {
         System.out.println();
     }
 
-    void traverseDfsPreOrderStack1() {
+    void traverseDfsPreOrderStack() {
         LinkedList<TreeNode> stack = new LinkedList<>();
 
         //init
@@ -203,39 +203,28 @@ class LinkTree {
         System.out.println();
     }
 
-//    void traverseDfsPreOrderStack() {
-//        //定义借助的临时stack
-//        LinkedList<TreeNode> stack = new LinkedList<>();
-//        //初始化stack
-//        stack.push(root);
-//
-//        for (int i = 0; i < size && !stack.isEmpty(); i++) {
-//            TreeNode node = stack.pop();
-//            System.out.print(node.val+",");
-//            if (node.right != null) {
-//                stack.push(node.right);
-//            }
-//            if (node.left != null) {
-//                stack.push(node.left);
-//            }
-//        }
-//        System.out.println();
-//    }
+    //树的中序，借助1个额外变量？
+    //借助栈模拟递归，单无需栈记录递归的反向顺序，因为只有一个没顺序可言
+    //所以二叉树的中序遍历，最像链表，用栈模拟递归，就是反过来的特性
+    //多叉树就没有这个特性了
+    void innerTraverseDfsInOrder(TreeNode node) {
+        if (node.left != null) {
+            innerTraverseDfsInOrder(node.left);
+        }
+        System.out.print(node.val+",");
+        if (node.right != null) {
+            innerTraverseDfsInOrder(node.right);
+        }
+    }
 
-    //Dfs post order
-    void traverseDfsPostOrder() {
-        innerTraverseDfsPostOrder(root);
+    //Dfs in order
+    void traverseDfsInOrder() {
+        innerTraverseDfsInOrder(root);
         System.out.println();
     }
 
-    void traverseDfsPostOrderStack() {
-//        LinkedList<TreeNode> stack = new LinkedList<>();
-//        stack.push(root);
-//
-//        for (int i = 0; i < size && !stack.isEmpty(); i++) {
-//
-//            System.out.println();
-//        }
+    void traverseDfsInOrderStack() {
+
     }
 
     //后续遍历，借助两个额外变量？（k-way多路树，借助k个多个额外变量？）
@@ -250,28 +239,14 @@ class LinkTree {
         System.out.print(node.val+",");
     }
 
-    //Dfs in order
-    void traverseDfsInOrder() {
-        innerTraverseDfsInOrder(root);
+    //Dfs post order
+    void traverseDfsPostOrder() {
+        innerTraverseDfsPostOrder(root);
         System.out.println();
     }
 
-    void traverseDfsInOrderStack() {
+    void traverseDfsPostOrderTwoStack() {
 
-    }
-
-    //树的中序，借助1个额外变量？
-    //借助栈模拟递归，单无需栈记录递归的反向顺序，因为只有一个没顺序可言
-    //所以二叉树的中序遍历，最像链表，用栈模拟递归，就是反过来的特性
-    //多叉树就没有这个特性了
-    void innerTraverseDfsInOrder(TreeNode node) {
-        if (node.left != null) {
-            innerTraverseDfsInOrder(node.left);
-        }
-        System.out.print(node.val+",");
-        if (node.right != null) {
-            innerTraverseDfsInOrder(node.right);
-        }
     }
     
 }
