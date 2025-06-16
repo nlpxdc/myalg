@@ -99,7 +99,7 @@ class LinkTree {
         System.out.println();
     }
 
-    void traverseBfsLevelOrder1() {
+    void traverseBfsLevelOrderOneLine() {
         if (root == null) {
             return;
         }
@@ -124,7 +124,7 @@ class LinkTree {
 
     }
 
-    void traverseBfsLevelOrder2() {
+    void traverseBfsLevelOrderMultiLine() {
         if (root == null) {
             throw new RuntimeException("empty tree");
         }
