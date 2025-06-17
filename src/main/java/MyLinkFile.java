@@ -28,8 +28,8 @@ class MyLinkApp {
         upList.addEl(new MyLinkNode(7));
 
         upList.traverseRecur();
-        upList.traverseQueue();
-        upList.traverseQueue2();
+        upList.traverseQueueOnceTime();
+        upList.traverseQueueEveryTime();
         upList.traverseRecurBack();
         upList.traverseBackStack();
 
@@ -405,7 +405,8 @@ class MyLinkList {
         System.out.println();
     }
 
-    void traverseQueue() {
+    //一次性全部处理
+    void traverseQueueOnceTime() {
         LinkedList<MyLinkNode> queue = new LinkedList<>();
         MyLinkNode current = head;
         for (int i = 0; i < size && current != null; i++, current = current.next) {
@@ -418,7 +419,8 @@ class MyLinkList {
         System.out.println();
     }
 
-    void traverseQueue2() {
+    //每个节点依次处理 这种更好
+    void traverseQueueEveryTime() {
         LinkedList<MyLinkNode> queue = new LinkedList<>();
 
         //init
@@ -455,6 +457,7 @@ class MyLinkList {
         System.out.println();
     }
 
+    //保存前面的调用进栈
     void traverseBackStack() {
         LinkedList<MyLinkNode> stack = new LinkedList<>();
         MyLinkNode current = head;

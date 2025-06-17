@@ -59,7 +59,7 @@ class LinkTreeApp {
 //        linkTree.traverseBfsLevelOrder2();
 
         linkTree.traverseDfsPreOrder();
-        linkTree.traverseDfsPreOrderStack();
+        linkTree.traverseDfsPreOrderOneStack();
     }
 }
 
@@ -77,7 +77,7 @@ class LinkTree {
     TreeNode root;
     int size;
 
-    //Bfs
+    //Bfs 有多层次 多行 多队列 或 一队列+标记
     void traverseBfs() {
         if (root == null) {
             throw new RuntimeException("empty tree");
@@ -99,7 +99,7 @@ class LinkTree {
         System.out.println();
     }
 
-    void traverseBfsLevelOrderOneLine() {
+    void traverseBfsLevelOrderOneLineWithOneQueue() {
         if (root == null) {
             return;
         }
@@ -124,7 +124,7 @@ class LinkTree {
 
     }
 
-    void traverseBfsLevelOrderMultiLine() {
+    void traverseBfsLevelOrderMultiLineWithTwoQueue() {
         if (root == null) {
             throw new RuntimeException("empty tree");
         }
@@ -159,9 +159,11 @@ class LinkTree {
 
     //按层次进行层序遍历，只用一个队列的情况下做到，树的节点需要额外信息加上深度，写的时候就要维护，写扩散，第一人称视角 3+1
     //或者想办法，靠外界，上帝视角3+0，记录深度进行处理
-    void traverseBfsLevelOrder3() {
+    void traverseBfsLevelOrderMultiLineWithOneQueue() {
 
     }
+
+    //Dfs 无多层次 一行 一栈 --------------------------------------------
 
     //借助栈模拟递归
     //但是这里是多分支递归，所以这里可以借助栈记录递归的反向顺序，而不是模拟递归
@@ -175,13 +177,14 @@ class LinkTree {
         }
     }
 
-    //Dfs pre order
+    //Dfs pre order 从前到后 1st
     void traverseDfsPreOrder() {
         innerTraverseDfsPreOrder(root);
         System.out.println();
     }
 
-    void traverseDfsPreOrderStack() {
+    //子节点进一栈 or 二栈？ 二栈降维一栈合并一栈？ or 就只是一栈？
+    void traverseDfsPreOrderOneStack() {
         LinkedList<TreeNode> stack = new LinkedList<>();
 
         //init
@@ -217,13 +220,14 @@ class LinkTree {
         }
     }
 
-    //Dfs in order
+    //Dfs in order 2..n-1
     void traverseDfsInOrder() {
         innerTraverseDfsInOrder(root);
         System.out.println();
     }
 
-    void traverseDfsInOrderStack() {
+    // length-n stacks
+    void traverseDfsInOrderOneStack() {
 
     }
 
@@ -239,13 +243,13 @@ class LinkTree {
         System.out.print(node.val+",");
     }
 
-    //Dfs post order
+    //Dfs post order 从后到前 nth last
     void traverseDfsPostOrder() {
         innerTraverseDfsPostOrder(root);
         System.out.println();
     }
 
-    void traverseDfsPostOrderTwoStack() {
+    void traverseDfsPostOrderOneStack() {
 
     }
     
