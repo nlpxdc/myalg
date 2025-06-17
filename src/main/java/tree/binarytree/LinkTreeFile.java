@@ -164,7 +164,7 @@ class LinkTree {
     }
 
     //Dfs 无多层次 一行 一栈 --------------------------------------------
-    //多重递归一定不是尾递归，2-1， 3-2，4-3，n-(n-1) 个队列，保存前面n个递归调用
+    //多重递归一定不是尾递归，主要看代码非最后一行的递归调用，就需要一个栈来记录，保存前面n个递归调用，非原始递归
 
     //借助栈模拟递归
     //但是这里是多分支递归，所以这里可以借助栈记录递归的反向顺序，而不是模拟递归
@@ -250,7 +250,7 @@ class LinkTree {
         System.out.println();
     }
 
-    void traverseDfsPostOrderOneStack() {
+    void traverseDfsPostOrderTwoStack() {
 
     }
     
