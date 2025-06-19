@@ -4,36 +4,14 @@ import java.util.LinkedList;
 
 class LinkTreeApp {
     public static void main(String[] args) {
-        TreeNode treeNodea1 = new TreeNode(1);
-
-        TreeNode treeNodeb1 = new TreeNode(2);
-        TreeNode treeNodeb2 = new TreeNode(3);
-
-        TreeNode treeNodec1 = new TreeNode(4);
-        TreeNode treeNodec2 = new TreeNode(5);
-        TreeNode treeNodec3 = new TreeNode(6);
-        TreeNode treeNodec4 = new TreeNode(7);
-
-        treeNodea1.left = treeNodeb1;
-        treeNodea1.right = treeNodeb2;
-
-        treeNodeb1.left = treeNodec1;
-        treeNodeb1.right = treeNodec2;
-        treeNodeb2.left = treeNodec3;
-        treeNodeb2.right = treeNodec4;
-
-        LinkTree linkTree = new LinkTree();
-        linkTree.root = treeNodea1;
-        linkTree.size = 7;
-
-//        TreeNode treeNodea1 = new TreeNode(4);
+//        TreeNode treeNodea1 = new TreeNode(1);
 //
 //        TreeNode treeNodeb1 = new TreeNode(2);
-//        TreeNode treeNodeb2 = new TreeNode(6);
+//        TreeNode treeNodeb2 = new TreeNode(3);
 //
-//        TreeNode treeNodec1 = new TreeNode(1);
-//        TreeNode treeNodec2 = new TreeNode(3);
-//        TreeNode treeNodec3 = new TreeNode(5);
+//        TreeNode treeNodec1 = new TreeNode(4);
+//        TreeNode treeNodec2 = new TreeNode(5);
+//        TreeNode treeNodec3 = new TreeNode(6);
 //        TreeNode treeNodec4 = new TreeNode(7);
 //
 //        treeNodea1.left = treeNodeb1;
@@ -48,6 +26,28 @@ class LinkTreeApp {
 //        linkTree.root = treeNodea1;
 //        linkTree.size = 7;
 
+        TreeNode treeNodea1 = new TreeNode(4);
+
+        TreeNode treeNodeb1 = new TreeNode(2);
+        TreeNode treeNodeb2 = new TreeNode(6);
+
+        TreeNode treeNodec1 = new TreeNode(1);
+        TreeNode treeNodec2 = new TreeNode(3);
+        TreeNode treeNodec3 = new TreeNode(5);
+        TreeNode treeNodec4 = new TreeNode(7);
+
+        treeNodea1.left = treeNodeb1;
+        treeNodea1.right = treeNodeb2;
+
+        treeNodeb1.left = treeNodec1;
+        treeNodeb1.right = treeNodec2;
+        treeNodeb2.left = treeNodec3;
+        treeNodeb2.right = treeNodec4;
+
+        LinkTree linkTree = new LinkTree();
+        linkTree.root = treeNodea1;
+        linkTree.size = 7;
+
 //        linkTree.traverseBfs();
 //        linkTree.traverseDfsPreOrder();
 //        linkTree.traverseDfsPreOrderStack();
@@ -58,8 +58,10 @@ class LinkTreeApp {
 //        linkTree.traverseBfsLevelOrder1();
 //        linkTree.traverseBfsLevelOrder2();
 
-        linkTree.traverseDfsPreOrder();
-        linkTree.traverseDfsPreOrderOneStack();
+//        linkTree.traverseDfsPreOrder();
+//        linkTree.traverseDfsPreOrderOneStack();
+
+        linkTree.traverseDfsInOrder();
     }
 }
 
@@ -210,7 +212,7 @@ class LinkTree {
 
     void visit(TreeNode node) {
         //can be any logic
-        System.out.println(node.val+",");
+        System.out.print(node.val+",");
     }
 
     //树的中序，借助1个额外变量？
