@@ -62,6 +62,7 @@ class LinkTreeApp {
 //        linkTree.traverseDfsPreOrderOneStack();
 
         linkTree.traverseDfsInOrder();
+        linkTree.traverseDfsInOrderOneStack();
     }
 }
 
@@ -238,6 +239,22 @@ class LinkTree {
 
     // length-n stacks
     void traverseDfsInOrderOneStack() {
+        if (root == null) {
+            return;
+        }
+        LinkedList<TreeNode> stack = new LinkedList<>();
+
+        //init
+        TreeNode current = root;
+        for (int j = 0; j < size && (current != null || !stack.isEmpty()); j++) {
+            for (int i = 0; i < size && current != null; i++) {
+                stack.push(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            visit(current);
+            current = current.right;
+        }
 
     }
 
