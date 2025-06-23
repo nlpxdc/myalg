@@ -197,7 +197,7 @@ class LinkTree {
 
         //iter loop
         for (int i = 0; i < size && !stack.isEmpty(); i++) {
-            TreeNode node = stack.poll();
+            TreeNode node = stack.pop();
             System.out.print(node.val+",");
 
             if (node.right != null) {
