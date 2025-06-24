@@ -278,7 +278,7 @@ class LinkTree {
         System.out.println();
     }
 
-    void traverseDfsPostOrderTwoStack() {
+    void traverseDfsPostOrderOneStack() {
 
     }
     
