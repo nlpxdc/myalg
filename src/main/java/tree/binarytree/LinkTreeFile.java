@@ -61,8 +61,10 @@ class LinkTreeApp {
 //        linkTree.traverseDfsPreOrder();
 //        linkTree.traverseDfsPreOrderOneStack();
 
-        linkTree.traverseDfsInOrder();
-        linkTree.traverseDfsInOrderOneStack();
+//        linkTree.traverseDfsInOrder();
+//        linkTree.traverseDfsInOrderOneStack();
+
+        linkTree.traverseDfsPostOrder();
     }
 }
 
