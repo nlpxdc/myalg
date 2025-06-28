@@ -213,6 +213,7 @@ class LinkTree {
         System.out.println();
     }
 
+    //多家额外参数，例如列表，有状态处理，有状态就要考虑并发，线程变量，cas，锁
     void visit(TreeNode node) {
         //can be any logic
         System.out.print(node.val+",");
