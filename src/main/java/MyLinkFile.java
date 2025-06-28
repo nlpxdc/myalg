@@ -336,8 +336,9 @@ class MyLinkList {
         }
     }
 
+    //这个重要
     void reverse() {
-        //有个额外临时变量
+        //有个额外临时变量 这个是重点，可为树所用，二叉树的后序遍历
         MyLinkNode prev = null;
         MyLinkNode current = head;
         for (int i = 0; i < size && current != null; i++) {
@@ -346,7 +347,7 @@ class MyLinkList {
             //把当前节点的next指针指向前一个节点
             current.next = prev;
             //迭代进入下一次循环
-            //前置节点设置成当前节点
+            //前置节点设置成当前节点 此处是关键，暂存当前，给下一个使用
             prev = current;
             //current设置成后置节点
             current = t;
@@ -386,6 +387,7 @@ class MyLinkList {
         System.out.println("---");
     }
 
+    //树的前序遍历
     //前序，可以不借助额外的变量，自己够了？
     //也可以借助栈模拟递归
     //用栈模拟递归，实现前序就没什么太大的必要了，多余
@@ -405,7 +407,8 @@ class MyLinkList {
         System.out.println();
     }
 
-    //一次性全部处理
+    //应该也可用栈 树的深度角度考虑
+    //一次性全部处理 层次角度考虑，因为退化了
     void traverseQueueOnceTime() {
         LinkedList<MyLinkNode> queue = new LinkedList<>();
         MyLinkNode current = head;
@@ -419,7 +422,8 @@ class MyLinkList {
         System.out.println();
     }
 
-    //每个节点依次处理 这种更好
+    //应该也可用栈 书的深读角度考虑
+    //每个节点依次处理 这种更好 层次角度考虑，因为退化了
     void traverseQueueEveryTime() {
         LinkedList<MyLinkNode> queue = new LinkedList<>();
 
@@ -439,6 +443,7 @@ class MyLinkList {
         System.out.println();
     }
 
+    //树的后序遍历
     //后序，转成迭代方式时，一定借助额外临时变量（不是栈本身用来模拟递归，一定是再额外的另外的）
     //用栈模拟递归，可以比较容易的实现较难的后序，就是反过来的特性
     void innerTraverseRecurBack(MyLinkNode node) {
@@ -457,6 +462,7 @@ class MyLinkList {
         System.out.println();
     }
 
+    //可用栈
     //保存前面的调用进栈
     void traverseBackStack() {
         LinkedList<MyLinkNode> stack = new LinkedList<>();
