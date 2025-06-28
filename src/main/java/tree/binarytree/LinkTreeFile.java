@@ -251,8 +251,8 @@ class LinkTree {
         TreeNode current = root;
 
         //iter loop
-        for (int j = 0; j < size && (current != null || !stack.isEmpty()); j++) {
-            for (int i = 0; i < size && current != null; i++) {
+        for (int i = 0; i < size && (current != null || !stack.isEmpty()); i++) {
+            for (int j = 0; j < size && current != null; j++) {
                 stack.push(current);
                 current = current.left;
             }
