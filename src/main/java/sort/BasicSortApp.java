@@ -8,9 +8,12 @@ public class BasicSortApp {
 //        int[] ary = {8, 3, 5, 4, 5};
 //        insertionSort(ary);
 //        System.out.println(Arrays.toString(ary));
-        int[] ary2 = {8, 3, 5, 4, 5};
-        selectionSort(ary2);
-        System.out.println(Arrays.toString(ary2));
+//        int[] ary2 = {8, 3, 5, 4, 5};
+//        selectionSort(ary2);
+//        System.out.println(Arrays.toString(ary2));
+        int[] ary3 = {8, 3, 5, 4, 5};
+        bubbleSort(ary3);
+        System.out.println(Arrays.toString(ary3));
 
     }
 
@@ -43,7 +46,17 @@ public class BasicSortApp {
         }
     }
     //3。冒泡排序 原地
-    public static void bubbleSort(int[] ary) {}
+    public static void bubbleSort(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            for (int j = i+1; j < ary.length; j++) {
+                if (ary[i] > ary[j]) {
+                    int t = ary[i];
+                    ary[i] = ary[j];
+                    ary[j] = t;
+                }
+            }
+        }
+    }
     //4。归并排序 非原地
     public static int[] mergeSort(int[] ary) {
         return null;
