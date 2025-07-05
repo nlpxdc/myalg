@@ -12,12 +12,16 @@ public class BasicSortApp {
 //        selectionSort(ary2);
 //        System.out.println(Arrays.toString(ary2));
 //        int[] ary3 = {8, 3, 5, 4, 5};
-//        int[] sortAry3 = {3,4,5,5,8};
-//        selectionSortWithValueStop(sortAry3);
-//        System.out.println(Arrays.toString(sortAry3));
-        int[] ary4 = {8, 3, 5, 4, 5};
-        bubbleSort(ary4);
-        System.out.println(Arrays.toString(ary4));
+//        int[] sortAry2 = {3,4,5,5,8};
+//        selectionSortWithValueStop(sortAry2);
+//        System.out.println(Arrays.toString(sortAry2));
+//        int[] ary4 = {8, 3, 5, 4, 5};
+//        bubbleSort(ary4);
+//        System.out.println(Arrays.toString(ary4));
+        int[] sortAry3 = {3,4,5,5,8};
+        bubbleSortWithStop(sortAry3);
+        System.out.println(Arrays.toString(sortAry3));
+
 
     }
 
@@ -91,16 +95,20 @@ public class BasicSortApp {
             }
         }
     }
-    //3b 冒泡排序 原地 提前结束，带标志位swap，如果某一趟没有发生过交换，说明已经有序即可停止，无序再运行
-    public static void bubbleSortWithEarlyStop(int[] ary) {
-
+    //3b 冒泡排序 原地 提前结束，带标志位swap，如果某一趟没有发生过交换，说明已经有序即可停止，无需再运行
+    public static void bubbleSortWithStop(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
-            for (int j = i+1; j < ary.length; j++) {
-                if (ary[i] > ary[j]) {
-                    int t = ary[i];
-                    ary[i] = ary[j];
+            boolean beSwapped = false;
+            for (int j = 0; j < ary.length-i-1; j++) {
+                if (ary[j] > ary[j+1]) {
+                    int t = ary[j+1];
+                    ary[j+1] = ary[j];
                     ary[j] = t;
+                    beSwapped = true;
                 }
+            }
+            if (!beSwapped) {
+                return;
             }
         }
     }
