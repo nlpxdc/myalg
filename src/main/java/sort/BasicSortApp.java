@@ -40,7 +40,7 @@ public class BasicSortApp {
             ary[j+1] = unsortedFirst;
         }
     }
-    //2。选择排序 原地 使用idx位置，最后交换一次
+    //2。选择排序 原地 使用idx位置，最后交换一次，这个只读，只交换一次，性能好，利用位置
     public static void selectionSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             int currentMinIdx = i;
@@ -54,7 +54,7 @@ public class BasicSortApp {
             }
         }
     }
-    //2b。选择排序 原地 使用value值，每次都交换一下
+    //2b。选择排序 原地 使用value值，每次都交换一下，这个交换多次，性能差
     public static void selectionSortWithValue(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = i+1; j < ary.length; j++) {
