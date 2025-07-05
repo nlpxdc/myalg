@@ -18,11 +18,37 @@ public class BasicSortApp {
 //        int[] ary4 = {8, 3, 5, 4, 5};
 //        bubbleSort(ary4);
 //        System.out.println(Arrays.toString(ary4));
-        int[] sortAry3 = {3,4,5,5,8};
-        bubbleSortWithStop(sortAry3);
-        System.out.println(Arrays.toString(sortAry3));
+//        int[] sortAry3 = {3,4,5,5,8};
+//        bubbleSortWithStop(sortAry3);
+//        System.out.println(Arrays.toString(sortAry3));
+        int[] ascAry3 = {3,4,5,5,8};
+        boolean b = beAsc(ascAry3);
+        boolean b1 = beDesc(ascAry3);
+        int[] descAry3 = {8,5,5,4,3};
+        boolean b2 = beAsc(descAry3);
+        boolean b3 = beDesc(descAry3);
+        int[] ary4 = {8, 3, 5, 4, 5};
+        boolean b4 = beAsc(ary4);
+        boolean b5 = beDesc(ary4);
 
+    }
 
+    public static boolean beAsc(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            if (ary[i] > ary[i+1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean beDesc(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            if (ary[i] < ary[i+1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     //每种都可以考虑，是否可以提前结束，以来外部标识判断
