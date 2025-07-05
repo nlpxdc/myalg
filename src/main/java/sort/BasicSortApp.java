@@ -11,12 +11,17 @@ public class BasicSortApp {
 //        int[] ary2 = {8, 3, 5, 4, 5};
 //        selectionSort(ary2);
 //        System.out.println(Arrays.toString(ary2));
-        int[] ary3 = {8, 3, 5, 4, 5};
-        bubbleSort(ary3);
-        System.out.println(Arrays.toString(ary3));
+//        int[] ary3 = {8, 3, 5, 4, 5};
+//        int[] sortAry3 = {3,4,5,5,8};
+//        selectionSortWithValueStop(sortAry3);
+//        System.out.println(Arrays.toString(sortAry3));
+        int[] ary4 = {8, 3, 5, 4, 5};
+        bubbleSort(ary4);
+        System.out.println(Arrays.toString(ary4));
 
     }
 
+    //每种都可以考虑，是否可以提前结束，以来外部标识判断
 
     //1。插入排序 原地
     //分两部分 有序无序，开始第一个默认有序部分，后面都是无序部分
@@ -31,7 +36,7 @@ public class BasicSortApp {
             ary[j+1] = unsortedFirst;
         }
     }
-    //2。选择排序 原地
+    //2。选择排序 原地 使用idx位置，最后交换一次
     public static void selectionSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             int currentMinIdx = i;
@@ -45,7 +50,7 @@ public class BasicSortApp {
             }
         }
     }
-    //2b。选择排序 原地
+    //2b。选择排序 原地 使用value值，每次都交换一下
     public static void selectionSortWithValue(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = i+1; j < ary.length; j++) {
@@ -54,6 +59,23 @@ public class BasicSortApp {
                     ary[i] = ary[j];
                     ary[j] = t;
                 }
+            }
+        }
+    }
+    //2bstop。选择排序 原地 使用value值，每次都交换一下，并提前结束
+    public static void selectionSortWithValueStop(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            boolean beSwapped = false;
+            for (int j = i+1; j < ary.length; j++) {
+                if (ary[i] > ary[j]) {
+                    int t = ary[i];
+                    ary[i] = ary[j];
+                    ary[j] = t;
+                    beSwapped = true;
+                }
+            }
+            if (!beSwapped) {
+                return;
             }
         }
     }
