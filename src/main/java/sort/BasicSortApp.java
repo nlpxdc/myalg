@@ -45,8 +45,33 @@ public class BasicSortApp {
             }
         }
     }
+    //2b。选择排序 原地
+    public static void selectionSortWithValue(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            for (int j = i+1; j < ary.length; j++) {
+                if (ary[i] > ary[j]) {
+                    int t = ary[i];
+                    ary[i] = ary[j];
+                    ary[j] = t;
+                }
+            }
+        }
+    }
     //3。冒泡排序 原地
     public static void bubbleSort(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            for (int j = 0; j < ary.length-i-1; j++) {
+                if (ary[j] > ary[j+1]) {
+                    int t = ary[j+1];
+                    ary[j+1] = ary[j];
+                    ary[j] = t;
+                }
+            }
+        }
+    }
+    //3b 冒泡排序 原地 提前结束，带标志位swap，如果某一趟没有发生过交换，说明已经有序即可停止，无序再运行
+    public static void bubbleSortWithEarlyStop(int[] ary) {
+
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = i+1; j < ary.length; j++) {
                 if (ary[i] > ary[j]) {
