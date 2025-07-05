@@ -66,23 +66,6 @@ public class BasicSortApp {
             }
         }
     }
-    //2bstop。选择排序 原地 使用value值，每次都交换一下，并提前结束
-    public static void selectionSortWithValueStop(int[] ary) {
-        for (int i = 0; i < ary.length-1; i++) {
-            boolean beSwapped = false;
-            for (int j = i+1; j < ary.length; j++) {
-                if (ary[i] > ary[j]) {
-                    int t = ary[i];
-                    ary[i] = ary[j];
-                    ary[j] = t;
-                    beSwapped = true;
-                }
-            }
-            if (!beSwapped) {
-                return;
-            }
-        }
-    }
     //3。冒泡排序 原地
     public static void bubbleSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
@@ -95,7 +78,7 @@ public class BasicSortApp {
             }
         }
     }
-    //3b 冒泡排序 原地 提前结束，带标志位swap，如果某一趟没有发生过交换，说明已经有序即可停止，无需再运行
+    //3b。 冒泡排序 原地 提前结束，带标志位swap，如果某一趟没有发生过交换，说明已经有序即可停止，无需再运行
     public static void bubbleSortWithStop(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             boolean beSwapped = false;
