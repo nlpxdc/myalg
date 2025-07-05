@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BasicSortApp {
     public static void main(String[] args) {
         //test sort methods
-        int[] ary = {8, 5, 3, 4, 5};
+        int[] ary = {8, 3, 5, 4, 5};
         insertionSort(ary);
         System.out.println(Arrays.toString(ary));
 
