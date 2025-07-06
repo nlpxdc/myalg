@@ -123,7 +123,7 @@ class MyLinkUtil {
         numAry[idxl] = numAry[idxl] ^ numAry[idxr];
     }
 
-    //这个实际上是归并排序
+    //这个实际上是归并排序的合并部分逻辑
     static MyLinkList mergeSort(MyLinkList upList, MyLinkList downList) {
         MyLinkNode virtualHead = new MyLinkNode(Integer.MIN_VALUE);
         MyLinkNode current = virtualHead;
