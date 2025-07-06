@@ -84,6 +84,7 @@ class MyLinkUtil {
         return true;
     }
 
+    //这个错了，这种写法实际上是选择排序，而不是冒泡排序，冒泡排序是相邻的的比较
     static void bubbleSort(int[] numAry) {
         for (int i = 0; i < numAry.length; i++) {
             for (int j = i+1; j < numAry.length; j++) {
@@ -122,6 +123,7 @@ class MyLinkUtil {
         numAry[idxl] = numAry[idxl] ^ numAry[idxr];
     }
 
+    //这个实际上是归并排序
     static MyLinkList mergeSort(MyLinkList upList, MyLinkList downList) {
         MyLinkNode virtualHead = new MyLinkNode(Integer.MIN_VALUE);
         MyLinkNode current = virtualHead;
