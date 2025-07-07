@@ -159,7 +159,22 @@ class BasicSortApp {
     }
 
     public static void reduceFor2UpDown(int[] origAry, Map2UpDownVo mapVo) {
+        int origIdx = 0, upIdx = 0, downIdx = 0;
 
+        for (; upIdx < mapVo.upAry.length && downIdx < mapVo.downAry.length; ) {
+            if (mapVo.upAry[upIdx] <= mapVo.downAry[downIdx]) {
+                origAry[origIdx++] = mapVo.upAry[upIdx++];
+            } else {
+                origAry[origIdx++] = mapVo.downAry[downIdx++];
+            }
+        }
+
+        for (; upIdx < mapVo.upAry.length ; ) {
+            origAry[origIdx++] = mapVo.upAry[upIdx++];
+        }
+        for (; downIdx < mapVo.downAry.length; ) {
+            origAry[origIdx++] = mapVo.downAry[downIdx++];
+        }
     }
 
 }
