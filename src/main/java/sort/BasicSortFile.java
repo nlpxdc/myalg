@@ -125,6 +125,8 @@ class BasicSortApp {
     }
     //4。归并排序 非原地 不在于排序本身（排序可以使用前面三种基础排序算法），在于map reduce，拆解和合并
     //当然也可以递归调用自身排序，但是实际上不合适
+    //方便改造成多线程同时处理，分解以后各自的排序可以同步进行，合并不行，必须是同步操作，这个是操作同一个数组资源
+    //思路就是拆解，并发同时操作，快
     public static void mergeSort(int[] ary) {
         if (ary == null || ary.length <= 1) {
             return;
@@ -139,10 +141,44 @@ class BasicSortApp {
         //这里不是写死的分批数量，利用递归性质，加上自适应算法，让他自身拆解合适的数组个数进行处理，分解和合并
 
         reduceFor2UpDown(ary, mapVo);
+    }
 
+    //这里拆解到一个合适的度，范围去处理
+    public static void mergeSortRecur(int[] ary) {
+        if (ary == null || ary.length <= 1) {
+            return;
+        }
+        Map2UpDownVo mapVo = mapFor2UpDownRecur(ary);
+        //各自排序
+        mergeSortRecur(mapVo.upAry);
+        mergeSortRecur(mapVo.downAry);
+
+        reduceFor2UpDown(ary, mapVo);
     }
 
     public static Map2UpDownVo mapFor2UpDown(int[] origAry) {
+        Map2UpDownVo mapVo = new Map2UpDownVo();
+
+        int half = origAry.length/2;
+
+        int[] upAry = new int[half];
+        for (int i = 0; i < half; i++) {
+            upAry[i] = origAry[i];
+        }
+        mapVo.upAry = upAry;
+
+        int[] downAry = new int[origAry.length-half];
+        for (int i = 0; i < origAry.length - half; i++) {
+            downAry[i] = origAry[half+i];
+        }
+        mapVo.downAry = downAry;
+
+        return mapVo;
+    }
+
+    //这里要注意拆解的限制，结束时机，不能等到数组只有1个，要有个数组的最小值，适合多一些的数据
+    //这里有递归吗？没有，直接逻辑控制即可 需要其他额外的变量 标志位 来进行记录处理
+    public static Map2UpDownVo mapFor2UpDownRecur(int[] origAry) {
         Map2UpDownVo mapVo = new Map2UpDownVo();
 
         int half = origAry.length/2;
