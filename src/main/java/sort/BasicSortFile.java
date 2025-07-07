@@ -57,6 +57,7 @@ class BasicSortApp {
 
     //1。插入排序 原地 稳定性 比较移动，只有1次，快
     //分两部分 有序无序，开始第一个默认有序部分，后面都是无序部分
+    //升级是希尔排序，shell sort，注意间隔序列 gap seq，有多种，影响时间复杂度
     public static void insertionSort(int[] ary) {
         //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
         for (int i = 1; i < ary.length; i++) {
@@ -69,6 +70,7 @@ class BasicSortApp {
         }
     }
     //2。选择排序 原地 不稳定因为用idx 使用idx位置，最后交换一次，这个只读，只交换一次，性能好，利用位置
+    //升级是堆排序，heap sort 数据结构层面的递归拆解
     public static void selectionSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             int currentMinIdx = i;
@@ -95,6 +97,7 @@ class BasicSortApp {
         }
     }
     //3。冒泡排序 原地 稳定性 交换比较赋值太多次了，3次
+    //升级是快速排序, quick sort 算法层面的递归拆解
     public static void bubbleSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = 0; j < ary.length-i-1; j++) {
