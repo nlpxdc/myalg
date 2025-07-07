@@ -52,9 +52,10 @@ class BasicSortApp {
         return true;
     }
 
+    //自适应算法，阈值
     //每种都可以考虑，是否可以提前结束，以来外部标识判断
 
-    //1。插入排序 原地
+    //1。插入排序 原地 稳定性 比较移动，只有1次，快
     //分两部分 有序无序，开始第一个默认有序部分，后面都是无序部分
     public static void insertionSort(int[] ary) {
         //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
@@ -67,7 +68,7 @@ class BasicSortApp {
             ary[j+1] = unsortedFirst;
         }
     }
-    //2。选择排序 原地 使用idx位置，最后交换一次，这个只读，只交换一次，性能好，利用位置
+    //2。选择排序 原地 不稳定因为用idx 使用idx位置，最后交换一次，这个只读，只交换一次，性能好，利用位置
     public static void selectionSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             int currentMinIdx = i;
@@ -81,7 +82,7 @@ class BasicSortApp {
             }
         }
     }
-    //2b。选择排序 原地 使用value值，每次都交换一下，这个交换多次，性能差
+    //2b。选择排序 原地 稳定因为用值比较 使用value值，每次都交换一下，这个交换多次，性能差
     public static void selectionSortWithValue(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = i+1; j < ary.length; j++) {
@@ -93,7 +94,7 @@ class BasicSortApp {
             }
         }
     }
-    //3。冒泡排序 原地
+    //3。冒泡排序 原地 稳定性 交换比较赋值太多次了，3次
     public static void bubbleSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = 0; j < ary.length-i-1; j++) {
@@ -130,8 +131,8 @@ class BasicSortApp {
         }
         Map2UpDownVo mapVo = mapFor2UpDown(ary);
         //各自排序
-        bubbleSortWithStop(mapVo.upAry);
-        bubbleSortWithStop(mapVo.downAry);
+        insertionSort(mapVo.upAry);
+        insertionSort(mapVo.downAry);
 
         reduceFor2UpDown(ary, mapVo);
 
