@@ -121,9 +121,9 @@ public class BasicSortApp {
             }
         }
     }
-    //4。归并排序 非原地
-    public static int[] mergeSort(int[] ary) {
-        return null;
+    //4。归并排序 非原地 不在于排序本身，在于map reduce，拆解和合并
+    public static void mergeSort(int[] ary) {
+
     }
 
 }
