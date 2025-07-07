@@ -29,7 +29,7 @@ class BasicSortApp {
 //        boolean b4 = beAsc(ary4);
 //        boolean b5 = beDesc(ary4);
         int[] ary4 = {8, 3, 5, 4, 5};
-        MapVo map = map(ary4);
+        Map2UpDownVo map = map(ary4);
 
     }
 
@@ -127,14 +127,14 @@ class BasicSortApp {
         if (ary == null || ary.length <= 1) {
             return;
         }
-        MapVo mapVo = map(ary);
+        Map2UpDownVo mapVo = map(ary);
         //各自排序
-        reduce(ary, mapVo.upAry, mapVo.downAry);
+        reduce(ary, mapVo);
 
     }
 
-    public static MapVo map(int[] origAry) {
-        MapVo mapVo = new MapVo();
+    public static Map2UpDownVo map(int[] origAry) {
+        Map2UpDownVo mapVo = new Map2UpDownVo();
 
         int half = origAry.length/2;
 
@@ -153,13 +153,13 @@ class BasicSortApp {
         return mapVo;
     }
 
-    public static void reduce(int[] origAry, int[] upAry, int[] downAry) {
+    public static void reduce(int[] origAry, Map2UpDownVo mapVo) {
 
     }
 
 }
 
-class MapVo {
+class Map2UpDownVo {
     int[] upAry;
     int[] downAry;
 }
