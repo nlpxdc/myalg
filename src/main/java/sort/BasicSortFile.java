@@ -19,15 +19,17 @@ class BasicSortApp {
 //        int[] sortAry3 = {3,4,5,5,8};
 //        bubbleSortWithStop(sortAry3);
 //        System.out.println(Arrays.toString(sortAry3));
-        int[] ascAry3 = {3,4,5,5,8};
-        boolean b = beAsc(ascAry3);
-        boolean b1 = beDesc(ascAry3);
-        int[] descAry3 = {8,5,5,4,3};
-        boolean b2 = beAsc(descAry3);
-        boolean b3 = beDesc(descAry3);
+//        int[] ascAry3 = {3,4,5,5,8};
+//        boolean b = beAsc(ascAry3);
+//        boolean b1 = beDesc(ascAry3);
+//        int[] descAry3 = {8,5,5,4,3};
+//        boolean b2 = beAsc(descAry3);
+//        boolean b3 = beDesc(descAry3);
+//        int[] ary4 = {8, 3, 5, 4, 5};
+//        boolean b4 = beAsc(ary4);
+//        boolean b5 = beDesc(ary4);
         int[] ary4 = {8, 3, 5, 4, 5};
-        boolean b4 = beAsc(ary4);
-        boolean b5 = beDesc(ary4);
+        MapVo map = map(ary4);
 
     }
 
@@ -122,14 +124,36 @@ class BasicSortApp {
     //4。归并排序 非原地 不在于排序本身（排序可以使用前面三种基础排序算法），在于map reduce，拆解和合并
     //当然也可以递归调用自身排序，但是实际上不合适
     public static void mergeSort(int[] ary) {
+        if (ary == null || ary.length <= 1) {
+            return;
+        }
+        MapVo mapVo = map(ary);
+        //各自排序
+        reduce(ary, mapVo.upAry, mapVo.downAry);
 
     }
 
-    private static MapVo map(int origAry) {
-        return null;
+    public static MapVo map(int[] origAry) {
+        MapVo mapVo = new MapVo();
+
+        int half = origAry.length/2;
+
+        int[] upAry = new int[half];
+        for (int i = 0; i < half; i++) {
+            upAry[i] = origAry[i];
+        }
+        mapVo.upAry = upAry;
+
+        int[] downAry = new int[origAry.length-half];
+        for (int i = 0; i < origAry.length - half; i++) {
+            downAry[i] = origAry[half+i];
+        }
+        mapVo.downAry = downAry;
+
+        return mapVo;
     }
 
-    private static void reduce(int[] origAry, int[] upAry, int[] downAry) {
+    public static void reduce(int[] origAry, int[] upAry, int[] downAry) {
 
     }
 
