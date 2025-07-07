@@ -1,8 +1,6 @@
 package sort;
 
-import java.util.Arrays;
-
-public class BasicSortApp {
+class BasicSortApp {
     public static void main(String[] args) {
         //test sort methods
 //        int[] ary = {8, 3, 5, 4, 5};
@@ -121,9 +119,23 @@ public class BasicSortApp {
             }
         }
     }
-    //4。归并排序 非原地 不在于排序本身，在于map reduce，拆解和合并
+    //4。归并排序 非原地 不在于排序本身（排序可以使用前面三种基础排序算法），在于map reduce，拆解和合并
+    //当然也可以递归调用自身排序，但是实际上不合适
     public static void mergeSort(int[] ary) {
 
     }
 
+    private static MapVo map(int origAry) {
+        return null;
+    }
+
+    private static void reduce(int[] origAry, int[] upAry, int[] downAry) {
+
+    }
+
+}
+
+class MapVo {
+    int[] upAry;
+    int[] downAry;
 }
