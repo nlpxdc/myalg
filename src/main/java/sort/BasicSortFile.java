@@ -30,7 +30,8 @@ class BasicSortApp {
 //        boolean b5 = beDesc(ary4);
         int[] ary4 = {8, 3, 5, 4, 5};
 //        Map2UpDownVo map = mapFor2UpDown(ary4);
-        mergeSort(ary4);
+//        mergeSort(ary4);
+        mergeSortRecur(ary4);
 
     }
 
@@ -135,7 +136,7 @@ class BasicSortApp {
             return;
         }
         Map2UpDownVo mapVo = mapFor2UpDown(ary);
-        //各自排序
+        //各自排序 这部可以并行
         insertionSort(mapVo.upAry);
         insertionSort(mapVo.downAry);
         //这里排序还能递归调用自身进行排序，不做任何其他处理，将会分解成单个元素的数组处理，然后再合并，粒度太小了，速度会变慢，深度太深，而且没批处理
@@ -143,6 +144,7 @@ class BasicSortApp {
         //合适的化根据具体数量，做一个自适应的算法，会拆解成一定数量的数组进行单独排序，然后再合并，掌握好一个度，会更快，充分利用分解，也不会太深
         //这里不是写死的分批数量，利用递归性质，加上自适应算法，让他自身拆解合适的数组个数进行处理，分解和合并
 
+        //这步不能并行，智能串行处理，属于并发
         reduceFor2UpDown(ary, mapVo);
     }
 
@@ -151,11 +153,13 @@ class BasicSortApp {
         if (ary == null || ary.length <= 1) {
             return;
         }
+        //控制数量，避免深度
         Map2UpDownVo mapVo = mapFor2UpDownRecur(ary);
-        //各自排序
+        //各自排序 并行
         mergeSortRecur(mapVo.upAry);
         mergeSortRecur(mapVo.downAry);
 
+        //串行
         reduceFor2UpDown(ary, mapVo);
     }
 
@@ -181,6 +185,7 @@ class BasicSortApp {
 
     //这里要注意拆解的限制，结束时机，不能等到数组只有1个，要有个数组的最小值，适合多一些的数据
     //这里有递归吗？没有，直接逻辑控制即可 需要其他额外的变量 标志位 来进行记录处理
+    //每个数组32个最少控制
     public static Map2UpDownVo mapFor2UpDownRecur(int[] origAry) {
         Map2UpDownVo mapVo = new Map2UpDownVo();
 
