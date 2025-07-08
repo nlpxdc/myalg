@@ -131,6 +131,7 @@ class BasicSortApp {
     //当然也可以递归调用自身排序，但是实际上不合适
     //方便改造成多线程同时处理，分解以后各自的排序可以同步进行，合并不行，必须是同步操作，这个是操作同一个数组资源
     //思路就是拆解，并发同时操作，快
+    //多线程的结合！
     public static void mergeSort(int[] ary) {
         if (ary == null || ary.length <= 1) {
             return;
