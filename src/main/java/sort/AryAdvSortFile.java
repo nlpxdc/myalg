@@ -1,6 +1,6 @@
 package sort;
 
-class HighSortApp {
+class AryAdvSortApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
@@ -23,6 +23,7 @@ class HighSortApp {
     //3 插入排序+分治 希尔排序 Shell排序 缩小增量排序 间隔序列 缩小间隔排序 增量序列，这里间隔就是增量，增量就是间隔
     //实战复杂对象类型
     //小数据量 内存
+    //ShellSort
     public static void reduceGapSort(int[] ary) {
 
     }

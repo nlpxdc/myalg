@@ -1,6 +1,7 @@
 package sort;
 
-class BasicSortApp {
+//数组版本，后序可以再考虑链表版本
+class AryBasicSortApp {
     public static void main(String[] args) {
         //test sort methods
 //        int[] ary = {8, 3, 5, 4, 5};
@@ -56,49 +57,8 @@ class BasicSortApp {
     //自适应算法，阈值
     //每种都可以考虑，是否可以提前结束，以来外部标识判断
 
-    //1。插入排序 原地 稳定性 比较移动，只有1次，快
-    //分两部分 有序无序，开始第一个默认有序部分，后面都是无序部分
-    //升级是希尔排序，shell sort，注意间隔序列 gap seq，有多种，影响时间复杂度
-    public static void insertionSort(int[] ary) {
-        //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
-        for (int i = 1; i < ary.length; i++) {
-            int unsortedFirst = ary[i];
-            int j = i-1;
-            for (; j >= 0 && ary[j] > unsortedFirst ; j--) {
-                ary[j+1] = ary[j];
-            }
-            ary[j+1] = unsortedFirst;
-        }
-    }
-    //2。选择排序 原地 不稳定因为用idx 使用idx位置，最后交换一次，这个只读，只交换一次，性能好，利用位置
-    //升级是堆排序，heap sort 数据结构层面的递归拆解
-    public static void selectionSort(int[] ary) {
-        for (int i = 0; i < ary.length-1; i++) {
-            int currentMinIdx = i;
-            for (int j = i+1; j < ary.length && ary[currentMinIdx] > ary[j]; j++) {
-                currentMinIdx = j;
-            }
-            if (i != currentMinIdx) {
-                int t = ary[i];
-                ary[i] = ary[currentMinIdx];
-                ary[currentMinIdx] = t;
-            }
-        }
-    }
-    //2b。选择排序 原地 稳定因为用值比较 使用value值，每次都交换一下，这个交换多次，性能差
-    public static void selectionSortWithValue(int[] ary) {
-        for (int i = 0; i < ary.length-1; i++) {
-            for (int j = i+1; j < ary.length; j++) {
-                if (ary[i] > ary[j]) {
-                    int t = ary[i];
-                    ary[i] = ary[j];
-                    ary[j] = t;
-                }
-            }
-        }
-    }
-    //3。冒泡排序 原地 稳定性 交换比较赋值太多次了，3次
-    //升级是快速排序, quick sort 算法层面的递归拆解
+    //1。冒泡排序 原地 稳定性 交换比较赋值太多次了，3次
+    //升级是快速排序, quick sort 算法层面的递归拆解 基本数据类型 数组 链表 jdk DualPivotQuicksort
     public static void bubbleSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = 0; j < ary.length-i-1; j++) {
@@ -110,7 +70,7 @@ class BasicSortApp {
             }
         }
     }
-    //3b。 冒泡排序 原地 提前结束，带标志位swap，如果某一趟没有发生过交换，说明已经有序即可停止，无需再运行
+    //1b。 冒泡排序 原地 提前结束，带标志位swap，如果某一趟没有发生过交换，说明已经有序即可停止，无需再运行
     public static void bubbleSortWithStop(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             boolean beSwapped = false;
@@ -127,6 +87,53 @@ class BasicSortApp {
             }
         }
     }
+
+    //2a。选择排序 原地 稳定因为用值比较 使用value值，每次都交换一下，这个交换多次，性能差
+    public static void selectionSortWithValue(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            for (int j = i+1; j < ary.length; j++) {
+                if (ary[i] > ary[j]) {
+                    int t = ary[i];
+                    ary[i] = ary[j];
+                    ary[j] = t;
+                }
+            }
+        }
+    }
+    //2。选择排序 原地 不稳定因为用idx 使用idx位置，最后交换一次，这个只读，只交换一次，性能好，利用位置
+    //减少交换的次数，先整体比较，只在最后一次做一次交换，代价缓存命中低，空间离得远，但适合外存排序？因为可以减少io次数
+    //升级是堆排序，heap sort 数据结构层面的递归拆解
+    public static void selectionSort(int[] ary) {
+        for (int i = 0; i < ary.length-1; i++) {
+            int currentMinIdx = i;
+            for (int j = i+1; j < ary.length && ary[currentMinIdx] > ary[j]; j++) {
+                currentMinIdx = j;
+            }
+            if (i != currentMinIdx) {
+                int t = ary[i];
+                ary[i] = ary[currentMinIdx];
+                ary[currentMinIdx] = t;
+            }
+        }
+    }
+
+
+    //3。插入排序 原地 稳定性 比较移动，只有1次，快
+    //分两部分 有序无序，开始第一个默认有序部分，后面都是无序部分
+    //升级是希尔排序，Shell sort，注意间隔序列 gap seq or increment seq，有多种，影响时间复杂度
+    //复杂数据类型，对象线性列表 数组 链表 jdk TimSort
+    public static void insertionSort(int[] ary) {
+        //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
+        for (int i = 1; i < ary.length; i++) {
+            int unsortedFirst = ary[i];
+            int j = i-1;
+            for (; j >= 0 && ary[j] > unsortedFirst ; j--) {
+                ary[j+1] = ary[j];
+            }
+            ary[j+1] = unsortedFirst;
+        }
+    }
+
     //4。归并排序 非原地 不在于排序本身（排序可以使用前面三种基础排序算法），在于map reduce，拆解和合并
     //当然也可以递归调用自身排序，但是实际上不合适
     //方便改造成多线程同时处理，分解以后各自的排序可以同步进行，合并不行，必须是同步操作，这个是操作同一个数组资源
@@ -154,8 +161,8 @@ class BasicSortApp {
         if (ary == null || ary.length <= 1) {
             return;
         }
-        //控制数量，避免深度
-        Map2UpDownVo mapVo = mapFor2UpDownRecur(ary);
+        //控制数量，避免深度 也可以不控制，用原来的
+        Map2UpDownVo mapVo = mapFor2UpDownMin(ary);
         //各自排序 并行
         mergeSortRecur(mapVo.upAry);
         mergeSortRecur(mapVo.downAry);
@@ -187,7 +194,7 @@ class BasicSortApp {
     //这里要注意拆解的限制，结束时机，不能等到数组只有1个，要有个数组的最小值，适合多一些的数据
     //这里有递归吗？没有，直接逻辑控制即可 需要其他额外的变量 标志位 来进行记录处理
     //每个数组32个最少控制
-    public static Map2UpDownVo mapFor2UpDownRecur(int[] origAry) {
+    public static Map2UpDownVo mapFor2UpDownMin(int[] origAry) {
         Map2UpDownVo mapVo = new Map2UpDownVo();
 
         int half = origAry.length/2;
