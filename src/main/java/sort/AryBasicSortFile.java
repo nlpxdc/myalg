@@ -145,8 +145,10 @@ class AryBasicSortApp {
         }
         Map2UpDownVo mapVo = mapFor2UpDown(ary);
         //各自排序 这部可以并行
-        insertionSort(mapVo.upAry);
-        insertionSort(mapVo.downAry);
+//        insertionSort(mapVo.upAry);
+//        insertionSort(mapVo.downAry);
+        bubbleSortWithStop(mapVo.upAry);
+        bubbleSortWithStop(mapVo.downAry);
         //这里排序还能递归调用自身进行排序，不做任何其他处理，将会分解成单个元素的数组处理，然后再合并，粒度太小了，速度会变慢，深度太深，而且没批处理
         //如果只是使用其他基本排序算法，那么就不存在递归，但是实际情况可能数量很大，也会慢
         //合适的化根据具体数量，做一个自适应的算法，会拆解成一定数量的数组进行单独排序，然后再合并，掌握好一个度，会更快，充分利用分解，也不会太深
