@@ -139,16 +139,19 @@ class AryBasicSortApp {
     //方便改造成多线程同时处理，分解以后各自的排序可以同步进行，合并不行，必须是同步操作，这个是操作同一个数组资源
     //思路就是拆解，并发同时操作，快
     //多线程的结合！
+    //类似TimSort
     public static void mergeSort(int[] ary) {
         if (ary == null || ary.length <= 1) {
             return;
         }
         Map2UpDownVo mapVo = mapFor2UpDown(ary);
-        //各自排序 这部可以并行
-//        insertionSort(mapVo.upAry);
-//        insertionSort(mapVo.downAry);
-        bubbleSortWithStop(mapVo.upAry);
-        bubbleSortWithStop(mapVo.downAry);
+        //各自排序 这步可以并行
+        //复杂对象，用insertion sort，类似TimSort
+        insertionSort(mapVo.upAry);
+        insertionSort(mapVo.downAry);
+        //基本类型，用冒泡，相当于快排的空间分割斑斑
+//        bubbleSortWithStop(mapVo.upAry);
+//        bubbleSortWithStop(mapVo.downAry);
         //这里排序还能递归调用自身进行排序，不做任何其他处理，将会分解成单个元素的数组处理，然后再合并，粒度太小了，速度会变慢，深度太深，而且没批处理
         //如果只是使用其他基本排序算法，那么就不存在递归，但是实际情况可能数量很大，也会慢
         //合适的化根据具体数量，做一个自适应的算法，会拆解成一定数量的数组进行单独排序，然后再合并，掌握好一个度，会更快，充分利用分解，也不会太深
