@@ -149,7 +149,7 @@ class AryBasicSortApp {
         //复杂对象，用insertion sort，类似TimSort
         insertionSort(mapVo.upAry);
         insertionSort(mapVo.downAry);
-        //基本类型，用冒泡，相当于快排的空间分割斑斑
+        //基本类型，用冒泡
 //        bubbleSortWithStop(mapVo.upAry);
 //        bubbleSortWithStop(mapVo.downAry);
         //这里排序还能递归调用自身进行排序，不做任何其他处理，将会分解成单个元素的数组处理，然后再合并，粒度太小了，速度会变慢，深度太深，而且没批处理
