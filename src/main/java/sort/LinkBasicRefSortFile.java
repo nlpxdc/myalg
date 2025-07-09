@@ -6,6 +6,7 @@ package sort;
 // 另外根据具体情况，选择节点交换可能来的更加合适，比如是复杂对象，或者是不可变的值的情况下。
 // 还要额外考虑到复杂对象的深浅拷贝的问题
 
+//如果是交换引用指针的话，那么要再考虑下单链表的版本，和双量表的版本，各有优缺点
 class LinkBasicRefSortApp {
     public static void main(String[] args) {
         System.out.println("aa");
