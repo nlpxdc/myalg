@@ -1,6 +1,7 @@
 package sort;
 
 //数组版本，后序可以再考虑链表版本
+//天然方便支持双引用（不可变指针）操作，指针，下标，索引，本质上就是地址操作
 class AryBasicSortApp {
     public static void main(String[] args) {
         //test sort methods
