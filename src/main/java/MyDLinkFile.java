@@ -152,6 +152,8 @@ class MyDLinkList {
         }
     }
 
+    //其实位置就是不动的，就是靠维护引用关系串联起来，拓扑学
+
     //维护两个引用，节点位置没动
     void reverseByNodeNext() {
         MyDLinkNode current = head;
