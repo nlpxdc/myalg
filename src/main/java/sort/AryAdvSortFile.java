@@ -8,6 +8,7 @@ class AryAdvSortApp {
     //比较和交换，先比较，再交换，根据比较结果判断是否需要交换
     //比较不动位置，只读，快
     //交换动位置，写操作，慢
+    //再升级双轴快排 dual pivot sort，含三色排序（荷兰国旗问题）这一特例
 
     //1 冒泡排序+分区 快排 实战基础类型 可提前停止 小数据量 内存
     public static void quickSort(int[] ary) {
