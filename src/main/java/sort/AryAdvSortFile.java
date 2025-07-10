@@ -21,11 +21,17 @@ class AryAdvSortApp {
 
     }
     //3 插入排序+分治 希尔排序 Shell排序 缩小增量排序 间隔序列 缩小间隔排序 增量序列，这里间隔就是增量，增量就是间隔
-    //实战复杂对象类型
-    //小数据量 内存
+    //适合小数量，就是分法分区方法，和TimSort不一样，一个间隔，一个顺序
     //ShellSort
-    public static void reduceGapSort(int[] ary) {
+    public static void shellSort(int[] ary) {
 
+    }
+
+    //4 归并排序+多线程
+    public static void mergeSortMultiThread() {
+        //并发分数组 单线程主线程
+        //并行排序各个数组 异步多线程
+        //并发合并 单线程主线程
     }
 
 }

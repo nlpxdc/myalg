@@ -161,6 +161,9 @@ class AryBasicSortApp {
         reduceFor2UpDown(ary, mapVo);
     }
 
+    //todo 归并排序的原地版本 也应该带递归？再看
+    public static void mergeSortLocal(int[] ary) {}
+
     //这里拆解到一个合适的度，范围去处理
     public static void mergeSortRecur(int[] ary) {
         if (ary == null || ary.length <= 1) {
@@ -175,6 +178,14 @@ class AryBasicSortApp {
         //串行
         reduceFor2UpDown(ary, mapVo);
     }
+
+    //todo 归并排序的栈版本 等价替换递归
+    public static void mergeSortStack(int[] ary) {}
+
+    //todo 归并的原地和栈组合，或栈和原地的组合
+
+    //todo 自底向上的迭代版本，适合空间受限场景，如嵌入式
+    //递归和迭代的是一种互逆转换吗？递归是从顶向下，迭代是从底向上？ 有可能，但不总是，看情况
 
     public static Map2UpDownVo mapFor2UpDown(int[] origAry) {
         Map2UpDownVo mapVo = new Map2UpDownVo();
