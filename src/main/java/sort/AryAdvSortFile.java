@@ -35,4 +35,6 @@ class AryAdvSortApp {
         //并发合并 单线程主线程
     }
 
+    //todo 自适应版本？
+
 }
