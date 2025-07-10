@@ -3,6 +3,7 @@ package sort;
 //非交换类排序
 //借助于外部存储空间，外部结构，外部协助，场景受限，但是 O(n)
 //适合整数，字符串？
+//优化方法，可以多线程并行排序部分的逻辑，和归并排序一样
 class AryNonSwapSortApp {
     public static void main(String[] args) {
         System.out.println("aa");
