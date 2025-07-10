@@ -152,6 +152,7 @@ class MyDLinkList {
         }
     }
 
+    //维护两个引用，节点位置没动
     void reverseByNodeNext() {
         MyDLinkNode current = head;
         for (int i = 0; i < size && current != null; i++) {
@@ -165,6 +166,7 @@ class MyDLinkList {
         last = origHead;
     }
 
+    //维护两个引用，节点位置没动
     void reverseByNodePrev() {
         MyDLinkNode current = last;
         for (int i = 0; i < size && current != null; i++) {
@@ -178,6 +180,7 @@ class MyDLinkList {
         head = origLast;
     }
 
+    //双引用，同时维护两套，节点位置依旧没动，逻辑上的
     void reverseByNodeMid() {
         MyDLinkNode left = head;
         MyDLinkNode right = last;
