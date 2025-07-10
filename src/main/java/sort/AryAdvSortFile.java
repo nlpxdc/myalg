@@ -23,6 +23,7 @@ class AryAdvSortApp {
     //3 插入排序+分治 希尔排序 Shell排序 缩小增量排序 间隔序列 缩小间隔排序 增量序列，这里间隔就是增量，增量就是间隔
     //适合小数量，就是分法分区方法，和TimSort不一样，一个间隔，一个顺序
     //ShellSort
+    //这个高级优化法，因为核心考虑到的就是移动，每个都移动，所以用间隔，可以设法避免太多不必要的移动
     public static void shellSort(int[] ary) {
 
     }
