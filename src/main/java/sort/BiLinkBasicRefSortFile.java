@@ -7,6 +7,7 @@ package sort;
 // 还要额外考虑到复杂对象的深浅拷贝的问题
 
 //再考虑下单链表的版本，和双链表的版本，各有优缺点
+//参考链表的反转，维护引用的操作
 class BiLinkBasicRefSortApp {
     public static void main(String[] args) {
         System.out.println("aa");
