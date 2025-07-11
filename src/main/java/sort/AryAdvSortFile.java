@@ -5,6 +5,25 @@ class AryAdvSortApp {
         System.out.println("aa");
     }
 
+    //基本操作
+    //compare比较
+    //左减右
+    // > 0 左大于右（右小于左）
+    // = 0 左等于右（右等于左）
+    // < 0 左小于右（右大于左）
+    private static int compare(int leftVal, int rightVal) {
+        int delta = leftVal - rightVal;
+        return delta;
+    }
+
+    //swap交换
+    private static void swap(int[] ary, int leftIdx, int rightIdx) {
+        int t = ary[leftIdx];
+        ary[leftIdx] = ary[rightIdx];
+        ary[rightIdx] = t;
+        //t = 0; 针对对象，复杂对象，设置称null，利用gc清空内存，主动释放
+    }
+
     //比较和交换，先比较，再交换，根据比较结果判断是否需要交换
     //比较不动位置，只读，快
     //交换动位置，写操作，慢
