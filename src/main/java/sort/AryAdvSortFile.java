@@ -1,8 +1,12 @@
 package sort;
 
+import java.util.Arrays;
+
 class AryAdvSortApp {
     public static void main(String[] args) {
-        System.out.println("aa");
+        int[] ary = {8, 3, 5, 4, 5};
+        quickSort(ary);
+        System.out.println(Arrays.toString(ary));
     }
 
     //基本操作
@@ -11,6 +15,7 @@ class AryAdvSortApp {
     // > 0 左大于右（右小于左）
     // = 0 左等于右（右等于左）
     // < 0 左小于右（右大于左）
+    //通用，但不直观
     private static int compare(int leftVal, int rightVal) {
         int delta = leftVal - rightVal;
         return delta;
@@ -30,14 +35,41 @@ class AryAdvSortApp {
     //比较不动位置，只读，快
     //交换动位置，写操作，慢
     //再升级双轴快排 dual pivot sort，含三色排序（荷兰国旗问题）这一特例
-    private static void innerQuickSort() {
-
-    }
 
     //1 冒泡排序+分区 快排 实战基础类型 可提前停止 小数据量 内存
     public static void quickSort(int[] ary) {
-
+        if (ary == null || ary.length <= 1) {
+            return;
+        }
+        innerQuickSort(ary, 0, ary.length-1);
     }
+
+    private static int partition(int[] ary, int idxLeft, int idxRight) {
+        //选择基准值，简单选择最右边的值
+        //当然，这里可以有很多讲究和算法可以选取，原则是尽可能平均开分区后的两边的数量大致相等，保持平衡
+        //todo 罗列下
+        int valPivot = ary[idxRight];
+
+        int idxWall = idxLeft;
+        for (int i = idxLeft; i < idxRight; i++) {
+            if (ary[i] < valPivot) {
+                swap(ary, idxWall, i);
+                idxWall++;
+            }
+        }
+        swap(ary, idxWall, idxRight);
+        return idxWall;
+    }
+
+    private static void innerQuickSort(int[] ary, int idxLeft, int idxRight) {
+        if (idxLeft >= idxRight) {
+            return;
+        }
+        int idxWall = partition(ary, idxLeft, idxRight);
+        innerQuickSort(ary, idxLeft, idxWall-1);
+        innerQuickSort(ary, idxWall+1, idxRight);
+    }
+
     //记忆最深的算法，最鸡肋，不容易分类 有思维过度作用
 
     //2 选择排序+堆 堆排序 只记位置，最多交换一次 理论 实战少
