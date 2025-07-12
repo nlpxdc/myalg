@@ -62,8 +62,7 @@ class AryBasicSortApp {
     //每种都可以考虑，是否可以提前结束，以来外部标识判断
 
     //1。冒泡排序 原地 稳定性 交换比较赋值太多次了，3次
-    //升级是快速排序, quick sort 算法层面的递归拆解 基本数据类型 数组 链表 jdk DualPivotQuicksort
-    //时间和空间，都是局部性原理
+    //时间和空间，都是局部性原理 这个和插入比较像
     public static void bubbleSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = 0; j < ary.length-i-1; j++) {
@@ -93,9 +92,12 @@ class AryBasicSortApp {
         }
     }
 
-    //2a。选择排序 原地 稳定因为用值比较 使用value值，每次都交换一下，这个交换多次，性能差
+    //1.5。选择排序 原地 稳定因为用值比较 使用value值，每次都交换一下，这个交换多次，性能差
+    //介于冒泡和选择之间，有冒泡特点（循环结构），也有选择特点（远距离比较）
+    //和冒泡内部最像，可以说升级就是快排
+    //升级是快速排序, quick sort 算法层面的递归拆解 基本数据类型 数组 链表 jdk DualPivotQuicksort
     //时间局部性原理，空间不是局部性原理，差一点意思
-    public static void selectionSortWithValue(int[] ary) {
+    public static void selectionSortEveryTime(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
             for (int j = i+1; j < ary.length; j++) {
                 if (ary[i] > ary[j]) {
@@ -109,6 +111,7 @@ class AryBasicSortApp {
     //2。选择排序 原地 不稳定因为用idx 使用idx位置，最后交换一次，这个只读，只交换一次，性能好，利用位置
     //减少交换的次数，先整体比较，只在最后一次做一次交换，代价缓存命中低，空间离得远，但适合外存排序？因为可以减少io次数
     //升级是堆排序，heap sort 数据结构层面的递归拆解
+    //工业上几乎不用
     //时间局部性原理，空间不是局部性原理，差一点意思
     public static void selectionSort(int[] ary) {
         for (int i = 0; i < ary.length-1; i++) {
@@ -129,7 +132,8 @@ class AryBasicSortApp {
     //分两部分 有序无序，开始第一个默认有序部分，后面都是无序部分
     //升级是希尔排序，Shell sort，注意间隔序列 gap seq or increment seq，有多种，影响时间复杂度
     //复杂数据类型，对象线性列表 数组 链表 jdk TimSort
-    //时间和空间都是局部性原理
+    //工业上小数组用
+    //时间和空间都是局部性原理 这个和冒泡比较像
     public static void insertionSort(int[] ary) {
         //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
         for (int i = 1; i < ary.length; i++) {
