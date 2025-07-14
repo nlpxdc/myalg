@@ -138,11 +138,16 @@ class AryBasicSortApp {
         //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
         for (int i = 1; i < ary.length; i++) {
             int unsortedFirst = ary[i];
-            int j = i-1;
-            for (; j >= 0 && ary[j] > unsortedFirst ; j--) {
-                ary[j+1] = ary[j];
+            int idxSortedLast = 0;
+            for (int j = i-1; j >= 0 ; j--) {
+                if (unsortedFirst < ary[j]) {
+                    idxSortedLast = j;
+                    break;
+                } else {
+                    ary[j+1] = ary[j];
+                }
             }
-            ary[j+1] = unsortedFirst;
+            ary[idxSortedLast] = unsortedFirst;
         }
     }
 
