@@ -138,16 +138,12 @@ class AryBasicSortApp {
     public static void insertionSort(int[] ary) {
         //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
         for (int unsortedFirstIdx = 1; unsortedFirstIdx < ary.length; unsortedFirstIdx++) {
-            for (int sortedLastIdx = unsortedFirstIdx-1; sortedLastIdx >= 0 ; sortedLastIdx--) {
-                if (ary[unsortedFirstIdx] < ary[sortedLastIdx]) {
-                    int t = ary[sortedLastIdx];
-                    ary[sortedLastIdx] = ary[unsortedFirstIdx];
-                    ary[unsortedFirstIdx] = t;
-                    continue;
-                } else {
-                    ary[sortedLastIdx+1] = ary[sortedLastIdx];
-                }
+            int unsortedFirstVal = ary[unsortedFirstIdx];
+            int i = unsortedFirstIdx-1;
+            for (; i >= 0 && ary[i] > unsortedFirstVal ; i--) {
+                ary[i+1] = ary[i];
             }
+            ary[i+1] = unsortedFirstVal;
         }
     }
 
