@@ -4,8 +4,9 @@ import java.util.Arrays;
 
 class AryAdvSortApp {
     public static void main(String[] args) {
-        int[] ary = {8, 3, 5, 4, 5};
-        quickSort(ary);
+        int[] ary = {8, 4, 5, 3, 5};
+//        quickSort(ary);
+        shellSort(ary);
         System.out.println(Arrays.toString(ary));
     }
 
@@ -104,7 +105,19 @@ class AryAdvSortApp {
     //ShellSort
     //这个高级优化法，因为核心考虑到的就是移动，每个都移动，所以用间隔，可以设法避免太多不必要的移动
     public static void shellSort(int[] ary) {
-
+        if (ary == null || ary.length <= 1) {
+            return;
+        }
+        for (int gap = ary.length/2; gap > 0; gap /= 2) {
+            for (int i = gap; i < ary.length; i++) {
+                int t = ary[i];
+                int j = i;
+                for (; j >= gap && ary[j-gap] > t; j-=gap) {
+                    ary[j] = ary[j-gap];
+                }
+                ary[j] = t;
+            }
+        }
     }
 
     //4 归并排序+多线程
