@@ -36,7 +36,8 @@ class AryBasicSortApp {
         int[] ary4 = {8, 3, 5, 4, 5};
 //        Map2UpDownVo map = mapFor2UpDown(ary4);
 //        mergeSort(ary4);
-        mergeSortRecur(ary4);
+//        mergeSortRecur(ary4);
+        insertionSort(ary4);
 
     }
 
@@ -136,18 +137,17 @@ class AryBasicSortApp {
     //时间和空间都是局部性原理 这个和冒泡比较像
     public static void insertionSort(int[] ary) {
         //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
-        for (int i = 1; i < ary.length; i++) {
-            int unsortedFirst = ary[i];
-            int idxSortedLast = 0;
-            for (int j = i-1; j >= 0 ; j--) {
-                if (unsortedFirst < ary[j]) {
-                    idxSortedLast = j;
-                    break;
+        for (int unsortedFirstIdx = 1; unsortedFirstIdx < ary.length; unsortedFirstIdx++) {
+            for (int sortedLastIdx = unsortedFirstIdx-1; sortedLastIdx >= 0 ; sortedLastIdx--) {
+                if (ary[unsortedFirstIdx] < ary[sortedLastIdx]) {
+                    int t = ary[sortedLastIdx];
+                    ary[sortedLastIdx] = ary[unsortedFirstIdx];
+                    ary[unsortedFirstIdx] = t;
+                    continue;
                 } else {
-                    ary[j+1] = ary[j];
+                    ary[sortedLastIdx+1] = ary[sortedLastIdx];
                 }
             }
-            ary[idxSortedLast] = unsortedFirst;
         }
     }
 
