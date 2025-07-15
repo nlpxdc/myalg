@@ -97,7 +97,7 @@ class AryAdvSortApp {
     }
 
     //3a 折半插入排序 二分查找替换顺序查找，针对有序部分
-    //二分查找算法，有序情况下，数据结构二分查找树 BST binary search tree
+    //二分查找算法 时间维度，有序情况下，数据结构二分查找树 BST binary search tree 空间维度
     public static void biSearchInsertionSort(int[] ary) {
 
     }
