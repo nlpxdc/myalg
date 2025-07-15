@@ -110,6 +110,7 @@ class AryAdvSortApp {
         if (ary == null || ary.length <= 1) {
             return;
         }
+        //idx 意义不明可该井，和插入排序不像，可以再看看，应该是一致的，但是也等价
         for (int gap = ary.length/2; gap > 0; gap /= 2) {
             for (int i = gap; i < ary.length; i++) {
                 int t = ary[i];
@@ -126,6 +127,7 @@ class AryAdvSortApp {
         if (ary == null || ary.length <= 1) {
             return;
         }
+        //gap可以有多种方式的数列
         for (int gap = ary.length/2; gap > 0; gap /= 2) {
             for (int unsortedFirstIdx = gap; unsortedFirstIdx < ary.length; unsortedFirstIdx++) {
                 int unsortedFirstVal = ary[unsortedFirstIdx];
