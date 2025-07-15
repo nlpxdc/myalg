@@ -46,6 +46,7 @@ class AryAdvSortApp {
 
     //1 选择排序（每次都交换冒泡排序）+分区 快排 实战基础类型 小数据量 内存
     //单轴快排
+    //选择排序，高阶，时间维度二分（递归版本！和栈版本？）
     public static void quickSort(int[] ary) {
         if (ary == null || ary.length <= 1) {
             return;
@@ -90,6 +91,7 @@ class AryAdvSortApp {
 
     //2 选择排序+堆 堆排序 只记位置，最多交换一次 理论 实战少 不是不用
     // 适合外排？
+    //选择排序 高阶 空间等价替换无序顺序表
     public static void heapSort(int[] ary) {
 
     }
