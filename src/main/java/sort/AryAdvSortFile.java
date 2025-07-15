@@ -6,7 +6,7 @@ class AryAdvSortApp {
     public static void main(String[] args) {
         int[] ary = {8, 4, 5, 3, 5};
 //        quickSort(ary);
-        shellSort(ary);
+        shellSortV2(ary);
         System.out.println(Arrays.toString(ary));
     }
 
@@ -118,6 +118,22 @@ class AryAdvSortApp {
                     ary[j] = ary[j-gap];
                 }
                 ary[j] = t;
+            }
+        }
+    }
+
+    public static void shellSortV2(int[] ary) {
+        if (ary == null || ary.length <= 1) {
+            return;
+        }
+        for (int gap = ary.length/2; gap > 0; gap /= 2) {
+            for (int unsortedFirstIdx = gap; unsortedFirstIdx < ary.length; unsortedFirstIdx++) {
+                int unsortedFirstVal = ary[unsortedFirstIdx];
+                int i = unsortedFirstIdx-gap;
+                for (; i >= 0 && ary[i] > unsortedFirstVal; i-=gap) {
+                    ary[i+gap] = ary[i];
+                }
+                ary[i+gap] = unsortedFirstVal;
             }
         }
     }
