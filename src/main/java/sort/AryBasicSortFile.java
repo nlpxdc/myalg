@@ -140,9 +140,11 @@ class AryBasicSortApp {
         for (int unsortedFirstIdx = 1; unsortedFirstIdx < ary.length; unsortedFirstIdx++) {
             int unsortedFirstVal = ary[unsortedFirstIdx];
             int i = unsortedFirstIdx-1;
+            //int sortedVal = ary[i] 就是排序的值和未排序值比较
             for (; i >= 0 && ary[i] > unsortedFirstVal ; i--) {
                 ary[i+1] = ary[i];
             }
+            //这里是稳定性的关键
             ary[i+1] = unsortedFirstVal;
         }
     }
