@@ -268,6 +268,8 @@ class LinkTree {
 
     }
 
+    //todo 无递归无栈，线索化中序遍历，线索二叉树
+
     //后续遍历，借助两个额外变量？（k-way多路树，借助k个多个额外变量？）
     //既用栈模拟递归，又用栈记录递归的反向顺序
     void innerTraverseDfsPostOrder(TreeNode node) {
