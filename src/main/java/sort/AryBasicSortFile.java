@@ -5,6 +5,7 @@ package sort;
 //都是比较类(Compare)，交换类(Swap)，先比较 后交换，有必要再交换，更通用 O(nlogn)
 //todo 最后别忘了，从各个维度特性上去分析和整理每种算法
 //基础操作，抽象出单独函数，compare swap
+//AoS vs SoA (SIMD / AVX2)
 class AryBasicSortApp {
     public static void main(String[] args) {
         //test sort methods
