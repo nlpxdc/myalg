@@ -1,8 +1,8 @@
 package tree.binarytree;
 
-//堆 默认二叉树 完全二叉树
+//堆 默认二叉树 完全二叉树 只考虑Max Heap
 //默认只考虑 基本类型，不考虑复杂类型节点
-//节点位置，完全以来idx的规则算法来确定
+//节点位置，完全依赖idx的规则算法来确定
 class AryHeapApp {
 }
 
