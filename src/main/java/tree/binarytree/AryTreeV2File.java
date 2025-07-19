@@ -36,7 +36,7 @@ class CompleteBiTree {
 
     void traverseBfsLevel() {
         for (int i = 0; i < size; i++) {
-            System.out.println(ary[i]+",");
+            System.out.print(ary[i]+",");
         }
         System.out.println();
     }
@@ -48,6 +48,10 @@ class CompleteBiTree {
 }
 
 class CbtUtil {
+    static int getRootIdx() {
+        return 0;
+    }
+
     static int getParentIdxByTreeNodeIdx(int treeNodeIdx) {
         return (treeNodeIdx-1)/2;
     }
