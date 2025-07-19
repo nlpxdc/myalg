@@ -95,9 +95,9 @@ class AryAdvSortApp {
     //选择排序 高阶 空间等价替换无序顺序表
     public static void heapSort(int[] ary) {
         for (int i = 0; i < ary.length; i++) {
-            //首先进行堆化，获取最大值
+            //首先进行堆化，获取最大值，值处理需要处理的剩余部分，不包含已处理的部分
             heapify(ary, ary.length-i);
-            //堆顶，也就是最大值和队列尾部交换
+            //堆顶，也就是最大值和队列尾部交换，剩余部分的队列尾部，不包含已处理的部分
             CbtUtil.swap(ary, 0, ary.length-1-i);
         }
     }
@@ -110,11 +110,7 @@ class AryAdvSortApp {
 
     static void siftDownOfMaxHeap(int[] ary, int treeNodeIdx, int size) {
         int currentIdx = treeNodeIdx;
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
-            //如果已经是堆顶了
-            if (currentIdx == 0) {
-                return;
-            }
+        for (int i = 0; i <= CbtUtil.getHeight(size); i++) {
             //先找到自己的左右子节点
             int leftIdx = CbtUtil.getLeftChildIdxByTreeNodeIdx(currentIdx);
             int rightIdx = CbtUtil.getRightChildIdxByTreeNodeIdx(currentIdx);
@@ -240,5 +236,9 @@ class CbtUtil {
 
     static int getRightChildIdxByTreeNodeIdx(int treeNodeIdx) {
         return 2*treeNodeIdx+2;
+    }
+
+    static int getHeight(int size) {
+        return  ((int) (Math.log(size) / Math.log(2)));
     }
 }

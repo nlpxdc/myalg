@@ -74,7 +74,7 @@ class CompleteBiTree {
     }
 
     int getHeight() {
-        return  (int) (Math.log(size) / Math.log(2));
+        return  ((int) (Math.log(size) / Math.log(2)));
     }
 
     int getRootTreeNodeIdx() {
@@ -93,7 +93,7 @@ class CompleteBiTree {
 
     void siftDownOfMaxHeap(int treeNodeIdx) {
         int currentIdx = treeNodeIdx;
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        for (int i = 0; i <= getHeight(); i++) {
             //先找到自己的左右子节点
             int leftIdx = CbtUtil.getLeftChildIdxByTreeNodeIdx(currentIdx);
             int rightIdx = CbtUtil.getRightChildIdxByTreeNodeIdx(currentIdx);
