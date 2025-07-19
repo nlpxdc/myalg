@@ -9,23 +9,26 @@ import java.util.stream.Collectors;
 class AryTreeV2App {
     public static void main(String[] args) {
         int[] ary = {11,21,22,31,32,33,34,41,42,43,44,45,46,47,48};
-        List<Integer> aryList = Arrays.stream(ary).boxed().collect(Collectors.toList());
-        PriorityQueue minHeap = new PriorityQueue<>(aryList);
-        System.out.println(minHeap);
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
-        boolean b = maxHeap.addAll(aryList);
-        System.out.println(maxHeap);
+//        List<Integer> aryList = Arrays.stream(ary).boxed().collect(Collectors.toList());
+//        PriorityQueue minHeap = new PriorityQueue<>(aryList);
+//        System.out.println(minHeap);
+//        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+//        boolean b = maxHeap.addAll(aryList);
+//        System.out.println(maxHeap);
 
         CompleteBiTree completeBiTree = new CompleteBiTree(ary);
 //        completeBiTree.traverseBfsLeveledSingleLine();
+        completeBiTree.heapify();
+//        completeBiTree.traverseBfsLeveledSingleLine();
         completeBiTree.traverseBfsLeveledMultiLine();
-        int height = completeBiTree.getHeight();
+//        int height = completeBiTree.getHeight();
 
-        int treeNodeIdx = 6;
-        int val = completeBiTree.getTreeNodeValByTreeNodeIdx(treeNodeIdx);
-        int leftChildVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getLeftChildIdxByTreeNodeIdx(treeNodeIdx));
-        int rightChildVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getRightChildIdxByTreeNodeIdx(treeNodeIdx));
-        int parentVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getParentIdxByTreeNodeIdx(treeNodeIdx));
+//        int treeNodeIdx = 6;
+//        int val = completeBiTree.getTreeNodeValByTreeNodeIdx(treeNodeIdx);
+//        int leftChildVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getLeftChildIdxByTreeNodeIdx(treeNodeIdx));
+//        int rightChildVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getRightChildIdxByTreeNodeIdx(treeNodeIdx));
+//        int parentVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getParentIdxByTreeNodeIdx(treeNodeIdx));
+//    
     }
 }
 
@@ -80,6 +83,12 @@ class CompleteBiTree {
 
     int getLastTreeNodeIdx() {
         return size-1;
+    }
+
+    void heapify() {
+        for (int i = CbtUtil.getParentIdxByTreeNodeIdx(getLastTreeNodeIdx()) ; i >=0; i--) {
+            siftDownOfMaxHeap(i);
+        }
     }
 
     void siftDownOfMaxHeap(int treeNodeIdx) {
