@@ -83,12 +83,59 @@ class CompleteBiTree {
     }
 
     void siftDownOfMaxHeap(int treeNodeIdx) {
-
+        int currentIdx = treeNodeIdx;
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            //先找到自己的左右子节点
+            int leftIdx = CbtUtil.getLeftChildIdxByTreeNodeIdx(currentIdx);
+            int rightIdx = CbtUtil.getRightChildIdxByTreeNodeIdx(currentIdx);
+            //再判断下左右子节点是否存在，即是否小于size边界
+            boolean hasLeft = leftIdx < size;
+            boolean hasRight = rightIdx < size;
+            //找出左右子节点更大的那一个
+            if (!hasRight && !hasLeft) {
+                return;
+            } else if (hasRight && !hasLeft) {
+                throw new RuntimeException("根据定义，不可能");
+            } else if (!hasRight && hasLeft) {
+                int leftVal = getTreeNodeValByTreeNodeIdx(leftIdx);
+                int currentVal = getTreeNodeValByTreeNodeIdx(currentIdx);
+                if (currentVal < leftVal) {
+                    CbtUtil.swap(ary, currentIdx, leftIdx);
+                    currentIdx = leftIdx;
+                    continue;
+                }
+            } else if (hasRight && hasLeft) {
+                int rightVal = getTreeNodeValByTreeNodeIdx(rightIdx);
+                int leftVal = getTreeNodeValByTreeNodeIdx(leftIdx);
+                int currentVal = getTreeNodeValByTreeNodeIdx(currentIdx);
+                if (rightVal > leftVal) {
+                    //右节点大，与右节点比较交换
+                    if (currentVal < rightVal) {
+                        CbtUtil.swap(ary, currentIdx, rightIdx);
+                        currentIdx = rightIdx;
+                        continue;
+                    }
+                } else {
+                    //反之，左节点大，与左节点比较交换
+                    if (currentVal < leftVal) {
+                        CbtUtil.swap(ary, currentIdx, leftIdx);
+                        currentIdx = leftIdx;
+                        continue;
+                    }
+                }
+            }
+        }
     }
 
 }
 
 class CbtUtil {
+    static void swap(int[] ary, int idxLeft, int idxRight) {
+        int t = ary[idxLeft];
+        ary[idxLeft] = ary[idxRight];
+        ary[idxRight] = t;
+    }
+
     static int pow2(int n) {
         return 1 << n;
     }
