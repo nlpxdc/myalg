@@ -4,6 +4,7 @@ class AryTreeV2App {
     public static void main(String[] args) {
         int[] ary = {11,21,22,31,32,33,34,41,42,43,44,45,46,47,48};
         CompleteBiTree completeBiTree = new CompleteBiTree(ary);
+        completeBiTree.traverseBfsLevel();
     }
 }
 
@@ -25,6 +26,13 @@ class CompleteBiTree {
         this.ary = new int[1000];
         System.arraycopy(ary, 0, this.ary, 0, ary.length);
         this.size = ary.length;
+    }
+
+    void traverseBfsLevel() {
+        for (int i = 0; i < size; i++) {
+            System.out.println(ary[i]+",");
+        }
+        System.out.println();
     }
 
 }
