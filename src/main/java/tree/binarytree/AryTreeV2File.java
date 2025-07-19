@@ -5,6 +5,12 @@ class AryTreeV2App {
         int[] ary = {11,21,22,31,32,33,34,41,42,43,44,45,46,47,48};
         CompleteBiTree completeBiTree = new CompleteBiTree(ary);
         completeBiTree.traverseBfsLevel();
+
+        int treeNodeIdx = 6;
+        int val = completeBiTree.getTreeNodeValByTreeNodeIdx(treeNodeIdx);
+        int leftChildVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getLeftChildIdxByTreeNodeIdx(treeNodeIdx));
+        int rightChildVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getRightChildIdxByTreeNodeIdx(treeNodeIdx));
+        int parentVal = completeBiTree.getTreeNodeValByTreeNodeIdx(CbtUtil.getParentIdxByTreeNodeIdx(treeNodeIdx));
     }
 }
 
@@ -35,5 +41,23 @@ class CompleteBiTree {
         System.out.println();
     }
 
+    int getTreeNodeValByTreeNodeIdx(int treeNodeIdx) {
+        return ary[treeNodeIdx];
+    }
+
+}
+
+class CbtUtil {
+    static int getParentIdxByTreeNodeIdx(int treeNodeIdx) {
+        return (treeNodeIdx-1)/2;
+    }
+
+    static int getLeftChildIdxByTreeNodeIdx(int treeNodeIdx) {
+        return 2*treeNodeIdx+1;
+    }
+
+    static int getRightChildIdxByTreeNodeIdx(int treeNodeIdx) {
+        return 2*treeNodeIdx+2;
+    }
 }
 
