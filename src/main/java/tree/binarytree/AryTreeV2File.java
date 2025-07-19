@@ -45,6 +45,10 @@ class CompleteBiTree {
         return ary[treeNodeIdx];
     }
 
+    int getHeight() {
+        return  (int) (Math.log(size) / Math.log(2));
+    }
+
 }
 
 class CbtUtil {
