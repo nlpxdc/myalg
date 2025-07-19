@@ -6,7 +6,8 @@ class AryAdvSortApp {
     public static void main(String[] args) {
         int[] ary = {8, 4, 5, 3, 5};
 //        quickSort(ary);
-        shellSortV2(ary);
+//        shellSortV2(ary);
+        heapSort(ary);
         System.out.println(Arrays.toString(ary));
     }
 
@@ -93,7 +94,71 @@ class AryAdvSortApp {
     // 适合外排？
     //选择排序 高阶 空间等价替换无序顺序表
     public static void heapSort(int[] ary) {
+        for (int i = 0; i < ary.length; i++) {
+            //首先进行堆化，获取最大值
+            heapify(ary, ary.length-i);
+            //堆顶，也就是最大值和队列尾部交换
+            CbtUtil.swap(ary, 0, ary.length-1-i);
+        }
+    }
 
+    public static void heapify(int[] ary, int size) {
+        for (int i = CbtUtil.getParentIdxByTreeNodeIdx(ary.length-1); i >=0; i--) {
+            siftDownOfMaxHeap(ary, i, size);
+        }
+    }
+
+    static void siftDownOfMaxHeap(int[] ary, int treeNodeIdx, int size) {
+        int currentIdx = treeNodeIdx;
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            //如果已经是堆顶了
+            if (currentIdx == 0) {
+                return;
+            }
+            //先找到自己的左右子节点
+            int leftIdx = CbtUtil.getLeftChildIdxByTreeNodeIdx(currentIdx);
+            int rightIdx = CbtUtil.getRightChildIdxByTreeNodeIdx(currentIdx);
+            //再判断下左右子节点是否存在，即是否小于size边界
+            boolean hasLeft = leftIdx < size;
+            boolean hasRight = rightIdx < size;
+            //找出左右子节点更大的那一个
+            if (!hasRight && !hasLeft) {
+                return;
+            } else if (hasRight && !hasLeft) {
+                throw new RuntimeException("根据定义，不可能");
+            } else if (!hasRight && hasLeft) {
+                int leftVal = getTreeNodeValByTreeNodeIdx(ary, leftIdx);
+                int currentVal = getTreeNodeValByTreeNodeIdx(ary, currentIdx);
+                if (currentVal < leftVal) {
+                    CbtUtil.swap(ary, currentIdx, leftIdx);
+                    currentIdx = leftIdx;
+                    continue;
+                }
+            } else if (hasRight && hasLeft) {
+                int rightVal = getTreeNodeValByTreeNodeIdx(ary, rightIdx);
+                int leftVal = getTreeNodeValByTreeNodeIdx(ary, leftIdx);
+                int currentVal = getTreeNodeValByTreeNodeIdx(ary, currentIdx);
+                if (rightVal > leftVal) {
+                    //右节点大，与右节点比较交换
+                    if (currentVal < rightVal) {
+                        CbtUtil.swap(ary, currentIdx, rightIdx);
+                        currentIdx = rightIdx;
+                        continue;
+                    }
+                } else {
+                    //反之，左节点大，与左节点比较交换
+                    if (currentVal < leftVal) {
+                        CbtUtil.swap(ary, currentIdx, leftIdx);
+                        currentIdx = leftIdx;
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+
+    static int getTreeNodeValByTreeNodeIdx(int[] ary, int treeNodeIdx) {
+        return ary[treeNodeIdx];
     }
 
     //3a 折半插入排序 二分查找替换顺序查找，针对有序部分
@@ -152,4 +217,28 @@ class AryAdvSortApp {
 
     //todo 自适应版本？
 
+}
+
+class CbtUtil {
+    static void swap(int[] ary, int idxLeft, int idxRight) {
+        int t = ary[idxLeft];
+        ary[idxLeft] = ary[idxRight];
+        ary[idxRight] = t;
+    }
+
+    static int pow2(int n) {
+        return 1 << n;
+    }
+
+    static int getParentIdxByTreeNodeIdx(int treeNodeIdx) {
+        return (treeNodeIdx-1)/2;
+    }
+
+    static int getLeftChildIdxByTreeNodeIdx(int treeNodeIdx) {
+        return 2*treeNodeIdx+1;
+    }
+
+    static int getRightChildIdxByTreeNodeIdx(int treeNodeIdx) {
+        return 2*treeNodeIdx+2;
+    }
 }
