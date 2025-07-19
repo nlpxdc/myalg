@@ -1,8 +1,19 @@
 package tree.binarytree;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.stream.Collectors;
+
 class AryTreeV2App {
     public static void main(String[] args) {
         int[] ary = {11,21,22,31,32,33,34,41,42,43,44,45,46,47,48};
+        List<Integer> aryList = Arrays.stream(ary).boxed().collect(Collectors.toList());
+        PriorityQueue minHeap = new PriorityQueue<>(aryList);
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        boolean b = maxHeap.addAll(aryList);
+
         CompleteBiTree completeBiTree = new CompleteBiTree(ary);
 //        completeBiTree.traverseBfsLeveledSingleLine();
         completeBiTree.traverseBfsLeveledMultiLine();
