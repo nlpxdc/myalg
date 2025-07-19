@@ -74,15 +74,23 @@ class CompleteBiTree {
         return  (int) (Math.log(size) / Math.log(2));
     }
 
+    int getRootTreeNodeIdx() {
+        return 0;
+    }
+
+    int getLastTreeNodeIdx() {
+        return size-1;
+    }
+
+    void siftDownOfMaxHeap(int treeNodeIdx) {
+
+    }
+
 }
 
 class CbtUtil {
     static int pow2(int n) {
         return 1 << n;
-    }
-
-    static int getRootIdx() {
-        return 0;
     }
 
     static int getParentIdxByTreeNodeIdx(int treeNodeIdx) {
