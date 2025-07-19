@@ -38,6 +38,7 @@ class Node {
     }
 }
 
+//完全二叉树
 class AryTree {
     //size? no? yes?
     //maxDepth? no?
