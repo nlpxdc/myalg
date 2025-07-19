@@ -4,7 +4,9 @@ class AryTreeV2App {
     public static void main(String[] args) {
         int[] ary = {11,21,22,31,32,33,34,41,42,43,44,45,46,47,48};
         CompleteBiTree completeBiTree = new CompleteBiTree(ary);
-        completeBiTree.traverseBfsLevel();
+//        completeBiTree.traverseBfsLeveledSingleLine();
+        completeBiTree.traverseBfsLeveledMultiLine();
+        int height = completeBiTree.getHeight();
 
         int treeNodeIdx = 6;
         int val = completeBiTree.getTreeNodeValByTreeNodeIdx(treeNodeIdx);
@@ -34,9 +36,19 @@ class CompleteBiTree {
         this.size = ary.length;
     }
 
-    void traverseBfsLevel() {
+    void traverseBfsLeveledSingleLine() {
         for (int i = 0; i < size; i++) {
             System.out.print(ary[i]+",");
+        }
+        System.out.println();
+    }
+
+    void traverseBfsLeveledMultiLine() {
+        for (int h = 0; h <= getHeight(); h++) {
+            for (int idx = (CbtUtil.pow2(h)-1); idx <= (CbtUtil.pow2(h+1)-2) && idx < size ; idx++) {
+                System.out.print(ary[idx]+",");
+            }
+            System.out.println();
         }
         System.out.println();
     }
@@ -52,6 +64,10 @@ class CompleteBiTree {
 }
 
 class CbtUtil {
+    static int pow2(int n) {
+        return 1 << n;
+    }
+
     static int getRootIdx() {
         return 0;
     }
