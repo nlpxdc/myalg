@@ -11,8 +11,10 @@ class AryTreeV2App {
         int[] ary = {11,21,22,31,32,33,34,41,42,43,44,45,46,47,48};
         List<Integer> aryList = Arrays.stream(ary).boxed().collect(Collectors.toList());
         PriorityQueue minHeap = new PriorityQueue<>(aryList);
+        System.out.println(minHeap);
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         boolean b = maxHeap.addAll(aryList);
+        System.out.println(maxHeap);
 
         CompleteBiTree completeBiTree = new CompleteBiTree(ary);
 //        completeBiTree.traverseBfsLeveledSingleLine();
