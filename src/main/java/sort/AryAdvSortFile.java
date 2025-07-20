@@ -110,7 +110,9 @@ class AryAdvSortApp {
 
     static void siftDownOfMaxHeap(int[] ary, int treeNodeIdx, int size) {
         int currentIdx = treeNodeIdx;
-        for (int i = 0; i <= CbtUtil.getHeight(size); i++) {
+        //这里下沉的最大高度其实是树的最大高度减去当前高度
+        for (int i = 0; i <= (CbtUtil.getTreeHeight(size) - CbtUtil.getTreeNodeHeightByTreeNodeIdx(treeNodeIdx)); i++) {
+//        for (int i = 0; i <= CbtUtil.getTreeHeight(size); i++) {
             //先找到自己的左右子节点
             int leftIdx = CbtUtil.getLeftChildIdxByTreeNodeIdx(currentIdx);
             int rightIdx = CbtUtil.getRightChildIdxByTreeNodeIdx(currentIdx);
@@ -238,7 +240,12 @@ class CbtUtil {
         return 2*treeNodeIdx+2;
     }
 
-    static int getHeight(int size) {
+    static int getTreeHeight(int size) {
         return  ((int) (Math.log(size) / Math.log(2)));
     }
+
+    static int getTreeNodeHeightByTreeNodeIdx(int treeNodeIdx) {
+        return  ((int) (Math.log(treeNodeIdx+1) / Math.log(2)));
+    }
+
 }
