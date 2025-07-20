@@ -177,6 +177,7 @@ class AryAdvSortApp {
             return;
         }
         //idx 意义不明可该井，和插入排序不像，可以再看看，应该是一致的，但是也等价
+        //这里为了性能，也可以使用位移？
         for (int gap = ary.length/2; gap > 0; gap /= 2) {
             for (int i = gap; i < ary.length; i++) {
                 int t = ary[i];
