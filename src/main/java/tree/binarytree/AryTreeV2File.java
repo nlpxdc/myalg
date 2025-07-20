@@ -60,7 +60,7 @@ class CompleteBiTree {
     }
 
     void traverseBfsLeveledMultiLine() {
-        for (int h = 0; h <= getHeight(); h++) {
+        for (int h = 0; h <= getTreeHeight(); h++) {
             for (int idx = (CbtUtil.pow2(h)-1); idx <= (CbtUtil.pow2(h+1)-2) && idx < size ; idx++) {
                 System.out.print(ary[idx]+",");
             }
@@ -73,7 +73,7 @@ class CompleteBiTree {
         return ary[treeNodeIdx];
     }
 
-    int getHeight() {
+    int getTreeHeight() {
         return  ((int) (Math.log(size) / Math.log(2)));
     }
 
@@ -93,7 +93,8 @@ class CompleteBiTree {
 
     void siftDownOfMaxHeap(int treeNodeIdx) {
         int currentIdx = treeNodeIdx;
-        for (int i = 0; i <= getHeight(); i++) {
+        for (int i = 0; i <= getTreeHeight() - CbtUtil.getTreeNodeHeightByTreeNodeIdx(treeNodeIdx); i++) {
+//        for (int i = 0; i <= getTreeHeight(); i++) {
             //先找到自己的左右子节点
             int leftIdx = CbtUtil.getLeftChildIdxByTreeNodeIdx(currentIdx);
             int rightIdx = CbtUtil.getRightChildIdxByTreeNodeIdx(currentIdx);
@@ -160,5 +161,14 @@ class CbtUtil {
     static int getRightChildIdxByTreeNodeIdx(int treeNodeIdx) {
         return 2*treeNodeIdx+2;
     }
+
+    static int getTreeHeight(int size) {
+        return  ((int) (Math.log(size) / Math.log(2)));
+    }
+
+    static int getTreeNodeHeightByTreeNodeIdx(int treeNodeIdx) {
+        return  ((int) (Math.log(treeNodeIdx+1) / Math.log(2)));
+    }
+
 }
 
