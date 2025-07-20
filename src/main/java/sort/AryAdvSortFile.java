@@ -108,9 +108,11 @@ class AryAdvSortApp {
         }
     }
 
+    //后序可以更简洁一些，代码行数再少一些
     static void siftDownOfMaxHeap(int[] ary, int treeNodeIdx, int size) {
         int currentIdx = treeNodeIdx;
         //这里下沉的最大高度其实是树的最大高度减去当前高度
+        //这里最精彩，显式的用for的边界值限定了循环最大次数，更利于准确分析时间复杂度
         for (int i = 0; i <= (CbtUtil.getTreeHeight(size) - CbtUtil.getTreeNodeHeightByTreeNodeIdx(treeNodeIdx)); i++) {
 //        for (int i = 0; i <= CbtUtil.getTreeHeight(size); i++) {
             //先找到自己的左右子节点
