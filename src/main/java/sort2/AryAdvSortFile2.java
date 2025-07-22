@@ -22,39 +22,39 @@ class AryAdvSortApp {
         }
     }
 
-    static void funcE(int[] ary, int treeNodeIdx, int size) {
-        int currentIdx = treeNodeIdx;
-        for (int i = 0; i <= (funcH(size) - funcG(treeNodeIdx)); i++) {
-            int leftIdx = funcJ(currentIdx);
-            int rightIdx = funcK(currentIdx);
-            boolean hasLeft = leftIdx < size;
-            boolean hasRight = rightIdx < size;
-            if (!hasRight && !hasLeft) {
+    static void funcE(int[] ary, int tIdx, int size) {
+        int cIdx = tIdx;
+        for (int i = 0; i <= (funcH(size) - funcG(tIdx)); i++) {
+            int lIdx = funcJ(cIdx);
+            int rIdx = funcK(cIdx);
+            boolean hl = lIdx < size;
+            boolean hr = rIdx < size;
+            if (!hr && !hl) {
                 return;
-            } else if (hasRight && !hasLeft) {
+            } else if (hr && !hl) {
                 throw new RuntimeException("根据定义，不可能");
-            } else if (!hasRight && hasLeft) {
-                int leftVal = funcL(ary, leftIdx);
-                int currentVal = funcL(ary, currentIdx);
-                if (currentVal < leftVal) {
-                    funcD(ary, currentIdx, leftIdx);
-                    currentIdx = leftIdx;
+            } else if (!hr && hl) {
+                int lv = funcL(ary, lIdx);
+                int cv = funcL(ary, cIdx);
+                if (cv < lv) {
+                    funcD(ary, cIdx, lIdx);
+                    cIdx = lIdx;
                     continue;
                 }
-            } else if (hasRight && hasLeft) {
-                int rightVal = funcL(ary, rightIdx);
-                int leftVal = funcL(ary, leftIdx);
-                int currentVal = funcL(ary, currentIdx);
-                if (rightVal > leftVal) {
-                    if (currentVal < rightVal) {
-                        funcD(ary, currentIdx, rightIdx);
-                        currentIdx = rightIdx;
+            } else if (hr && hl) {
+                int rv = funcL(ary, rIdx);
+                int lv = funcL(ary, lIdx);
+                int cv = funcL(ary, cIdx);
+                if (rv > lv) {
+                    if (cv < rv) {
+                        funcD(ary, cIdx, rIdx);
+                        cIdx = rIdx;
                         continue;
                     }
                 } else {
-                    if (currentVal < leftVal) {
-                        funcD(ary, currentIdx, leftIdx);
-                        currentIdx = leftIdx;
+                    if (cv < lv) {
+                        funcD(ary, cIdx, lIdx);
+                        cIdx = lIdx;
                         continue;
                     }
                 }
@@ -62,34 +62,34 @@ class AryAdvSortApp {
         }
     }
 
-    static int funcL(int[] ary, int treeNodeIdx) {
-        return ary[treeNodeIdx];
+    static int funcL(int[] ary, int tIdx) {
+        return ary[tIdx];
     }
 
-    static void funcD(int[] ary, int idxLeft, int idxRight) {
-        int t = ary[idxLeft];
-        ary[idxLeft] = ary[idxRight];
-        ary[idxRight] = t;
+    static void funcD(int[] ary, int il, int ir) {
+        int t = ary[il];
+        ary[il] = ary[ir];
+        ary[ir] = t;
     }
 
-    static int funcF(int treeNodeIdx) {
-        return (treeNodeIdx-1)/2;
+    static int funcF(int tIdx) {
+        return (tIdx-1)/2;
     }
 
-    static int funcJ(int treeNodeIdx) {
-        return 2*treeNodeIdx+1;
+    static int funcJ(int tIdx) {
+        return 2*tIdx+1;
     }
 
-    static int funcK(int treeNodeIdx) {
-        return 2*treeNodeIdx+2;
+    static int funcK(int tIdx) {
+        return 2*tIdx+2;
     }
 
-    static int funcH(int size) {
-        return  ((int) (Math.log(size) / Math.log(2)));
+    static int funcH(int s) {
+        return  ((int) (Math.log(s) / Math.log(2)));
     }
 
-    static int funcG(int treeNodeIdx) {
-        return  ((int) (Math.log(treeNodeIdx+1) / Math.log(2)));
+    static int funcG(int tIdx) {
+        return  ((int) (Math.log(tIdx+1) / Math.log(2)));
     }
 
 }
