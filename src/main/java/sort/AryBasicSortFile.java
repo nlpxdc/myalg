@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 //数组版本，后序可以再考虑链表版本
 //天然方便支持双引用（不可变指针）操作，指针，下标，索引，本质上就是地址操作
 //都是比较类(Compare)，交换类(Swap)，先比较 后交换，有必要再交换，更通用 O(nlogn)
@@ -34,11 +36,15 @@ class AryBasicSortApp {
 //        int[] ary4 = {8, 3, 5, 4, 5};
 //        boolean b4 = beAsc(ary4);
 //        boolean b5 = beDesc(ary4);
-        int[] ary4 = {8, 3, 5, 4, 5};
+//        int[] ary4 = {8, 3, 5, 4, 5};
 //        Map2UpDownVo map = mapFor2UpDown(ary4);
 //        mergeSort(ary4);
 //        mergeSortRecur(ary4);
-        insertionSort(ary4);
+//        insertionSort(ary4);
+
+        int[] ary5 = {7, 2, 9, 2, 0, 5, 7, 1, 3};
+        bucketSort(ary5);
+        System.out.println(Arrays.toString(ary5));
 
     }
 
@@ -156,6 +162,7 @@ class AryBasicSortApp {
     //思路就是拆解，并发同时操作，快
     //多线程的结合！
     //类似TimSort
+    //根据址分 idx分 花头在址上，设法均分，每次均分
     public static void mergeSort(int[] ary) {
         if (ary == null || ary.length <= 1) {
             return;
@@ -265,9 +272,43 @@ class AryBasicSortApp {
         }
     }
 
-    //2 桶排序 bucket sort
+    //2 桶排序 bucket sort 根据值value分，需要提前直到数据值的分布，要么通用盲猜，要么事先统计一次统计个大概，需要事先的统计计算成本，预处理成本，部common
     static void bucketSort(int[] ary) {
-
+        //算桶 暂跳过
+        //建桶
+        //建3个桶 每个桶长度最大ary的个数 桶0放0-2， 桶1放3-6，桶2放7-9
+        int[][] bucketAry = new int[3][ary.length];
+        //分桶
+        int bIdx0 = 0;
+        int bIdx1 = 0;
+        int bIdx2 = 0;
+        for (int i = 0; i < ary.length; i++) {
+            int t = ary[i];
+            if (0<=t && t<=2) {
+                bucketAry[0][bIdx0++] = t;
+            } else if (3<=t && t<=6) {
+                bucketAry[1][bIdx1++] = t;
+            } else if (7<=t && t<=9) {
+                bucketAry[2][bIdx2++] = t;
+            } else {
+                throw new RuntimeException("超出取值范围");
+            }
+        }
+        //桶内排序
+        insertionSort(bucketAry[0]);
+        insertionSort(bucketAry[1]);
+        insertionSort(bucketAry[2]);
+        //桶合并
+        int aryIdx = 0;
+        for (int i = 0; i < bIdx0; i++) {
+            ary[aryIdx++] = bucketAry[0][i];
+        }
+        for (int i = 0; i < bIdx1; i++) {
+            ary[aryIdx++] = bucketAry[1][i];
+        }
+        for (int i = 0; i < bIdx2; i++) {
+            ary[aryIdx++] = bucketAry[2][i];
+        }
     }
 
 }
