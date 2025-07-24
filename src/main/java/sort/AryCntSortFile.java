@@ -51,11 +51,6 @@ class AryCntSortApp {
         }
     }
 
-    //2 桶排序 bucket sort
-    static void bucketSort(int[] ary) {
-
-    }
-
     //3 基数排序 radix sort
     static void radixSort(int[] ary) {
 

@@ -265,6 +265,11 @@ class AryBasicSortApp {
         }
     }
 
+    //2 桶排序 bucket sort
+    static void bucketSort(int[] ary) {
+
+    }
+
 }
 
 class Map2UpDownVo {
