@@ -278,6 +278,11 @@ class AryBasicSortApp {
         //建桶
         //建3个桶 每个桶长度最大ary的个数 桶0放0-2， 桶1放3-6，桶2放7-9
         int[][] bucketAry = new int[3][ary.length];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < ary.length; j++) {
+                bucketAry[i][j] = Integer.MAX_VALUE;
+            }
+        }
         //分桶
         int bIdx0 = 0;
         int bIdx1 = 0;
