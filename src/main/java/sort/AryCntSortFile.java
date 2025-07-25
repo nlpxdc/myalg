@@ -31,7 +31,7 @@ class AryCntSortApp {
         }
     }
 
-    //1b 计数排序 counting sort
+    //1b 计数排序 counting sort 含偏移量
     static void countingSortV2(int[] ary) {
         int offset = 90;
 
@@ -51,8 +51,16 @@ class AryCntSortApp {
         }
     }
 
-    //3 基数排序 radix sort
-    static void radixSort(int[] ary) {
+    //3a 基数排序 radix sort LSD 整数排序
+    static void radixSortLsd(int[] ary) {
+
+    }
+
+    //3b 基数排序 radix sort MSD 字符串排序，不常用？场景：字符串很长、前缀重复极多、长度又不一致
+    //文件路径或类全限定名
+    //搜索引擎倒排词
+    //DNA 序列比对
+    static void radixSortMsd(char[][] strAry) {
 
     }
 
