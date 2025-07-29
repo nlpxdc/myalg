@@ -9,7 +9,7 @@ class AryCntSortApp {
 //        System.out.println(Arrays.toString(ary));
 //        int digits = digits(2);
 
-        int[] ary2 = {95,97,92,95,91,96,95,98,96,92};
+        int[] ary2 = {95,197,2692,595,7391,96,3895,98,996,92};
 //        int max = max(ary2);
 //        countingSortV2(ary2);
         radixSortLsd(ary2);
