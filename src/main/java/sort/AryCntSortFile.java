@@ -7,9 +7,10 @@ class AryCntSortApp {
 //        int[] ary = {5,7,2,5,1,6,5,8,6,2};
 //        countingSort(ary);
 //        System.out.println(Arrays.toString(ary));
-        int digits = digits(2);
+//        int digits = digits(2);
 
         int[] ary2 = {95,97,92,95,91,96,95,98,96,92};
+        int max = max(ary2);
         countingSortV2(ary2);
         System.out.println(Arrays.toString(ary2));
     }
@@ -76,6 +77,16 @@ class AryCntSortApp {
             cnt++;
         }
         return cnt;
+    }
+
+    static int max(int[] ary) {
+        int max = ary[0];
+        for (int i = 1; i < ary.length; i++) {
+            if (ary[i] > max) {
+                max = ary[i];
+            }
+        }
+        return max;
     }
 
 }
