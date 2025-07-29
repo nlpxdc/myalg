@@ -10,8 +10,9 @@ class AryCntSortApp {
 //        int digits = digits(2);
 
         int[] ary2 = {95,97,92,95,91,96,95,98,96,92};
-        int max = max(ary2);
-        countingSortV2(ary2);
+//        int max = max(ary2);
+//        countingSortV2(ary2);
+        radixSortLsd(ary2);
         System.out.println(Arrays.toString(ary2));
     }
 
@@ -56,7 +57,41 @@ class AryCntSortApp {
 
     //3a 基数排序 radix sort LSD 整数排序
     static void radixSortLsd(int[] ary) {
+        //1. 找到数组中的最大值，以确定最大位数
+        int max = max(ary);
+        int maxDigits = digits(max);
 
+        //3. 创建一个临时数组，用于存储排序后的结果
+        int[] tmpAry = new int[ary.length];
+
+        for (int i = 1, exp = 1; i <= maxDigits; i++, exp *= 10) {
+            //2. 创建10个桶用来计数
+            int[] buckets = new int[10];
+            //3. 计数
+            for (int j = 0; j < ary.length; j++) {
+                int val = ary[j];
+                //余数
+                int remainder = (val / exp) % 10;
+                buckets[remainder]++;
+            }
+
+            //4. 每一位数的右端位置（）
+            for (int j = 1; j <= 9; j++) {
+                buckets[j] = buckets[j-1] + buckets[j];
+            }
+
+            //根据位置确定元素
+            for (int j = ary.length-1; j >= 0; j--) {
+                //找到哪个桶的
+                int val = ary[j];
+                int remainder = (val/exp)%10;
+                //确定这个桶的下标位置
+                int idx = --buckets[remainder];
+                tmpAry[idx] = val;
+            }
+
+            System.arraycopy(tmpAry, 0, ary, 0, ary.length);
+        }
     }
 
     //3b 基数排序 radix sort MSD 字符串排序，不常用？场景：字符串很长、前缀重复极多、长度又不一致
