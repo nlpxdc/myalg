@@ -7,6 +7,8 @@ class AryCntSortApp {
 //        int[] ary = {5,7,2,5,1,6,5,8,6,2};
 //        countingSort(ary);
 //        System.out.println(Arrays.toString(ary));
+        int digits = digits(2);
+
         int[] ary2 = {95,97,92,95,91,96,95,98,96,92};
         countingSortV2(ary2);
         System.out.println(Arrays.toString(ary2));
@@ -62,6 +64,18 @@ class AryCntSortApp {
     //DNA 序列比对
     static void radixSortMsd(char[][] strAry) {
 
+    }
+
+    // 假设输入是自然数
+    static int digits(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        int cnt = 0;
+        for (int i = 0, d = n; i < Integer.MAX_VALUE && d>0; i++, d /= 10) {
+            cnt++;
+        }
+        return cnt;
     }
 
 }
