@@ -59,7 +59,7 @@ class AryCntSortApp {
     }
 
     //3a 基数排序 radix sort LSD 整数排序
-    //空间复杂度O(C+N)
+    //空间复杂度O(C+N) 时间复杂度？
     static void radixSortLsd(int[] ary) {
         //1. 找到数组中的最大值，以确定最大位数
         int max = max(ary);
@@ -133,6 +133,7 @@ class AryCntSortApp {
     //整数数组，可以简单认为是十进制数字的字符串表示
     //只是字符取值范围只是纯数字，本身可以ascii码进行存储，这样可以方便比较lsd和msd
     //todo 空间复杂度，时间复杂度
+    //空间复杂度O(C+N) 时间复杂度？
     static void radixSortMsd(int[] ary) {
 
     }
