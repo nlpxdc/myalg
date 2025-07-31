@@ -134,6 +134,8 @@ class AryCntSortApp {
     //只是字符取值范围只是纯数字，本身可以ascii码进行存储，这样可以方便比较lsd和msd
     //todo 空间复杂度，时间复杂度
     //空间复杂度O(C+N) 时间复杂度？
+    //如果是数字，十进制是个字符，桶
+    //如果是字符串，进制是256？128？桶，即C的内容
     static void radixSortMsd(int[] ary) {
 
     }
