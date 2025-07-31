@@ -127,8 +127,11 @@ class AryCntSortApp {
         return max;
     }
 
-    //基数排序 MSD 版本，适用于字符串数组，自己的版本
-    static void radixSortMsd(String[] strAry) {
+    //自己的版本
+    //基数排序 MSD 版本，适用于字符串数组，尤其是前缀类似的情况，以及不定长，可变长的字符串
+    //整数数组，可以简单认为是十进制数字的字符串表示
+    //只是字符取值范围只是纯数字，本身可以ascii码进行存储，这样可以方便比较lsd和msd
+    static void radixSortMsd(int[] ary) {
 
     }
 
