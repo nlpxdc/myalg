@@ -272,7 +272,7 @@ class AryBasicSortApp {
         }
     }
 
-    // 也是分治的思想
+    // 也是分治的思想 和归并有点像
     // 桶排序 bucket sort 根据值value分，需要提前直到数据值的分布，要么通用盲猜，要么事先统计一次统计个大概，需要事先的统计计算成本，预处理成本，不common
     static void bucketSort(int[] ary) {
         //算桶 暂跳过
