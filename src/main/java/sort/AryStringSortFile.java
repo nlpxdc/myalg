@@ -1,5 +1,8 @@
 package sort;
 
+//用的基数排序
+//假设范围为英文小写字母
+//这是二维的排序，有多位，按位处理，从头开始
 class AryStringSortApp {
     public static void main(String[] args) {
 
