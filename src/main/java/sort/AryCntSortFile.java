@@ -66,10 +66,12 @@ class AryCntSortApp {
         int maxDigits = digits(max);
 
         //3. 创建一个临时数组，用于存储排序后的结果
+        //辅助数组
         int[] tmpAry = new int[ary.length];
 
         for (int i = 1, exp = 1; i <= maxDigits; i++, exp *= 10) {
             //2. 创建10个桶用来计数
+            //计数数组
             int[] buckets = new int[10];
             //3. 计数
             for (int j = 0; j < ary.length; j++) {
@@ -129,6 +131,9 @@ class AryCntSortApp {
     }
 
     //如何切分桶、如何组织数据、是否稳定、是否原地，有多种写法
+    //2种，
+    // 辅助数组+计数数组（递归计数版）；
+    // 3way radix quicksort
 
     //自己的版本 非ai版本辅助
     //基数排序 MSD 版本，适用于字符串数组，尤其是前缀类似的情况，以及不定长，可变长的字符串
