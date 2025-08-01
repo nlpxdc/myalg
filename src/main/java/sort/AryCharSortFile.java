@@ -3,6 +3,7 @@ package sort;
 //频次 统计 排序 也是一种分治
 //借助额外辅助数组aux 空间复杂度O(C)
 //假设范围为数字和英文字母
+//这是一维的排序，只有一位，没有多位，是二维，多位排序的基础和前置，二维多位基于这个
 class AryCharSortApp {
     public static void main(String[] args) {
         char[] ary = {'d','f','k','e','v','j','e','p','j'};
@@ -31,7 +32,5 @@ class AryCharSortApp {
             }
         }
     }
-
-
 
 }
