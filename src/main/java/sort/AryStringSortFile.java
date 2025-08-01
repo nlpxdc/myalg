@@ -9,6 +9,14 @@ class AryStringSortApp {
 
     }
 
+    //二维 多位 相当于char[]和char[]比较，长度不一，等同于String，化作单个元素
+    //字符串比较算法也有多种可以写
+    static int compare(String upStr, String downStr) {
+        return 0;
+    }
+
+    //没有交换，不基于交换
+
     //如何切分桶、如何组织数据、是否稳定、是否原地，有多种写法
     //主要有2种，一共有4种？
     //American-flag sort 环交换 不稳定 原地 理论上 得不偿失 不常用 思路可借鉴
@@ -23,6 +31,7 @@ class AryStringSortApp {
     //辅助数组（在外n）+计数数组（在内c） 空间复杂度O(n+c)
     //先计数再递归 基数数组在内，在递归内，不多，常数，在递归内创建不用重置值
     //辅助数组在外，在递归外定义，在递归内利用，只在外一次就好，不用递归迭代每次都创建
+    //有cnt，就肯定有辅助数组，额外数组
     static void radixSortMsdCntRecur(String[] strAry) {
 
     }

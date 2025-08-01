@@ -18,6 +18,7 @@ class AryAdvSortApp {
     // = 0 左等于右（右等于左）
     // < 0 左小于右（右大于左）
     //通用，但不直观，没有已有指令效率高
+    //char也可以 一维 一位
     private static int compare(int leftVal, int rightVal) {
         int delta = leftVal - rightVal;
         return delta;
