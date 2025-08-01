@@ -4,6 +4,7 @@ package sort;
 //借助额外辅助数组aux 空间复杂度O(C)
 //假设范围为英文小写字母
 //这是一维的排序，只有一位，没有多位，是二维，多位排序的基础和前置，二维多位基于这个
+//字符比较，相当于数字比较，对应于ascii码的数字，基本类型
 class AryCharSortApp {
     public static void main(String[] args) {
         char[] ary = {'d','f','k','e','v','j','e','p','j'};
