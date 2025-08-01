@@ -9,6 +9,7 @@ class AryStringSortApp {
 
     }
 
+    //单次比较，两两，并非一定应用于排序，排序用基数
     //二维 多位 相当于char[]和char[]比较，长度不一，等同于String，化作单个元素
     //字符串比较算法也有多种可以写
     static int compare(String upStr, String downStr) {
@@ -29,7 +30,7 @@ class AryStringSortApp {
     //基数排序 radix sort MSD 字符串排序，场景：字符串、前缀重复多、长度又不一致
     //文件路径或类全限定名
 
-
+    //多元素排序，非两两比较，则常用基数排序MSD，并非一定依赖两两比较compare
 
     //经典基础版 计数排序递归版 稳定 通用版 教学版 借鉴思路
     //辅助数组（在外n）+计数数组（在内c） 空间复杂度O(n+c)
