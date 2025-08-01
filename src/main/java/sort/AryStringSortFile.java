@@ -15,7 +15,10 @@ class AryStringSortApp {
         return 0;
     }
 
-    //没有交换，不基于交换
+    //swap 字符串数组种，字符串的交换
+    static void swap(String[] strAry, int upIdx, int downIdx) {
+
+    }
 
     //如何切分桶、如何组织数据、是否稳定、是否原地，有多种写法
     //主要有2种，一共有4种？
