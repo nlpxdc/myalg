@@ -54,4 +54,8 @@ class AryStringSortApp {
 //
 //    }
 
+    //SA-IS算法 诱导推导出 Lucene
+    //Induced Suffix Array – Simplified Alphabet Induced Sorting
+    //后缀数组排后缀，前缀数组排前缀；后缀加 LCP Longest Common Prefix Array最长公共前缀数组，前缀用 Trie前缀树。
+
 }
