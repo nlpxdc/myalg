@@ -1,10 +1,8 @@
 package sort;
 
-import java.util.Arrays;
-
 //频次 统计 排序 也是一种分治
 //借助额外辅助数组aux 空间复杂度O(C)
-class AryCntSortApp {
+class AryCharSortApp {
     public static void main(String[] args) {
 //        int[] ary = {5,7,2,5,1,6,5,8,6,2};
 //        countingSort(ary);
