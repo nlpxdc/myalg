@@ -8,47 +8,7 @@ class AryStringSortApp {
 
     }
 
-    //3a 基数排序 radix sort LSD 整数排序
-    //空间复杂度O(C+N) 时间复杂度？
-    static void radixSortLsd(int[] ary) {
-        //1. 找到数组中的最大值，以确定最大位数
-        int max = MyUtil.max(ary);
-        int maxDigits = MyUtil.digits(max);
 
-        //3. 创建一个临时数组，用于存储排序后的结果
-        //辅助数组
-        int[] tmpAry = new int[ary.length];
-
-        for (int i = 1, exp = 1; i <= maxDigits; i++, exp *= 10) {
-            //2. 创建10个桶用来计数
-            //计数数组
-            int[] buckets = new int[10];
-            //3. 计数
-            for (int j = 0; j < ary.length; j++) {
-                int val = ary[j];
-                //余数
-                int remainder = (val / exp) % 10;
-                buckets[remainder]++;
-            }
-
-            //4. 每一位数的右端位置（）
-            for (int j = 1; j <= 9; j++) {
-                buckets[j] = buckets[j-1] + buckets[j];
-            }
-
-            //根据位置确定元素
-            for (int j = ary.length-1; j >= 0; j--) {
-                //找到哪个桶的
-                int val = ary[j];
-                int remainder = (val/exp)%10;
-                //确定这个桶的下标位置
-                int idx = --buckets[remainder];
-                tmpAry[idx] = val;
-            }
-
-            System.arraycopy(tmpAry, 0, ary, 0, ary.length);
-        }
-    }
 
     //基数排序 radix sort MSD 字符串排序，场景：字符串、前缀重复多、长度又不一致
     //文件路径或类全限定名
