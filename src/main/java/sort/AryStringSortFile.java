@@ -16,6 +16,7 @@ class AryStringSortApp {
     }
 
     //swap 字符串数组种，字符串的交换
+    //见参考java.lang.String.compareTo方法
     static void swap(String[] strAry, int upIdx, int downIdx) {
 
     }
