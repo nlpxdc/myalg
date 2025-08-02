@@ -6,7 +6,12 @@ package sort;
 //不一定依赖计数排序，也可依赖交换排序快排
 class AryStringSortApp {
     public static void main(String[] args) {
-
+        String upStr = "apple";
+        String downStr = "banana";
+        String thirdStr = "apple";
+        int compare = compare(upStr, downStr);
+        int compare1 = compare(downStr, upStr);
+        int compare2 = compare(upStr, thirdStr);
     }
 
     //单次比较，两两，并非一定应用于排序，排序用基数
