@@ -17,6 +17,9 @@ class AryStringSortApp {
     //单次比较，两两，并非一定应用于排序，排序用基数
     //二维 多位 相当于char[]和char[]比较，长度不一，等同于String，化作单个元素
     //字符串比较算法也有多种可以写
+    //如果是多个字符串，通过比较交换，也能做，如同单个元素是int的，但是内部比较算法多了一个数量级别
+    //把int的算法大于小于等于号，转成compare和0比较，算法就可以服用了
+    //把swap也替换下，但是内部比较时间复杂度高，整整高一个数量级，空间复杂度也有字符串最大长度决定，临时辅助字符数组，一个字符串
     static int compare(String upStr, String downStr) {
         int upLength = upStr.length();
         int downLength = downStr.length();
