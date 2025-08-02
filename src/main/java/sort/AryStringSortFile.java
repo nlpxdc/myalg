@@ -188,6 +188,41 @@ class AryStringSortApp {
     //双或三指针（相等）原地交换 无辅助数组 无额外空间 可不计数，靠交换
     //内部也是递归，二分递归，有计数吗？没。有辅助数组吗？没！
     static void radixSortMsd3WayQuicksort(String[] strAry) {
+        if (strAry == null || strAry.length <= 1) {
+            return;
+        }
+        innerRadixSortMsd3WayQuicksort(strAry, 0, strAry.length-1, 0);
+    }
+
+    static void innerRadixSortMsd3WayQuicksort(String[] strAry, int lowIdx, int highIdx, int n) {
+        if (lowIdx >= highIdx) {
+            return;
+        }
+        int eqLeftIdx = lowIdx, eqRightIdx = highIdx;
+        int pivotR = calcRadixByString(strAry[lowIdx], n);
+
+        for (int i = lowIdx+1; i <= highIdx; i++) {
+            String s = strAry[i];
+            int r = calcRadixByString(s, n);
+            if (r < pivotR) {
+                swap(strAry, eqLeftIdx++, i);
+            } else if (r > pivotR) {
+                swap(strAry, i, eqRightIdx--);
+            } else {
+                //相等什么都不用做
+            }
+        }
+
+        //分三个递归，小于大于等于
+        //1 小于部分
+        innerRadixSortMsd3WayQuicksort(strAry, lowIdx, eqLeftIdx-1, n);
+        //2 等于部分 如果存在的话，没结束，递归比较下一位
+        if (pivotR >= 0) {
+            innerRadixSortMsd3WayQuicksort(strAry, eqLeftIdx, eqRightIdx, n+1);
+        }
+        //3 大于部分
+        innerRadixSortMsd3WayQuicksort(strAry, eqRightIdx+1, highIdx, n);
+
 
     }
 
