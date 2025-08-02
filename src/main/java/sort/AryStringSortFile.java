@@ -195,9 +195,16 @@ class AryStringSortApp {
         innerRadixSortMsd3WayQuicksort(strAry, 0, strAry.length-1, 0);
     }
 
+//    static int INSERT_THRESHOLD = 47;
+    static int INSERT_THRESHOLD = 3;
+
     static void innerRadixSortMsd3WayQuicksort(String[] strAry, int lowIdx, int highIdx, int n) {
-        if (lowIdx >= highIdx) {
-            //这里可以再优化，减少递归深度
+//        if (lowIdx >= highIdx) {
+//            //这里可以再优化，减少递归深度
+//            return;
+//        }
+        if (highIdx - lowIdx <= INSERT_THRESHOLD) {
+            insertSort(strAry, lowIdx, highIdx);
             return;
         }
 
@@ -224,6 +231,28 @@ class AryStringSortApp {
         //大于部分继续排序
         innerRadixSortMsd3WayQuicksort(strAry, gtIdx+1, highIdx, n);
 
+    }
+
+    static void insertSort(String[] ary, int lowIdx, int highIdx) {
+        //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
+        for (int unsortedFirstIdx = lowIdx+1; unsortedFirstIdx <= highIdx; unsortedFirstIdx++) {
+            //未排序部分的第一个值，待插入，备份下值，后续要用
+            String unsortedFirstVal = ary[unsortedFirstIdx];
+            //未排序的往前移一格，找到排序的最后一个元素
+            //作为初始比较索引位置idx，第一次是排序部分的最后一个元素
+            //这里初始化要放在外面，保证后面最后插入的时候能用到，否则用不到
+            int sortedCurrentIdx = unsortedFirstIdx-1;
+            //int sortedVal = ary[sortedCurrentIdx] 就是当前排序部分的值和未排序待插入的值比较，
+            // 如果大于，那么往后移动一格，腾出位置，让其插入或者让前面的元素移动到这里
+            //循环结束后当前节点往前移动一格--自减1继续判断
+//            for (; sortedCurrentIdx >= lowIdx && ary[sortedCurrentIdx] > unsortedFirstVal ; sortedCurrentIdx--) {
+            for (; sortedCurrentIdx >= lowIdx && compare(ary[sortedCurrentIdx], unsortedFirstVal) > 0 ; sortedCurrentIdx--) {
+                ary[sortedCurrentIdx+1] = ary[sortedCurrentIdx];
+            }
+            //跳出循环后，说明到了该插入的位置了
+            //插入操作，把未排序部分的第一个值，插入到这里，这里是稳定性的关键
+            ary[sortedCurrentIdx+1] = unsortedFirstVal;
+        }
     }
 
 //    //这个其实不合适，按位比较字符串，从最后开始，不对齐啊，没必要，即使反转也不行，对齐的也不对
