@@ -72,7 +72,8 @@ class AryStringSortApp {
     //辅助数组在外，在递归外定义，在递归内利用，只在外一次就好，不用递归迭代每次都创建
     //有cnt，就肯定有辅助数组，额外数组
     //所以多个的时候，不用两两比较交换的迭代，用借助额外计数和额外辅助数组的方法处理，其实就是排序，当然也可以比较两个元素的数组
-    static void radixSortMsdCntRecur(String[] strAry) {
+    //辅助数组（空间）+递归计数（时间），参考快排递归
+    static void radixSortMsdAuxRecurCnt(String[] strAry) {
         if (strAry == null || strAry.length <= 1) {
             return;
         }
@@ -83,7 +84,8 @@ class AryStringSortApp {
 
     //高阶工程版 3way radix quicksort 不稳定 实际常用版
     //三向切分快速排序（3-way radix quicksort）
-    //双或三指针原地交换 无辅助数组 无额外空间 可不计数，靠交换
+    //双或三指针（相等）原地交换 无辅助数组 无额外空间 可不计数，靠交换
+    //内部也是递归，二分递归，有计数吗？没。有辅助数组吗？没！
     static void radixSortMsd3WayQuicksort(String[] strAry) {
 
     }
