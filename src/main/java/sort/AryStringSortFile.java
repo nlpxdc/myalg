@@ -22,16 +22,27 @@ class AryStringSortApp {
 //        swap(strAry, 0,2);
 //        Arrays.sort(strAry);
 
+//        String[] words = {
+//                "prefix",
+//                "preset",  // 重复值
+//                "preview",
+//                "prepare",
+//                "premium",
+//                "pretend",
+//                "preset",  // 同上
+//                "prevent",
+//                "prelude"
+//        };
         String[] words = {
-                "prefix",
-                "preset",  // 重复值
-                "preview",
-                "prepare",
-                "premium",
-                "pretend",
-                "preset",  // 同上
-                "prevent",
-                "prelude"
+                "add",
+                "cab",  // 重复值
+                "fad",
+                "fee",
+                "bad",
+                "bee",
+                "fed",  // 同上
+                "bed",
+                "ace"
         };
         List<String> wordList = Arrays.asList(words);
         Collections.sort(wordList);
