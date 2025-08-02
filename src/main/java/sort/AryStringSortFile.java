@@ -82,14 +82,63 @@ class AryStringSortApp {
         innerRadixSortMsdAuxRecurCnt(strAry, 0, strAry.length-1, 0, aux);
     }
 
-    static int R = 26;
-    static char NULL = '\0';
+    static int R = 256;
+//    static char NULL = '\0';
 
     static void innerRadixSortMsdAuxRecurCnt(String[] strAry, int lowIdx, int highIdx, int n, String[] aux) {
         if (lowIdx >= highIdx) {
             return;
         }
-        int[] cntBuckets = new int[R+2];
+        int shortStrCnt = 0;
+        int shortStrEndIdx = 0;
+        int[] rCntBuckets = new int[R];
+        int[] rEndIdxBuckets = new int[R];
+
+        //统计次数，频率
+        for (int i = lowIdx; i <= highIdx; i++) {
+            String s = strAry[i];
+            int r = calcRadixByString(s, n);
+            if (r < 0) {
+                shortStrCnt++;
+            } else {
+                rCntBuckets[r]++;
+            }
+        }
+
+        //shortStrCnt作为rCntBuckets处理成位置idx后的起始偏移量
+
+        //转成位置区间，关键，巧妙的一步，算出来的是结束位置的索引idx，和lsd保持一致
+        //一起计算短串，加上短串的偏移量
+        shortStrEndIdx = shortStrCnt;
+        rEndIdxBuckets[0] = shortStrEndIdx+rEndIdxBuckets[0];
+        for (int r = 1; r < R; r++) {
+            rEndIdxBuckets[r] = rEndIdxBuckets[r-1] + rEndIdxBuckets[r];
+        }
+
+        //稳定分发到辅助数组，和原数组等长，和lsd一样的
+        for (int i = highIdx; i >= lowIdx; i--) {
+            String origStr = strAry[i];
+            int r = calcRadixByString(origStr, n);
+            int toPutIdx;
+            if (r < 0) {
+                toPutIdx = --shortStrEndIdx;
+            } else {
+                toPutIdx = --rEndIdxBuckets[r];
+            }
+            aux[toPutIdx] = origStr;
+        }
+        System.arraycopy(aux, 0, strAry, 0, strAry.length);
+
+        //第一轮排序好后成组，需要在组内继续排序，需要缩小范围，按照r来缩小范围
+        //此时r的endIdx已经变成了beginIdx了，然后r的结束位置，就是r+1起始位置减去1
+        for (int r = 0; r < R; r++) {
+            innerRadixSortMsdAuxRecurCnt(strAry, rEndIdxBuckets[r], rEndIdxBuckets[r+1]-1, n+1, aux);
+        }
+
+    }
+
+    static int calcRadixByString(String str, int n) {
+        return n < str.length() ? str.charAt(n) : -1;
     }
 
     //高阶工程版 3way radix quicksort 不稳定 实际常用版
