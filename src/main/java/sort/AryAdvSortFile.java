@@ -7,7 +7,8 @@ class AryAdvSortApp {
         int[] ary = {8, 4, 5, 3, 5};
 //        quickSort(ary);
 //        shellSortV2(ary);
-        heapSort(ary);
+//        heapSort(ary);
+        quickSort3Way(ary);
         System.out.println(Arrays.toString(ary));
     }
 
@@ -86,6 +87,38 @@ class AryAdvSortApp {
     }
 
     //todo 相等的重复值，使用三向切分 单轴快排的补丁
+    static void quickSort3Way(int[] ary) {
+        if (ary == null || ary.length<=1) {
+            return;
+        }
+        innerQuickSort3Way(ary, 0, ary.length-1);
+    }
+
+    static void innerQuickSort3Way(int[] ary, int lowIdx, int highIdx) {
+        if (lowIdx >= highIdx) {
+            return;
+        }
+
+        int ltIdx=lowIdx, gtIdx=highIdx;
+        int pivotVal = ary[lowIdx];
+
+        for (int i = lowIdx+1; i <= gtIdx; ) {
+            int val = ary[i];
+            if (val < pivotVal) {
+                swap(ary, ltIdx++, i++);
+            } else if (val > pivotVal) {
+                swap(ary, i, gtIdx--);
+            } else {
+                i++;
+            }
+        }
+
+        //小于部分继续排序
+        innerQuickSort3Way(ary, lowIdx, ltIdx-1);
+        //等于部分不用处理
+        //大于部分继续排序
+        innerQuickSort3Way(ary, gtIdx+1, highIdx);
+    }
 
     //todo 双轴快排
 
