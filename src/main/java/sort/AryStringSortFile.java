@@ -217,8 +217,10 @@ class AryStringSortApp {
 
         //小于部分继续排序
         innerRadixSortMsd3WayQuicksort(strAry, lowIdx, ltIdx-1, n);
-        //等于部分，继续往下一位排序
-        innerRadixSortMsd3WayQuicksort(strAry, ltIdx, gtIdx, n+1);
+        //等于部分，继续往下一位排序，但是如果pivotR=-1，就是这位已经没有字符了，后续也没有了，就不用继续递归了
+        if (pivotR >= 0) {
+            innerRadixSortMsd3WayQuicksort(strAry, ltIdx, gtIdx, n+1);
+        }
         //大于部分继续排序
         innerRadixSortMsd3WayQuicksort(strAry, gtIdx+1, highIdx, n);
 
