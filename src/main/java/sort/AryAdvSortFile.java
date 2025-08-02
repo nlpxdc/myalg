@@ -87,7 +87,7 @@ class AryAdvSortApp {
         innerQuickSort(ary, idxWall+1, idxRight);
     }
 
-    //todo 相等的重复值，使用三向切分 单轴快排的补丁
+    //相等的重复值，使用三向切分 单轴快排的补丁
     static void quickSort3Way(int[] ary) {
         if (ary == null || ary.length<=1) {
             return;
