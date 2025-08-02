@@ -4,10 +4,11 @@ import java.util.Arrays;
 
 class AryAdvSortApp {
     public static void main(String[] args) {
-        int[] ary = {8, 4, 5, 3, 5};
+        int[] ary = {8, 4, 5, 3, 5, 1, 7, 0, 9};
 //        quickSort(ary);
 //        shellSortV2(ary);
 //        heapSort(ary);
+//        quickSort3Way(ary);
         quickSort3Way(ary);
         System.out.println(Arrays.toString(ary));
     }
@@ -91,7 +92,7 @@ class AryAdvSortApp {
         if (ary == null || ary.length<=1) {
             return;
         }
-        innerQuickSort3Way(ary, 0, ary.length-1);
+        innerQuickSort3WayWithInsert(ary, 0, ary.length-1);
     }
 
     static void innerQuickSort3Way(int[] ary, int lowIdx, int highIdx) {
@@ -118,6 +119,58 @@ class AryAdvSortApp {
         //等于部分不用处理
         //大于部分继续排序
         innerQuickSort3Way(ary, gtIdx+1, highIdx);
+    }
+
+//    static int INSERT_THRESHOLD = 47;
+    static int INSERT_THRESHOLD = 3;
+
+    static void innerQuickSort3WayWithInsert(int[] ary, int lowIdx, int highIdx) {
+        if (highIdx-lowIdx <= INSERT_THRESHOLD) {
+            //如果部分比较小，就直接插入排序，减少递归深度，没必要
+            insertSort(ary, lowIdx, highIdx);
+            return;
+        }
+
+        int ltIdx=lowIdx, gtIdx=highIdx;
+        int pivotVal = ary[lowIdx];
+
+        for (int i = lowIdx+1; i <= gtIdx; ) {
+            int val = ary[i];
+            if (val < pivotVal) {
+                swap(ary, ltIdx++, i++);
+            } else if (val > pivotVal) {
+                swap(ary, i, gtIdx--);
+            } else {
+                i++;
+            }
+        }
+
+        //小于部分继续排序
+        innerQuickSort3WayWithInsert(ary, lowIdx, ltIdx-1);
+        //等于部分不用处理
+        //大于部分继续排序
+        innerQuickSort3WayWithInsert(ary, gtIdx+1, highIdx);
+    }
+
+    static void insertSort(int[] ary, int lowIdx, int highIdx) {
+        //所以从无序部分第一个开始循环，要插入有序部分，所以要从index为1开始，0是有序部分
+        for (int unsortedFirstIdx = lowIdx+1; unsortedFirstIdx <= highIdx; unsortedFirstIdx++) {
+            //未排序部分的第一个值，待插入，备份下值，后续要用
+            int unsortedFirstVal = ary[unsortedFirstIdx];
+            //未排序的往前移一格，找到排序的最后一个元素
+            //作为初始比较索引位置idx，第一次是排序部分的最后一个元素
+            //这里初始化要放在外面，保证后面最后插入的时候能用到，否则用不到
+            int sortedCurrentIdx = unsortedFirstIdx-1;
+            //int sortedVal = ary[sortedCurrentIdx] 就是当前排序部分的值和未排序待插入的值比较，
+            // 如果大于，那么往后移动一格，腾出位置，让其插入或者让前面的元素移动到这里
+            //循环结束后当前节点往前移动一格--自减1继续判断
+            for (; sortedCurrentIdx >= lowIdx && ary[sortedCurrentIdx] > unsortedFirstVal ; sortedCurrentIdx--) {
+                ary[sortedCurrentIdx+1] = ary[sortedCurrentIdx];
+            }
+            //跳出循环后，说明到了该插入的位置了
+            //插入操作，把未排序部分的第一个值，插入到这里，这里是稳定性的关键
+            ary[sortedCurrentIdx+1] = unsortedFirstVal;
+        }
     }
 
     //todo 双轴快排
