@@ -106,7 +106,9 @@ class AryStringSortApp {
             return;
         }
         int shortStrCnt = 0;
+        int shortStrEndIdx = 0;
         int[] rCntBuckets = new int[R];
+        int[] rEndIdxBuckets = new int[R];
 
         //统计次数，频率
         for (int i = lowIdx; i <= highIdx; i++) {
@@ -123,20 +125,22 @@ class AryStringSortApp {
 
         //转成位置区间，关键，巧妙的一步，算出来的是结束位置的索引idx，和lsd保持一致
         //一起计算短串，加上短串的偏移量
-        rCntBuckets[0] = shortStrCnt+rCntBuckets[0];
+        shortStrEndIdx = shortStrCnt;
+        System.arraycopy(rCntBuckets, 0, rEndIdxBuckets, 0, rCntBuckets.length);
+        rEndIdxBuckets[0] = shortStrEndIdx+rEndIdxBuckets[0];
         for (int r = 1; r < R; r++) {
-            rCntBuckets[r] = rCntBuckets[r-1] + rCntBuckets[r];
+            rEndIdxBuckets[r] = rEndIdxBuckets[r-1] + rEndIdxBuckets[r];
         }
 
         //稳定分发到辅助数组，和原数组等长，和lsd一样的
-        for (int i = lowIdx; i <= highIdx; i++) {
+        for (int i = highIdx; i >= lowIdx; i--) {
             String origStr = strAry[i];
             int r = calcRadixByString(origStr, n);
             int toPutIdx;
             if (r < 0) {
-                toPutIdx = --shortStrCnt;
+                toPutIdx = --shortStrEndIdx;
             } else {
-                toPutIdx = --rCntBuckets[r];
+                toPutIdx = --rEndIdxBuckets[r];
             }
             aux[toPutIdx] = origStr;
         }
@@ -145,6 +149,9 @@ class AryStringSortApp {
         //第一轮排序好后成组，需要在组内继续排序，需要缩小范围，按照r来缩小范围
         //此时r的endIdx已经变成了beginIdx了，然后r的结束位置，就是r+1起始位置减去1
         for (int r = 0; r < R; r++) {
+            if (rCntBuckets[r] == 0) {
+                continue;
+            }
             if (r >= R-1) {
                 //最后一组了
                 innerRadixSortMsdAuxRecurCnt(strAry, rCntBuckets[r], strAry.length-1, n+1, aux);
