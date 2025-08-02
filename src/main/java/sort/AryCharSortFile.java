@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 //频次 统计 排序 也是一种分治 用的计数排序
 //借助额外辅助数组aux 空间复杂度O(C)
 //假设范围为英文小写字母
@@ -8,9 +10,21 @@ package sort;
 //还有十六进制数等，不转成十进制，编译器转？最终二进制，指令比较。另一种思路，数字转成字符串，按照基数比较
 class AryCharSortApp {
     public static void main(String[] args) {
-        char[] ary = {'d','f','k','e','v','j','e','p','j'};
-        countingSortV2(ary);
-        System.out.println(ary);
+//        char[] ary = {'d','f','k','e','v','j','e','p','j'};
+//        countingSortV2(ary);
+        String[] hex17 = {
+                "3b",       // 3b₁₇
+                "a07",      // a07₁₇
+                "1g",       // 1g₁₇  ← 与下一条相同
+                "d",        // d₁₇
+                "f5c2",     // f5c2₁₇
+                "9e",       // 9e₁₇
+                "0",        // 0₁₇
+                "1g",       // 1g₁₇  ← 重复值
+                "10a"       // 10a₁₇
+        };
+        radixSortLsd(hex17);
+        System.out.println(Arrays.toString(hex17));
     }
 
     //1b 计数排序 counting sort 含偏移量
@@ -80,7 +94,7 @@ class AryCharSortApp {
             }
 
             //4. 每一位数的右端位置（），计算idx的位置区间
-            for (int j = 1; j <= 17; j++) {
+            for (int j = 1; j < 17; j++) {
                 buckets[j] = buckets[j-1] + buckets[j];
             }
 
