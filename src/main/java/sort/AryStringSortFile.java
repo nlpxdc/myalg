@@ -1,6 +1,9 @@
 package sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 //用的基数排序 字典序适合用msd
 //假设范围为英文小写字母
@@ -30,7 +33,9 @@ class AryStringSortApp {
                 "prevent",
                 "prelude"
         };
-
+        List<String> wordList = Arrays.asList(words);
+        Collections.sort(wordList);
+        System.out.println(wordList);
         radixSortMsdAuxRecurCnt(words);
         System.out.println(Arrays.toString(words));
 
