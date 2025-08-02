@@ -99,6 +99,8 @@ class AryCharSortApp {
             }
 
             //4. 每一位数的右端位置（），计算idx的位置区间
+            //这里直接就变成起始索引位置了，实际是结束索引位置，所以后续可以倒着来方便，lsd结束索引位置，倒着来
+            //msd 起始索引位置？正着来
             for (int j = 1; j < 17; j++) {
                 buckets[j] = buckets[j-1] + buckets[j];
             }

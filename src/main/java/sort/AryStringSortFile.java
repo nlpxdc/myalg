@@ -78,8 +78,18 @@ class AryStringSortApp {
             return;
         }
         //辅助数组
-        String[] tmpAry = new String[strAry.length];
+        String[] aux = new String[strAry.length];
+        innerRadixSortMsdAuxRecurCnt(strAry, 0, strAry.length-1, 0, aux);
+    }
 
+    static int R = 26;
+    static char NULL = '\0';
+
+    static void innerRadixSortMsdAuxRecurCnt(String[] strAry, int lowIdx, int highIdx, int n, String[] aux) {
+        if (lowIdx >= highIdx) {
+            return;
+        }
+        int[] cntBuckets = new int[R+2];
     }
 
     //高阶工程版 3way radix quicksort 不稳定 实际常用版
