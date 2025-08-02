@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 //用的基数排序
 //假设范围为英文小写字母
 //这是二维的排序，有多位，按位处理，从头开始
@@ -15,7 +17,7 @@ class AryStringSortApp {
 
         String[] strAry = {"apple", "banana", "peach"};
         swap(strAry, 0,2);
-
+        Arrays.sort(strAry);
     }
 
     //单次比较，两两，并非一定应用于排序，排序用基数
@@ -71,6 +73,11 @@ class AryStringSortApp {
     //有cnt，就肯定有辅助数组，额外数组
     //所以多个的时候，不用两两比较交换的迭代，用借助额外计数和额外辅助数组的方法处理，其实就是排序，当然也可以比较两个元素的数组
     static void radixSortMsdCntRecur(String[] strAry) {
+        if (strAry == null || strAry.length <= 1) {
+            return;
+        }
+        //辅助数组
+        String[] tmpAry = new String[strAry.length];
 
     }
 
