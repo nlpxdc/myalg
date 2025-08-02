@@ -1,6 +1,8 @@
 package sort;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 //频次 统计 排序 也是一种分治 用的计数排序
 //借助额外辅助数组aux 空间复杂度O(C)
@@ -24,7 +26,9 @@ class AryCharSortApp {
                 "10a"       // 10a₁₇
         };
         radixSortLsd(hex17);
+        List<Integer> dec10List = Arrays.stream(hex17).map(t -> Integer.parseInt(t, 17)).collect(Collectors.toList());
         System.out.println(Arrays.toString(hex17));
+        System.out.println(dec10List);
     }
 
     //1b 计数排序 counting sort 含偏移量
