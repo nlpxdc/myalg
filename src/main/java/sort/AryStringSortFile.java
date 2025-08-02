@@ -13,7 +13,21 @@ class AryStringSortApp {
     //二维 多位 相当于char[]和char[]比较，长度不一，等同于String，化作单个元素
     //字符串比较算法也有多种可以写
     static int compare(String upStr, String downStr) {
-        return 0;
+        int upLength = upStr.length();
+        int downLength = downStr.length();
+        int minLength = Math.min(upLength, downLength);
+        char[] upAry = upStr.toCharArray();
+        char[] downAry = downStr.toCharArray();
+
+        for (int i = 0; i < Integer.MAX_VALUE && i < minLength; i++) {
+            char upChar = upAry[i];
+            char downChar = downAry[i];
+            if (upChar != downChar) {
+                return upChar - downChar;
+            }
+        }
+
+        return upLength - downLength;
     }
 
     //swap 字符串数组种，字符串的交换
