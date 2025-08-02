@@ -40,44 +40,139 @@ class AryCharSortApp {
     //尤其是比如十七进制这种原生不支持的进制数
     //基数排序 按位处理 倒着来，最小位开始 radix sort LSD
     //空间复杂度O(C+N)
-    static void radixSortLsd(int[] ary) {
-        //1. 找到数组中的最大值，以确定最大位数
-        int max = MyUtil.max(ary);
-        int maxDigits = MyUtil.digits(max);
+    //这里用String充当十七进制数的表示，因为int不能直接支持，所以用字符串替代
+    //所以这里的输入本质上还是理解成一个数字，等价int
+    static void radixSortLsd(String[] ary) {
+        if (ary == null || ary.length <=1) {
+            return;
+        }
+        //确定最大位数
+        int maxDigits = ary[0].length();
+        for (int i = 1; i < ary.length; i++) {
+            if (ary[i].length() > maxDigits) {
+                maxDigits = ary[i].length();
+            }
+        }
 
         //3. 创建一个临时数组，用于存储排序后的结果
         //辅助数组 O(n)的来源
-        int[] tmpAry = new int[ary.length];
+        String[] tmpAry = new String[ary.length];
 
-        for (int i = 1, exp = 1; i <= maxDigits; i++, exp *= 10) {
-            //2. 创建10个桶用来计数
+        //按位循环迭代，从低位开始
+        for (int i = 1; i <= maxDigits; i++) {
+            //2. 创建17个桶用来计数
             //计数数组
-            int[] buckets = new int[10];
+            int[] buckets = new int[17];
             //3. 计数
             for (int j = 0; j < ary.length; j++) {
-                int val = ary[j];
-                //余数 这里就在按位操作比较了 其实没必要
-                int remainder = (val / exp) % 10;
-                buckets[remainder]++;
+                String s = ary[j];
+                //这里就在按位操作比较了
+                char c = 0;
+                if (s.length() < i) {
+                    //说明前面已经没数了，直接char c按照0算
+                    c = '0';
+                } else {
+                    c = s.charAt(s.length() - i);
+                }
+                //根据char计算桶的索引位置idx
+                int bucketIdxByChar = getBucketIdxByChar(c);
+                buckets[bucketIdxByChar]++;
             }
 
-            //4. 每一位数的右端位置（）
-            for (int j = 1; j <= 9; j++) {
+            //4. 每一位数的右端位置（），计算idx的位置区间
+            for (int j = 1; j <= 17; j++) {
                 buckets[j] = buckets[j-1] + buckets[j];
             }
 
-            //根据位置确定元素
+            //根据计算的位置区间确定元素，倒着来
             for (int j = ary.length-1; j >= 0; j--) {
                 //找到哪个桶的
-                int val = ary[j];
-                int remainder = (val/exp)%10;
+                String s = ary[j];
+                char c = 0;
+                if (s.length() < i) {
+                    //说明前面已经没数了，直接char c按照0算
+                    c = '0';
+                } else {
+                    c = s.charAt(s.length() - i);
+                }
+                int bucketIdxByChar = getBucketIdxByChar(c);
                 //确定这个桶的下标位置
-                int idx = --buckets[remainder];
-                tmpAry[idx] = val;
+                int idx = --buckets[bucketIdxByChar];
+                tmpAry[idx] = s;
             }
 
+            //此轮位数排序好，赋值给临时辅助数组，然后进入下一次循环
+            //找到两个数组要赋值的起始位置，然后给定复制长度
             System.arraycopy(tmpAry, 0, ary, 0, ary.length);
         }
     }
+
+    //假设只是纯数字0-9，以及abcdefg的十七进制
+    static int getBucketIdxByChar(char c) {
+        int idx = -1;
+        switch(c){
+            case '0': idx = 0; break;
+            case '1': idx = 1; break;
+            case '2': idx = 2; break;
+            case '3': idx = 3; break;
+            case '4': idx = 4; break;
+            case '5': idx = 5; break;
+            case '6': idx = 6; break;
+            case '7': idx = 7; break;
+            case '8': idx = 8; break;
+            case '9': idx = 9; break;
+            case 'a': idx = 10; break;
+            case 'b': idx = 11; break;
+            case 'c': idx = 12; break;
+            case 'd': idx = 13; break;
+            case 'e': idx = 14; break;
+            case 'f': idx = 15; break;
+            case 'g': idx = 16; break;
+            default :
+                throw new RuntimeException("不是十七进制数");
+        }
+        return idx;
+    }
+
+    //老的方法
+//    static void radixSortLsd(int[] ary) {
+//        //1. 找到数组中的最大值，以确定最大位数
+//        int max = MyUtil.max(ary);
+//        int maxDigits = MyUtil.digits(max);
+//
+//        //3. 创建一个临时数组，用于存储排序后的结果
+//        //辅助数组 O(n)的来源
+//        int[] tmpAry = new int[ary.length];
+//
+//        for (int i = 1, exp = 1; i <= maxDigits; i++, exp *= 10) {
+//            //2. 创建10个桶用来计数
+//            //计数数组
+//            int[] buckets = new int[10];
+//            //3. 计数
+//            for (int j = 0; j < ary.length; j++) {
+//                int val = ary[j];
+//                //余数 这里就在按位操作比较了 其实没必要
+//                int remainder = (val / exp) % 10;
+//                buckets[remainder]++;
+//            }
+//
+//            //4. 每一位数的右端位置（）
+//            for (int j = 1; j <= 9; j++) {
+//                buckets[j] = buckets[j-1] + buckets[j];
+//            }
+//
+//            //根据位置确定元素
+//            for (int j = ary.length-1; j >= 0; j--) {
+//                //找到哪个桶的
+//                int val = ary[j];
+//                int remainder = (val/exp)%10;
+//                //确定这个桶的下标位置
+//                int idx = --buckets[remainder];
+//                tmpAry[idx] = val;
+//            }
+//
+//            System.arraycopy(tmpAry, 0, ary, 0, ary.length);
+//        }
+//    }
 
 }
