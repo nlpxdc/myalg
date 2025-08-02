@@ -47,7 +47,8 @@ class AryStringSortApp {
         List<String> wordList = Arrays.asList(words);
         Collections.sort(wordList);
         System.out.println(wordList);
-        radixSortMsdAuxRecurCnt(words);
+//        radixSortMsdAuxRecurCnt(words);
+        radixSortMsd3WayQuicksort(words);
         System.out.println(Arrays.toString(words));
 
     }
@@ -196,33 +197,30 @@ class AryStringSortApp {
 
     static void innerRadixSortMsd3WayQuicksort(String[] strAry, int lowIdx, int highIdx, int n) {
         if (lowIdx >= highIdx) {
+            //这里可以再优化，减少递归深度
             return;
         }
-        int eqLeftIdx = lowIdx, eqRightIdx = highIdx;
+
+        int ltIdx=lowIdx, gtIdx=highIdx;
         int pivotR = calcRadixByString(strAry[lowIdx], n);
 
-        for (int i = lowIdx+1; i <= highIdx; i++) {
-            String s = strAry[i];
-            int r = calcRadixByString(s, n);
+        for (int i = lowIdx+1; i <= gtIdx; ) {
+            int r = calcRadixByString(strAry[i], n);
             if (r < pivotR) {
-                swap(strAry, eqLeftIdx++, i);
+                swap(strAry, ltIdx++, i++);
             } else if (r > pivotR) {
-                swap(strAry, i, eqRightIdx--);
+                swap(strAry, i, gtIdx--);
             } else {
-                //相等什么都不用做
+                i++;
             }
         }
 
-        //分三个递归，小于大于等于
-        //1 小于部分
-        innerRadixSortMsd3WayQuicksort(strAry, lowIdx, eqLeftIdx-1, n);
-        //2 等于部分 如果存在的话，没结束，递归比较下一位
-        if (pivotR >= 0) {
-            innerRadixSortMsd3WayQuicksort(strAry, eqLeftIdx, eqRightIdx, n+1);
-        }
-        //3 大于部分
-        innerRadixSortMsd3WayQuicksort(strAry, eqRightIdx+1, highIdx, n);
-
+        //小于部分继续排序
+        innerRadixSortMsd3WayQuicksort(strAry, lowIdx, ltIdx-1, n);
+        //等于部分，继续往下一位排序
+        innerRadixSortMsd3WayQuicksort(strAry, ltIdx, gtIdx, n+1);
+        //大于部分继续排序
+        innerRadixSortMsd3WayQuicksort(strAry, gtIdx+1, highIdx, n);
 
     }
 
