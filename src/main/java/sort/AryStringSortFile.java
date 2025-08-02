@@ -6,12 +6,16 @@ package sort;
 //不一定依赖计数排序，也可依赖交换排序快排
 class AryStringSortApp {
     public static void main(String[] args) {
-        String upStr = "apple";
-        String downStr = "banana";
-        String thirdStr = "apple";
-        int compare = compare(upStr, downStr);
-        int compare1 = compare(downStr, upStr);
-        int compare2 = compare(upStr, thirdStr);
+//        String upStr = "apple";
+//        String downStr = "banana";
+//        String thirdStr = "apple";
+//        int compare = compare(upStr, downStr);
+//        int compare1 = compare(downStr, upStr);
+//        int compare2 = compare(upStr, thirdStr);
+
+        String[] strAry = {"apple", "banana", "peach"};
+        swap(strAry, 0,2);
+
     }
 
     //单次比较，两两，并非一定应用于排序，排序用基数
@@ -41,7 +45,13 @@ class AryStringSortApp {
     //swap 字符串数组种，字符串的交换
     //见参考java.lang.String.compareTo方法
     static void swap(String[] strAry, int upIdx, int downIdx) {
-
+        String upStr = strAry[upIdx];
+        String downStr = strAry[downIdx];
+        if (compare(upStr, downStr) != 0) {
+            String t = strAry[upIdx];
+            strAry[upIdx] = downStr;
+            strAry[downIdx] = t;
+        }
     }
 
     //如何切分桶、如何组织数据、是否稳定、是否原地，有多种写法
