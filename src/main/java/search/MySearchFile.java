@@ -114,4 +114,6 @@ class MySearchApp {
         return midIdx;
     }
 
+    //4 todo 利用bst二叉搜索树
+
 }
