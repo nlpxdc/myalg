@@ -117,5 +117,7 @@ class MySearchApp {
     //4 todo 利用bst二叉搜索树
     //笛卡尔数 笛卡尔树是静态场景的 RMQ 神器
     //树堆 treap Treap 把随机优先级当成“隐形的平衡器”，让它在动态竞赛/工程场景里更简洁、更鲁棒
+    //FHQTreap Splay Tree 替罪羊树
+    //所有 BST 都在用不同的‘平衡+存储’策略，把最坏 O(n) 压回 O(log n)，并适配内存、磁盘、并发或多维数据
 
 }
