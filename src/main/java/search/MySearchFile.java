@@ -39,7 +39,9 @@ class MySearchApp {
             }
         }
 
-        return -1;
+//        return -1;
+        //用负数代表没找到，但是指明需要插入的位置
+        return -(leftIdx+1);
     }
 
     //2 recur
