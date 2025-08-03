@@ -14,4 +14,15 @@ class MySearchApp {
         int i1 = Arrays.binarySearch(charArray, 'b');
         int i2 = Collections.binarySearch(null, null);
     }
+
+    //1 iter
+    static int idxOfIter(int[] ary, int val) {
+        return 0;
+    }
+
+    //2 recur
+    static int idxOfRecur(int[] ary, int val) {
+        return 0;
+    }
+
 }
