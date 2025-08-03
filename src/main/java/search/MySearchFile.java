@@ -7,17 +7,36 @@ import java.util.Collections;
 //普通场景，主键，值都不同，索引失效不！
 class MySearchApp {
     public static void main(String[] args) {
-        System.out.println("aa");
-        String str = "abc";
-        char[] charArray = str.toCharArray();
-        int i = str.indexOf('b');
-        int i1 = Arrays.binarySearch(charArray, 'b');
-        int i2 = Collections.binarySearch(null, null);
+//        System.out.println("aa");
+//        String str = "abc";
+//        char[] charArray = str.toCharArray();
+//        int i = str.indexOf('b');
+//        int i1 = Arrays.binarySearch(charArray, 'b');
+//        int i2 = Collections.binarySearch(null, null);
+        int[] ary = {0,1,2,3,5,8,13,21,34,55};
+        int i = idxOfIter(ary, 13);
+        int i1 = idxOfIter(ary, 14);
+
     }
 
     //1 iter
     static int idxOfIter(int[] ary, int val) {
-        return 0;
+        int leftIdx = 0, rightIdx = ary.length-1;
+
+        for (int i = 0; i < Integer.MAX_VALUE && leftIdx<=rightIdx; i++) {
+//            int mid = leftIdx + ((rightIdx - leftIdx) >>> 1); // 防溢出写法
+            int midIdx = (leftIdx+rightIdx)/2;
+            int midVal = ary[midIdx];
+            if (val < midVal) {
+                rightIdx = midIdx-1;
+            } else if (midVal < val) {
+                leftIdx = midIdx+1;
+            } else {
+                return midIdx;
+            }
+        }
+
+        return -1;
     }
 
     //2 recur
