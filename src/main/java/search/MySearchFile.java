@@ -15,7 +15,10 @@ class MySearchApp {
 //        int i2 = Collections.binarySearch(null, null);
         int[] ary = {0,1,2,3,5,8,13,21,34,55};
         int i = idxOfIter(ary, 13);
+        int i2 = idxOfRecur(ary, 13);
         int i1 = idxOfIter(ary, 14);
+        int i3 = idxOfRecur(ary, 14);
+
 
     }
 
@@ -41,7 +44,24 @@ class MySearchApp {
 
     //2 recur
     static int idxOfRecur(int[] ary, int val) {
-        return 0;
+        int idx = innerIdxOfRecur(ary, 0, ary.length, val);
+        return idx;
+    }
+
+    static int innerIdxOfRecur(int[] ary, int leftIdx, int rightIdx, int val) {
+        if (leftIdx > rightIdx) {
+            return -1;
+        }
+        int midIdx = (leftIdx+rightIdx)/2;
+        int midVal = ary[midIdx];
+        if (val < midVal) {
+            return innerIdxOfRecur(ary, leftIdx, midIdx-1, val);
+        } else if (val > midVal) {
+            return innerIdxOfRecur(ary, midIdx+1, rightIdx, val);
+        } else {
+            return midIdx;
+        }
+//        return -1;
     }
 
 }
