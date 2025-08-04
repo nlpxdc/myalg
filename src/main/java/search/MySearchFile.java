@@ -120,7 +120,7 @@ class MySearchApp {
     //min-max heap？双端优先队列
     //FHQTreap Splay Tree 替罪羊树
     //所有 BST BBST 平衡二叉搜索树 都在用不同的‘平衡+存储’策略，把最坏 O(n) 压回 O(log n)，并适配内存、磁盘、并发或多维数据
-    //二分查找应该用的树是avl
+    //二分查找应该用的树是avl Catalan数
     //红黑树看下b站视频
 
     //堆序 kth类二分查找
