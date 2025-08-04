@@ -125,4 +125,7 @@ class MySearchApp {
 
     //堆序 kth类二分查找
 
+    //todo 根据有序数组，构造avl
+    //todo 根据avl，做二分查找 外存b数b+数的根基？
+
 }
