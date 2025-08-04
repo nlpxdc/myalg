@@ -24,7 +24,7 @@ class MySearchApp {
 
     }
 
-    //1 iter
+    //1 iter 迭代二分，jdk官方实现，双指针，前后指针首尾指针
     static int idxOfIter(int[] ary, int val) {
         int leftIdx = 0, rightIdx = ary.length-1;
 
