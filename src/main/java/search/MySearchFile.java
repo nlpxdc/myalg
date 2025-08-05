@@ -1,8 +1,5 @@
 package search;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 //查找第一个或者最后一个，查找多个的话就是字符串匹配，正则表达式，状态机了，有一整套完善的
 //普通场景，主键，值都不同，索引失效不！
 class MySearchApp {
@@ -18,11 +15,12 @@ class MySearchApp {
         //可以再构造线性分布均匀数组，调试更直观
 //        int i = idxOfIter(ary, 13);
 //        int i2 = idxOfRecur(ary, 13);
-        int i4 = idxOfIterInterpolation(ary, 13);
+//        int i4 = idxOfIterInterpolation(ary, 13);
 //        int i1 = idxOfIter(ary, 14);
 //        int i3 = idxOfRecur(ary, 14);
 //        int i5 = idxOfIterInterpolation(ary, 14);
-
+        Bbst bbst = new Bbst(ary);
+        bbst.traverseInOrder();
 
     }
 
@@ -138,5 +136,61 @@ class MySearchApp {
     //todo 根据有序数组，构造BBST，普通递归二分法（用中间节点作为根）
     //todo 根据BBST，做查找（二分思想） 递归版 迭代版
     //todo 根据BBST，做查找，并返回jdk类似的插入位置 递归版 迭代版
+
+}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+class Bbst {
+    TreeNode root;
+    int size;
+
+    //根据有序数组初始化平衡二叉搜索树
+    Bbst(int[] ary) {
+        if (ary == null || ary.length == 0) {
+            root = null;
+            return;
+        }
+        root = innerBuild(ary, 0, ary.length - 1);
+        size = ary.length;
+    }
+
+    TreeNode innerBuild(int[] ary, int lowIdx, int highIdx) {
+        if (lowIdx > highIdx) {
+            return null;
+        }
+        int midIdx = lowIdx + (highIdx - lowIdx)/2;
+        int midVal = ary[midIdx];
+        TreeNode root = new TreeNode(midVal);
+        root.left = innerBuild(ary, lowIdx, midIdx-1);
+        root.right = innerBuild(ary, midIdx+1, highIdx);
+        return root;
+    }
+
+    void traverseInOrder() {
+        innerTraverseInOrder(root);
+        System.out.println();
+    }
+
+    void innerTraverseInOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        if (root.left != null) {
+            innerTraverseInOrder(root.left);
+        }
+        System.out.print(root.val+",");
+        if (root.right != null) {
+            innerTraverseInOrder(root.right);
+        }
+    }
 
 }
