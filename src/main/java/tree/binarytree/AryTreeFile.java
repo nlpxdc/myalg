@@ -1,5 +1,6 @@
 package tree.binarytree;
 
+//ary适合堆 （优先队列）
 class AryTreeApp {
     public static void main(String[] args) {
         Node nodea1 = new Node(1);
@@ -70,3 +71,5 @@ class AryTree {
     }
 
 }
+
+//todo Heap crud rw rcud rcdu
