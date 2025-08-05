@@ -97,6 +97,7 @@ class MySearchApp {
     //测试起始是需要自己构造合适的测试数据，并来验证他优化方面的性能的
     //但是测试数据造起来耗时，属于测试阶段，暂时先不管了，后续专门抽时间弄，先保证功能ok
     //插值计算，根据value，查找对应所在合适的idx位置，更准的猜准接近的位置
+    //没有类似快排pivot的多种复杂算法，因为本身已经拍好序列了，取中就是很好的办法，但是可以使用等比例猜测的方法，试图更快接近真实值
     static int calcMidIdx(int[] ary, int lowIdx, int highIdx, int val) {
         int midIdx = lowIdx;
         int lowVal = ary[lowIdx];

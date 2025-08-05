@@ -62,7 +62,9 @@ class AryAdvSortApp {
     private static int partition(int[] ary, int idxLeft, int idxRight) {
         //选择基准值，简单选择最右边的值
         //当然，这里可以有很多讲究和算法可以选取，原则是尽可能平均开分区后的两边的数量大致相等，保持平衡
-        //todo 罗列下
+        //todo 罗列下 6种？
+        //固定位置选择法 随机选择法 三数取中法 五数取中划分法 中位数的中位数 自适应选择法
+        //todo 三数取中法 随机选择法 单个取pivot的方法
         int valPivot = ary[idxRight];
 
         //就这里最像基础排序，选择排序每次交换版本
