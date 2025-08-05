@@ -85,8 +85,10 @@ class CompleteBiTree {
         return size-1;
     }
 
+    //堆化，建堆，维护堆序列
     void heapify() {
         for (int i = CbtUtil.getParentIdxByTreeNodeIdx(getLastTreeNodeIdx()) ; i >=0; i--) {
+            //依赖下沉
             siftDownOfMaxHeap(i);
         }
     }
@@ -136,6 +138,18 @@ class CompleteBiTree {
             }
         }
     }
+
+    //添加值节点，依赖上浮操作，适合在线算法，流算法，实时算法，加在树末尾
+    void addVal(int val) {
+
+    }
+
+    //上浮操作
+    void siftUp(int treeNodeIdx) {
+
+    }
+
+    //删除节点，堆顶，堆排序，交换后，再剩余的部分的堆顶继续下沉操作一次，再完成堆序
 
 }
 
