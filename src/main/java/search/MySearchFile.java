@@ -130,6 +130,7 @@ class MySearchApp {
     //根据有序数组，构造treap
     //根据treap，做查找 外存b数b+数的根基？
 
+    //递归版本时间O(h)O(depth)或O(logn) + 空间O(n) 迭代版时间O(h)O(depth)O(logn) + 空间O(1)
     //todo 根据有序数组，构造BBST，普通递归二分法（用中间节点作为根）
     //todo 根据BBST，做查找（二分思想） 递归版 迭代版
     //todo 根据BBST，做查找，并返回jdk类似的插入位置 递归版 迭代版
