@@ -13,7 +13,9 @@ class MySearchApp {
 //        int i = str.indexOf('b');
 //        int i1 = Arrays.binarySearch(charArray, 'b');
 //        int i2 = Collections.binarySearch(null, null);
+        //构造数据分布错误了，是类质数的斐波那契，我说调试不太理想
         int[] ary = {0,1,2,3,5,8,13,21,34,55};
+        //可以再构造线性分布均匀数组，调试更直观
 //        int i = idxOfIter(ary, 13);
 //        int i2 = idxOfRecur(ary, 13);
         int i4 = idxOfIterInterpolation(ary, 13);
@@ -97,7 +99,8 @@ class MySearchApp {
     //测试起始是需要自己构造合适的测试数据，并来验证他优化方面的性能的
     //但是测试数据造起来耗时，属于测试阶段，暂时先不管了，后续专门抽时间弄，先保证功能ok
     //插值计算，根据value，查找对应所在合适的idx位置，更准的猜准接近的位置
-    //没有类似快排pivot的多种复杂算法，因为本身已经拍好序列了，取中就是很好的办法，但是可以使用等比例猜测的方法，试图更快接近真实值
+    //没有类似快排pivot的多种复杂算法，因为本身已经拍好序列了，取中就是很好的办法，但是可以使用等比例猜测的方法，试图更快接近真实值，依赖线性均匀分布假设，如连续id，时间戳
+    //避免指数增长，或者斐波那契！会退化成线性扫描，此时二分更好，没有银弹，通用vs特殊，数据分布情况和概率
     static int calcMidIdx(int[] ary, int lowIdx, int highIdx, int val) {
         int midIdx = lowIdx;
         int lowVal = ary[lowIdx];
