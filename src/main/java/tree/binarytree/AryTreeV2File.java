@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
+//完全二叉树
 class AryTreeV2App {
     public static void main(String[] args) {
         int[] ary = {11,21,22,31,32,33,34,41,42,43,44,45,46,47,48};
@@ -34,6 +35,7 @@ class AryTreeV2App {
 
 //没有Node定义，也不用装箱类型，就使用基本数据类型int
 
+//完全二叉树
 class CompleteBiTree {
     int[] ary;
     int size;
@@ -93,6 +95,7 @@ class CompleteBiTree {
         }
     }
 
+    //下沉操作
     void siftDownOfMaxHeap(int treeNodeIdx) {
         int currentIdx = treeNodeIdx;
         for (int i = 0; i <= getTreeHeight() - CbtUtil.getTreeNodeHeightByTreeNodeIdx(treeNodeIdx); i++) {
@@ -149,7 +152,7 @@ class CompleteBiTree {
 
     }
 
-    //删除节点，堆顶，堆排序，交换后，再剩余的部分的堆顶继续下沉操作一次，再完成堆序
+    //删除节点，堆顶，堆排序，交换后，再剩余的部分的堆顶继续下沉操作一次，再完成堆序，再删除堆顶，循环往复
 
 }
 
