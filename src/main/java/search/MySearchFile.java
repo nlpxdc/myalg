@@ -21,19 +21,21 @@ class MySearchApp {
 //        int i1 = idxOfIter(ary, 14);
 //        int i3 = idxOfRecur(ary, 14);
 //        int i5 = idxOfIterInterpolation(ary, 14);
-//        Avl avl = new Avl(ary);
+        Avl avl = new Avl(ary);
 //        avl.traverseInOrder();
 //        avl.traverseInOrderByAddrIdx();
-//        avl.traverseInOrderByAll();
-//        TreeNode search = avl.search(5);
-//        TreeNode search1 = avl.search(6);
+        avl.traverseInOrderByAll();
+        TreeNode search = avl.search(5);
+        TreeNode search1 = avl.search(6);
+        TreeNode treeNode = avl.searchIter(5);
+        TreeNode treeNode1 = avl.searchIter(6);
 
-        SingleLinkList singleLinkList = new SingleLinkList(ary);
-        singleLinkList.traverse();
-        LinkNode byKey = singleLinkList.findByKey(5);
-        LinkNode byKey1 = singleLinkList.findByKey(6);
-        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
-        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
+//        SingleLinkList singleLinkList = new SingleLinkList(ary);
+//        singleLinkList.traverse();
+//        LinkNode byKey = singleLinkList.findByKey(5);
+//        LinkNode byKey1 = singleLinkList.findByKey(6);
+//        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
+//        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
 
     }
 
@@ -129,7 +131,7 @@ class MySearchApp {
         return midIdx;
     }
 
-    //4 todo 利用Avl（平衡二叉搜索树）
+    //4 利用Avl（平衡二叉搜索树）
     //笛卡尔数 笛卡尔树是静态场景的 RMQ 神器
     //树堆 treap Treap 把随机优先级当成“隐形的平衡器”，让它在动态竞赛/工程场景里更简洁、更鲁棒
     //min-max heap？双端优先队列
@@ -146,8 +148,8 @@ class MySearchApp {
     //根据treap，做查找 外存b数b+数的根基？
 
     //递归版本时间O(h)O(depth)或O(logn) + 空间O(n) 迭代版时间O(h)O(depth)O(logn) + 空间O(1)
-    //todo 根据有序数组，构造BBST，普通递归二分法（用中间节点作为根）
-    //todo 根据Avl，做查找（二分思想） 递归版 迭代版
+    //根据有序数组，构造avl，普通递归二分法（用中间节点作为根）
+    //根据Avl，做查找（二分思想） 递归版 迭代版
     //todo 根据Avl，做查找，并返回jdk类似的插入位置 递归版 迭代版
 
 }
@@ -251,6 +253,21 @@ class Avl {
         }
         TreeNode node = innerSearch(root, key);
         return node;
+    }
+
+    TreeNode searchIter(int key) {
+        for (TreeNode current = root; current != null; ) {
+            if (current.key == key) {
+                return current;
+            } else {
+                if (key < current.key) {
+                    current = current.left;
+                } else {
+                    current = current.right;
+                }
+            }
+        }
+        return null;
     }
 
     TreeNode innerSearch(TreeNode currentRoot, int key) {
