@@ -242,7 +242,7 @@ class MyDLinkList {
 //    }
 
     //todo 有序链表插入添加一个值 前后首尾双指针，类二分查找
-    boolean addValInSort(MyLinkNode node) {
+    boolean addValInSort(MyDLinkNode node) {
         //先要搜索到待插入的位置，前置节点父节点
         //如果已经有了，返回false，代表插入失败
         //如果没有找到，找到待插入的前置父节点，插入，并返回true
