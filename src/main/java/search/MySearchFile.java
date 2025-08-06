@@ -25,8 +25,8 @@ class MySearchApp {
         avl.traverseInOrder();
         avl.traverseInOrderByAddrIdx();
         avl.traverseInOrderByAll();
-//        TreeNode search = avl.search(5);
-//        TreeNode search1 = avl.search(6);
+        TreeNode search = avl.search(5);
+        TreeNode search1 = avl.search(6);
 
     }
 
@@ -238,11 +238,11 @@ class Avl {
         }
     }
 
-    TreeNode search(int val) {
+    TreeNode search(int key) {
         if (root == null) {
             return null;
         }
-        TreeNode node = innerSearch(root, val);
+        TreeNode node = innerSearch(root, key);
         return node;
     }
 
