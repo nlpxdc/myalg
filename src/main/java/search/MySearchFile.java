@@ -288,8 +288,16 @@ class SingleLinkList {
         if (ary == null || ary.length <=0) {
             return;
         }
-        LinkNode node = innerBuildList(ary, 0, ary.length-1);
-        this.head = node;
+//        LinkNode node = innerBuildList(ary, 0, ary.length-1);
+        LinkNode head = new LinkNode(ary[0]);
+
+        LinkNode current = head;
+        for (int i = 1; i < ary.length; i++, current = current.next) {
+            int key = ary[i];
+            LinkNode next = new LinkNode(key);
+            current.next = next;
+        }
+        this.head = head;
     }
 
     LinkNode innerBuildList(int[] ary, int lowIdx, int highIdx) {
