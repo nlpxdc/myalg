@@ -1,5 +1,7 @@
 package search;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 //查找第一个或者最后一个，查找多个的话就是字符串匹配，正则表达式，状态机了，有一整套完善的
 //普通场景，主键，值都不同，索引失效不！
 class MySearchApp {
@@ -21,8 +23,10 @@ class MySearchApp {
 //        int i5 = idxOfIterInterpolation(ary, 14);
         Avl avl = new Avl(ary);
         avl.traverseInOrder();
-        TreeNode search = avl.search(5);
-        TreeNode search1 = avl.search(6);
+        avl.traverseInOrderByAddrIdx();
+        avl.traverseInOrderByAll();
+//        TreeNode search = avl.search(5);
+//        TreeNode search1 = avl.search(6);
 
     }
 
@@ -118,7 +122,7 @@ class MySearchApp {
         return midIdx;
     }
 
-    //4 todo 利用bst (bbst) 二叉搜索树（平衡二叉搜索树）
+    //4 todo 利用Avl（平衡二叉搜索树）
     //笛卡尔数 笛卡尔树是静态场景的 RMQ 神器
     //树堆 treap Treap 把随机优先级当成“隐形的平衡器”，让它在动态竞赛/工程场景里更简洁、更鲁棒
     //min-max heap？双端优先队列
@@ -136,18 +140,21 @@ class MySearchApp {
 
     //递归版本时间O(h)O(depth)或O(logn) + 空间O(n) 迭代版时间O(h)O(depth)O(logn) + 空间O(1)
     //todo 根据有序数组，构造BBST，普通递归二分法（用中间节点作为根）
-    //todo 根据BBST，做查找（二分思想） 递归版 迭代版
-    //todo 根据BBST，做查找，并返回jdk类似的插入位置 递归版 迭代版
+    //todo 根据Avl，做查找（二分思想） 递归版 迭代版
+    //todo 根据Avl，做查找，并返回jdk类似的插入位置 递归版 迭代版
 
 }
 
 class TreeNode {
-    int val;
+    int key;
+    String addrIdx;
     TreeNode left;
     TreeNode right;
 
-    TreeNode(int val) {
-        this.val = val;
+    TreeNode(int key) {
+        this.key = key;
+        int randInt = ThreadLocalRandom.current().nextInt(100, 999);
+        this.addrIdx = Integer.toString(randInt, 17);
     }
 }
 
@@ -170,8 +177,8 @@ class Avl {
             return null;
         }
         int midIdx = lowIdx + (highIdx - lowIdx)/2;
-        int midVal = ary[midIdx];
-        TreeNode root = new TreeNode(midVal);
+        int midKey = ary[midIdx];
+        TreeNode root = new TreeNode(midKey);
         root.left = innerBuild(ary, lowIdx, midIdx-1);
         root.right = innerBuild(ary, midIdx+1, highIdx);
         return root;
@@ -182,6 +189,42 @@ class Avl {
         System.out.println();
     }
 
+    void traverseInOrderByAddrIdx() {
+        innerTraverseInOrderByAddrIdx(root);
+        System.out.println();
+    }
+
+    void innerTraverseInOrderByAddrIdx(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        if (root.left != null) {
+            innerTraverseInOrderByAddrIdx(root.left);
+        }
+        System.out.print(root.addrIdx+",");
+        if (root.right != null) {
+            innerTraverseInOrderByAddrIdx(root.right);
+        }
+    }
+
+    void traverseInOrderByAll() {
+        innerTraverseInOrderByAll(root);
+        System.out.println();
+    }
+
+    void innerTraverseInOrderByAll(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        if (root.left != null) {
+            innerTraverseInOrderByAll(root.left);
+        }
+        System.out.print(String.format("[%d->%s],", root.key, root.addrIdx));
+        if (root.right != null) {
+            innerTraverseInOrderByAll(root.right);
+        }
+    }
+
     void innerTraverseInOrder(TreeNode root) {
         if (root == null) {
             return;
@@ -189,7 +232,7 @@ class Avl {
         if (root.left != null) {
             innerTraverseInOrder(root.left);
         }
-        System.out.print(root.val+",");
+        System.out.print(root.key+",");
         if (root.right != null) {
             innerTraverseInOrder(root.right);
         }
@@ -203,18 +246,18 @@ class Avl {
         return node;
     }
 
-    TreeNode innerSearch(TreeNode currentRoot, int val) {
+    TreeNode innerSearch(TreeNode currentRoot, int key) {
         if (currentRoot == null) {
             return null;
         }
-        if (currentRoot.val == val) {
+        if (currentRoot.key == key) {
             return currentRoot;
         } else {
             if (currentRoot.left != null) {
-                return innerSearch(currentRoot.left, val);
+                return innerSearch(currentRoot.left, key);
             }
             if (currentRoot.right != null) {
-                return innerSearch(currentRoot.right, val);
+                return innerSearch(currentRoot.right, key);
             }
         }
         return null;
