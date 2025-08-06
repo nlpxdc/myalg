@@ -30,6 +30,8 @@ class MySearchApp {
 
         SingleLinkList singleLinkList = new SingleLinkList(ary);
         singleLinkList.traverse();
+        LinkNode byKey = singleLinkList.findByKey(5);
+        LinkNode byKey1 = singleLinkList.findByKey(6);
 
     }
 
@@ -314,6 +316,25 @@ class SingleLinkList {
         for (LinkNode current = head; current != null; current = current.next) {
             System.out.print(String.format("[%d->%s],", current.key, current.addrIdx));
         }
+    }
+
+    LinkNode findByKey(int key) {
+        LinkNode node = innerFindByKey(head, key);
+        return node;
+    }
+
+    LinkNode innerFindByKey(LinkNode head, int key) {
+        if (head == null) {
+            return null;
+        }
+        if (head.key == key) {
+            return head;
+        } else {
+            if (head.next != null) {
+                return innerFindByKey(head.next, key);
+            }
+        }
+        return null;
     }
 
 }
