@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 //查找第一个或者最后一个，查找多个的话就是字符串匹配，正则表达式，状态机了，有一整套完善的
 //普通场景，主键，值都不同，索引失效不！
+//总体思想可以先递归再迭代，一般来说递归更简单更会符合贴切的描述，尤其是树，线性结构其实也是，只是线性结构迭代也很好思考，性能又好，所以一般会直接思考迭代，而不考虑递归了
 class MySearchApp {
     public static void main(String[] args) {
 //        System.out.println("aa");
