@@ -25,16 +25,16 @@ class MySearchApp {
         Avl avl = new Avl(ary);
 //        avl.traverseInOrder();
 //        avl.traverseInOrderByAddrIdx();
-        avl.traverseInOrderByAll();
-        TreeNode search = avl.search(5);
-        TreeNode search1 = avl.search(6);
-        TreeNode treeNode = avl.searchIter(5);
-        TreeNode treeNode1 = avl.searchIter(6);
+//        avl.traverseInOrderByAll();
+//        TreeNode search = avl.search(5);
+//        TreeNode search1 = avl.search(6);
+//        TreeNode treeNode = avl.searchIter(5);
+//        TreeNode treeNode1 = avl.searchIter(6);
 
-//        SingleLinkList singleLinkList = new SingleLinkList(ary);
-//        singleLinkList.traverse();
-//        LinkNode byKey = singleLinkList.findByKey(5);
-//        LinkNode byKey1 = singleLinkList.findByKey(6);
+        SingleLinkList singleLinkList = new SingleLinkList(ary);
+        singleLinkList.traverse();
+        LinkNode byKey = singleLinkList.findByKey(5);
+        LinkNode byKey1 = singleLinkList.findByKey(6);
 //        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
 //        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
 
@@ -361,9 +361,10 @@ class SingleLinkList {
         } else {
             if (head.next != null) {
                 return innerFindByKey(head.next, key);
+            } else {
+                return head;
             }
         }
-        return null;
     }
 
 }

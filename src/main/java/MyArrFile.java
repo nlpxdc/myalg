@@ -181,4 +181,11 @@ class MyArrList {
         System.out.println();
         System.out.println("---");
     }
+
+    //todo 有序数组插入添加一个值
+    int addValInSort(int key) {
+        //先要搜索到待插入的位置
+        //返回idx，当前插入值key的idx
+        return 0;
+    }
 }
