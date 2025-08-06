@@ -29,10 +29,12 @@ class MySearchApp {
         avl.traverseInOrderByAll();
 //        TreeNode search = avl.search(5);
 //        TreeNode search1 = avl.search(6);
-        TreeNode treeNode = avl.searchIter(5);
-        TreeNode treeNode1 = avl.searchIter(6);
-        TreeNode byKeyToAddParent = avl.getByKeyToAddParent(5);
-        TreeNode byKeyToAddParent1 = avl.getByKeyToAddParent(6);
+//        TreeNode treeNode = avl.searchIter(5);
+//        TreeNode treeNode1 = avl.searchIter(6);
+//        TreeNode byKeyToAddParent = avl.getByKeyToAddParent(5);
+//        TreeNode byKeyToAddParent1 = avl.getByKeyToAddParent(6);
+//        TreeNode byKeyToAddParentIter = avl.getByKeyToAddParentIter(5);
+        TreeNode byKeyToAddParentIter1 = avl.getByKeyToAddParentIter(6);
 
 //        SingleLinkList singleLinkList = new SingleLinkList(ary);
 //        singleLinkList.traverse();
@@ -325,6 +327,12 @@ class Avl {
                 }
             }
         }
+    }
+
+    //todo 这个递归是否可以用中序遍历？
+
+    TreeNode getByKeyToAddParentIter(int key) {
+        return null;
     }
 
 }
