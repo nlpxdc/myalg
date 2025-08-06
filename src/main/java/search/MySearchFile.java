@@ -32,6 +32,8 @@ class MySearchApp {
         singleLinkList.traverse();
         LinkNode byKey = singleLinkList.findByKey(5);
         LinkNode byKey1 = singleLinkList.findByKey(6);
+        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
+        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
 
     }
 
@@ -321,6 +323,15 @@ class SingleLinkList {
     LinkNode findByKey(int key) {
         LinkNode node = innerFindByKey(head, key);
         return node;
+    }
+
+    LinkNode findByKeyIter(int key) {
+        for (LinkNode current = head; current != null; current = current.next) {
+            if (current.key == key) {
+                return current;
+            }
+        }
+        return null;
     }
 
     LinkNode innerFindByKey(LinkNode head, int key) {
