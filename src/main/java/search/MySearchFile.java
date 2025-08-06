@@ -26,22 +26,22 @@ class MySearchApp {
         Avl avl = new Avl(ary);
 //        avl.traverseInOrder();
 //        avl.traverseInOrderByAddrIdx();
-//        avl.traverseInOrderByAll();
+        avl.traverseInOrderByAll();
 //        TreeNode search = avl.search(5);
 //        TreeNode search1 = avl.search(6);
 //        TreeNode treeNode = avl.searchIter(5);
 //        TreeNode treeNode1 = avl.searchIter(6);
 
-        SingleLinkList singleLinkList = new SingleLinkList(ary);
-        singleLinkList.traverse();
-        LinkNode byKey = singleLinkList.findByKey(5);
-        LinkNode byKey1 = singleLinkList.findByKey(6);
-        LinkNode byKeyToAddPrev = singleLinkList.findByKeyToAddPrev(5);
-        LinkNode byKeyToAddPrev1 = singleLinkList.findByKeyToAddPrev(6);
-//        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
-//        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
-        LinkNode byKeyToAddPrevIter = singleLinkList.findByKeyToAddPrevIter(5);
-        LinkNode byKeyToAddPrevIter1 = singleLinkList.findByKeyToAddPrevIter(6);
+//        SingleLinkList singleLinkList = new SingleLinkList(ary);
+//        singleLinkList.traverse();
+//        LinkNode byKey = singleLinkList.findByKey(5);
+//        LinkNode byKey1 = singleLinkList.findByKey(6);
+//        LinkNode byKeyToAddPrev = singleLinkList.findByKeyToAddPrev(5);
+//        LinkNode byKeyToAddPrev1 = singleLinkList.findByKeyToAddPrev(6);
+////        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
+////        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
+//        LinkNode byKeyToAddPrevIter = singleLinkList.findByKeyToAddPrevIter(5);
+//        LinkNode byKeyToAddPrevIter1 = singleLinkList.findByKeyToAddPrevIter(6);
 
     }
 
