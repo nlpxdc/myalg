@@ -19,8 +19,10 @@ class MySearchApp {
 //        int i1 = idxOfIter(ary, 14);
 //        int i3 = idxOfRecur(ary, 14);
 //        int i5 = idxOfIterInterpolation(ary, 14);
-        Bbst bbst = new Bbst(ary);
-        bbst.traverseInOrder();
+        Avl avl = new Avl(ary);
+        avl.traverseInOrder();
+        TreeNode search = avl.search(5);
+        TreeNode search1 = avl.search(6);
 
     }
 
@@ -149,12 +151,12 @@ class TreeNode {
     }
 }
 
-class Bbst {
+class Avl {
     TreeNode root;
     int size;
 
     //根据有序数组初始化平衡二叉搜索树
-    Bbst(int[] ary) {
+    Avl(int[] ary) {
         if (ary == null || ary.length == 0) {
             root = null;
             return;
@@ -191,6 +193,31 @@ class Bbst {
         if (root.right != null) {
             innerTraverseInOrder(root.right);
         }
+    }
+
+    TreeNode search(int val) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode node = innerSearch(root, val);
+        return node;
+    }
+
+    TreeNode innerSearch(TreeNode currentRoot, int val) {
+        if (currentRoot == null) {
+            return null;
+        }
+        if (currentRoot.val == val) {
+            return currentRoot;
+        } else {
+            if (currentRoot.left != null) {
+                return innerSearch(currentRoot.left, val);
+            }
+            if (currentRoot.right != null) {
+                return innerSearch(currentRoot.right, val);
+            }
+        }
+        return null;
     }
 
 }
