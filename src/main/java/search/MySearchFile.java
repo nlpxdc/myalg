@@ -29,8 +29,10 @@ class MySearchApp {
         avl.traverseInOrderByAll();
 //        TreeNode search = avl.search(5);
 //        TreeNode search1 = avl.search(6);
-//        TreeNode treeNode = avl.searchIter(5);
-//        TreeNode treeNode1 = avl.searchIter(6);
+        TreeNode treeNode = avl.searchIter(5);
+        TreeNode treeNode1 = avl.searchIter(6);
+        TreeNode byKeyToAddParent = avl.getByKeyToAddParent(5);
+        TreeNode byKeyToAddParent1 = avl.getByKeyToAddParent(6);
 
 //        SingleLinkList singleLinkList = new SingleLinkList(ary);
 //        singleLinkList.traverse();
@@ -291,6 +293,38 @@ class Avl {
             }
         }
         return null;
+    }
+
+    TreeNode getByKeyToAddParent(int key) {
+        TreeNode node = innerGetByKeyToAddParent(null, root, key);
+        return node;
+    }
+
+    TreeNode innerGetByKeyToAddParent(TreeNode currentParent, TreeNode currentRoot, int key) {
+        if (currentParent == null && currentRoot == null) {
+            return new TreeNode(-1);
+        }
+        if (currentRoot == null) {
+            return currentParent;
+        } else {
+            if (key == currentRoot.key) {
+                return null;
+            } else {
+                if (key < currentRoot.key) {
+                    if (currentRoot.left != null) {
+                        return innerGetByKeyToAddParent(currentRoot, currentRoot.left, key);
+                    } else {
+                        return currentRoot;
+                    }
+                } else {
+                    if (currentRoot.right != null) {
+                        return innerGetByKeyToAddParent(currentRoot, currentRoot.right, key);
+                    } else {
+                        return currentRoot;
+                    }
+                }
+            }
+        }
     }
 
 }
