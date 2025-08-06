@@ -1,5 +1,6 @@
 package search;
 
+import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 
 //查找第一个或者最后一个，查找多个的话就是字符串匹配，正则表达式，状态机了，有一整套完善的
@@ -39,6 +40,8 @@ class MySearchApp {
         LinkNode byKeyToAddPrev1 = singleLinkList.findByKeyToAddPrev(6);
 //        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
 //        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
+        LinkNode byKeyToAddPrevIter = singleLinkList.findByKeyToAddPrevIter(5);
+        LinkNode byKeyToAddPrevIter1 = singleLinkList.findByKeyToAddPrevIter(6);
 
     }
 
@@ -306,6 +309,7 @@ class LinkNode {
 
 //todo 还有双链表，会更加简单些
 
+//这样树是不是也会更难一些？但是如果树也有指针指向父母节点，是不是就会也好些？
 class SingleLinkList {
     LinkNode head;
 //    int size;
@@ -361,6 +365,25 @@ class SingleLinkList {
             }
         }
         return null;
+    }
+
+    LinkNode findByKeyToAddPrevIter(int key) {
+        for (LinkNode prev = null, current = head; current != null; prev = current, current = current.next) {
+            if (key == current.key) {
+                return null;
+            } else {
+                if (current.next == null) {
+                    return current;
+                } else {
+                    if (key < current.key) {
+                        return prev;
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+        return new LinkNode(-1);
     }
 
     LinkNode innerFindByKey(LinkNode head, int key) {
