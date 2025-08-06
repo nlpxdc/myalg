@@ -182,7 +182,7 @@ class MyArrList {
         System.out.println("---");
     }
 
-    //todo 有序数组插入添加一个值 二分查找
+    //todo 有序数组插入添加一个值 二分查找会更快，单个迭代也可以，值前后判断即可应为是有序的
     int addValInSort(int key) {
         //先要搜索到待插入的位置idx
         //返回idx，当前插入值key的idx

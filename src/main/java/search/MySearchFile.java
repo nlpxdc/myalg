@@ -35,6 +35,8 @@ class MySearchApp {
         singleLinkList.traverse();
         LinkNode byKey = singleLinkList.findByKey(5);
         LinkNode byKey1 = singleLinkList.findByKey(6);
+        LinkNode byKeyToAddPrev = singleLinkList.findByKeyToAddPrev(5);
+        LinkNode byKeyToAddPrev1 = singleLinkList.findByKeyToAddPrev(6);
 //        LinkNode byKeyIter = singleLinkList.findByKeyIter(5);
 //        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
 
@@ -343,6 +345,13 @@ class SingleLinkList {
         return node;
     }
 
+    //如果key存在就返回null，没有待插入的位置
+    //如果key不存在就返回待插入的前置父节点
+    LinkNode findByKeyToAddPrev(int key) {
+        LinkNode node = innerFindByKeyToAddPrev(null, head, key);
+        return node;
+    }
+
     LinkNode findByKeyIter(int key) {
         for (LinkNode current = head; current != null; current = current.next) {
             if (current.key == key) {
@@ -363,6 +372,25 @@ class SingleLinkList {
                 return innerFindByKey(head.next, key);
             } else {
                 return null;
+            }
+        }
+    }
+
+    LinkNode innerFindByKeyToAddPrev(LinkNode prev, LinkNode head, int key) {
+        if (prev == null && head == null) {
+            return new LinkNode(-1);
+        }
+        if (head.key == key) {
+            return null;
+        } else {
+            if (head.next != null) {
+                if (key < head.key) {
+                    return prev;
+                } else {
+                    return innerFindByKeyToAddPrev(head, head.next, key);
+                }
+            } else {
+                return head;
             }
         }
     }
