@@ -21,12 +21,15 @@ class MySearchApp {
 //        int i1 = idxOfIter(ary, 14);
 //        int i3 = idxOfRecur(ary, 14);
 //        int i5 = idxOfIterInterpolation(ary, 14);
-        Avl avl = new Avl(ary);
-        avl.traverseInOrder();
-        avl.traverseInOrderByAddrIdx();
-        avl.traverseInOrderByAll();
-        TreeNode search = avl.search(5);
-        TreeNode search1 = avl.search(6);
+//        Avl avl = new Avl(ary);
+//        avl.traverseInOrder();
+//        avl.traverseInOrderByAddrIdx();
+//        avl.traverseInOrderByAll();
+//        TreeNode search = avl.search(5);
+//        TreeNode search1 = avl.search(6);
+
+        SingleLinkList singleLinkList = new SingleLinkList(ary);
+        singleLinkList.traverse();
 
     }
 
@@ -261,6 +264,48 @@ class Avl {
             }
         }
         return null;
+    }
+
+}
+
+class LinkNode {
+    int key;
+    String addrIdx;
+    LinkNode next;
+
+    LinkNode(int key) {
+        this.key = key;
+        int randInt = ThreadLocalRandom.current().nextInt(100, 999);
+        this.addrIdx = Integer.toString(randInt, 17);
+    }
+}
+
+class SingleLinkList {
+    LinkNode head;
+//    int size;
+
+    SingleLinkList(int[] ary) {
+        if (ary == null || ary.length <=0) {
+            return;
+        }
+        LinkNode node = innerBuildList(ary, 0, ary.length-1);
+        this.head = node;
+    }
+
+    LinkNode innerBuildList(int[] ary, int lowIdx, int highIdx) {
+        if (lowIdx > highIdx) {
+            return null;
+        }
+        int key = ary[lowIdx];
+        LinkNode node = new LinkNode(key);
+        node.next = innerBuildList(ary, lowIdx+1, highIdx);
+        return node;
+    }
+
+    void traverse() {
+        for (LinkNode current = head; current != null; current = current.next) {
+            System.out.print(String.format("[%d->%s],", current.key, current.addrIdx));
+        }
     }
 
 }
