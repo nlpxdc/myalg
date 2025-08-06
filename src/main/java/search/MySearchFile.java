@@ -304,6 +304,8 @@ class LinkNode {
     }
 }
 
+//todo 还有双链表，会更加简单些
+
 class SingleLinkList {
     LinkNode head;
 //    int size;

@@ -241,7 +241,7 @@ class MyDLinkList {
 //        System.out.println();
 //    }
 
-    //todo 有序链表插入添加一个key 前后首尾双指针，类二分查找
+    //todo 有序链表插入添加一个key 前后首尾双指针，类二分查找，实现更容易些
     boolean addValInSort(MyDLinkNode node) {
         //先要搜索到待插入的位置，前置节点父节点
         //如果已经有了，返回false，代表插入失败
