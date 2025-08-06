@@ -362,7 +362,7 @@ class SingleLinkList {
             if (head.next != null) {
                 return innerFindByKey(head.next, key);
             } else {
-                return head;
+                return null;
             }
         }
     }
