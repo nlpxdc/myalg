@@ -182,10 +182,11 @@ class MyArrList {
         System.out.println("---");
     }
 
-    //todo 有序数组插入添加一个值
+    //todo 有序数组插入添加一个值 二分查找
     int addValInSort(int key) {
-        //先要搜索到待插入的位置
+        //先要搜索到待插入的位置idx
         //返回idx，当前插入值key的idx
+        //如果已经有了，返回-1，代表插入失败
         return 0;
     }
 }
