@@ -267,21 +267,6 @@ class Avl {
         return node;
     }
 
-    TreeNode searchIter(int key) {
-        for (TreeNode current = root; current != null; ) {
-            if (current.key == key) {
-                return current;
-            } else {
-                if (key < current.key) {
-                    current = current.left;
-                } else {
-                    current = current.right;
-                }
-            }
-        }
-        return null;
-    }
-
     TreeNode innerSearch(TreeNode currentRoot, int key) {
         if (currentRoot == null) {
             return null;
@@ -299,37 +284,54 @@ class Avl {
         return null;
     }
 
-    TreeNode getByKeyToAddParent(int key) {
-        TreeNode node = innerGetByKeyToAddParent(null, root, key);
-        return node;
-    }
-
-    TreeNode innerGetByKeyToAddParent(TreeNode currentParent, TreeNode currentRoot, int key) {
-        if (currentParent == null && currentRoot == null) {
-            return new TreeNode(-1);
-        }
-        if (currentRoot == null) {
-            return currentParent;
-        } else {
-            if (key == currentRoot.key) {
-                return null;
+    TreeNode searchIter(int key) {
+        for (TreeNode current = root; current != null; ) {
+            if (current.key == key) {
+                return current;
             } else {
-                if (key < currentRoot.key) {
-                    if (currentRoot.left != null) {
-                        return innerGetByKeyToAddParent(currentRoot, currentRoot.left, key);
-                    } else {
-                        return currentRoot;
-                    }
+                if (key < current.key) {
+                    current = current.left;
                 } else {
-                    if (currentRoot.right != null) {
-                        return innerGetByKeyToAddParent(currentRoot, currentRoot.right, key);
-                    } else {
-                        return currentRoot;
-                    }
+                    current = current.right;
                 }
             }
         }
+        return null;
     }
+
+
+
+//    TreeNode getByKeyToAddParent(int key) {
+//        TreeNode node = innerGetByKeyToAddParent(null, root, key);
+//        return node;
+//    }
+//
+//    TreeNode innerGetByKeyToAddParent(TreeNode currentParent, TreeNode currentRoot, int key) {
+//        if (currentParent == null && currentRoot == null) {
+//            return new TreeNode(-1);
+//        }
+//        if (currentRoot == null) {
+//            return currentParent;
+//        } else {
+//            if (key == currentRoot.key) {
+//                return null;
+//            } else {
+//                if (key < currentRoot.key) {
+//                    if (currentRoot.left != null) {
+//                        return innerGetByKeyToAddParent(currentRoot, currentRoot.left, key);
+//                    } else {
+//                        return currentRoot;
+//                    }
+//                } else {
+//                    if (currentRoot.right != null) {
+//                        return innerGetByKeyToAddParent(currentRoot, currentRoot.right, key);
+//                    } else {
+//                        return currentRoot;
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 //    //todo 这个递归是否可以用中序遍历？
 //    TreeNode getByKeyToAddParentInOrder(int key) {
@@ -374,9 +376,9 @@ class Avl {
 //        return null;
 //    }
 
-    TreeNode getByKeyToAddParentIter(int key) {
-        return null;
-    }
+//    TreeNode getByKeyToAddParentIter(int key) {
+//        return null;
+//    }
 
 }
 
