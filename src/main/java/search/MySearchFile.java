@@ -334,25 +334,43 @@ class Avl {
     //todo 这个递归是否可以用中序遍历？
     TreeNode getByKeyToAddParentInOrder(int key) {
         LimitQueue prevNodeList = new LimitQueue(2);
+        if (root == null) {
+            return new TreeNode(-1);
+        }
         TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, root, key);
-        prevNodeList.traverse();
+//        prevNodeList.traverse();
         return treeNode;
     }
 
     TreeNode innerGetByKeyToAddParentInOrder(LimitQueue prevNodeList, TreeNode currentRoot, int key) {
         if (currentRoot.left != null) {
-            TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.left, key);
+            return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.left, key);
         }
-        visitNode(prevNodeList, currentRoot);
+        TreeNode treeNode = visitNode(prevNodeList, currentRoot, key);
+        if (treeNode != null) {
+            return treeNode;
+        }
         if (currentRoot.right != null) {
-            TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.right, key);
+            return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.right, key);
         }
         return null;
     }
 
-    void visitNode(LimitQueue prevNodeList,TreeNode treeNode) {
+    TreeNode visitNode(LimitQueue prevNodeList,TreeNode treeNode, int key) {
 //        System.out.println(treeNode);
         prevNodeList.offer(treeNode);
+        TreeNode lowTreeNode = prevNodeList.getTreeNode(0);
+        TreeNode highTreeNode = prevNodeList.getTreeNode(1);
+        if (key == lowTreeNode.key || key == highTreeNode.key) {
+            return null;
+        }
+        if (key < lowTreeNode.key) {
+            return null;
+        } else if (key > highTreeNode.key) {
+            return null;
+        } else {
+            return lowTreeNode;
+        }
     }
 
     TreeNode getByKeyToAddParentIter(int key) {
