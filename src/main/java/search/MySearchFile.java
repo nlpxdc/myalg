@@ -167,7 +167,7 @@ class MySearchApp {
     //递归版本时间O(h)O(depth)或O(logn) + 空间O(n) 迭代版时间O(h)O(depth)O(logn) + 空间O(1)
     //根据有序数组，构造avl，普通递归二分法（用中间节点作为根）
     //根据Avl，做查找（二分思想） 递归版 迭代版
-    //todo 根据Avl，做查找，并返回jdk类似的插入位置 递归版 迭代版
+    //根据Avl，做查找，并返回jdk类似的插入位置 递归版 迭代版 不要啥都中序遍历，二叉树本身设计的结构往下走就是logn
 
 }
 
@@ -326,6 +326,11 @@ class Avl {
         }
     }
 
+    //迭代到最后没有的时候，上个前个节点就是要返回的节点了
+    //因为如果限制key不重复，那么相等返回null情况下，在没有的时候，一定不会和已有的节点位置重复
+    //一定是挂在某个节点下面的，那既然是挂在某个几点下面，那必定是那个位置是null空的，才能挂，所以一直到currentRoot是null就好了，就直接看parent就好了
+    //parent 因为不能回溯，所以每次递归或者迭代要带下去，这样不用循环往复一遍，不然肯定要从头往复一遍，并且要临时记录下需要的数据
+    //所以也就是search判断==的进阶版，往前一步即可
     TreeNode findInsertParentIter(int key) {
         if (root == null) {
             return new TreeNode(-1);
@@ -372,7 +377,7 @@ class Avl {
 //        }
 //    }
 
-//    //todo 这个递归是否可以用中序遍历？
+//    //这个递归是否可以用中序遍历？ 不能 业务场景不匹配
 //    TreeNode getByKeyToAddParentInOrder(int key) {
 //        LimitQueue prevNodeList = new LimitQueue(2);
 //        if (root == null) {
