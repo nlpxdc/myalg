@@ -34,7 +34,9 @@ class MySearchApp {
 //        TreeNode byKeyToAddParent = avl.getByKeyToAddParent(5);
 //        TreeNode byKeyToAddParent1 = avl.getByKeyToAddParent(6);
 //        TreeNode byKeyToAddParentIter = avl.getByKeyToAddParentIter(5);
-        TreeNode byKeyToAddParentIter1 = avl.getByKeyToAddParentIter(6);
+//        TreeNode byKeyToAddParentIter1 = avl.getByKeyToAddParentIter(6);
+//        TreeNode byKeyToAddParentInOrder = avl.getByKeyToAddParentInOrder(5);
+        TreeNode byKeyToAddParentInOrder1 = avl.getByKeyToAddParentInOrder(6);
 
 //        SingleLinkList singleLinkList = new SingleLinkList(ary);
 //        singleLinkList.traverse();
@@ -330,6 +332,28 @@ class Avl {
     }
 
     //todo 这个递归是否可以用中序遍历？
+    TreeNode getByKeyToAddParentInOrder(int key) {
+        LimitQueue prevNodeList = new LimitQueue(size);
+        TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, root, key);
+        prevNodeList.traverse();
+        return treeNode;
+    }
+
+    TreeNode innerGetByKeyToAddParentInOrder(LimitQueue prevNodeList, TreeNode currentRoot, int key) {
+        if (currentRoot.left != null) {
+            TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.left, key);
+        }
+        visitNode(prevNodeList, currentRoot);
+        if (currentRoot.right != null) {
+            TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.right, key);
+        }
+        return null;
+    }
+
+    void visitNode(LimitQueue prevNodeList,TreeNode treeNode) {
+//        System.out.println(treeNode);
+        prevNodeList.offer(treeNode);
+    }
 
     TreeNode getByKeyToAddParentIter(int key) {
         return null;
@@ -466,6 +490,36 @@ class SingleLinkList {
                 return head;
             }
         }
+    }
+
+}
+
+class LimitQueue {
+    LinkedList<TreeNode> nodeList;
+    int limitSize;
+
+    LimitQueue(int limitSize) {
+        nodeList = new LinkedList<>();
+        this.limitSize = limitSize;
+    }
+
+    void offer(TreeNode treeNode) {
+        if (nodeList.size() > limitSize) {
+            nodeList.poll();
+        }
+        nodeList.offer(treeNode);
+    }
+
+    TreeNode getTreeNode(int idx) {
+        TreeNode treeNode = nodeList.get(idx);
+        return treeNode;
+    }
+
+    void traverse() {
+        for (TreeNode treeNode : nodeList) {
+            System.out.print(treeNode.key+",");
+        }
+        System.out.println();
     }
 
 }
