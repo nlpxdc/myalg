@@ -346,31 +346,32 @@ class Avl {
         if (currentRoot.left != null) {
             return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.left, key);
         }
-        TreeNode treeNode = visitNode(prevNodeList, currentRoot, key);
-        if (treeNode != null) {
-            return treeNode;
+
+        TreeNode lowTreeNode = null;
+        if (prevNodeList.nodeList.size() >=1) {
+            lowTreeNode = prevNodeList.getTreeNode(0);
         }
+        TreeNode highTreeNode = null;
+        if (prevNodeList.nodeList.size() >=2) {
+            highTreeNode = prevNodeList.getTreeNode(1);
+        }
+//        if (lowTreeNode ==)
+
+//        if (key == lowTreeNode.key || key == highTreeNode.key) {
+//            return null;
+//        }
+//        if (key < lowTreeNode.key) {
+//            return null;
+//        } else if (key > highTreeNode.key) {
+//            return null;
+//        } else {
+//            return lowTreeNode;
+//        }
+
         if (currentRoot.right != null) {
             return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.right, key);
         }
         return null;
-    }
-
-    TreeNode visitNode(LimitQueue prevNodeList,TreeNode treeNode, int key) {
-//        System.out.println(treeNode);
-        prevNodeList.offer(treeNode);
-        TreeNode lowTreeNode = prevNodeList.getTreeNode(0);
-        TreeNode highTreeNode = prevNodeList.getTreeNode(1);
-        if (key == lowTreeNode.key || key == highTreeNode.key) {
-            return null;
-        }
-        if (key < lowTreeNode.key) {
-            return null;
-        } else if (key > highTreeNode.key) {
-            return null;
-        } else {
-            return lowTreeNode;
-        }
     }
 
     TreeNode getByKeyToAddParentIter(int key) {
