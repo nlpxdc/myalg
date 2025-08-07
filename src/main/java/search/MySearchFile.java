@@ -39,6 +39,8 @@ class MySearchApp {
 //        TreeNode byKeyToAddParentInOrder1 = avl.getByKeyToAddParentInOrder(6);
         TreeNode insertParent = avl.findInsertParent(5);
         TreeNode insertParent1 = avl.findInsertParent(6);
+        TreeNode insertParentIter = avl.findInsertParentIter(5);
+        TreeNode insertParentIter1 = avl.findInsertParentIter(6);
 
 //        SingleLinkList singleLinkList = new SingleLinkList(ary);
 //        singleLinkList.traverse();
@@ -322,6 +324,19 @@ class Avl {
         } else {
             return innerFindInsertParent(currentRoot, currentRoot.right, key);
         }
+    }
+
+    TreeNode findInsertParentIter(int key) {
+        if (root == null) {
+            return new TreeNode(-1);
+        }
+        TreeNode parent = null;
+        for (TreeNode current = root; current != null; ) {
+            if (key == current.key) return null;
+            parent = current;
+            current = key < current.key ? current.left : current.right;
+        }
+        return parent;
     }
 
 
