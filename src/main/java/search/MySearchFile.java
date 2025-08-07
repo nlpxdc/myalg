@@ -36,7 +36,7 @@ class MySearchApp {
 //        TreeNode byKeyToAddParentIter = avl.getByKeyToAddParentIter(5);
 //        TreeNode byKeyToAddParentIter1 = avl.getByKeyToAddParentIter(6);
 //        TreeNode byKeyToAddParentInOrder = avl.getByKeyToAddParentInOrder(5);
-        TreeNode byKeyToAddParentInOrder1 = avl.getByKeyToAddParentInOrder(6);
+//        TreeNode byKeyToAddParentInOrder1 = avl.getByKeyToAddParentInOrder(6);
 
 //        SingleLinkList singleLinkList = new SingleLinkList(ary);
 //        singleLinkList.traverse();
@@ -331,48 +331,48 @@ class Avl {
         }
     }
 
-    //todo 这个递归是否可以用中序遍历？
-    TreeNode getByKeyToAddParentInOrder(int key) {
-        LimitQueue prevNodeList = new LimitQueue(2);
-        if (root == null) {
-            return new TreeNode(-1);
-        }
-        TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, root, key);
-//        prevNodeList.traverse();
-        return treeNode;
-    }
-
-    TreeNode innerGetByKeyToAddParentInOrder(LimitQueue prevNodeList, TreeNode currentRoot, int key) {
-        if (currentRoot.left != null) {
-            return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.left, key);
-        }
-
-        TreeNode lowTreeNode = null;
-        if (prevNodeList.nodeList.size() >=1) {
-            lowTreeNode = prevNodeList.getTreeNode(0);
-        }
-        TreeNode highTreeNode = null;
-        if (prevNodeList.nodeList.size() >=2) {
-            highTreeNode = prevNodeList.getTreeNode(1);
-        }
-//        if (lowTreeNode ==)
-
-//        if (key == lowTreeNode.key || key == highTreeNode.key) {
-//            return null;
+//    //todo 这个递归是否可以用中序遍历？
+//    TreeNode getByKeyToAddParentInOrder(int key) {
+//        LimitQueue prevNodeList = new LimitQueue(2);
+//        if (root == null) {
+//            return new TreeNode(-1);
 //        }
-//        if (key < lowTreeNode.key) {
-//            return null;
-//        } else if (key > highTreeNode.key) {
-//            return null;
-//        } else {
-//            return lowTreeNode;
-//        }
+//        TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, root, key);
+////        prevNodeList.traverse();
+//        return treeNode;
+//    }
 
-        if (currentRoot.right != null) {
-            return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.right, key);
-        }
-        return null;
-    }
+//    TreeNode innerGetByKeyToAddParentInOrder(LimitQueue prevNodeList, TreeNode currentRoot, int key) {
+//        if (currentRoot.left != null) {
+//            return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.left, key);
+//        }
+//
+//        TreeNode lowTreeNode = null;
+//        if (prevNodeList.nodeList.size() >=1) {
+//            lowTreeNode = prevNodeList.getTreeNode(0);
+//        }
+//        TreeNode highTreeNode = null;
+//        if (prevNodeList.nodeList.size() >=2) {
+//            highTreeNode = prevNodeList.getTreeNode(1);
+//        }
+////        if (lowTreeNode ==)
+//
+////        if (key == lowTreeNode.key || key == highTreeNode.key) {
+////            return null;
+////        }
+////        if (key < lowTreeNode.key) {
+////            return null;
+////        } else if (key > highTreeNode.key) {
+////            return null;
+////        } else {
+////            return lowTreeNode;
+////        }
+//
+//        if (currentRoot.right != null) {
+//            return innerGetByKeyToAddParentInOrder(prevNodeList, currentRoot.right, key);
+//        }
+//        return null;
+//    }
 
     TreeNode getByKeyToAddParentIter(int key) {
         return null;
@@ -380,165 +380,166 @@ class Avl {
 
 }
 
-class LinkNode {
-    int key;
-    String addrIdx;
-    LinkNode next;
-
-    LinkNode(int key) {
-        this.key = key;
-        int randInt = ThreadLocalRandom.current().nextInt(100, 999);
-        this.addrIdx = Integer.toString(randInt, 17);
-    }
-}
+//class LinkNode {
+//    int key;
+//    String addrIdx;
+//    LinkNode next;
+//
+//    LinkNode(int key) {
+//        this.key = key;
+//        int randInt = ThreadLocalRandom.current().nextInt(100, 999);
+//        this.addrIdx = Integer.toString(randInt, 17);
+//    }
+//}
 
 //todo 还有双链表，会更加简单些
 //双链表的递归，O(n/2)，少一半时间，但达不到O(logn)，没有办法每次迭代都减半，因为没有全局位置，数组有全局连续位置
 //这个不需要prev前引用，因为直接能返回往上找，但是从双端递归，所以依旧是前后双递归引用，找到位置后，往前直接能找到，所以形式上和但链表一样，但是含义不一样
 //迭代写法直观看到减半
 
+//todo 如果要写dummy 一致性代码
 //这样树是不是也会更难一些？但是如果树也有指针指向父母节点，是不是就会也好些？
 //单链表的递归，O(n)，递归方法需要借助prev引用来临时记录，返回前节点，不然就需要遍历完以后借助临时记录数据再遍历一次到指定位置才行
 //所以递归需要外加一个前指针用来临时保存，传递到下次递归中，这样就不用再遍历一边回头找了，而且这个是尾递归
 //迭代写法ok
-class SingleLinkList {
-    LinkNode head;
-//    int size;
+//class SingleLinkList {
+//    LinkNode head;
+////    int size;
+//
+//    SingleLinkList(int[] ary) {
+//        if (ary == null || ary.length <=0) {
+//            return;
+//        }
+////        LinkNode node = innerBuildList(ary, 0, ary.length-1);
+//        LinkNode head = new LinkNode(ary[0]);
+//
+//        LinkNode current = head;
+//        for (int i = 1; i < ary.length; i++, current = current.next) {
+//            int key = ary[i];
+//            LinkNode next = new LinkNode(key);
+//            current.next = next;
+//        }
+//        this.head = head;
+//    }
+//
+//    LinkNode innerBuildList(int[] ary, int lowIdx, int highIdx) {
+//        if (lowIdx > highIdx) {
+//            return null;
+//        }
+//        int key = ary[lowIdx];
+//        LinkNode node = new LinkNode(key);
+//        node.next = innerBuildList(ary, lowIdx+1, highIdx);
+//        return node;
+//    }
+//
+//    void traverse() {
+//        for (LinkNode current = head; current != null; current = current.next) {
+//            System.out.print(String.format("[%d->%s],", current.key, current.addrIdx));
+//        }
+//    }
+//
+//    LinkNode findByKey(int key) {
+//        LinkNode node = innerFindByKey(head, key);
+//        return node;
+//    }
+//
+//    //如果key存在就返回null，没有待插入的位置
+//    //如果key不存在就返回待插入的前置父节点
+//    LinkNode findByKeyToAddPrev(int key) {
+//        LinkNode node = innerFindByKeyToAddPrev(null, head, key);
+//        return node;
+//    }
+//
+//    LinkNode findByKeyIter(int key) {
+//        for (LinkNode current = head; current != null; current = current.next) {
+//            if (current.key == key) {
+//                return current;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    LinkNode findByKeyToAddPrevIter(int key) {
+//        for (LinkNode prev = null, current = head; current != null; prev = current, current = current.next) {
+//            if (key == current.key) {
+//                return null;
+//            } else {
+//                if (current.next == null) {
+//                    return current;
+//                } else {
+//                    if (key < current.key) {
+//                        return prev;
+//                    } else {
+//                        continue;
+//                    }
+//                }
+//            }
+//        }
+//        return new LinkNode(-1);
+//    }
+//
+//    LinkNode innerFindByKey(LinkNode head, int key) {
+//        if (head == null) {
+//            return null;
+//        }
+//        if (head.key == key) {
+//            return head;
+//        } else {
+//            if (head.next != null) {
+//                return innerFindByKey(head.next, key);
+//            } else {
+//                return null;
+//            }
+//        }
+//    }
+//
+//    LinkNode innerFindByKeyToAddPrev(LinkNode prev, LinkNode head, int key) {
+//        if (prev == null && head == null) {
+//            return new LinkNode(-1);
+//        }
+//        if (head.key == key) {
+//            return null;
+//        } else {
+//            if (head.next != null) {
+//                if (key < head.key) {
+//                    return prev;
+//                } else {
+//                    return innerFindByKeyToAddPrev(head, head.next, key);
+//                }
+//            } else {
+//                return head;
+//            }
+//        }
+//    }
+//
+//}
 
-    SingleLinkList(int[] ary) {
-        if (ary == null || ary.length <=0) {
-            return;
-        }
-//        LinkNode node = innerBuildList(ary, 0, ary.length-1);
-        LinkNode head = new LinkNode(ary[0]);
-
-        LinkNode current = head;
-        for (int i = 1; i < ary.length; i++, current = current.next) {
-            int key = ary[i];
-            LinkNode next = new LinkNode(key);
-            current.next = next;
-        }
-        this.head = head;
-    }
-
-    LinkNode innerBuildList(int[] ary, int lowIdx, int highIdx) {
-        if (lowIdx > highIdx) {
-            return null;
-        }
-        int key = ary[lowIdx];
-        LinkNode node = new LinkNode(key);
-        node.next = innerBuildList(ary, lowIdx+1, highIdx);
-        return node;
-    }
-
-    void traverse() {
-        for (LinkNode current = head; current != null; current = current.next) {
-            System.out.print(String.format("[%d->%s],", current.key, current.addrIdx));
-        }
-    }
-
-    LinkNode findByKey(int key) {
-        LinkNode node = innerFindByKey(head, key);
-        return node;
-    }
-
-    //如果key存在就返回null，没有待插入的位置
-    //如果key不存在就返回待插入的前置父节点
-    LinkNode findByKeyToAddPrev(int key) {
-        LinkNode node = innerFindByKeyToAddPrev(null, head, key);
-        return node;
-    }
-
-    LinkNode findByKeyIter(int key) {
-        for (LinkNode current = head; current != null; current = current.next) {
-            if (current.key == key) {
-                return current;
-            }
-        }
-        return null;
-    }
-
-    LinkNode findByKeyToAddPrevIter(int key) {
-        for (LinkNode prev = null, current = head; current != null; prev = current, current = current.next) {
-            if (key == current.key) {
-                return null;
-            } else {
-                if (current.next == null) {
-                    return current;
-                } else {
-                    if (key < current.key) {
-                        return prev;
-                    } else {
-                        continue;
-                    }
-                }
-            }
-        }
-        return new LinkNode(-1);
-    }
-
-    LinkNode innerFindByKey(LinkNode head, int key) {
-        if (head == null) {
-            return null;
-        }
-        if (head.key == key) {
-            return head;
-        } else {
-            if (head.next != null) {
-                return innerFindByKey(head.next, key);
-            } else {
-                return null;
-            }
-        }
-    }
-
-    LinkNode innerFindByKeyToAddPrev(LinkNode prev, LinkNode head, int key) {
-        if (prev == null && head == null) {
-            return new LinkNode(-1);
-        }
-        if (head.key == key) {
-            return null;
-        } else {
-            if (head.next != null) {
-                if (key < head.key) {
-                    return prev;
-                } else {
-                    return innerFindByKeyToAddPrev(head, head.next, key);
-                }
-            } else {
-                return head;
-            }
-        }
-    }
-
-}
-
-class LimitQueue {
-    LinkedList<TreeNode> nodeList;
-    int limitSize;
-
-    LimitQueue(int limitSize) {
-        nodeList = new LinkedList<>();
-        this.limitSize = limitSize;
-    }
-
-    void offer(TreeNode treeNode) {
-        if (nodeList.size() >= limitSize) {
-            nodeList.poll();
-        }
-        nodeList.offer(treeNode);
-    }
-
-    TreeNode getTreeNode(int idx) {
-        TreeNode treeNode = nodeList.get(idx);
-        return treeNode;
-    }
-
-    void traverse() {
-        for (TreeNode treeNode : nodeList) {
-            System.out.print(treeNode.key+",");
-        }
-        System.out.println();
-    }
-
-}
+//class LimitQueue {
+//    LinkedList<TreeNode> nodeList;
+//    int limitSize;
+//
+//    LimitQueue(int limitSize) {
+//        nodeList = new LinkedList<>();
+//        this.limitSize = limitSize;
+//    }
+//
+//    void offer(TreeNode treeNode) {
+//        if (nodeList.size() >= limitSize) {
+//            nodeList.poll();
+//        }
+//        nodeList.offer(treeNode);
+//    }
+//
+//    TreeNode getTreeNode(int idx) {
+//        TreeNode treeNode = nodeList.get(idx);
+//        return treeNode;
+//    }
+//
+//    void traverse() {
+//        for (TreeNode treeNode : nodeList) {
+//            System.out.print(treeNode.key+",");
+//        }
+//        System.out.println();
+//    }
+//
+//}
