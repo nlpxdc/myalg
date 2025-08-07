@@ -333,7 +333,7 @@ class Avl {
 
     //todo 这个递归是否可以用中序遍历？
     TreeNode getByKeyToAddParentInOrder(int key) {
-        LimitQueue prevNodeList = new LimitQueue(size);
+        LimitQueue prevNodeList = new LimitQueue(2);
         TreeNode treeNode = innerGetByKeyToAddParentInOrder(prevNodeList, root, key);
         prevNodeList.traverse();
         return treeNode;
@@ -504,7 +504,7 @@ class LimitQueue {
     }
 
     void offer(TreeNode treeNode) {
-        if (nodeList.size() > limitSize) {
+        if (nodeList.size() >= limitSize) {
             nodeList.poll();
         }
         nodeList.offer(treeNode);
