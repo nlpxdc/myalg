@@ -37,6 +37,8 @@ class MySearchApp {
 //        TreeNode byKeyToAddParentIter1 = avl.getByKeyToAddParentIter(6);
 //        TreeNode byKeyToAddParentInOrder = avl.getByKeyToAddParentInOrder(5);
 //        TreeNode byKeyToAddParentInOrder1 = avl.getByKeyToAddParentInOrder(6);
+        TreeNode insertParent = avl.findInsertParent(5);
+        TreeNode insertParent1 = avl.findInsertParent(6);
 
 //        SingleLinkList singleLinkList = new SingleLinkList(ary);
 //        singleLinkList.traverse();
@@ -48,6 +50,7 @@ class MySearchApp {
 ////        LinkNode byKeyIter1 = singleLinkList.findByKeyIter(6);
 //        LinkNode byKeyToAddPrevIter = singleLinkList.findByKeyToAddPrevIter(5);
 //        LinkNode byKeyToAddPrevIter1 = singleLinkList.findByKeyToAddPrevIter(6);
+
 
     }
 
@@ -169,8 +172,8 @@ class MySearchApp {
 class TreeNode {
     int key;
     String addrIdx;
-    TreeNode left;
-    TreeNode right;
+    TreeNode left, right;
+//    TreeNode right;
 
     TreeNode(int key) {
         this.key = key;
@@ -299,6 +302,27 @@ class Avl {
         return null;
     }
 
+    TreeNode findInsertParent(int key) {
+        return innerFindInsertParent(null, root, key);
+    }
+
+    TreeNode innerFindInsertParent(TreeNode parent, TreeNode currentRoot, int key) {
+        if (currentRoot == null) {
+            //两种情况，第一种如果parent也是null，说明是一个空树，那么此时返回一个虚拟节点DUMMY
+            //第二种parent不是null，说明递归到后续了，但是此时当前节点null说明到最后了，那么肯定要挂在这里，那么就是返回当前父节点
+            return parent == null ? new TreeNode(-1) : parent;
+        }
+        if (key == currentRoot.key) {
+            //找到相同key，说明已经存在返回null
+            return null;
+        }
+        if (key < currentRoot.key) {
+            //递归左子树，在做子树中去寻找
+            return innerFindInsertParent(currentRoot, currentRoot.left, key);
+        } else {
+            return innerFindInsertParent(currentRoot, currentRoot.right, key);
+        }
+    }
 
 
 //    TreeNode getByKeyToAddParent(int key) {
