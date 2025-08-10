@@ -8,4 +8,8 @@ class MyHashApp {
         int i = str.hashCode();
     }
 
+    //极简
+    //校验 CRC
+    //一致性 ketama一致性hash环
+
 }
