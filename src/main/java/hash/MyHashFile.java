@@ -19,12 +19,34 @@ class MyHashApp {
         int num11 = 0B10;
 
         String str = "hello hashab";
+        int i1 = crc32(str.getBytes(StandardCharsets.UTF_8));
         byte[] bytes = addHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i2 = multiHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i3 = xorAndBitMoveHash(str.getBytes(StandardCharsets.UTF_8), 8);
 //        int i4 = rollingHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i5 = fnv1aHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i = str.hashCode();
+    }
+
+    //最快，不要求均匀散列，不抗碰撞恶意
+    //校验一致性，文件 以太网
+    // CRC32 反转按照lsb 最终异或安全要求避免全0 查表 优化手段 static静态初始化表
+    //反转多项式 0xEDB88320是为了 LSB-First
+    static final int POLY = 0x04C11DB7;
+    static int crc32(byte[] data) {
+        int hash = 0;
+        for (int i = 0; i < data.length; i++) {
+            byte byteData = data[i];
+            hash = (byteData & 0xFF) << 24;
+            for (int j = 0; j < 8; j++) {
+                if ((hash & 0x80000000) != 0) {
+                    hash = (hash << 1) ^ POLY;
+                } else {
+                    hash <<= 1;
+                }
+            }
+        }
+        return hash;
     }
 
     //教学 计算下标，索引位置
@@ -103,24 +125,7 @@ class MyHashApp {
     //hash冲突解决的算法？
 
 
-    //校验 CRC32 反转按照lsb 最终异或安全要求避免全0 查表 优化手段 static静态初始化表
-    //反转多项式 0xEDB88320是为了 LSB-First
-    static final int POLY = 0x04C11DB7;
-    static int crc32(byte[] data) {
-        int hash = 0;
-        for (int i = 0; i < data.length; i++) {
-            byte byteData = data[i];
-            hash = (byteData & 0xFF) << 24;
-            for (int j = 0; j < 8; j++) {
-                if ((hash & 0x80000000) != 0) {
-                    hash = (hash << 1) ^ POLY;
-                } else {
-                    hash <<= 1;
-                }
-            }
-        }
-        return hash;
-    }
+
 
     //一致性 ketama一致性hash环
 
