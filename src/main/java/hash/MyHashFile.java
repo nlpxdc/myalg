@@ -21,7 +21,7 @@ class MyHashApp {
         String str = "hello hashab";
         byte[] bytes = addHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i2 = multiHash(str.getBytes(StandardCharsets.UTF_8), 8);
-        int i3 = xorHash(str.getBytes(StandardCharsets.UTF_8), 8);
+        int i3 = xorAndBitMoveHash(str.getBytes(StandardCharsets.UTF_8), 8);
 //        int i4 = rollingHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i5 = fnv1aHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i = str.hashCode();
@@ -32,6 +32,8 @@ class MyHashApp {
     //32位=32*4=128bit位=16字节，16位=8字节，int 4字节 2个字 long 8字节 4个字
     //target的hash空间int不够大 long还行 md5再翻倍，但是还是不安全，所以还是要256bit，区块链？ sha2-256 sha2-512？
     //sha3？
+    //mod是让int的4字节空间，变小变成可用下标索引桶位置，圈定更小范围
+    //关键是原空间4字节空间的打散程度
 
     static byte[] intToByteAry(int key) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
@@ -41,7 +43,7 @@ class MyHashApp {
     }
 
 //    1 加法hash
-    //就是用上所有数据，这个不能算
+    //就是用上所有数据，这个不能算 不是打散手段
     static byte[] addHash(byte[] data, int mod) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
@@ -61,10 +63,10 @@ class MyHashApp {
         }
         return hash;
     }
-//    3 异或hash和位移（2的倍数）
+//    3 异或hash和位移（2的倍数） 异或位移一般同时出现
     //非线性 原有混合 位移扩散（但和乘以质数扩散不一样），然后两者结合导致雪崩 50%bit改变
-    //这个其实接近fnv-1a了
-    static int xorHash(byte[] data, int mod) {
+    //这个其实接近fnv-1a了，这里先异或再位移了。也可以先位移再异或，这样较差？
+    static int xorAndBitMoveHash(byte[] data, int mod) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
             byte byteData = data[i];
@@ -93,6 +95,7 @@ class MyHashApp {
             byte byteData = data[i];
             hash ^= byteData & 0xFF;
             hash *= 0x01000193; //prime
+            //这里还可以加个位移
         }
         hash = hash % mod;
         return hash;
