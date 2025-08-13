@@ -1,5 +1,6 @@
 package hash;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
 class MyHashApp {
@@ -32,15 +33,23 @@ class MyHashApp {
     //target的hash空间int不够大 long还行 md5再翻倍，但是还是不安全，所以还是要256bit，区块链？ sha2-256 sha2-512？
     //sha3？
 
+    static byte[] intToByteAry(int key) {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4);
+        byteBuffer.putInt(key);
+        byte[] array = byteBuffer.array();
+        return array;
+    }
+
 //    1 加法hash
     //就是用上所有数据，这个不能算
-    static int addHash(byte[] data, int mod) {
+    static byte[] addHash(byte[] data, int mod) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
             byte byteData = data[i];
             hash = (hash + byteData) % mod;
         }
-        return hash;
+//        return hash;
+        return intToByteAry(hash);
     }
 //    2 乘法hash
     //这个算
