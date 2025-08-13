@@ -122,6 +122,8 @@ class MyHashApp {
         hash = hash % mod;
         return hash;
     }
+
+    
     //hash冲突解决的算法？
 
 
