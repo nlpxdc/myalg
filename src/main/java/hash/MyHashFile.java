@@ -19,10 +19,10 @@ class MyHashApp {
         int num11 = 0B10;
 
         String str = "hello hashab";
-        int i1 = addHash(str.getBytes(StandardCharsets.UTF_8), 8);
+        byte[] bytes = addHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i2 = multiHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i3 = xorHash(str.getBytes(StandardCharsets.UTF_8), 8);
-        int i4 = rollingHash(str.getBytes(StandardCharsets.UTF_8), 8);
+//        int i4 = rollingHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i5 = fnv1aHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i = str.hashCode();
     }
@@ -52,7 +52,7 @@ class MyHashApp {
         return intToByteAry(hash);
     }
 //    2 乘法hash
-    //这个算
+    //这个算 扩散 高低位 不同于位移，乘法是质数
     static int multiHash(byte[] data, int mod) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
@@ -61,7 +61,9 @@ class MyHashApp {
         }
         return hash;
     }
-//    3 异或hash
+//    3 异或hash和位移（2的倍数）
+    //非线性 原有混合 位移扩散（但和乘以质数扩散不一样），然后两者结合导致雪崩 50%bit改变
+    //这个其实接近fnv-1a了
     static int xorHash(byte[] data, int mod) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
@@ -73,16 +75,18 @@ class MyHashApp {
         hash = hash % mod;
         return hash;
     }
-//    4 旋转hash&滚动hash
-    static int rollingHash(byte[] data, int mod) {
-        int hash = 0;
-        for (int i = 0; i < data.length; i++) {
-            byte byteData = data[i];
-            hash = (hash*257+byteData) % mod; //prime
-        }
-        return hash;
-    }
+////    4 旋转hash&滚动hash
+//    //可以不要，同乘法，只是质数不同
+//    static int rollingHash(byte[] data, int mod) {
+//        int hash = 0;
+//        for (int i = 0; i < data.length; i++) {
+//            byte byteData = data[i];
+//            hash = (hash*257+byteData) % mod; //prime
+//        }
+//        return hash;
+//    }
 //    5 组合hash FNV-1a
+    //这个其实是异或加乘法了
     static int fnv1aHash(byte[] data, int mod) {
         int hash = 0x811C9DC5; //offset
         for (int i = 0; i < data.length; i++) {
