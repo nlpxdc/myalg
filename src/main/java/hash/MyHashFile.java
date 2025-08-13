@@ -102,7 +102,24 @@ class MyHashApp {
     }
     //hash冲突解决的算法？
 
-    //校验 CRC
+
+    //校验 CRC32
+    static final int POLY = 0x04C11DB7;
+    static int crc32(byte[] data) {
+        int hash = 0;
+        for (int i = 0; i < data.length; i++) {
+            byte byteData = data[i];
+            hash = (byteData & 0xFF) << 24;
+            for (int j = 0; j < 8; j++) {
+                if ((hash & 0x80000000) != 0) {
+                    hash = (hash << 1) ^ POLY;
+                } else {
+                    hash <<= 1;
+                }
+            }
+        }
+        return hash;
+    }
 
     //一致性 ketama一致性hash环
 
