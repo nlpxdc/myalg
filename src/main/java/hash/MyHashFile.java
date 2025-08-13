@@ -103,7 +103,8 @@ class MyHashApp {
     //hash冲突解决的算法？
 
 
-    //校验 CRC32
+    //校验 CRC32 反转按照lsb 最终异或安全要求避免全0 查表 优化手段 static静态初始化表
+    //反转多项式 0xEDB88320是为了 LSB-First
     static final int POLY = 0x04C11DB7;
     static int crc32(byte[] data) {
         int hash = 0;
