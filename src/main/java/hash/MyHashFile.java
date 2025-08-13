@@ -32,7 +32,7 @@ class MyHashApp {
     //32位=32*4=128bit位=16字节，16位=8字节，int 4字节 2个字 long 8字节 4个字
     //target的hash空间int不够大 long还行 md5再翻倍，但是还是不安全，所以还是要256bit，区块链？ sha2-256 sha2-512？
     //sha3？
-    //mod是让int的4字节空间，变小变成可用下标索引桶位置，圈定更小范围
+    //mod是让int的4字节空间，变小变成可用下标索引桶位置，圈定更小范围，那这里就要解决hash冲突了
     //关键是原空间4字节空间的打散程度
 
     static byte[] intToByteAry(int key) {
