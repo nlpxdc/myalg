@@ -69,6 +69,7 @@ class LinkTreeApp {
     }
 }
 
+//root 根节点 裸指针版本
 class TreeNode {
     int val;
     TreeNode left;
@@ -79,6 +80,7 @@ class TreeNode {
     }
 }
 
+//树的封装版本
 class LinkTree {
     TreeNode root;
     int size;

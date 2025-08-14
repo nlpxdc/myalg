@@ -46,6 +46,7 @@ class MyLinkApp {
     }
 }
 
+//head 头节点 裸指针版本
 class MyLinkNode {
     int val;
     MyLinkNode next;
@@ -164,6 +165,7 @@ class MyLinkUtil {
 
 }
 
+//链表的封装版本
 class MyLinkList {
     MyLinkNode head;
     int size; //?

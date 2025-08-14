@@ -141,3 +141,13 @@ class MyHashApp {
 
 
 }
+
+class Node<K,V> {
+    K k;
+    V v;
+    Node<K,V> next;
+}
+
+class ZipHashMap<K,V> {
+
+}
