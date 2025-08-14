@@ -26,6 +26,18 @@ class MyHashApp {
 //        int i4 = rollingHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i5 = fnv1aHash(str.getBytes(StandardCharsets.UTF_8), 8);
         int i = str.hashCode();
+
+        ZipHashMap<String, Object> zipHashMap = new ZipHashMap<>();
+        zipHashMap.put("cjf", 3);
+        zipHashMap.put("davidc", 5L);
+        zipHashMap.put("nlpx", 4);
+        zipHashMap.put("nlpxdc", 8);
+        zipHashMap.put("davidchen", 9);
+        zipHashMap.put("chenjiefei", 10);
+
+        Object cjf = zipHashMap.get("cjf");
+        Object davidc = zipHashMap.get("davidc");
+        Object xxx = zipHashMap.get("xxx");
     }
 
     //目的为了校验检错，要求快，成本低，够准，判断准确率大，纠错码 成本高，慢，因为冗余多，但是链路物理链路真的慢又容易出错，要用纠错码，更多容易划算，比如卫星通讯？深空通讯？
@@ -132,7 +144,6 @@ class MyHashApp {
 
 
     //hash冲突解决的算法？
-
 
 
 
