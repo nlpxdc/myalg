@@ -34,6 +34,7 @@ class MyHashApp {
     // CRC32 反转按照lsb 最终异或安全要求避免全0 查表 优化手段 static静态初始化表
     //反转多项式 0xEDB88320是为了 LSB-First
     //只为检验，不为散开，所以堆散列要求不高，所以不能算正统的hash算法，要求的是快
+    //就是求和，所以是加法求和而已
     static final int POLY = 0x04C11DB7; //对应的prime质数？
     static int crc32(byte[] data) {
         int hash = 0;
@@ -70,6 +71,7 @@ class MyHashApp {
 
 //    1 加法hash
     //就是用上所有数据，这个不能算 不是打散手段
+    //就是求和检验而已，相当于crc，但是求和是怎么都不能少的，是基础
     static byte[] addHash(byte[] data, int mod) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
@@ -91,7 +93,8 @@ class MyHashApp {
     }
 //    3 异或hash和位移（2的倍数） 异或位移一般同时出现
     //非线性 原有混合 位移扩散（但和乘以质数扩散不一样），然后两者结合导致雪崩 50%bit改变
-    //这个其实接近fnv-1a了，这里先异或再位移了。也可以先位移再异或，这样较差？
+    //这个其实接近fnv-1a了，这里先异或再位移了。
+    // 也可以先位移再异或，这样较差？
     static int xorAndBitMoveHash(byte[] data, int mod) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
