@@ -5,39 +5,52 @@ import java.nio.charset.StandardCharsets;
 
 class MyHashApp {
     public static void main(String[] args) {
-        System.out.println("aa");
-        int num = 0xFF;
-        int num2 = 0xff;
-        int num3 = 0xFf;
-        int num4 = 0xfF;
-        int num5 = 0Xff;
-        int num6 = 0Xf;
-        int num7 = 077;
-        int num8 = 076;
-        int num9 = 0b1;
-        int num10 = 0B0;
-        int num11 = 0B10;
+//        System.out.println("aa");
+//        int num = 0xFF;
+//        int num2 = 0xff;
+//        int num3 = 0xFf;
+//        int num4 = 0xfF;
+//        int num5 = 0Xff;
+//        int num6 = 0Xf;
+//        int num7 = 077;
+//        int num8 = 076;
+//        int num9 = 0b1;
+//        int num10 = 0B0;
+//        int num11 = 0B10;
 
-        String str = "hello hashab";
-        int i1 = crc32(str.getBytes(StandardCharsets.UTF_8));
-        byte[] bytes = addHash(str.getBytes(StandardCharsets.UTF_8), 8);
-        int i2 = multiHash(str.getBytes(StandardCharsets.UTF_8), 8);
-        int i3 = xorAndBitMoveHash(str.getBytes(StandardCharsets.UTF_8), 8);
-//        int i4 = rollingHash(str.getBytes(StandardCharsets.UTF_8), 8);
-        int i5 = fnv1aHash(str.getBytes(StandardCharsets.UTF_8), 8);
-        int i = str.hashCode();
+//        String str = "hello hashab";
+//        int i1 = crc32(str.getBytes(StandardCharsets.UTF_8));
+//        byte[] bytes = addHash(str.getBytes(StandardCharsets.UTF_8), 8);
+//        int i2 = multiHash(str.getBytes(StandardCharsets.UTF_8), 8);
+//        int i3 = xorAndBitMoveHash(str.getBytes(StandardCharsets.UTF_8), 8);
+////        int i4 = rollingHash(str.getBytes(StandardCharsets.UTF_8), 8);
+//        int i5 = fnv1aHash(str.getBytes(StandardCharsets.UTF_8), 8);
+//        int i = str.hashCode();
 
-        ZipHashMap<String, Object> zipHashMap = new ZipHashMap<>();
-        zipHashMap.put("cjf", 3);
-        zipHashMap.put("davidc", 5L);
-        zipHashMap.put("nlpx", 4);
-        zipHashMap.put("nlpxdc", 8);
-        zipHashMap.put("davidchen", 9);
-        zipHashMap.put("chenjiefei", 10);
+//        ZipHashMap<String, Object> zipHashMap = new ZipHashMap<>();
+//        zipHashMap.put("cjf", 3);
+//        zipHashMap.put("davidc", 5L);
+//        zipHashMap.put("nlpx", 4);
+//        zipHashMap.put("nlpxdc", 8);
+//        zipHashMap.put("davidchen", 9);
+//        zipHashMap.put("chenjiefei", 10);
+//
+//        Object cjf = zipHashMap.get("cjf");
+//        Object davidc = zipHashMap.get("davidc");
+//        Object xxx = zipHashMap.get("xxx");
 
-        Object cjf = zipHashMap.get("cjf");
-        Object davidc = zipHashMap.get("davidc");
-        Object xxx = zipHashMap.get("xxx");
+        ProbeHashMap<String, Object> probeHashMap = new ProbeHashMap<>();
+        probeHashMap.put("cjf", 3);
+        probeHashMap.put("davidc", 5L);
+        probeHashMap.put("nlpx", 4);
+        probeHashMap.put("nlpxdc", 8);
+        probeHashMap.put("davidchen", 9);
+        probeHashMap.put("chenjiefei", 10);
+
+        Object cjf = probeHashMap.get("cjf");
+        Object davidc = probeHashMap.get("davidc");
+        Object xxx = probeHashMap.get("xxx");
+        Object davidchen = probeHashMap.get("davidchen");
     }
 
     //目的为了校验检错，要求快，成本低，够准，判断准确率大，纠错码 成本高，慢，因为冗余多，但是链路物理链路真的慢又容易出错，要用纠错码，更多容易划算，比如卫星通讯？深空通讯？
@@ -179,6 +192,41 @@ class ZipHashMap<K,V> {
         for (Node<K,V> current = buckets[idx]; current != null; current = current.next) {
             if (current.k.equals(k)) {
                 return current.v;
+            }
+        }
+        return null;
+    }
+
+}
+
+class ProbeHashMap<K,V> {
+    Object[] keys = new Object[4];
+    Object[] vals = new Object[4];
+
+    public void put(K k, V v) {
+        int idx = (k.hashCode() & 0x7fffffff) % keys.length;
+        for (int i = 0; i < keys.length; i++) {
+            if (keys[idx] != null) {
+                idx = (idx+1) % keys.length;
+            }
+        }
+        if (keys[idx] == null) {
+            keys[idx] = k;
+            vals[idx] = v;
+        } else {
+//            throw new RuntimeException("放满了");
+            System.out.println(String.format("放满了, %s->%s", k, v));
+            return;
+        }
+    }
+
+    public V get(K k) {
+        int idx = (k.hashCode() & 0x7fffffff) % keys.length;
+        for (int i = 0; i < keys.length && keys[idx] != null; i++) {
+            if (keys[idx] == k) {
+                return (V) vals[idx];
+            } else {
+                idx = (idx+1) % keys.length;
             }
         }
         return null;
