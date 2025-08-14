@@ -33,7 +33,8 @@ class MyHashApp {
     //校验一致性，文件 以太网
     // CRC32 反转按照lsb 最终异或安全要求避免全0 查表 优化手段 static静态初始化表
     //反转多项式 0xEDB88320是为了 LSB-First
-    static final int POLY = 0x04C11DB7;
+    //只为检验，不为散开，所以堆散列要求不高，所以不能算正统的hash算法，要求的是快
+    static final int POLY = 0x04C11DB7; //对应的prime质数？
     static int crc32(byte[] data) {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {
@@ -58,6 +59,7 @@ class MyHashApp {
     //sha3？
     //mod是让int的4字节空间，变小变成可用下标索引桶位置，圈定更小范围，那这里就要解决hash冲突了
     //关键是原空间4字节空间的打散程度
+    //这个是必须够散列才行，主要是给hash表用的，要够散列和均匀，区域数后要平均
 
     static byte[] intToByteAry(int key) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
