@@ -146,8 +146,31 @@ class Node<K,V> {
     K k;
     V v;
     Node<K,V> next;
+
+    Node(K k, V v) {
+        this.k = k;
+        this.v = v;
+    }
 }
 
 class ZipHashMap<K,V> {
+    Node<K,V>[] buckets = new Node[8];
+
+    public void put(K k, V v) {
+        int idx = (k.hashCode() & 0x7fffffff) % buckets.length;
+        Node<K,V> node = new Node<>(k, v);
+        node.next = buckets[idx];
+        buckets[idx] = node;
+    }
+
+    public V get(K k) {
+        int idx = (k.hashCode() & 0x7fffffff) % buckets.length;
+        for (Node<K,V> current = buckets[idx]; current != null; current = current.next) {
+            if (current.k.equals(k)) {
+                return current.v;
+            }
+        }
+        return null;
+    }
 
 }
