@@ -185,6 +185,7 @@ class ZipHashMap<K,V> {
     Node<K,V>[] buckets = new Node[8];
 
     public void put(K k, V v) {
+        //0x7fffffff 最高位清零
         int idx = (k.hashCode() & 0x7fffffff) % buckets.length;
         Node<K,V> node = new Node<>(k, v);
         node.next = buckets[idx];
