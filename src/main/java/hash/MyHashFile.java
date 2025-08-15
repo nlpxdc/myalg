@@ -177,6 +177,10 @@ class Node<K,V> {
     }
 }
 
+//装填因子很重要，目标的装填因子，loadFactor，就是你预估需要插入的总数/要设计的大小 或实际数量/设计大小，约等于0.75 0.6浪费 0.8拉链长度大，性能退化O(n)
+//泊松 Poisson分布 λ P(8) 涉及到拉链长度，即冲突概率
+//随即涉及到扩容 arraylist 翻倍
+//不所容，真要缩容，弄一个更小的进行putAll 复制克隆
 class ZipHashMap<K,V> {
     Node<K,V>[] buckets = new Node[8];
 
@@ -186,6 +190,21 @@ class ZipHashMap<K,V> {
         node.next = buckets[idx];
         buckets[idx] = node;
     }
+
+    //删除方法
+    // 链表桶
+    //示例代码 真删节点
+//    for (Node<K,V> prev = null, e = first; e != null; ) {
+//        if (key.equals(e.key)) {
+//            if (prev == null) first = e.next;
+//            else prev.next = e.next;
+//            e.value = null; // help GC
+//            size--; //维护元数据
+//            break;
+//        }
+//    }
+
+    //更新忽略，先查找，再更新原节点的内容，结构不变，结构不变就还好
 
     public V get(K k) {
         int idx = (k.hashCode() & 0x7fffffff) % buckets.length;
@@ -199,7 +218,11 @@ class ZipHashMap<K,V> {
 
 }
 
+//也有装填因子 只是计算不太一样 扩容也存在
+//线性探测 0.7 二次探测 0.85 双重hash 0.85 步长？
 class ProbeHashMap<K,V> {
+    //对其，也可以一个数组？好像不合适，就是kv两个，两个数组，做对应，怎么解决并发写入？因为有2步，但是结构必须是这个
+    //应该可以的也用entry，一个数组即可，看看
     Object[] keys = new Object[4];
     Object[] vals = new Object[4];
 
@@ -219,6 +242,9 @@ class ProbeHashMap<K,V> {
             return;
         }
     }
+
+    //删除方法
+    //更新方法，和节点有点不同，这是一一对应的
 
     public V get(K k) {
         int idx = (k.hashCode() & 0x7fffffff) % keys.length;
