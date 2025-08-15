@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
+//vector
 class MyArrApp {
     public static void main(String[] args) {
 //        MyArrList myArrList = new MyArrList();

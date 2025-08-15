@@ -1,6 +1,6 @@
 package graph;
 
-//简单图
+//简单图 二维ary 二维vector
 class MatrixGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
@@ -9,11 +9,9 @@ class MatrixGraphApp {
 
 class MatrixGraph {
     int[][] matrix;
-    int vertexSize;
 
-    MatrixGraph(int vertexSize) {
-        this.vertexSize = vertexSize;
-        this.matrix = new int[vertexSize][vertexSize];
+    MatrixGraph() {
+        int vertexMaxSize = 100;
+        this.matrix = new int[vertexMaxSize][vertexMaxSize];
     }
-
 }
