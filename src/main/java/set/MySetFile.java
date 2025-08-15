@@ -1,5 +1,7 @@
 package set;
 
+//几乎一一对应磁层的是map，无value的只有key的map，查找快速可以之际控制，时空复杂度，比线性表好多了
+//重要的注意的是比对hashcode实例地址级别==，还是逻辑等价值级别equals
 class MySetApp {
     public static void main(String[] args) {
         System.out.println("aa");
