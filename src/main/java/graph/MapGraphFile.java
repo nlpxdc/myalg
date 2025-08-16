@@ -8,11 +8,6 @@ class MapGraphApp {
     }
 }
 
-class Edge {
-    Integer from;
-    Integer to;
-}
-
 class MapGraph {
     Map<Edge, Integer> map;
 }
