@@ -5,6 +5,7 @@ import java.util.List;
 //其实图也一样定义，图还可以线性结构的三元组，边集合，依赖顶点集合 这种定义更本质，但算法友好度差，查慢
 // 这里的这种定义更本质
 //是节点 顶点的结构关系，可以直接操作节点，直观
+//遍历加visited
 class LinkKwayTreeApp {
     public static void main(String[] args) {
         System.out.println("aa");
