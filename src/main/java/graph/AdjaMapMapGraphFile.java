@@ -16,4 +16,9 @@ class AdjaMapMapGraph {
     AdjaMapMapGraph() {
         this.adjaMapMap = new HashMap<>();
     }
+
+    //遍历 traverse
+    //BFS
+    //DFS 无前中后，就一种
+    //判断有环
 }

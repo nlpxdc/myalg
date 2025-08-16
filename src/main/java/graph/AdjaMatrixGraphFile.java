@@ -14,4 +14,10 @@ class AdjaMatrixGraph {
         int vertexMaxSize = 100;
         this.adjaMatrix = new int[vertexMaxSize][vertexMaxSize];
     }
+
+    //遍历 traverse
+    //BFS
+    //DFS 无前中后，就一种
+    //判断有环
+
 }
