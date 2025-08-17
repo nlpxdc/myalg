@@ -19,8 +19,9 @@ class AdjaMapMapGraph {
     }
 
     //遍历 traverse
-    //BFS
-    //DFS 无中，有前后？默认约定前序 后序 逆后序？ 唯一等价？
-    //判断有环无环 dag 拓扑排序多个？
-    //树边 非树边 回边back 前向边forward 横叉边cross
+    //BFS visited bool数组
+    //DFS 无中，有前后？但对称，默认约定前序 后序 逆后序？ 唯一等价？
+    //判断有环无环 dag 拓扑排序多个？ bool数组->int数组 三色标记，结合入度为0开始，只有出没有入的点，可能有多个，也可能没有
+    //树边 非树边 回边back 前向边forward 横叉边cross 配合三色标记？
+    
 }
