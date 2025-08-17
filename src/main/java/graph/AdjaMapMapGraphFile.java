@@ -22,4 +22,5 @@ class AdjaMapMapGraph {
     //BFS
     //DFS 无中，有前后？默认约定前序 后序 逆后序？ 唯一等价？
     //判断有环无环 dag 拓扑排序多个？
+    //树边 非树边 回边back 前向边forward 横叉边cross
 }
