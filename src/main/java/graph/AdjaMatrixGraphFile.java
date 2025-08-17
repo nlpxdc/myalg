@@ -1,6 +1,8 @@
 package graph;
 
+//第三全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //简单图 多重图？ 二维ary 二维vector 冗余视图结构
+//有向带权图
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
@@ -15,9 +17,6 @@ class AdjaMatrixGraph {
         this.adjaMatrix = new int[vertexMaxSize][vertexMaxSize];
     }
 
-    //遍历 traverse
-    //BFS
-    //DFS 无前中后，就一种
-    //判断有环
+    //全源最短？
 
 }
