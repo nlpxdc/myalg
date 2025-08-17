@@ -1,5 +1,6 @@
 package tree.binarytree;
 
+//第三他人全局视角 的表示，一维数组的全局表示，表示树，必须有特别约束，否则是稀疏树，必须是完全树，二叉三叉都行
 //ary适合堆 （优先队列）
 class AryTreeApp {
     public static void main(String[] args) {

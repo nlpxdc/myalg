@@ -2,6 +2,7 @@ package tree.binarytree;
 
 import java.util.LinkedList;
 
+//第一自己视角 自然
 class LinkTreeApp {
     public static void main(String[] args) {
 //        TreeNode treeNodea1 = new TreeNode(1);
