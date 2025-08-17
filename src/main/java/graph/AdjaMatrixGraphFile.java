@@ -10,7 +10,7 @@ class AdjaMatrixGraphApp {
     }
 }
 
-//有向无权图
+//有向无权图 这个依赖邻接表
 class AdjaUnWeightedMatrixGraph {
     boolean[][] adjaMatrix;
 
@@ -20,7 +20,7 @@ class AdjaUnWeightedMatrixGraph {
     }
 }
 
-//有向带权图
+//有向带权图 这个更重要？因为看边权计算，这个更好
 class AdjaWeightedMatrixGraph {
     int[][] adjaMatrix;
 
