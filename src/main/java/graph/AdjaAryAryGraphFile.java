@@ -6,17 +6,17 @@ import java.util.Set;
 
 //第三全局视角 不是矩阵，如果是稀疏，可以转成稀疏矩阵，可以直接用（稀疏）矩阵的计算能力，解全局问题
 //有向图
-class AdjaMapMapGraphApp {
+class AdjaAryAryGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
 }
 
 //有向无权图 这个更重要，因为这个是结构相关的，权不影响结构
-class AdjaUnWeightedMapMapGraph {
+class AdjaUnWeightedMapSetGraph {
     Map<Integer, Set<Integer>> adjaMapMap;
 
-    AdjaUnWeightedMapMapGraph() {
+    AdjaUnWeightedMapSetGraph() {
         this.adjaMapMap = new HashMap<>();
     }
 
