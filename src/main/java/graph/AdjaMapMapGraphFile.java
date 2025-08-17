@@ -12,7 +12,7 @@ class AdjaMapMapGraphApp {
     }
 }
 
-//有向无权图
+//有向无权图 这个更重要，因为这个是结构相关的，权不影响结构
 class AdjaUnWeightedMapMapGraph {
     Map<Integer, Set<Integer>> adjaMapMap;
 
