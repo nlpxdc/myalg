@@ -10,6 +10,7 @@ import java.util.Set;
 
 //第三全局视角 不是矩阵，如果是稀疏，可以转成稀疏矩阵，可以直接用（稀疏）矩阵的计算能力，解全局问题
 //有向图
+//图处理 连通性 路径 流 割 环 匹配 覆盖 等关联问题 网络问题 处理边权和点权
 class AdjaAryAryGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");

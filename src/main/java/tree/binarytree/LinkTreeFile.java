@@ -3,6 +3,7 @@ package tree.binarytree;
 import java.util.LinkedList;
 
 //第一自己视角 自然
+//有序 良序 树处理良序，节点key值的大小，最大最小，排序，区间序列，分治问题
 class LinkTreeApp {
     public static void main(String[] args) {
 //        TreeNode treeNodea1 = new TreeNode(1);
