@@ -30,6 +30,7 @@ class AdjaUnWeightedMapSetGraph {
 
     //单向连通 双向连通，无向连通
     //无向底图 无向基图 弱连通
+    //有向图 单向连通
     //有向图 强连通
 
 }
