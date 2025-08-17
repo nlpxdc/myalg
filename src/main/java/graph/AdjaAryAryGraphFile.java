@@ -16,7 +16,7 @@ class AdjaAryAryGraphApp {
     }
 }
 
-//有向无权图 这个更重要，因为这个是结构相关的，权不影响结构
+//有向无权图 这个重要，因为这个是结构相关的，权不影响结构
 class AdjaUnWeightedMapSetGraph {
     Map<Integer, Set<Integer>> adjaMapMap;
 
@@ -39,7 +39,7 @@ class AdjaUnWeightedMapSetGraph {
 
 }
 
-//有向带权图
+//有向带权图 这个对于图来说最重要？带边权的计算
 class AdjaWeightedMapMapGraph {
     Map<Integer, Map<Integer, Integer>> adjaMapMap;
 
