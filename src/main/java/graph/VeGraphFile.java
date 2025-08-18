@@ -16,7 +16,8 @@ class WeightedEdge2 {
     Integer edgeWeight;
 }
 
-class VeGraph<Integer> {
+//忽略点权
+class VeGraph {
     Set<Integer> nodeSet;
     Set<WeightedEdge2> weightedEdgeSet;
 }
