@@ -4,6 +4,7 @@ import java.util.Set;
 
 //第一自己视角 和树节点一样的定义
 //节点定义 类似树节点，这里只关心节点顶点，不关心边和权重，因为不影响整体结构
+//以身入局，行走的角度
 class NodeGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
