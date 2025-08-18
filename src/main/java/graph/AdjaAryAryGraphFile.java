@@ -12,6 +12,7 @@ import java.util.Set;
 //有向图
 //图处理 连通性 路径 流 割 环 匹配 覆盖 等关联问题 网络问题
 //主要处理边权 还能处理点权 需要额外数组 或者 复杂对象支持
+//高维可以看到低维，二维看到一维
 class AdjaAryAryGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");

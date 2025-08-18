@@ -4,6 +4,7 @@ package graph;
 //二维数组的表示，表示图
 //简单图 多重图？ 二维ary 二维vector 冗余视图结构
 //有向图
+//高纬可以看到低维，二维看到一维
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
