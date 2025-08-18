@@ -12,14 +12,20 @@ class VeGraphApp {
     }
 }
 
-class WeightedEdge2 {
-    Integer from;
-    Integer to;
-    Integer edgeWeight;
+class WeightedNode2 {
+    int key;
+    int nodeWeight;
 }
 
-//忽略点权
+class WeightedEdge2 {
+    WeightedNode2 from;
+    WeightedNode2 to;
+    int edgeWeight;
+}
+
+//没有互相嵌套，就是正常定义，抽象定义
+
 class VeGraph {
-    Set<Integer> nodeSet;
+    Set<WeightedNode2> weightNodeSet;
     Set<WeightedEdge2> weightedEdgeSet;
 }
