@@ -24,16 +24,18 @@ class UnWeightedEdgeNode {
 
 //--------------------------------------------------
 
+//互相嵌套，互相依赖
+
+class WeightedEdge {
+    int edgeWeight;
+    //这里其实默认带方向了，看怎么定义，可以出，其实也可以是入，都是等价的没有优劣，总会有各自的坎，但是一般是出，约定俗成
+    WeightedEdgeNode neighbourNode;
+}
+
 // 不是无向，是有向！ 简单图 非自递归定义，节点含边（这个边也是对应一个节点的带权表示，key依旧是关键，weight次要），不是节点含自身节点
 //weight都等于1，就是有向无权图，因为关心边的权，所以就必须有边定义，就不能是自递归定义了
 class WeightedEdgeNode {
     int key;
 //    int nodeWeight;
     Set<WeightedEdge> neighbourEdgeSet;
-}
-
-class WeightedEdge {
-    //这里其实默认带方向了，看怎么定义，可以出，其实也可以是入，都是等价的没有优劣，总会有各自的坎，但是一般是出，约定俗成
-    WeightedEdgeNode neighbourNode;
-    int edgeWeight;
 }
