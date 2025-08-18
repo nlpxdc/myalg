@@ -4,19 +4,19 @@ import java.util.Set;
 
 //第0视角，非第一自己第三全局视角
 //适合按顺序批次流式的初始化init E是V²即VxV的子集
-class VEGraphApp {
+class VeGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
 }
 
-class Edge {
+class WeightedEdge2 {
     Integer from;
     Integer to;
-    Integer weight;
+    Integer edgeWeight;
 }
 
-class VeGraph<V> {
-    Set<V> vertexSet;
-    Set<Edge> edgeSet;
+class VeGraph<Integer> {
+    Set<Integer> nodeSet;
+    Set<WeightedEdge2> weightedEdgeSet;
 }
