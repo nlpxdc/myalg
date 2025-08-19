@@ -21,6 +21,7 @@ class WeightedNode2 {
     int nodeWeight;
 }
 
+//也可以命名Edge，如果无向图
 class WeightedArc2 {
     //其实也可以给编号，但是这个编号可以是计算属性，依赖节点from to计算出来即可，是个组合属性
 //    int arcKey; //计算属性，nodeKey组合，无向图不讲顺序有一边即可，有向图讲顺序要有两弧
