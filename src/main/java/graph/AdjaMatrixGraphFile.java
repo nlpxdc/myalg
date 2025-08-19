@@ -6,6 +6,8 @@ package graph;
 //有向图
 //高维可以看到低维，二维看到一维
 //没有以身入局，全局，按照二维处理，根据两个节点降维处理，索引处理，有邻接的优势，两次获取
+//逆邻接矩阵，就是邻接矩阵的转置
+//总体用的少
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
