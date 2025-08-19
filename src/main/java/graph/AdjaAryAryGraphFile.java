@@ -45,6 +45,7 @@ class AdjaUnWeightedMapSetGraph {
 }
 
 //有向带权图 这个对于图来说最重要？带边权的计算
+//默认都是出度
 class AdjaWeightedMapMapGraph {
     Map<Integer, Map<Integer, Integer>> adjaMapMap;
 
