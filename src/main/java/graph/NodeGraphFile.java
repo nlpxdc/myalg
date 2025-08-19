@@ -20,7 +20,7 @@ class NodeGraphApp {
 //应为不关心边权，所以只关心节点自身的关联，所以可以自递归定义
 //工程定义上带方向
 class UnWeightedArcNode {
-    int key;
+    int nodeKey;
     //可以带点权
 //    int nodeWeight;
     //无向，但是定义接口儿子，有点有向意思，可以有指回去的指针，但是不代表有向，只是容易回溯的手段而已
@@ -34,6 +34,7 @@ class UnWeightedArcNode {
 
 //如果无向的表示，必定是有一个对称的，共轭的？要同时维护，有向可以表示无向，无向不太能表示有向，多了一个维度
 class WeightedArc {
+//    int arcKey; //计算属性 上一个出度的node的nodeKey，和相邻节点的node的nodeKey决定，带方向，如果是无向图，nodeKey就是集合，不讲顺序，或者像上面一样，直接没有
     int arcWeight;
     //这里其实默认带方向了，看怎么定义，可以出，其实也可以是入，都是等价的没有优劣，总会有各自的坎，但是一般是出，约定俗成
     WeightedArcNode neighbourNode;
@@ -42,7 +43,7 @@ class WeightedArc {
 // 不是无向，是有向！ 简单图 非自递归定义，节点含边（这个边也是对应一个节点的带权表示，key依旧是关键，weight次要），不是节点含自身节点
 //weight都等于1，就是有向无权图，因为关心边的权，所以就必须有边定义，就不能是自递归定义了
 class WeightedArcNode {
-    int key;
+    int nodeKey;
 //    int nodeWeight;
     Set<WeightedArc> neighbourArcSet;
 }
