@@ -17,21 +17,21 @@ class VeGraphApp {
 }
 
 class WeightedNode2 {
-    int key;
+    int nodeKey;
     int nodeWeight;
 }
 
-class WeightedEdge2 {
-    //其实也可以给编号，但是这个编号可以是计算属性，依赖节点fromto计算出来即可，是个组合属性
-    int key;
+class WeightedArc2 {
+    //其实也可以给编号，但是这个编号可以是计算属性，依赖节点from to计算出来即可，是个组合属性
+//    int arcKey; //计算属性，nodeKey组合，无向图不讲顺序有一边即可，有向图讲顺序要有两弧
+    int arcWeight;
     WeightedNode2 from;
     WeightedNode2 to;
-    int edgeWeight;
 }
 
 //没有互相嵌套，就是正常定义，抽象定义
 
 class VeGraph {
     Set<WeightedNode2> weightNodeSet;
-    Set<WeightedEdge2> weightedEdgeSet;
+    Set<WeightedArc2> weightedArcSet;
 }
