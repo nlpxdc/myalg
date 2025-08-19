@@ -14,6 +14,7 @@ import java.util.Set;
 //主要处理边权 还能处理点权 需要额外数组 或者 复杂对象支持
 //高维可以看到低维，二维看到一维
 //没有以身入局，全局，按照二维处理，根据两个节点降维处理，索引处理，有邻接的优势，两次获取
+//还有逆邻接表，表示的都是入度，正常表示的都是出度
 class AdjaAryAryGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
