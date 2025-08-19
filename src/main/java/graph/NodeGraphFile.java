@@ -9,6 +9,7 @@ import java.util.Set;
 //一维数组其实也可以，就像完全二叉树，但是这里只能有一个一维数组，不能有第二个一维数组，但就是会浪费空间？完全乱说，直觉不对
 //因为有互相嵌套，不像树有规则制止，所以没法用一维数组来表示，放弃，因为会互相嵌套，循环依赖
 //因为这个抽象的定义，可以在更高维度也是这么表示的，互相嵌套
+//这个好像用的不多？
 class NodeGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
