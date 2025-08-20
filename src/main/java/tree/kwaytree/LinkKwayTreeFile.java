@@ -16,13 +16,13 @@ class LinkKwayTreeApp {
 
 //递归嵌套定义
 class LinkTreeNode {
-    int val;
+    int key;
     //这里直接用list吧，指描述结构定义，不描述具体实现
-    LinkTreeNode[] children; //也可以用java.util.List
+    List<LinkTreeNode> children; //也可以用java.util.List
 //    List<LinkTreeNode> children;
 
-    LinkTreeNode(int val) {
-        this.val = val;
+    LinkTreeNode(int key) {
+        this.key = key;
     }
 }
 
@@ -41,35 +41,35 @@ class LinkKwayTree {
 
     //DFS
     //pre order
-    void innerTraverseDfsPreOrder(LinkTreeNode node) {
-        System.out.print(node.val+",");
-        if (node.children != null && node.children.length > 0) {
-            for (int i = 0; i < node.children.length; i++) {
-                LinkTreeNode child = node.children[i];
-                innerTraverseDfsPreOrder(child);
-            }
-        }
-    }
-    void traverseDfsPreOrder() {
-        innerTraverseDfsPreOrder(root);
-        System.out.println();
-    }
-    void traverseDfsPreOrderStack() {}
+//    void innerTraverseDfsPreOrder(LinkTreeNode node) {
+//        System.out.print(node.val+",");
+//        if (node.children != null && node.children.length > 0) {
+//            for (int i = 0; i < node.children.length; i++) {
+//                LinkTreeNode child = node.children[i];
+//                innerTraverseDfsPreOrder(child);
+//            }
+//        }
+//    }
+//    void traverseDfsPreOrder() {
+//        innerTraverseDfsPreOrder(root);
+//        System.out.println();
+//    }
+//    void traverseDfsPreOrderStack() {}
     //post order
-    void innerTraverseDfsPostOrder(LinkTreeNode node) {
-        if (node.children != null && node.children.length > 0) {
-            for (int i = 0; i < node.children.length; i++) {
-                LinkTreeNode child = node.children[i];
-                innerTraverseDfsPostOrder(child);
-            }
-        }
-        System.out.print(node.val+",");
-    }
-    void traverseDfsPostOrder() {
-        innerTraverseDfsPostOrder(root);
-        System.out.println();
-    }
-    void traverseDfsPostOrderStack() {}
+//    void innerTraverseDfsPostOrder(LinkTreeNode node) {
+//        if (node.children != null && node.children.length > 0) {
+//            for (int i = 0; i < node.children.length; i++) {
+//                LinkTreeNode child = node.children[i];
+//                innerTraverseDfsPostOrder(child);
+//            }
+//        }
+//        System.out.print(node.val+",");
+//    }
+//    void traverseDfsPostOrder() {
+//        innerTraverseDfsPostOrder(root);
+//        System.out.println();
+//    }
+//    void traverseDfsPostOrderStack() {}
 
     //no in order
 
