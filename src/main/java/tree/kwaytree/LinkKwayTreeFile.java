@@ -6,6 +6,8 @@ import java.util.List;
 // 这里的这种定义更本质
 //是节点 顶点的结构关系，可以直接操作节点，直观
 //遍历加visited
+//这个比较特殊，和图的邻接节点的定义是一样的，但是在规则、语义上不一样，限制不同，可以用图的算法来写树，但是不能用树的算法来写图
+//这里可以先写下，因为太像了，作为基础，然后衍生拓展
 class LinkKwayTreeApp {
     public static void main(String[] args) {
         System.out.println("aa");
@@ -15,6 +17,7 @@ class LinkKwayTreeApp {
 //递归嵌套定义
 class LinkTreeNode {
     int val;
+    //这里直接用list吧，指描述结构定义，不描述具体实现
     LinkTreeNode[] children; //也可以用java.util.List
 //    List<LinkTreeNode> children;
 
