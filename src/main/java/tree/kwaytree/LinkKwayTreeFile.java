@@ -39,21 +39,41 @@ class LinkKwayTree {
 
     }
 
-    //DFS
-    //pre order
-//    void innerTraverseDfsPreOrder(LinkTreeNode node) {
-//        System.out.print(node.val+",");
-//        if (node.children != null && node.children.length > 0) {
-//            for (int i = 0; i < node.children.length; i++) {
-//                LinkTreeNode child = node.children[i];
-//                innerTraverseDfsPreOrder(child);
-//            }
+    void visit(LinkTreeNode node) {
+//        visitCurrent(node);
+        System.out.println(node.key+",");
+    }
+
+//    void visitCurrent(LinkTreeNode node) {
+//        System.out.println(node.key+",");
+//    }
+
+    //间接递归，不直观，但是抽方法的思想是好的
+//    void visitChildren(LinkTreeNode node) {
+//        for (int i = 0; i < node.children.size(); i++) {
+//            LinkTreeNode child = node.children.get(i);
+//            innerTraverseDfsPreOrder(child);
 //        }
 //    }
-//    void traverseDfsPreOrder() {
-//        innerTraverseDfsPreOrder(root);
-//        System.out.println();
-//    }
+
+    //DFS
+    //pre order
+    void innerTraverseDfsPreOrder(LinkTreeNode node) {
+        if (node == null) {
+            return;
+        }
+        //先访问当前节点，适用于初始化，序列化，克隆拷贝等场景
+        visit(node);
+        //在访问子节点列表
+        for (int i = 0; i < node.children.size(); i++) {
+            LinkTreeNode child = node.children.get(i);
+            innerTraverseDfsPreOrder(child);
+        }
+    }
+    void traverseDfsPreOrder() {
+        innerTraverseDfsPreOrder(root);
+        System.out.println();
+    }
 //    void traverseDfsPreOrderStack() {}
     //post order
 //    void innerTraverseDfsPostOrder(LinkTreeNode node) {
