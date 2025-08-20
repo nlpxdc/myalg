@@ -1,6 +1,7 @@
 package tree.kwaytree;
 
 import java.util.List;
+import java.util.Set;
 
 //其实图也一样定义，图还可以线性结构的三元组，边集合，依赖顶点集合 这种定义更本质，但算法友好度差，查慢
 // 这里的这种定义更本质
@@ -18,7 +19,7 @@ class LinkKwayTreeApp {
 class LinkTreeNode {
     int key;
     //这里直接用list吧，指描述结构定义，不描述具体实现
-    List<LinkTreeNode> children; //也可以用java.util.List
+    Set<LinkTreeNode> children; //也可以用java.util.List
 //    List<LinkTreeNode> children;
 
     LinkTreeNode(int key) {
@@ -49,6 +50,8 @@ class LinkKwayTree {
 //    }
 
     //间接递归，不直观，但是抽方法的思想是好的
+//    间接递归是“设计结果”而不是“实现偷懒”
+    //框架强制 尾递归优化 避免暴露内部 API
 //    void visitChildren(LinkTreeNode node) {
 //        for (int i = 0; i < node.children.size(); i++) {
 //            LinkTreeNode child = node.children.get(i);
