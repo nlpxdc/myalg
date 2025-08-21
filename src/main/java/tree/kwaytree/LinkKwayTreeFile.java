@@ -32,6 +32,7 @@ class LinkKwayTreeApp {
 
         LinkKwayTree tree = new LinkKwayTree(node1);
         tree.traverseDfsPreOrder();
+        tree.traverseDfsPostOrder();
     }
 
 }
@@ -93,16 +94,15 @@ class LinkKwayTree {
         }
         //先访问当前节点，适用于初始化，序列化，克隆拷贝等场景
         visit(node);
-        //在访问子节点列表
+        //再访问子节点列表
 //        for (int i = 0; i < node.children.size(); i++) {
 //            LinkTreeNode child = node.children.get(i);
 //            innerTraverseDfsPreOrder(child);
 //        }
-        if (node.children == null || node.children.isEmpty()) {
-            return;
-        }
-        for (LinkTreeNode child : node.children) {
-            innerTraverseDfsPreOrder(child);
+        if (node.children != null && !node.children.isEmpty()) {
+            for (LinkTreeNode child : node.children) {
+                innerTraverseDfsPreOrder(child);
+            }
         }
     }
     void traverseDfsPreOrder() {
@@ -111,19 +111,28 @@ class LinkKwayTree {
     }
 //    void traverseDfsPreOrderStack() {}
     //post order
-//    void innerTraverseDfsPostOrder(LinkTreeNode node) {
-//        if (node.children != null && node.children.length > 0) {
-//            for (int i = 0; i < node.children.length; i++) {
-//                LinkTreeNode child = node.children[i];
-//                innerTraverseDfsPostOrder(child);
-//            }
+    void innerTraverseDfsPostOrder(LinkTreeNode node) {
+        if (node == null) {
+            return;
+        }
+        //先访问子节点列表
+//        for (int i = 0; i < node.children.size(); i++) {
+//            LinkTreeNode child = node.children.get(i);
+//            innerTraverseDfsPreOrder(child);
 //        }
-//        System.out.print(node.val+",");
-//    }
-//    void traverseDfsPostOrder() {
-//        innerTraverseDfsPostOrder(root);
-//        System.out.println();
-//    }
+        if (node.children != null && !node.children.isEmpty()) {
+            for (LinkTreeNode child : node.children) {
+                innerTraverseDfsPostOrder(child);
+            }
+        }
+
+        //再访问当前节点，适用于垃圾回收，maven依赖分析，调用依赖分析等需要提前计算子节点数据后给当前节点用的
+        visit(node);
+    }
+    void traverseDfsPostOrder() {
+        innerTraverseDfsPostOrder(root);
+        System.out.println();
+    }
 //    void traverseDfsPostOrderStack() {}
 
     //no in order
