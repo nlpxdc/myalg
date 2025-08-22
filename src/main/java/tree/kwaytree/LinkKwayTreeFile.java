@@ -33,6 +33,7 @@ class LinkKwayTreeApp {
         LinkKwayTree tree = new LinkKwayTree(node1);
         tree.traverseDfsPreOrder();
         tree.traverseDfsPostOrder();
+        tree.traverseBfs();
     }
 
 }
@@ -64,7 +65,29 @@ class LinkKwayTree {
 
     //BFS
     void traverseBfs() {
+        if (root == null) {
+            return;
+        }
+        //初始化借助队列
+        LinkedList<LinkTreeNode> queue = new LinkedList<>();
 
+        //有个初始化？
+        //循环迭代处理
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            //出队列获取需要处理的节点
+            LinkTreeNode node = queue.poll();
+            //打印当前节点，也就是当前队列，打印
+            visit(node);
+            //打印完以后把下一层，子节点全部进队列，注意是一个个处理的
+            if (node.children != null && !node.children.isEmpty()) {
+                for (LinkTreeNode child : node.children) {
+                    queue.offer(child);
+                }
+            }
+        }
+
+        System.out.println();
     }
 
     void visit(LinkTreeNode node) {
