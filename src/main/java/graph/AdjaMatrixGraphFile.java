@@ -16,7 +16,7 @@ class AdjaMatrixGraphApp {
     }
 }
 
-//无向无权图 这个依赖邻接表 对称
+//无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
 class AdjaUnDirectedUnWeightedMatrixGraph {
     boolean[][] adjaMatrix;
 }
@@ -26,7 +26,7 @@ class AdjaDirectedUnWeightedMatrixGraph {
     boolean[][] adjaMatrix;
 }
 
-//无向无权图 这个更重要？因为看边权计算，这个更好 对称
+//无向有权图 这个更重要？因为看边权计算，这个更好 对称 用有向表示双向维护，所以对称
 class AdjaUndirectedWeightedMatrixGraph {
     int[][] adjaMatrix;
 
