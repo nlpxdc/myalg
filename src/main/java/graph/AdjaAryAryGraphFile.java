@@ -28,12 +28,30 @@ class AdjaAryAryGraphApp {
 //无向无权图 最基础 用有向结构表示，数据必须要对称维护
 //节点无需减半维护，利用对称性有好处？有去有回，方便找节点？回溯？
 //或者默认前后的节点是无序的，要注意，那可以维护一端？不行，这样就减半了，不能减半
+//相当于多颗树森林的遍历
 class AdjaUndirectedUnWeightedMapSetGraph {
     Map<Integer, Set<Integer>> mapSet;
 
+    void visit(Integer node) {
+        System.out.print(node+",");
+    }
+
     //bfs
     void traverseBfs() {
-        
+        if (mapSet == null || mapSet.isEmpty()) {
+            return;
+        }
+
+        //外层循环 出节点列表
+        for (Map.Entry<Integer, Set<Integer>> nodeAdjaNodeSet : mapSet.entrySet()) {
+            Set<Integer> adjaNodeSet = nodeAdjaNodeSet.getValue();
+            //内层循环 出节点的入节点列表，邻接节点，注意这里是无向的，对称维护由写入负责
+            for (Integer adjaNode : adjaNodeSet) {
+                visit(adjaNode);
+            }
+        }
+
+        System.out.println();
     }
     //dfs
     void traverseDfs() {
