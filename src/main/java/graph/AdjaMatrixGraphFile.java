@@ -16,24 +16,27 @@ class AdjaMatrixGraphApp {
     }
 }
 
-//有向无权图 这个依赖邻接表
-class AdjaUnWeightedMatrixGraph {
+//无向无权图 这个依赖邻接表 对称
+class AdjaUnDirectedUnWeightedMatrixGraph {
     boolean[][] adjaMatrix;
-
-    AdjaUnWeightedMatrixGraph() {
-        int vertexMaxSize = 100;
-        this.adjaMatrix = new boolean[vertexMaxSize][vertexMaxSize];
-    }
 }
 
-//有向带权图 这个更重要？因为看边权计算，这个更好
-class AdjaWeightedMatrixGraph {
+//有向无权图 这个依赖邻接表 不对称
+class AdjaDirectedUnWeightedMatrixGraph {
+    boolean[][] adjaMatrix;
+}
+
+//无向无权图 这个更重要？因为看边权计算，这个更好 对称
+class AdjaUndirectedWeightedMatrixGraph {
     int[][] adjaMatrix;
 
-    AdjaWeightedMatrixGraph() {
-        int vertexMaxSize = 100;
-        this.adjaMatrix = new int[vertexMaxSize][vertexMaxSize];
-    }
+    //全源最短？
+
+}
+
+//有向有权图 这个更重要？因为看边权计算，这个更好 不对称
+class AdjaDirectedWeightedMatrixGraph {
+    int[][] adjaMatrix;
 
     //全源最短？
 
