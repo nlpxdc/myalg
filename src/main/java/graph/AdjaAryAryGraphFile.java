@@ -32,7 +32,13 @@ class AdjaUndirectedUnWeightedMapSetGraph {
     Map<Integer, Set<Integer>> mapSet;
 
     //bfs
+    void traverseBfs() {
+        
+    }
     //dfs
+    void traverseDfs() {
+
+    }
 }
 
 //有向无权图 这个重要，因为这个是结构相关的，权不影响结构
