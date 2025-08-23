@@ -22,6 +22,11 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
 
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
     //注意这里访问的是边，然后要转成点
+
+    //bfs
+
+    //dfs
+
 }
 
 //有向无权图 这个依赖邻接表 不对称
