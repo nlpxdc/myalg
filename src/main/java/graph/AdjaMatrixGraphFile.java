@@ -17,22 +17,23 @@ import java.util.Queue;
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
+//
+//        graph.addEdge(0,3);
+//        graph.addEdge(0,4);
+//        graph.addEdge(3,4);
+//
+//        graph.addEdge(1,5);
+//        graph.addEdge(1,6);
+//        graph.addEdge(5,6);
+//
+//        graph.addEdge(2,7);
+//        graph.addEdge(2,8);
+//        graph.addEdge(7,8);
 
-        graph.addEdge(0,3);
-        graph.addEdge(0,4);
-        graph.addEdge(3,4);
-
-        graph.addEdge(1,5);
-        graph.addEdge(1,6);
-        graph.addEdge(5,6);
-
-        graph.addEdge(2,7);
-        graph.addEdge(2,8);
-        graph.addEdge(7,8);
-        
+        boolean b = graph.beNullGraph();
         graph.traverseBfs();
     }
 }
@@ -65,6 +66,17 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
     }
 
+    boolean beNullGraph() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (adjaMatrix[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
     //注意这里访问的是边，然后要转成点
 
@@ -73,6 +85,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         boolean[] visited = new boolean[n];
         Queue<Integer> queue = new LinkedList<>();
 
+        //这里可以是任意startV n
         queue.offer(0);
         visited[0] = true;
         while (!queue.isEmpty()) {
