@@ -16,7 +16,11 @@ import java.util.Queue;
 //是方阵 每行每列必定代表一个顶点
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
-        System.out.println("aa");
+        AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(3);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
+        graph.traverseBfs();
     }
 }
 
@@ -40,8 +44,13 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     }
 
     void addEdge(int u, int v) {
-        adjaMatrix[u][v] = true;
-        adjaMatrix[v][u] = true;
+        if (adjaMatrix[u][v] != adjaMatrix[v][u]) {
+            throw new RuntimeException("数据错误，请检查");
+        }
+        if (!adjaMatrix[u][v]) {
+            adjaMatrix[u][v] = true;
+            adjaMatrix[v][u] = true;
+        }
     }
 
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
