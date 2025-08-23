@@ -10,6 +10,7 @@ package graph;
 //总体用的少
 //这里节点默认使用了Integer来定义，简单节点，反正不关心点权，这样定义图会简单，但是如果需要点权，那么节点复杂节点必须定义
 //这里的第二维，的一维数组其实就是邻接节点的定义，第一维的数组，其实就是节点顶点列表，用来抓住整个图
+//是方阵 每行每列必定代表一个顶点
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
@@ -18,6 +19,8 @@ class AdjaMatrixGraphApp {
 
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
 class AdjaUnDirectedUnWeightedMatrixGraph {
+    //顶点数
+    int n;
     boolean[][] adjaMatrix;
 
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
@@ -31,11 +34,15 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
 
 //有向无权图 这个依赖邻接表 不对称
 class AdjaDirectedUnWeightedMatrixGraph {
+    //顶点数
+    int n;
     boolean[][] adjaMatrix;
 }
 
 //无向有权图 这个更重要？因为看边权计算，这个更好 对称 用有向表示双向维护，所以对称
 class AdjaUndirectedWeightedMatrixGraph {
+    //顶点数
+    int n;
     int[][] adjaMatrix;
 
     //全源最短？
@@ -44,6 +51,8 @@ class AdjaUndirectedWeightedMatrixGraph {
 
 //有向有权图 这个更重要？因为看边权计算，这个更好 不对称
 class AdjaDirectedWeightedMatrixGraph {
+    //顶点数
+    int n;
     int[][] adjaMatrix;
 
     //全源最短？
