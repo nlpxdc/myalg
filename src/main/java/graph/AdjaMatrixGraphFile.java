@@ -38,9 +38,8 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         adjaMatrix = new boolean[n][n];
     }
 
-    void visit(int v, boolean[] visited) {
+    void visit(int v) {
         System.out.print(v+",");
-        visited[v] = true;
     }
 
     void addEdge(int u, int v) {
@@ -62,12 +61,14 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         Queue<Integer> queue = new LinkedList<>();
 
         queue.offer(0);
+        visited[0] = true;
         while (!queue.isEmpty()) {
             Integer currentV = queue.poll();
-            visit(currentV, visited);
+            visit(currentV);
             for (int adjaV = 0; adjaV < n; adjaV++) {
                 if (adjaMatrix[currentV][adjaV] == true && !visited[adjaV]) {
                     queue.offer(adjaV);
+                    visited[adjaV] = true;
                 }
             }
         }
