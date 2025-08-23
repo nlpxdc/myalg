@@ -1,5 +1,8 @@
 package graph;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
 //简单图 多重图？ 二维ary 二维vector 冗余视图结构
@@ -23,10 +26,43 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     int n;
     boolean[][] adjaMatrix;
 
+    AdjaUnDirectedUnWeightedMatrixGraph(int n) {
+        if (n <=0) {
+            throw new RuntimeException("n必须大于0");
+        }
+        this.n = n;
+        adjaMatrix = new boolean[n][n];
+    }
+
+    void visit(int v, boolean[] visited) {
+        System.out.print(v+",");
+        visited[v] = true;
+    }
+
+    void addEdge(int u, int v) {
+        adjaMatrix[u][v] = true;
+        adjaMatrix[v][u] = true;
+    }
+
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
     //注意这里访问的是边，然后要转成点
 
     //bfs
+    void traverseBfs() {
+        boolean[] visited = new boolean[n];
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.offer(0);
+        while (!queue.isEmpty()) {
+            Integer currentV = queue.poll();
+            visit(currentV, visited);
+            for (int adjaV = 0; adjaV < n; adjaV++) {
+                if (adjaMatrix[currentV][adjaV] == true && !visited[adjaV]) {
+                    queue.offer(adjaV);
+                }
+            }
+        }
+    }
 
     //dfs
 
