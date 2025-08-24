@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -44,8 +45,8 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //顶点数
     int n;
     boolean[][] adjaMatrix;
-    //全局临时访问过数组
-    boolean[] visited;
+//    //全局临时访问过数组
+//    boolean[] visited;
 
     AdjaUnDirectedUnWeightedMatrixGraph(int n) {
         if (n <=0) {
@@ -53,7 +54,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
         this.n = n;
         adjaMatrix = new boolean[n][n];
-        visited = new boolean[n];
+//        visited = new boolean[n];
     }
 
     void visit(int v) {
@@ -90,6 +91,13 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         return true;
     }
 
+//    void resetVisited() {
+////        for (int i = 0; i < n; i++) {
+////            visited[i] = false;
+////        }
+//        Arrays.fill(visited, false);
+//    }
+
     Integer getFirstUnVisited(boolean[] visited) {
         for (int i = 0; i < visited.length; i++) {
             if (!visited[i]) {
@@ -108,6 +116,8 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //注意这里访问的是边，然后要转成点
 
     void traverseBfsSingleChild(int startV) {
+//        resetVisited();
+        boolean[] visited = new boolean[n];
         traverseBfs(startV, visited);
     }
 
@@ -133,6 +143,8 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     }
 
     int traverseGetAllChildrenGraphCount() {
+//        resetVisited();
+        boolean[] visited = new boolean[n];
         int childrenGraphCount = 0;
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
