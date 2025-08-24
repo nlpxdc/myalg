@@ -17,9 +17,9 @@ import java.util.Queue;
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
