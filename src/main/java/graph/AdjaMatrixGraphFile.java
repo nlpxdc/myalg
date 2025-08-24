@@ -17,24 +17,25 @@ import java.util.Queue;
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
-//
-//        graph.addEdge(0,3);
-//        graph.addEdge(0,4);
-//        graph.addEdge(3,4);
-//
-//        graph.addEdge(1,5);
-//        graph.addEdge(1,6);
-//        graph.addEdge(5,6);
-//
-//        graph.addEdge(2,7);
-//        graph.addEdge(2,8);
-//        graph.addEdge(7,8);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
 
-        boolean b = graph.beNullGraph();
-        graph.traverseBfs();
+        graph.addEdge(0,3);
+        graph.addEdge(0,4);
+        graph.addEdge(3,4);
+
+        graph.addEdge(1,5);
+        graph.addEdge(1,6);
+        graph.addEdge(5,6);
+
+        graph.addEdge(2,7);
+        graph.addEdge(2,8);
+        graph.addEdge(7,8);
+
+//        boolean b = graph.beNullGraph();
+        graph.traverseBfsSingleChild(0);
+//        int allChildrenGraphCount = graph.getAllChildrenGraphCount();
     }
 }
 
@@ -43,6 +44,8 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //顶点数
     int n;
     boolean[][] adjaMatrix;
+    //全局临时访问过数组
+    boolean[] visited;
 
     AdjaUnDirectedUnWeightedMatrixGraph(int n) {
         if (n <=0) {
@@ -50,6 +53,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
         this.n = n;
         adjaMatrix = new boolean[n][n];
+        visited = new boolean[n];
     }
 
     void visit(int v) {
@@ -103,15 +107,19 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
     //注意这里访问的是边，然后要转成点
 
+    void traverseBfsSingleChild(int startV) {
+        traverseBfs(startV, visited);
+    }
+
     //bfs
-    //假设有且只有一个连通子图
-    void traverseBfs() {
-        boolean[] visited = new boolean[n];
+    //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
+    void traverseBfs(int startV, boolean[] visited) {
+        visited = new boolean[n];
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        queue.offer(0);
-        visited[0] = true;
+        queue.offer(startV);
+        visited[startV] = true;
         while (!queue.isEmpty()) {
             Integer currentV = queue.poll();
             visit(currentV);
@@ -122,6 +130,20 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
                 }
             }
         }
+    }
+
+    int getAllChildrenGraphCount() {
+        int childrenGraphCount = 0;
+        for (int i = 0; i < n; i++) {
+            childrenGraphCount++;
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                traverseBfs(firstUnVisited, visited);
+                System.out.println();
+            }
+        }
+
+        return childrenGraphCount;
     }
 
     //dfs
