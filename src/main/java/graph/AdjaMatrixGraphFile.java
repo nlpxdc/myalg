@@ -34,8 +34,8 @@ class AdjaMatrixGraphApp {
         graph.addEdge(7,8);
 
 //        boolean b = graph.beNullGraph();
-        graph.traverseBfsSingleChild(0);
-//        int allChildrenGraphCount = graph.getAllChildrenGraphCount();
+//        graph.traverseBfsSingleChild(0);
+        int allChildrenGraphCount = graph.getAllChildrenGraphCount();
     }
 }
 
@@ -114,7 +114,6 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //bfs
     //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
     void traverseBfs(int startV, boolean[] visited) {
-        visited = new boolean[n];
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
@@ -130,16 +129,18 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
                 }
             }
         }
+        System.out.println();
     }
 
     int getAllChildrenGraphCount() {
         int childrenGraphCount = 0;
         for (int i = 0; i < n; i++) {
-            childrenGraphCount++;
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
                 traverseBfs(firstUnVisited, visited);
-                System.out.println();
+                childrenGraphCount++;
+            } else {
+                break;
             }
         }
 
