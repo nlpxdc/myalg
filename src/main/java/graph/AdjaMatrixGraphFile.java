@@ -35,7 +35,7 @@ class AdjaMatrixGraphApp {
 
 //        boolean b = graph.beNullGraph();
 //        graph.traverseBfsSingleChild(0);
-        int allChildrenGraphCount = graph.getAllChildrenGraphCount();
+        int allChildrenGraphCount = graph.traverseGetAllChildrenGraphCount();
     }
 }
 
@@ -132,7 +132,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         System.out.println();
     }
 
-    int getAllChildrenGraphCount() {
+    int traverseGetAllChildrenGraphCount() {
         int childrenGraphCount = 0;
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
