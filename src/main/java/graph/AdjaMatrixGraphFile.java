@@ -77,6 +77,24 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         return true;
     }
 
+    boolean beAllVisited(boolean[] visited) {
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    Integer getFirstUnVisited(boolean[] visited) {
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     //计算连通子图的个数，连通分量，任意一个订单开始遍历，然后标记访问列表，然后再取一个顶点，从没被标记过的顶点中选，再标记，直到所有节点被标记过为止
     //那遍历了多少次，就是有多少个连通子图，也就是连通分量，用是否访问标记进行判断，被访问过和是否连通是两个事情
     //多扫一遍顶点、数连通分量
