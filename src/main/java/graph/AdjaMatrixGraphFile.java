@@ -68,6 +68,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         if (!adjaMatrix[u][v]) {
             adjaMatrix[u][v] = true;
             adjaMatrix[v][u] = true;
+//            adjaMatrix[u][v] = adjaMatrix[v][u] = true;
         }
     }
 
