@@ -36,7 +36,8 @@ class AdjaMatrixGraphApp {
 
 //        boolean b = graph.beNullGraph();
 //        graph.traverseBfsSingleChild(0);
-        int allChildrenGraphCount = graph.traverseGetAllChildrenGraphCount();
+//        int allChildrenGraphCount = graph.traverseGetAllChildrenGraphCount();
+        graph.traversePreOrderDfs(0);
     }
 }
 
@@ -161,6 +162,24 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     }
 
     //dfs
+    void traversePreOrderDfs(int startV) {
+        boolean[] visited = new boolean[n];
+        innerTraversePreOrderDfs(startV, visited);
+    }
+
+    void innerTraversePreOrderDfs(int v, boolean[] visited) {
+        visit(v);
+        visited[v] = true;
+        for (int u = 0; u < n; u++) {
+            if (adjaMatrix[v][u] && !visited[u]) {
+                innerTraversePreOrderDfs(u, visited);
+            }
+        }
+    }
+
+    void traversePostOrderDfs() {
+
+    }
 
 }
 
