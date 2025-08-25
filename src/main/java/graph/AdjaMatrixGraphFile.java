@@ -18,9 +18,9 @@ import java.util.Queue;
 class AdjaMatrixGraphApp {
     public static void main(String[] args) {
         AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -37,12 +37,13 @@ class AdjaMatrixGraphApp {
 //        boolean b = graph.beNullGraph();
 //        graph.traverseBfsSingleChild(0);
 //        int allChildrenGraphCount = graph.traverseGetAllChildrenGraphCount();
-        graph.traverseSinglePreOrderDfs(0);
+//        graph.traverseSinglePreOrderDfs(0);
 //        graph.traverseGetAllChildrenGraphCount();
-//        graph.traverseAllPreOrderDfs();
-        graph.traverseSinglePostOrderDfs(0);
+        graph.traverseAllPreOrderDfs();
+//        graph.traverseSinglePostOrderDfs(0);
 
-        graph.traverseSingleDfs(0);
+//        graph.traverseSingleDfs(0);
+        graph.traverseAllPostOrderDfs();
     }
 }
 
@@ -207,6 +208,21 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         boolean[] visited = new boolean[n];
         traversePostOrderDfs(startV, visited);
         System.out.println();
+    }
+
+    int traverseAllPostOrderDfs() {
+        boolean[] visited = new boolean[n];
+        int childrenGraphCount = 0;
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                traversePostOrderDfs(firstUnVisited, visited);
+            } else {
+                break;
+            }
+        }
+        System.out.println();
+        return childrenGraphCount;
     }
 
     void traversePostOrderDfs(int startV, boolean[] visited) {
