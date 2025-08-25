@@ -37,7 +37,9 @@ class AdjaMatrixGraphApp {
 //        boolean b = graph.beNullGraph();
 //        graph.traverseBfsSingleChild(0);
 //        int allChildrenGraphCount = graph.traverseGetAllChildrenGraphCount();
-        graph.traversePreOrderDfs(0);
+//        graph.traverseSinglePreOrderDfs(0);
+        graph.traverseGetAllChildrenGraphCount();
+        graph.traverseAllPreOrderDfs();
     }
 }
 
@@ -157,14 +159,20 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
                 break;
             }
         }
+        System.out.println();
 
         return childrenGraphCount;
     }
+    void traverseSinglePreOrderDfs(int startV) {
+        boolean[] visited = new boolean[n];
+        traversePreOrderDfs(startV, visited);
+        System.out.println();
+    }
 
     //dfs
-    void traversePreOrderDfs(int startV) {
-        boolean[] visited = new boolean[n];
+    void traversePreOrderDfs(int startV, boolean[] visited) {
         innerTraversePreOrderDfs(startV, visited);
+        System.out.println();
     }
 
     void innerTraversePreOrderDfs(int v, boolean[] visited) {
@@ -175,6 +183,21 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
                 innerTraversePreOrderDfs(u, visited);
             }
         }
+    }
+
+    int traverseAllPreOrderDfs() {
+        boolean[] visited = new boolean[n];
+        int childrenGraphCount = 0;
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                traversePreOrderDfs(firstUnVisited, visited);
+            } else {
+                break;
+            }
+        }
+        System.out.println();
+        return childrenGraphCount;
     }
 
     void traversePostOrderDfs() {
