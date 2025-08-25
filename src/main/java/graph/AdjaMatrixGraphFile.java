@@ -44,6 +44,7 @@ class AdjaMatrixGraphApp {
 
 //        graph.traverseSingleDfs(0);
         graph.traverseAllPostOrderDfs();
+        graph.traverseAllDfs();
     }
 }
 
@@ -244,6 +245,21 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         boolean[] visited = new boolean[n];
         traverseDfs(startV, visited);
         System.out.println();
+    }
+
+    int traverseAllDfs() {
+        boolean[] visited = new boolean[n];
+        int childrenGraphCount = 0;
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                traverseDfs(firstUnVisited, visited);
+            } else {
+                break;
+            }
+        }
+        System.out.println();
+        return childrenGraphCount;
     }
 
     void traverseDfs(int startV, boolean[] visited) {
