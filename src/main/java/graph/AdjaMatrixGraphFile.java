@@ -235,15 +235,25 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         System.out.println();
     }
 
+    void discover(int v) {
+        System.out.println(String.format("discover %d", v));
+    }
+
+    void finish(int v) {
+        System.out.println(String.format("finish %d", v));
+    }
+
     void innerTraverseDfs(int v, boolean[] visited) {
         visited[v] = true;
-        visit(v);
+//        visit(v);
+        discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u] && !visited[u]) {
                 innerTraverseDfs(u, visited);
             }
         }
-        visit(v);
+//        visit(v);
+        finish(v);
     }
 
 }
