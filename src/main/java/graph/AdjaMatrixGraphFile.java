@@ -43,7 +43,7 @@ class AdjaMatrixGraphApp {
 //        graph.traverseSinglePostOrderDfs(0);
 
 //        graph.traverseSingleDfs(0);
-        graph.traverseAllPostOrderDfs();
+        graph.postOrderDfs();
         graph.dfs();
     }
 }
@@ -251,38 +251,37 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             }
         }
     }
-    
-    void traverseSinglePostOrderDfs(int startV) {
+
+    //dfs postOrder
+    void singlePostOrderDfs(int startV) {
         boolean[] visited = new boolean[n];
-        traversePostOrderDfs(startV, visited);
+
+        innerPostOrderDfs(startV, visited);
+
         System.out.println();
     }
-
-    int traverseAllPostOrderDfs() {
+    int postOrderDfs() {
         boolean[] visited = new boolean[n];
+
         int childrenGraphCount = 0;
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
-                traversePostOrderDfs(firstUnVisited, visited);
+                innerPostOrderDfs(firstUnVisited, visited);
             } else {
                 break;
             }
         }
+
         System.out.println();
+
         return childrenGraphCount;
     }
-
-    void traversePostOrderDfs(int startV, boolean[] visited) {
-        innerTraversePostOrderDfs(startV, visited);
-        System.out.println();
-    }
-
-    void innerTraversePostOrderDfs(int v, boolean[] visited) {
+    void innerPostOrderDfs(int v, boolean[] visited) {
         visited[v] = true;
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u] && !visited[u]) {
-                innerTraversePostOrderDfs(u, visited);
+                innerPostOrderDfs(u, visited);
             }
         }
         visit(v);
