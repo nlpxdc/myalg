@@ -39,7 +39,7 @@ class AdjaMatrixGraphApp {
 //        int allChildrenGraphCount = graph.traverseGetAllChildrenGraphCount();
 //        graph.traverseSinglePreOrderDfs(0);
 //        graph.traverseGetAllChildrenGraphCount();
-        graph.traverseAllPreOrderDfs();
+        graph.preOrderDfs();
 //        graph.traverseSinglePostOrderDfs(0);
 
 //        graph.traverseSingleDfs(0);
@@ -181,7 +181,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     }
 
 
-    //dfs
+    //dfs preOrder & postOrder
     void singleDfs(int startV) {
         boolean[] visited = new boolean[n];
 
@@ -217,31 +217,41 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         finish(v);
     }
 
-    void innerTraversePreOrderDfs(int v, boolean[] visited) {
-        visit(v);
-        visited[v] = true;
-        for (int u = 0; u < n; u++) {
-            if (adjaMatrix[v][u] && !visited[u]) {
-                innerTraversePreOrderDfs(u, visited);
-            }
-        }
-    }
-
-    int traverseAllPreOrderDfs() {
+    //dfs preOrder
+    void singlePreOrderDfs(int startV) {
         boolean[] visited = new boolean[n];
+
+        innerPreOrderDfs(startV, visited);
+
+        System.out.println();
+    }
+    int preOrderDfs() {
+        boolean[] visited = new boolean[n];
+
         int childrenGraphCount = 0;
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
-                innerDfs(firstUnVisited, visited);
+                innerPreOrderDfs(firstUnVisited, visited);
             } else {
                 break;
             }
         }
+
         System.out.println();
+
         return childrenGraphCount;
     }
-
+    void innerPreOrderDfs(int v, boolean[] visited) {
+        visited[v] = true;
+        visit(v);
+        for (int u = 0; u < n; u++) {
+            if (adjaMatrix[v][u] && !visited[u]) {
+                innerPreOrderDfs(u, visited);
+            }
+        }
+    }
+    
     void traverseSinglePostOrderDfs(int startV) {
         boolean[] visited = new boolean[n];
         traversePostOrderDfs(startV, visited);
