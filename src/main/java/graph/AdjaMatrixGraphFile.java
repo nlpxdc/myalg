@@ -19,9 +19,9 @@ class AdjaMatrixGraphApp {
 
     public static void main(String[] args) {
         AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -142,6 +142,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
 
         System.out.println();
+        System.out.println();
     }
 
     //bfs
@@ -190,6 +191,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             }
         }
 
+        System.out.println();
     }
 
     //dfs preOrder & postOrder
@@ -208,6 +210,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
                 innerDfs(firstUnVisited, visited);
+                System.out.println();
             } else {
                 break;
             }
@@ -244,6 +247,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
                 innerPreOrderDfs(firstUnVisited, visited);
+                System.out.println();
             } else {
                 break;
             }
@@ -279,6 +283,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
                 innerPostOrderDfs(firstUnVisited, visited);
+                System.out.println();
             } else {
                 break;
             }
