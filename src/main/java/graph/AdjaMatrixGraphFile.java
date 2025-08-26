@@ -16,11 +16,12 @@ import java.util.Queue;
 //这里的第二维，的一维数组其实就是邻接节点的定义，第一维的数组，其实就是节点顶点列表，用来抓住整个图
 //是方阵 每行每列必定代表一个顶点
 class AdjaMatrixGraphApp {
+
     public static void main(String[] args) {
         AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -34,18 +35,18 @@ class AdjaMatrixGraphApp {
         graph.addEdge(2,8);
         graph.addEdge(7,8);
 
-//        boolean b = graph.beNullGraph();
-//        graph.traverseBfsSingleChild(0);
-//        int allChildrenGraphCount = graph.traverseGetAllChildrenGraphCount();
-//        graph.traverseSinglePreOrderDfs(0);
-//        graph.traverseGetAllChildrenGraphCount();
-        graph.preOrderDfs();
-//        graph.traverseSinglePostOrderDfs(0);
+        //byEdge
+        graph.traverseVertexByEdge();
 
-//        graph.traverseSingleDfs(0);
+        //bfs
+        graph.bfs();
+
+        //dfs
+        graph.preOrderDfs();
         graph.postOrderDfs();
         graph.dfs();
     }
+
 }
 
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
