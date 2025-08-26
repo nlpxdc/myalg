@@ -44,7 +44,7 @@ class AdjaMatrixGraphApp {
 
 //        graph.traverseSingleDfs(0);
         graph.traverseAllPostOrderDfs();
-        graph.traverseAllDfs();
+        graph.dfs();
     }
 }
 
@@ -154,6 +154,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
                 break;
             }
         }
+
         System.out.println();
 
         return childrenGraphCount;
@@ -184,14 +185,36 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     void singleDfs(int startV) {
         boolean[] visited = new boolean[n];
 
-        traversePreOrderDfs(startV, visited);
+        innerDfs(startV, visited);
 
         System.out.println();
     }
+    int dfs() {
+        boolean[] visited = new boolean[n];
 
-    void traversePreOrderDfs(int startV, boolean[] visited) {
-        innerTraversePreOrderDfs(startV, visited);
+        int childrenGraphCount = 0;
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                innerDfs(firstUnVisited, visited);
+            } else {
+                break;
+            }
+        }
+
         System.out.println();
+
+        return childrenGraphCount;
+    }
+    void innerDfs(int v, boolean[] visited) {
+        visited[v] = true;
+        discover(v);
+        for (int u = 0; u < n; u++) {
+            if (adjaMatrix[v][u] && !visited[u]) {
+                innerDfs(u, visited);
+            }
+        }
+        finish(v);
     }
 
     void innerTraversePreOrderDfs(int v, boolean[] visited) {
@@ -210,7 +233,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
-                traversePreOrderDfs(firstUnVisited, visited);
+                innerDfs(firstUnVisited, visited);
             } else {
                 break;
             }
@@ -253,47 +276,6 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             }
         }
         visit(v);
-    }
-
-    void traverseSingleDfs(int startV) {
-        boolean[] visited = new boolean[n];
-        traverseDfs(startV, visited);
-        System.out.println();
-    }
-
-    int traverseAllDfs() {
-        boolean[] visited = new boolean[n];
-        int childrenGraphCount = 0;
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                traverseDfs(firstUnVisited, visited);
-            } else {
-                break;
-            }
-        }
-        System.out.println();
-        return childrenGraphCount;
-    }
-
-    void traverseDfs(int startV, boolean[] visited) {
-        innerTraverseDfs(startV, visited);
-        System.out.println();
-    }
-
-
-
-    void innerTraverseDfs(int v, boolean[] visited) {
-        visited[v] = true;
-//        visit(v);
-        discover(v);
-        for (int u = 0; u < n; u++) {
-            if (adjaMatrix[v][u] && !visited[u]) {
-                innerTraverseDfs(u, visited);
-            }
-        }
-//        visit(v);
-        finish(v);
     }
 
 }
