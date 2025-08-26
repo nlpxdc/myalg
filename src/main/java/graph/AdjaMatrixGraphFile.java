@@ -125,12 +125,6 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //todo
     void traverseVertexByEdge() {}
 
-    void traverseBfsSingleChild(int startV) {
-//        resetVisited();
-        boolean[] visited = new boolean[n];
-        innerBfs(startV, visited);
-    }
-
     //bfs
     //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
     void singleBfs(int startV) {
