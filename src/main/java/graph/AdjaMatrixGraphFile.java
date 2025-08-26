@@ -122,7 +122,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //判断连通子图个数，连通分量
 
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
-    //注意这里访问的是边，然后要转成点
+    //注意这里访问的是边，然后要转成点 这个逻辑上没啥作用
     void traverseVertexByEdge() {
         boolean[] visited = new boolean[n];
 
@@ -190,7 +190,6 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             }
         }
 
-        System.out.println();
     }
 
     //dfs preOrder & postOrder
