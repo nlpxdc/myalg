@@ -53,8 +53,6 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
     //顶点数
     int n;
     boolean[][] adjaMatrix;
-//    //全局临时访问过数组
-//    boolean[] visited;
 
     AdjaUnDirectedUnWeightedMatrixGraph(int n) {
         if (n <=0) {
@@ -62,13 +60,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
         this.n = n;
         adjaMatrix = new boolean[n][n];
-//        visited = new boolean[n];
     }
-
-    void visit(int v) {
-        System.out.print(v+",");
-    }
-
     void addEdge(int u, int v) {
         if (adjaMatrix[u][v] != adjaMatrix[v][u]) {
             throw new RuntimeException("数据错误，请检查");
@@ -78,6 +70,24 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             adjaMatrix[v][u] = true;
 //            adjaMatrix[u][v] = adjaMatrix[v][u] = true;
         }
+    }
+
+    Integer getFirstUnVisited(boolean[] visited) {
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
+                return i;
+            }
+        }
+        return null;
+    }
+    void visit(int v) {
+        System.out.print(v+",");
+    }
+    void discover(int v) {
+        System.out.println(String.format("discover %d", v));
+    }
+    void finish(int v) {
+        System.out.println(String.format("finish %d", v));
     }
 
     boolean beNullGraph() {
@@ -90,7 +100,6 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
         return true;
     }
-
     boolean beAllVisited(boolean[] visited) {
         for (int i = 0; i < visited.length; i++) {
             if (!visited[i]) {
@@ -99,40 +108,58 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
         return true;
     }
-
-//    void resetVisited() {
-////        for (int i = 0; i < n; i++) {
-////            visited[i] = false;
-////        }
-//        Arrays.fill(visited, false);
-//    }
-
-    Integer getFirstUnVisited(boolean[] visited) {
-        for (int i = 0; i < visited.length; i++) {
-            if (!visited[i]) {
-                return i;
-            }
+    void resetVisited(boolean[] visited) {
+        for (int i = 0; i < n; i++) {
+            visited[i] = false;
         }
-        return null;
+        Arrays.fill(visited, false);
     }
 
     //计算连通子图的个数，连通分量，任意一个订单开始遍历，然后标记访问列表，然后再取一个顶点，从没被标记过的顶点中选，再标记，直到所有节点被标记过为止
     //那遍历了多少次，就是有多少个连通子图，也就是连通分量，用是否访问标记进行判断，被访问过和是否连通是两个事情
     //多扫一遍顶点、数连通分量
-    //todo 判断连通子图个数，连通分量
+    //判断连通子图个数，连通分量
 
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
     //注意这里访问的是边，然后要转成点
+    //todo
+    void traverseVertexByEdge() {}
 
     void traverseBfsSingleChild(int startV) {
 //        resetVisited();
         boolean[] visited = new boolean[n];
-        traverseBfs(startV, visited);
+        innerBfs(startV, visited);
     }
 
     //bfs
     //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
-    void traverseBfs(int startV, boolean[] visited) {
+    void singleBfs(int startV) {
+        boolean[] visited = new boolean[n];
+
+        innerBfs(startV, visited);
+
+        System.out.println();
+    }
+    int bfs() {
+        //初始化临时数组，记录访问状态
+        boolean[] visited = new boolean[n];
+
+        int childrenGraphCount = 0;
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                childrenGraphCount++;
+                innerBfs(firstUnVisited, visited);
+            } else {
+                break;
+            }
+        }
+        System.out.println();
+
+        return childrenGraphCount;
+    }
+    void innerBfs(int startV, boolean[] visited) {
+        //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
@@ -142,39 +169,26 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
             Integer currentV = queue.poll();
             visit(currentV);
             for (int adjaV = 0; adjaV < n; adjaV++) {
-                if (adjaMatrix[currentV][adjaV] == true && !visited[adjaV]) {
-                    queue.offer(adjaV);
+                if (adjaMatrix[currentV][adjaV] && !visited[adjaV]) {
                     visited[adjaV] = true;
+                    queue.offer(adjaV);
                 }
             }
         }
+
         System.out.println();
     }
 
-    int traverseGetAllChildrenGraphCount() {
-//        resetVisited();
-        boolean[] visited = new boolean[n];
-        int childrenGraphCount = 0;
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                traverseBfs(firstUnVisited, visited);
-                childrenGraphCount++;
-            } else {
-                break;
-            }
-        }
-        System.out.println();
-
-        return childrenGraphCount;
-    }
-    void traverseSinglePreOrderDfs(int startV) {
-        boolean[] visited = new boolean[n];
-        traversePreOrderDfs(startV, visited);
-        System.out.println();
-    }
 
     //dfs
+    void singleDfs(int startV) {
+        boolean[] visited = new boolean[n];
+
+        traversePreOrderDfs(startV, visited);
+
+        System.out.println();
+    }
+
     void traversePreOrderDfs(int startV, boolean[] visited) {
         innerTraversePreOrderDfs(startV, visited);
         System.out.println();
@@ -267,13 +281,7 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         System.out.println();
     }
 
-    void discover(int v) {
-        System.out.println(String.format("discover %d", v));
-    }
 
-    void finish(int v) {
-        System.out.println(String.format("finish %d", v));
-    }
 
     void innerTraverseDfs(int v, boolean[] visited) {
         visited[v] = true;
