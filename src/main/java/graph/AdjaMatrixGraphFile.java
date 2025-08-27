@@ -49,6 +49,8 @@ class AdjaMatrixGraphApp {
 
 }
 
+//无权图在意节点，不在意边，边只是连通性
+
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
 class AdjaUnDirectedUnWeightedMatrixGraph {
     //顶点数
@@ -311,6 +313,9 @@ class AdjaDirectedUnWeightedMatrixGraph {
     int n;
     boolean[][] adjaMatrix;
 }
+
+//有权图在意边 不在意节点 顶点连通性 共用顶点
+//有都在意的吗？
 
 //无向有权图 这个更重要？因为看边权计算，这个更好 对称 用有向表示双向维护，所以对称
 class AdjaUndirectedWeightedMatrixGraph {
