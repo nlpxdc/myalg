@@ -18,22 +18,24 @@ import java.util.Queue;
 class AdjaMatrixDirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
-        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
+//        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
+        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(3);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
 //        graph.addEdge(1,2);
+        graph.addEdge(2,1);
 
-        graph.addEdge(0,3);
-        graph.addEdge(0,4);
-        graph.addEdge(3,4);
-
-        graph.addEdge(1,5);
-        graph.addEdge(1,6);
-        graph.addEdge(5,6);
-
-        graph.addEdge(2,7);
-        graph.addEdge(2,8);
-        graph.addEdge(7,8);
+//        graph.addEdge(0,3);
+//        graph.addEdge(0,4);
+//        graph.addEdge(3,4);
+//
+//        graph.addEdge(1,5);
+//        graph.addEdge(1,6);
+//        graph.addEdge(5,6);
+//
+//        graph.addEdge(2,7);
+//        graph.addEdge(2,8);
+//        graph.addEdge(7,8);
 
         //byEdge
         graph.traverseVertexByEdge();
