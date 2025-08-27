@@ -50,6 +50,7 @@ class AdjaMatrixGraphApp {
 }
 
 //无权图在意节点，不在意边，边只是连通性
+//顶点遍历类似树
 
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
 class AdjaUnDirectedUnWeightedMatrixGraph {
@@ -314,6 +315,7 @@ class AdjaDirectedUnWeightedMatrixGraph {
     boolean[][] adjaMatrix;
 }
 
+//边遍历就算了不关心
 //有权图在意边 不在意节点 顶点连通性 共用顶点
 //有都在意的吗？
 
