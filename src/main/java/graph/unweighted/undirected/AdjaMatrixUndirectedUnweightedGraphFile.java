@@ -15,7 +15,7 @@ import java.util.Queue;
 //这里节点默认使用了Integer来定义，简单节点，反正不关心点权，这样定义图会简单，但是如果需要点权，那么节点复杂节点必须定义
 //这里的第二维，的一维数组其实就是邻接节点的定义，第一维的数组，其实就是节点顶点列表，用来抓住整个图
 //是方阵 每行每列必定代表一个顶点
-class AdjaMatrixUnweightedUndirectedGraphApp {
+class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
         AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
