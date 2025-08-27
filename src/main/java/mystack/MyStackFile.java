@@ -5,6 +5,7 @@ import common2.DLinkNode;
 import common2.LinkNode;
 import common2.Node;
 
+//也能用于多线程，不只是队列，栈顶一把锁即可，队列队头队尾需要两把锁提高并发度，也可以一把锁
 class MyStackApp {
     public static void main(String[] args) {
         System.out.println("aaa");
