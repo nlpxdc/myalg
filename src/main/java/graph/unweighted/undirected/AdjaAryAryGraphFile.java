@@ -1,4 +1,4 @@
-package graph;
+package graph.unweighted.undirected;
 
 import java.util.HashMap;
 import java.util.Map;
