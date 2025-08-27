@@ -18,7 +18,7 @@ import java.util.Queue;
 class AdjaMatrixUnweightedDirectedGraphApp {
 
     public static void main(String[] args) {
-        AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
+        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
 //        graph.addEdge(0,1);
 //        graph.addEdge(0,2);
 //        graph.addEdge(1,2);
@@ -54,25 +54,25 @@ class AdjaMatrixUnweightedDirectedGraphApp {
 
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
 class AdjaUnDirectedUnWeightedMatrixGraph {
+
+}
+
+//有向无权图 这个依赖邻接表 不对称
+class AdjaDirectedUnWeightedMatrixGraph {
     //顶点数
     int n;
     boolean[][] adjaMatrix;
 
-    AdjaUnDirectedUnWeightedMatrixGraph(int n) {
+    AdjaDirectedUnWeightedMatrixGraph(int n) {
         if (n <=0) {
             throw new RuntimeException("n必须大于0");
         }
         this.n = n;
         adjaMatrix = new boolean[n][n];
     }
-    void addEdge(int u, int v) {
-        if (adjaMatrix[u][v] != adjaMatrix[v][u]) {
-            throw new RuntimeException("数据错误，请检查");
-        }
-        if (!adjaMatrix[u][v]) {
-            adjaMatrix[u][v] = true;
-            adjaMatrix[v][u] = true;
-//            adjaMatrix[u][v] = adjaMatrix[v][u] = true;
+    void addEdge(int from, int to) {
+        if (!adjaMatrix[from][to]) {
+            adjaMatrix[from][to] = true;
         }
     }
 
@@ -305,14 +305,6 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
         }
         visit(v);
     }
-
-}
-
-//有向无权图 这个依赖邻接表 不对称
-class AdjaDirectedUnWeightedMatrixGraph {
-    //顶点数
-    int n;
-    boolean[][] adjaMatrix;
 }
 
 //边遍历就算了不关心
