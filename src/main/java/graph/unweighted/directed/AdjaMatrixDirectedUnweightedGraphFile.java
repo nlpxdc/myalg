@@ -20,25 +20,25 @@ class AdjaMatrixDirectedUnweightedGraphApp {
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
         AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(3);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
-        graph.addEdge(2,1);
+        graph.addArc(0,1);
+        graph.addArc(0,2);
+        graph.addArc(1,2);
+        graph.addArc(2,1);
 
-//        graph.addEdge(0,3);
-//        graph.addEdge(0,4);
-//        graph.addEdge(3,4);
-//
-//        graph.addEdge(1,5);
-//        graph.addEdge(1,6);
-//        graph.addEdge(5,6);
-//
-//        graph.addEdge(2,7);
-//        graph.addEdge(2,8);
-//        graph.addEdge(7,8);
+        graph.addArc(0,3);
+        graph.addArc(0,4);
+        graph.addArc(3,4);
 
-        //byEdge
-        graph.traverseVertexByEdge();
+        graph.addArc(1,5);
+        graph.addArc(1,6);
+        graph.addArc(5,6);
+
+        graph.addArc(2,7);
+        graph.addArc(2,8);
+        graph.addArc(7,8);
+
+//        //byEdge
+//        graph.traverseVertexByEdge();
 
         //bfs
         graph.bfs();
@@ -72,7 +72,7 @@ class AdjaMatrixDirectedUnweightedGraph {
         this.n = n;
         adjaMatrix = new boolean[n][n];
     }
-    void addEdge(int from, int to) {
+    void addArc(int from, int to) {
         if (!adjaMatrix[from][to]) {
             adjaMatrix[from][to] = true;
         }
@@ -126,29 +126,29 @@ class AdjaMatrixDirectedUnweightedGraph {
     //多扫一遍顶点、数连通分量
     //判断连通子图个数，连通分量
 
-    //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
-    //注意这里访问的是边，然后要转成点 这个逻辑上没啥作用
-    void traverseVertexByEdge() {
-        boolean[] visited = new boolean[n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (adjaMatrix[i][j]) {
-                    if (!visited[i]) {
-                        visited[i] = true;
-                        visit(i);
-                    }
-                    if (!visited[j]) {
-                        visited[j] = true;
-                        visit(j);
-                    }
-                }
-            }
-        }
-
-        System.out.println();
-        System.out.println();
-    }
+//    //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
+//    //注意这里访问的是边，然后要转成点 这个逻辑上没啥作用
+//    void traverseVertexByEdge() {
+//        boolean[] visited = new boolean[n];
+//
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j < n; j++) {
+//                if (adjaMatrix[i][j]) {
+//                    if (!visited[i]) {
+//                        visited[i] = true;
+//                        visit(i);
+//                    }
+//                    if (!visited[j]) {
+//                        visited[j] = true;
+//                        visit(j);
+//                    }
+//                }
+//            }
+//        }
+//
+//        System.out.println();
+//        System.out.println();
+//    }
 
     //bfs
     //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
