@@ -19,7 +19,7 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
 //        AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
-        AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(3);
+        AdjaMatrixUndirectedUnWeightedGraph graph = new AdjaMatrixUndirectedUnWeightedGraph(3);
         graph.addEdge(0,1);
         graph.addEdge(0,2);
 //        graph.addEdge(1,2);
@@ -55,12 +55,12 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 //顶点遍历类似树
 
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
-class AdjaUnDirectedUnWeightedMatrixGraph {
+class AdjaMatrixUndirectedUnWeightedGraph {
     //顶点数
     int n;
     boolean[][] adjaMatrix;
 
-    AdjaUnDirectedUnWeightedMatrixGraph(int n) {
+    AdjaMatrixUndirectedUnWeightedGraph(int n) {
         if (n <=0) {
             throw new RuntimeException("n必须大于0");
         }
@@ -310,33 +310,33 @@ class AdjaUnDirectedUnWeightedMatrixGraph {
 
 }
 
-//有向无权图 这个依赖邻接表 不对称
-class AdjaDirectedUnWeightedMatrixGraph {
-    //顶点数
-    int n;
-    boolean[][] adjaMatrix;
-}
-
-//边遍历就算了不关心
-//有权图在意边 不在意节点 顶点连通性 共用顶点
-//有都在意的吗？
-
-//无向有权图 这个更重要？因为看边权计算，这个更好 对称 用有向表示双向维护，所以对称
-class AdjaUndirectedWeightedMatrixGraph {
-    //顶点数
-    int n;
-    int[][] adjaMatrix;
-
-    //全源最短？
-
-}
-
-//有向有权图 这个更重要？因为看边权计算，这个更好 不对称
-class AdjaDirectedWeightedMatrixGraph {
-    //顶点数
-    int n;
-    int[][] adjaMatrix;
-
-    //全源最短？
-
-}
+////有向无权图 这个依赖邻接表 不对称
+//class AdjaDirectedUnWeightedMatrixGraph {
+//    //顶点数
+//    int n;
+//    boolean[][] adjaMatrix;
+//}
+//
+////边遍历就算了不关心
+////有权图在意边 不在意节点 顶点连通性 共用顶点
+////有都在意的吗？
+//
+////无向有权图 这个更重要？因为看边权计算，这个更好 对称 用有向表示双向维护，所以对称
+//class AdjaUndirectedWeightedMatrixGraph {
+//    //顶点数
+//    int n;
+//    int[][] adjaMatrix;
+//
+//    //全源最短？
+//
+//}
+//
+////有向有权图 这个更重要？因为看边权计算，这个更好 不对称
+//class AdjaDirectedWeightedMatrixGraph {
+//    //顶点数
+//    int n;
+//    int[][] adjaMatrix;
+//
+//    //全源最短？
+//
+//}
