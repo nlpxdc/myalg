@@ -1,5 +1,7 @@
 package graph.unweighted.undirected;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,33 +32,51 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
 //或者默认前后的节点是无序的，要注意，那可以维护一端？不行，这样就减半了，不能减半
 //相当于多颗树森林的遍历
 class AdjaMapSetUndirectedUnweightedGraph {
-    Map<Integer, Set<Integer>> mapSet;
+    int n;
+    Map<Integer, Set<Integer>> adjaMapSet;
 
-    void visit(Integer node) {
-        System.out.print(node+",");
+    AdjaMapSetUndirectedUnweightedGraph(int n) {
+        if (n <= 0) {
+            throw new RuntimeException("n必须大于0");
+        }
+        this.n = n;
+        adjaMapSet = new HashMap<>();
+    }
+    void addEdge(int u, int v) {
+        Set<Integer> uAdjaSet = adjaMapSet.getOrDefault(u, new HashSet<>());
+        uAdjaSet.add(v);
+        Set<Integer> vAdjaSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+        vAdjaSet.add(u);
     }
 
-    //bfs
-    void traverseBfs() {
-        if (mapSet == null || mapSet.isEmpty()) {
-            return;
-        }
-
-        //外层循环 出节点列表
-        for (Map.Entry<Integer, Set<Integer>> nodeAdjaNodeSet : mapSet.entrySet()) {
-            Set<Integer> adjaNodeSet = nodeAdjaNodeSet.getValue();
-            //内层循环 出节点的入节点列表，邻接节点，注意这里是无向的，对称维护由写入负责
-            for (Integer adjaNode : adjaNodeSet) {
-                visit(adjaNode);
+    Integer getFirstUnVisited(boolean[] visited) {
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
+                return i;
             }
         }
+        return null;
+    }
+    void visit(Integer v) {
+        System.out.print(v+",");
+    }
+    void discover(Integer v) {
+        System.out.println(String.format("discover %d", v));
+    }
+    void finish(Integer v) {
+        System.out.println(String.format("finish %d", v));
+    }
 
-        System.out.println();
+
+    //bfs
+    void bfs() {
+
     }
     //dfs
-    void traverseDfs() {
+    void dfs() {
 
     }
+
 }
 
 ////有向无权图 这个重要，因为这个是结构相关的，权不影响结构
