@@ -84,12 +84,21 @@ class AdjaMapSetUndirectedUnweightedGraph {
         System.out.println(String.format("finish %d", v));
     }
 
+    boolean hasUVEdge(int u, int v) {
+        Set<Integer> uAdjaSet = adjaMapSet.get(u);
+        if (uAdjaSet != null) {
+            return uAdjaSet.contains(v);
+        }
+        return false;
+    }
+
+    //依赖hasUVEdge，但这样不划算。故不考虑
+//    void traverseVertexByEdge() {}
 
     //bfs
     void singleBfs(Integer startV) {
         boolean[] visited = new boolean[n];
 
-        //todo
         innerBfs(startV, visited);
 
         System.out.println();

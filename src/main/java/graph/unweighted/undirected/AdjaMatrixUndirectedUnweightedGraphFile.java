@@ -129,27 +129,27 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
     //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
     //注意这里访问的是边，然后要转成点 这个逻辑上没啥作用
-    void traverseVertexByEdge() {
-        boolean[] visited = new boolean[n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (adjaMatrix[i][j]) {
-                    if (!visited[i]) {
-                        visited[i] = true;
-                        visit(i);
-                    }
-                    if (!visited[j]) {
-                        visited[j] = true;
-                        visit(j);
-                    }
-                }
-            }
-        }
-
-        System.out.println();
-        System.out.println();
-    }
+//    void traverseVertexByEdge() {
+//        boolean[] visited = new boolean[n];
+//
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j < n; j++) {
+//                if (adjaMatrix[i][j]) {
+//                    if (!visited[i]) {
+//                        visited[i] = true;
+//                        visit(i);
+//                    }
+//                    if (!visited[j]) {
+//                        visited[j] = true;
+//                        visit(j);
+//                    }
+//                }
+//            }
+//        }
+//
+//        System.out.println();
+//        System.out.println();
+//    }
 
     //bfs
     //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
