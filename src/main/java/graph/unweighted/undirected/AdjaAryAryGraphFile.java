@@ -29,7 +29,7 @@ class AdjaAryAryGraphApp {
 //节点无需减半维护，利用对称性有好处？有去有回，方便找节点？回溯？
 //或者默认前后的节点是无序的，要注意，那可以维护一端？不行，这样就减半了，不能减半
 //相当于多颗树森林的遍历
-class AdjaUndirectedUnWeightedMapSetGraph {
+class AdjaMapSetUndirectedUnweightedGraph {
     Map<Integer, Set<Integer>> mapSet;
 
     void visit(Integer node) {
@@ -60,7 +60,7 @@ class AdjaUndirectedUnWeightedMapSetGraph {
 }
 
 //有向无权图 这个重要，因为这个是结构相关的，权不影响结构
-class AdjaDirectedUnWeightedMapSetGraph {
+class AdjaMapSetDirectedUnweightedGraph {
     Map<Integer, Set<Integer>> mapSet;
 
     //遍历 traverse
@@ -79,13 +79,13 @@ class AdjaDirectedUnWeightedMapSetGraph {
 }
 
 //无向有权图
-class AdjaUnDirectedWeightedMapMapGraph {
+class AdjaMapMapUndirectedWeightedGraph {
     Map<Integer, Map<Integer, Integer>> mapMap;
 }
 
 //有向有权图 这个对于图来说最重要？带边权的计算
 //默认都是出度
-class AdjaDirectedWeightedMapMapGraph {
+class AdjaMapMapDirectedWeightedGraph {
     Map<Integer, Map<Integer, Integer>> mapMap;
 
     //遍历 traverse
