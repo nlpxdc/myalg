@@ -1,9 +1,6 @@
 package graph.unweighted.undirected;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 //树和分治更有关联，关心节点中key值的大小，在这个上面做文章，
 //图的话和分治关系不大？更关心节点间的关联关系，以及含有边权数据的计算问题，不太关心节点key的大小关系排序？
@@ -69,8 +66,32 @@ class AdjaMapSetUndirectedUnweightedGraph {
 
 
     //bfs
-    void bfs() {
+    void singleBfs(Integer startV) {
+        boolean[] visited = new boolean[n];
 
+        //todo
+        innerBfs(startV, visited);
+
+        System.out.println();
+    }
+    void innerBfs(Integer startV, boolean[] visited) {
+        //临时队列
+        Queue<Integer> queue = new LinkedList<>();
+
+        //
+        queue.offer(startV);
+        visited[startV] = true;
+        while (!queue.isEmpty()) {
+            Integer currentV = queue.poll();
+            visit(currentV);
+            Set<Integer> currentVAdjaVSet = adjaMapSet.getOrDefault(currentV, new HashSet<>());
+            for (Integer currentVAdjaV : currentVAdjaVSet) {
+                visited[currentVAdjaV] = true;
+                queue.offer(currentVAdjaV);
+            }
+        }
+
+        System.out.println();
     }
     //dfs
     void dfs() {
