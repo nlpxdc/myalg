@@ -1,6 +1,5 @@
 package graph.unweighted.undirected;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,7 +18,7 @@ import java.util.Set;
 //这里的第二维，的一维数组其实就是邻接节点的定义，第一维的数组，其实就是节点顶点列表，用来抓住整个图
 //这里其实依旧使用了数组，没有用到列表，但是利用了Map映射算法，内部可以用数组带hash打散进行存储表示或者是树treemap都可以，不限制，这样节省了空间
 //第一个维度的顶点列表，节省了描述顶点集合的空间，第二维的邻接点的邻接边（有向图）或点（无向图），节省了邻接边点的空间，超出后再扩容
-class AdjaAryAryGraphApp {
+class AdjaAryAryUndirectedUnweightedGraphApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
