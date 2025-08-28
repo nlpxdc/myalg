@@ -191,8 +191,8 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             visit(currentV);
             for (int adjaV = 0; adjaV < n; adjaV++) {
                 if (adjaMatrix[currentV][adjaV] && !visited[adjaV]) {
-                    visited[adjaV] = true;
                     queue.offer(adjaV);
+                    visited[adjaV] = true;
                 }
             }
         }
