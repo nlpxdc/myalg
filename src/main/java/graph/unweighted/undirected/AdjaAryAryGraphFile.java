@@ -59,39 +59,39 @@ class AdjaMapSetUndirectedUnweightedGraph {
     }
 }
 
-//有向无权图 这个重要，因为这个是结构相关的，权不影响结构
-class AdjaMapSetDirectedUnweightedGraph {
-    Map<Integer, Set<Integer>> mapSet;
+////有向无权图 这个重要，因为这个是结构相关的，权不影响结构
+//class AdjaMapSetDirectedUnweightedGraph {
+//    Map<Integer, Set<Integer>> mapSet;
+//
+//    //遍历 traverse
+//    //BFS visited bool数组
+//    //DFS 无中，有前后？但对称，默认约定前序 后序 逆后序？ 唯一等价？
+//    //判断有环无环 dag 拓扑排序多个？ bool数组->int数组 三色标记，结合入度为0开始，只有出没有入的点，可能有多个，也可能没有
+//    //树边 非树边 回边back 前向边forward 横叉边cross 配合三色标记？
+//    //三色标记，只判断是否，不记录顺序 这个要入度的
+//    //拓扑序要记录顺序的 这个也要入度的
+//
+//    //单向连通 双向连通，无向连通
+//    //无向底图 无向基图 弱连通 dfs bfs
+//    //有向图 单向连通 单连通环 dag 单链？
+//    //有向图 强连通 强连通环
+//
+//}
 
-    //遍历 traverse
-    //BFS visited bool数组
-    //DFS 无中，有前后？但对称，默认约定前序 后序 逆后序？ 唯一等价？
-    //判断有环无环 dag 拓扑排序多个？ bool数组->int数组 三色标记，结合入度为0开始，只有出没有入的点，可能有多个，也可能没有
-    //树边 非树边 回边back 前向边forward 横叉边cross 配合三色标记？
-    //三色标记，只判断是否，不记录顺序 这个要入度的
-    //拓扑序要记录顺序的 这个也要入度的
-
-    //单向连通 双向连通，无向连通
-    //无向底图 无向基图 弱连通 dfs bfs
-    //有向图 单向连通 单连通环 dag 单链？
-    //有向图 强连通 强连通环
-
-}
-
-//无向有权图
-class AdjaMapMapUndirectedWeightedGraph {
-    Map<Integer, Map<Integer, Integer>> mapMap;
-}
-
-//有向有权图 这个对于图来说最重要？带边权的计算
-//默认都是出度
-class AdjaMapMapDirectedWeightedGraph {
-    Map<Integer, Map<Integer, Integer>> mapMap;
-
-    //遍历 traverse
-    //BFS visited bool数组
-    //DFS 无中，有前后？但对称，默认约定前序 后序 逆后序？ 唯一等价？
-    //判断有环无环 dag 拓扑排序多个？ bool数组->int数组 三色标记，结合入度为0开始，只有出没有入的点，可能有多个，也可能没有
-    //树边 非树边 回边back 前向边forward 横叉边cross 配合三色标记？
-
-}
+////无向有权图
+//class AdjaMapMapUndirectedWeightedGraph {
+//    Map<Integer, Map<Integer, Integer>> mapMap;
+//}
+//
+////有向有权图 这个对于图来说最重要？带边权的计算
+////默认都是出度
+//class AdjaMapMapDirectedWeightedGraph {
+//    Map<Integer, Map<Integer, Integer>> mapMap;
+//
+//    //遍历 traverse
+//    //BFS visited bool数组
+//    //DFS 无中，有前后？但对称，默认约定前序 后序 逆后序？ 唯一等价？
+//    //判断有环无环 dag 拓扑排序多个？ bool数组->int数组 三色标记，结合入度为0开始，只有出没有入的点，可能有多个，也可能没有
+//    //树边 非树边 回边back 前向边forward 横叉边cross 配合三色标记？
+//
+//}
