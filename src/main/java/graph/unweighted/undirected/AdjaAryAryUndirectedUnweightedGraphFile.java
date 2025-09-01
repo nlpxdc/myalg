@@ -122,9 +122,9 @@ class AdjaMapSetUndirectedUnweightedGraph {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
-        //
-        queue.offer(startV);
+        //初始化队列，塞入图的第一个顶点
         visited[startV] = true;
+        queue.offer(startV);
         while (!queue.isEmpty()) {
             //先访问自己
             Integer currentV = queue.poll();
@@ -133,8 +133,8 @@ class AdjaMapSetUndirectedUnweightedGraph {
             Set<Integer> adjaUSet = adjaMapSet.getOrDefault(currentV, new HashSet<>());
             for (Integer adjaU : adjaUSet) {
                 if (!visited[adjaU]) {
-                    queue.offer(adjaU);
                     visited[adjaU] = true;
+                    queue.offer(adjaU);
                 }
             }
         }

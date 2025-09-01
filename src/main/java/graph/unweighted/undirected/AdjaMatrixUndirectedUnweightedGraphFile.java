@@ -184,8 +184,8 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        queue.offer(startV);
         visited[startV] = true;
+        queue.offer(startV);
         while (!queue.isEmpty()) {
             //先访问自己
             Integer currentV = queue.poll();
@@ -194,8 +194,8 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[currentV][u]) {
                     if (!visited[u]) {
-                        queue.offer(u);
                         visited[u] = true;
+                        queue.offer(u);
                     }
                 }
             }
