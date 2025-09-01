@@ -187,8 +187,10 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         queue.offer(startV);
         visited[startV] = true;
         while (!queue.isEmpty()) {
+            //先访问自己
             Integer currentV = queue.poll();
             visit(currentV);
+            //再访问邻接顶点
             for (int adjaV = 0; adjaV < n; adjaV++) {
                 if (adjaMatrix[currentV][adjaV] && !visited[adjaV]) {
                     queue.offer(adjaV);

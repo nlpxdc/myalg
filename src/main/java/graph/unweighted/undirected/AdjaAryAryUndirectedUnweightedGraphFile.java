@@ -125,9 +125,11 @@ class AdjaMapSetUndirectedUnweightedGraph {
         //
         queue.offer(startV);
         visited[startV] = true;
-        for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty(); i++) {
+        while (!queue.isEmpty()) {
+            //先访问自己
             Integer currentV = queue.poll();
             visit(currentV);
+            //再访问邻接顶点
             Set<Integer> currentVAdjaVSet = adjaMapSet.getOrDefault(currentV, new HashSet<>());
             for (Integer currentVAdjaV : currentVAdjaVSet) {
                 if (!visited[currentVAdjaV]) {
