@@ -130,11 +130,11 @@ class AdjaMapSetUndirectedUnweightedGraph {
             Integer currentV = queue.poll();
             visit(currentV);
             //再访问邻接顶点
-            Set<Integer> currentVAdjaVSet = adjaMapSet.getOrDefault(currentV, new HashSet<>());
-            for (Integer currentVAdjaV : currentVAdjaVSet) {
-                if (!visited[currentVAdjaV]) {
-                    queue.offer(currentVAdjaV);
-                    visited[currentVAdjaV] = true;
+            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(currentV, new HashSet<>());
+            for (Integer adjaU : adjaUSet) {
+                if (!visited[adjaU]) {
+                    queue.offer(adjaU);
+                    visited[adjaU] = true;
                 }
             }
         }
