@@ -129,7 +129,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
             //先访问自己
             Integer currentV = queue.poll();
             visit(currentV);
-            //再访问邻接顶点
+            //再按层访问邻接顶点
             Set<Integer> adjaUSet = adjaMapSet.getOrDefault(currentV, new HashSet<>());
             for (Integer adjaU : adjaUSet) {
                 if (!visited[adjaU]) {
