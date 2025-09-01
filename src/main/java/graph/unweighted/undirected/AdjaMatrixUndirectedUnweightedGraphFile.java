@@ -191,10 +191,12 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             Integer currentV = queue.poll();
             visit(currentV);
             //再访问邻接顶点
-            for (int adjaV = 0; adjaV < n; adjaV++) {
-                if (adjaMatrix[currentV][adjaV] && !visited[adjaV]) {
-                    queue.offer(adjaV);
-                    visited[adjaV] = true;
+            for (int u = 0; u < n; u++) {
+                if (adjaMatrix[currentV][u]) {
+                    if (!visited[u]) {
+                        queue.offer(u);
+                        visited[u] = true;
+                    }
                 }
             }
         }
