@@ -235,8 +235,10 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         visited[v] = true;
         discover(v);
         for (int u = 0; u < n; u++) {
-            if (adjaMatrix[v][u] && !visited[u]) {
-                innerDfs(u, visited);
+            if (adjaMatrix[v][u]) {
+                if (!visited[u]) {
+                    innerDfs(u, visited);
+                }
             }
         }
         finish(v);
