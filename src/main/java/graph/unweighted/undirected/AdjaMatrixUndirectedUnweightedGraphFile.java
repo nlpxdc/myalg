@@ -179,13 +179,13 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
         return childrenGraphCount;
     }
-    void innerBfs(int startV, boolean[] visited) {
+    void innerBfs(int v, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        visited[startV] = true;
-        queue.offer(startV);
+        visited[v] = true;
+        queue.offer(v);
         while (!queue.isEmpty()) {
             //先访问自己
             Integer currentV = queue.poll();

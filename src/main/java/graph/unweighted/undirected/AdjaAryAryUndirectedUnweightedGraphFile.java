@@ -118,13 +118,13 @@ class AdjaMapSetUndirectedUnweightedGraph {
 
         System.out.println();
     }
-    void innerBfs(Integer startV, boolean[] visited) {
+    void innerBfs(Integer v, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //初始化队列，塞入图的第一个顶点
-        visited[startV] = true;
-        queue.offer(startV);
+        visited[v] = true;
+        queue.offer(v);
         while (!queue.isEmpty()) {
             //先访问自己
             Integer currentV = queue.poll();
@@ -145,6 +145,20 @@ class AdjaMapSetUndirectedUnweightedGraph {
     //dfs
     void dfs() {
 
+    }
+    void innerDfs(int v, boolean[] visited) {
+        visited[v] = true;
+        visit(v);
+//        discover(v);
+        Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+        for (Integer adjaU : adjaUSet) {
+            if (!visited[adjaU]) {
+                visited[adjaU] = true;
+                innerDfs(adjaU, visited);
+            }
+        }
+//        visit(v);
+//        finish(v);
     }
 
 }
