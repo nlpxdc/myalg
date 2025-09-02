@@ -242,77 +242,77 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         finish(v);
     }
 
-    //dfs preOrder
-    void singlePreOrderDfs(int startV) {
-        boolean[] visited = new boolean[n];
+//    //dfs preOrder
+//    void singlePreOrderDfs(int startV) {
+//        boolean[] visited = new boolean[n];
+//
+//        innerPreOrderDfs(startV, visited);
+//
+//        System.out.println();
+//    }
+//    int preOrderDfs() {
+//        boolean[] visited = new boolean[n];
+//
+//        int childrenGraphCount = 0;
+//        for (int i = 0; i < n; i++) {
+//            Integer firstUnVisited = getFirstUnVisited(visited);
+//            if (firstUnVisited != null) {
+//                innerPreOrderDfs(firstUnVisited, visited);
+//                System.out.println();
+//            } else {
+//                break;
+//            }
+//        }
+//
+//        System.out.println();
+//
+//        return childrenGraphCount;
+//    }
+//    void innerPreOrderDfs(int v, boolean[] visited) {
+//        visited[v] = true;
+//        visit(v);
+//        for (int u = 0; u < n; u++) {
+//            if (adjaMatrix[v][u] && !visited[u]) {
+//                innerPreOrderDfs(u, visited);
+//            }
+//        }
+//    }
 
-        innerPreOrderDfs(startV, visited);
-
-        System.out.println();
-    }
-    int preOrderDfs() {
-        boolean[] visited = new boolean[n];
-
-        int childrenGraphCount = 0;
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                innerPreOrderDfs(firstUnVisited, visited);
-                System.out.println();
-            } else {
-                break;
-            }
-        }
-
-        System.out.println();
-
-        return childrenGraphCount;
-    }
-    void innerPreOrderDfs(int v, boolean[] visited) {
-        visited[v] = true;
-        visit(v);
-        for (int u = 0; u < n; u++) {
-            if (adjaMatrix[v][u] && !visited[u]) {
-                innerPreOrderDfs(u, visited);
-            }
-        }
-    }
-
-    //dfs postOrder
-    void singlePostOrderDfs(int startV) {
-        boolean[] visited = new boolean[n];
-
-        innerPostOrderDfs(startV, visited);
-
-        System.out.println();
-    }
-    int postOrderDfs() {
-        boolean[] visited = new boolean[n];
-
-        int childrenGraphCount = 0;
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                innerPostOrderDfs(firstUnVisited, visited);
-                System.out.println();
-            } else {
-                break;
-            }
-        }
-
-        System.out.println();
-
-        return childrenGraphCount;
-    }
-    void innerPostOrderDfs(int v, boolean[] visited) {
-        visited[v] = true;
-        for (int u = 0; u < n; u++) {
-            if (adjaMatrix[v][u] && !visited[u]) {
-                innerPostOrderDfs(u, visited);
-            }
-        }
-        visit(v);
-    }
+//    //dfs postOrder
+//    void singlePostOrderDfs(int startV) {
+//        boolean[] visited = new boolean[n];
+//
+//        innerPostOrderDfs(startV, visited);
+//
+//        System.out.println();
+//    }
+//    int postOrderDfs() {
+//        boolean[] visited = new boolean[n];
+//
+//        int childrenGraphCount = 0;
+//        for (int i = 0; i < n; i++) {
+//            Integer firstUnVisited = getFirstUnVisited(visited);
+//            if (firstUnVisited != null) {
+//                innerPostOrderDfs(firstUnVisited, visited);
+//                System.out.println();
+//            } else {
+//                break;
+//            }
+//        }
+//
+//        System.out.println();
+//
+//        return childrenGraphCount;
+//    }
+//    void innerPostOrderDfs(int v, boolean[] visited) {
+//        visited[v] = true;
+//        for (int u = 0; u < n; u++) {
+//            if (adjaMatrix[v][u] && !visited[u]) {
+//                innerPostOrderDfs(u, visited);
+//            }
+//        }
+//        visit(v);
+//    }
 
 }
 
