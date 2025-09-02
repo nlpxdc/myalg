@@ -165,20 +165,46 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //        System.out.println();
 //    }
 
-    void singleTraverse(int startV, BiConsumer<Integer, boolean[]> func) {
+    void singleTraverseFramework(int startV, BiConsumer<Integer, boolean[]> innerTraverse) {
         boolean[] visited = new boolean[n];
 
-        func.accept(startV, visited);
+        innerTraverse.accept(startV, visited);
 
         System.out.println();
     }
-
     void singleBfsV2(int startV) {
-        singleTraverse(startV, this::innerBfs);
+        singleTraverseFramework(startV, this::innerBfs);
+    }
+    void singleDfsV2(int startV) {
+        singleTraverseFramework(startV, this::innerDfs);
     }
 
-    void singleDfsV2(int startV) {
-        singleTraverse(startV, this::innerDfs);
+    int traverseFramework(BiConsumer<Integer, boolean[]> innerTraverse) {
+        //初始化临时数组，记录访问状态
+        boolean[] visited = new boolean[n];
+
+        int childrenGraphCount = 0;
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                childrenGraphCount++;
+                innerTraverse.accept(firstUnVisited, visited);
+            } else {
+                break;
+            }
+        }
+
+        System.out.println();
+
+        return childrenGraphCount;
+    }
+    int traverseBfsV2() {
+        int cnt = traverseFramework(this::innerBfs);
+        return cnt;
+    }
+    int traverDfsV2() {
+        int cnt = traverseFramework(this::innerDfs);
+        return cnt;
     }
 
     //bfs
