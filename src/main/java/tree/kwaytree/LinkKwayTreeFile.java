@@ -31,8 +31,8 @@ class LinkKwayTreeApp {
         node3.children = new LinkedHashSet<>(Arrays.asList(node7,node8,node9));
 
         LinkKwayTree tree = new LinkKwayTree(node1);
-        tree.traverseDfsPreOrder();
-        tree.traverseDfsPostOrder();
+//        tree.traverseDfsPreOrder();
+//        tree.traverseDfsPostOrder();
         tree.traverseBfs();
     }
 
@@ -85,6 +85,8 @@ class LinkKwayTree {
                     queue.offer(child);
                 }
             }
+            //没有区别
+//            visit(node);
         }
 
         System.out.println();
