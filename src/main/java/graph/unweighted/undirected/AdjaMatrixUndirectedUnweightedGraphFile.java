@@ -3,6 +3,7 @@ package graph.unweighted.undirected;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.function.Function;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
@@ -52,8 +53,85 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 
 }
 
+class InputVo {
+    int n;
+    boolean[][] adjaMatrix;
+    int v;
+    boolean[] visited;
+}
+
+class OutputVo {
+
+}
+
 //无权图在意节点，不在意边，边只是连通性
 //顶点遍历类似树
+class InnerBfsFunc implements Function<InputVo, OutputVo> {
+
+    void visit(int v) {
+        System.out.print(v+",");
+    }
+
+    @Override
+    public OutputVo apply(InputVo inputVo) {
+        //临时队列
+        Queue<Integer> queue = new LinkedList<>();
+
+        //这里可以是任意startV n
+        inputVo.visited[inputVo.v] = true;
+        queue.offer(inputVo.v);
+        while (!queue.isEmpty()) {
+            //先访问自己
+            Integer currentV = queue.poll();
+            visit(currentV);
+            //再按层访问邻接顶点
+            for (int u = 0; u < inputVo.n; u++) {
+                if (inputVo.adjaMatrix[currentV][u]) {
+                    if (!inputVo.visited[u]) {
+                        inputVo.visited[u] = true;
+                        queue.offer(u);
+                    }
+                }
+            }
+//            visit(currentV);
+        }
+
+        System.out.println();
+        return null;
+    }
+
+}
+
+class InnerDfsFunc implements Function<InputVo, OutputVo> {
+
+    void discover(int v) {
+        System.out.println(String.format("discover %d", v));
+    }
+    void finish(int v) {
+        System.out.println(String.format("finish %d", v));
+    }
+
+    @Override
+    public OutputVo apply(InputVo inputVo) {
+        inputVo.visited[inputVo.v] = true;
+        discover(inputVo.v);
+        for (int u = 0; u < inputVo.n; u++) {
+            if (inputVo.adjaMatrix[inputVo.v][u]) {
+                if (!inputVo.visited[u]) {
+                    InputVo innerInputVo = new InputVo();
+                    innerInputVo.n = inputVo.n;
+                    innerInputVo.adjaMatrix = inputVo.adjaMatrix;
+                    innerInputVo.v = u;
+                    innerInputVo.visited = inputVo.visited;
+                    apply(innerInputVo);
+                }
+            }
+        }
+        finish(inputVo.v);
+        return null;
+    }
+
+}
 
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
 class AdjaMatrixUndirectedUnWeightedGraph {
