@@ -21,9 +21,9 @@ import java.util.*;
 class AdjaAryAryUndirectedUnweightedGraphApp {
     public static void main(String[] args) {
         AdjaMapSetUndirectedUnweightedGraph graph = new AdjaMapSetUndirectedUnweightedGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -37,8 +37,11 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
         graph.addEdge(2,8);
         graph.addEdge(7,8);
 
-        graph.singleBfs(0);
+//        graph.singleBfs(0);
 //        graph.bfs();
+
+//        graph.singleDfs(0);
+        graph.dfs();
 
     }
 }
@@ -143,12 +146,31 @@ class AdjaMapSetUndirectedUnweightedGraph {
         System.out.println();
     }
     //dfs
-    void dfs() {
+    void singleDfs(int startV) {
+        boolean[] visited = new boolean[n];
 
+        innerDfs(startV, visited);
+
+        System.out.println();
+    }
+    void dfs() {
+        boolean[] visited = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                innerDfs(firstUnVisited, visited);
+                System.out.println();
+            } else {
+                break;
+            }
+        }
+
+        System.out.println();
     }
     void innerDfs(int v, boolean[] visited) {
         visited[v] = true;
-        visit(v);
+//        visit(v);
 //        discover(v);
         Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
         for (Integer adjaU : adjaUSet) {
