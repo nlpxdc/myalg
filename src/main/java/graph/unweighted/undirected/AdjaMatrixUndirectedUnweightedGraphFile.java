@@ -3,6 +3,8 @@ package graph.unweighted.undirected;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
@@ -162,6 +164,22 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //        System.out.println();
 //        System.out.println();
 //    }
+
+    void singleTraverse(int startV, BiConsumer<Integer, boolean[]> func) {
+        boolean[] visited = new boolean[n];
+
+        func.accept(startV, visited);
+
+        System.out.println();
+    }
+
+    void singleBfsV2(int startV) {
+        singleTraverse(startV, this::innerBfs);
+    }
+
+    void singleDfsV2(int startV) {
+        singleTraverse(startV, this::innerDfs);
+    }
 
     //bfs
     //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
