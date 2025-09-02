@@ -21,9 +21,9 @@ import java.util.*;
 class AdjaAryAryUndirectedUnweightedGraphApp {
     public static void main(String[] args) {
         AdjaMapSetUndirectedUnweightedGraph graph = new AdjaMapSetUndirectedUnweightedGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -37,8 +37,8 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
         graph.addEdge(2,8);
         graph.addEdge(7,8);
 
-//        graph.singleBfs(0);
-        graph.bfs();
+        graph.singleBfs(0);
+//        graph.bfs();
 
     }
 }
@@ -137,6 +137,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
                     queue.offer(adjaU);
                 }
             }
+//            visit(currentV);
         }
 
         System.out.println();
