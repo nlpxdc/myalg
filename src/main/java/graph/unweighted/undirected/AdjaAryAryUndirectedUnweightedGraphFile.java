@@ -121,13 +121,13 @@ class AdjaMapSetUndirectedUnweightedGraph {
 
         System.out.println();
     }
-    void innerBfs(Integer v, boolean[] visited) {
+    void innerBfs(Integer startV, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //初始化队列，塞入图的第一个顶点
-        visited[v] = true;
-        queue.offer(v);
+        visited[startV] = true;
+        queue.offer(startV);
         while (!queue.isEmpty()) {
             //先访问自己
             Integer currentV = queue.poll();
