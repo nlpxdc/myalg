@@ -19,12 +19,10 @@ import java.util.function.BiConsumer;
 class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
-//        AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
         AdjaMatrixUndirectedUnWeightedGraph graph = new AdjaMatrixUndirectedUnWeightedGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
-//        graph.addEdge(2,1);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -38,16 +36,17 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(2,8);
         graph.addEdge(7,8);
 
-        //byEdge
-//        graph.traverseVertexByEdge();
-
         //bfs
-        graph.vTraverse(0, graph::bfs);
+//        graph.vTraverse(0, graph::bfs);
+//        System.out.println();
         graph.gTraverse(graph::bfs);
+        System.out.println();
 
         //dfs
-        graph.vTraverse(0, graph::dfs);
+//        graph.vTraverse(0, graph::dfs);
+//        System.out.println();
         graph.gTraverse(graph::dfs);
+        System.out.println();
 
     }
 
@@ -152,14 +151,11 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //        System.out.println();
 //    }
 
-    //重要 框架代码 单个节点
-    void vTraverse(int startV, BiConsumer<Integer, boolean[]> strategy) {
-        boolean[] visited = new boolean[n];
-
-        strategy.accept(startV, visited);
-
-        System.out.println();
-    }
+//    //重要 框架代码 单个节点
+//    void vTraverse(int startV, BiConsumer<Integer, boolean[]> strategy) {
+//        boolean[] visited = new boolean[n];
+//        strategy.accept(startV, visited);
+//    }
 
     //重要 框架代码 整个图多节点
     void gTraverse(BiConsumer<Integer, boolean[]> strategy) {
@@ -176,8 +172,6 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             }
 
         }
-
-        System.out.println();
     }
 
     //bfs和dfs是一种策略
@@ -209,8 +203,6 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             //和上面visit没区别
 //            visit(v);
         }
-
-        System.out.println();
     }
 
     //dfs 按深度连通
@@ -219,7 +211,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     void dfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
-//        visit(v);
+        visit(v);
 //        discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
@@ -230,7 +222,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             }
         }
         //后序遍历
-        visit(v);
+//        visit(v);
 //        finish(v);
     }
 
