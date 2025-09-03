@@ -42,18 +42,13 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 //        graph.traverseVertexByEdge();
 
         //bfs
-//        graph.bfs();
-//        graph.singleBfs(0);
-        graph.connectedBfs(0);
-        graph.disConnectedBfs();
-
-        graph.connectedDfs(0);
-        graph.disConnectedDfs();
+        graph.vTraverse(0, graph::bfs);
+        graph.gTraverse(graph::bfs);
 
         //dfs
-//        graph.preOrderDfs();
-//        graph.postOrderDfs();
-//        graph.dfs();
+        graph.vTraverse(0, graph::dfs);
+        graph.gTraverse(graph::dfs);
+
     }
 
 }
@@ -158,29 +153,23 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //    }
 
     //重要 框架代码 单个节点
-    void connectedSkeleton(int startV, BiConsumer<Integer, boolean[]> traverse) {
+    void vTraverse(int startV, BiConsumer<Integer, boolean[]> strategy) {
         boolean[] visited = new boolean[n];
 
-        traverse.accept(startV, visited);
+        strategy.accept(startV, visited);
 
         System.out.println();
     }
-    void connectedBfs(int startV) {
-        connectedSkeleton(startV, this::bfs);
-    }
-    void connectedDfs(int startV) {
-        connectedSkeleton(startV, this::dfs);
-    }
 
     //重要 框架代码 整个图多节点
-    void disConnectedSkeleton(BiConsumer<Integer, boolean[]> innerTraverse) {
+    void gTraverse(BiConsumer<Integer, boolean[]> strategy) {
         //初始化临时数组，记录访问状态
         boolean[] visited = new boolean[n];
 
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
-                innerTraverse.accept(firstUnVisited, visited);
+                strategy.accept(firstUnVisited, visited);
                 System.out.println();
             } else {
                 break;
@@ -190,14 +179,8 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
         System.out.println();
     }
-    void disConnectedBfs() {
-        disConnectedSkeleton(this::bfs);
-    }
-    void disConnectedDfs() {
-        disConnectedSkeleton(this::dfs);
-    }
 
-    //所以下面就是遍历核心算法
+    //bfs和dfs是一种策略
 
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
