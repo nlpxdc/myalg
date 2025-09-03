@@ -44,11 +44,11 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         //bfs
 //        graph.bfs();
 //        graph.singleBfs(0);
-        graph.singleTraverseFrameworkBfs(0);
-        graph.traverseFrameworkBfs();
+        graph.connectedBfs(0);
+        graph.disConnectedBfs();
 
-        graph.singleTraverseFrameworkDfs(0);
-        graph.traverseFrameworkDfs();
+        graph.connectedDfs(0);
+        graph.disConnectedDfs();
 
         //dfs
 //        graph.preOrderDfs();
@@ -158,22 +158,22 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //    }
 
     //重要 框架代码 单个节点
-    void singleTraverseFramework(int startV, BiConsumer<Integer, boolean[]> innerTraverse) {
+    void connectedSkeleton(int startV, BiConsumer<Integer, boolean[]> innerTraverse) {
         boolean[] visited = new boolean[n];
 
         innerTraverse.accept(startV, visited);
 
         System.out.println();
     }
-    void singleTraverseFrameworkBfs(int startV) {
-        singleTraverseFramework(startV, this::gRecurrentBfs);
+    void connectedBfs(int startV) {
+        connectedSkeleton(startV, this::gRecurrentConnectedBfs);
     }
-    void singleTraverseFrameworkDfs(int startV) {
-        singleTraverseFramework(startV, this::vRecursiveDfs);
+    void connectedDfs(int startV) {
+        connectedSkeleton(startV, this::vRecursiveConnectedDfs);
     }
 
     //重要 框架代码 整个图多节点
-    void traverseFramework(BiConsumer<Integer, boolean[]> innerTraverse) {
+    void disConnectedSkeleton(BiConsumer<Integer, boolean[]> innerTraverse) {
         //初始化临时数组，记录访问状态
         boolean[] visited = new boolean[n];
 
@@ -190,17 +190,17 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
         System.out.println();
     }
-    void traverseFrameworkBfs() {
-        traverseFramework(this::gRecurrentBfs);
+    void disConnectedBfs() {
+        disConnectedSkeleton(this::gRecurrentConnectedBfs);
     }
-    void traverseFrameworkDfs() {
-        traverseFramework(this::vRecursiveDfs);
+    void disConnectedDfs() {
+        disConnectedSkeleton(this::vRecursiveConnectedDfs);
     }
 
-    //bfs
+    //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void gRecurrentBfs(int startV, boolean[] visited) {
+    void gRecurrentConnectedBfs(int startV, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
@@ -227,10 +227,10 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         System.out.println();
     }
 
-    //dfs
+    //dfs 按深度连通
     //因为这个函数是递归写法，所以这里的v代表当前v顶点，不是起点，有点和bfs区别
     //虽然命名是递归，以当前顶点为重，但是因为递归的特性，可以遍历到所有连通顶点，所以也是遍历连通图
-    void vRecursiveDfs(int v, boolean[] visited) {
+    void vRecursiveConnectedDfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
 //        visit(v);
@@ -239,7 +239,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             if (adjaMatrix[v][u]) {
                 if (!visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    vRecursiveDfs(u, visited);
+                    vRecursiveConnectedDfs(u, visited);
                 }
             }
         }
