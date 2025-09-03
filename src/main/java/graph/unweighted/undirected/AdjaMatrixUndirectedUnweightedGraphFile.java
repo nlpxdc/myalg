@@ -201,6 +201,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
     //bfs
     //最核心的代码bfs
+    //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     void innerBfs(int startV, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
@@ -230,6 +231,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
     //dfs
     //最核心的代码 dfs
+    //因为这个函数是递归写法，所以这里的v代表当前v顶点，不是起点，有点和bfs区别
     void innerDfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
