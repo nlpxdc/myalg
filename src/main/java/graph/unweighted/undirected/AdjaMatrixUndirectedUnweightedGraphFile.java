@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
@@ -168,10 +166,10 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         System.out.println();
     }
     void singleTraverseFrameworkBfs(int startV) {
-        singleTraverseFramework(startV, this::innerBfs);
+        singleTraverseFramework(startV, this::gRecurrentBfs);
     }
     void singleTraverseFrameworkDfs(int startV) {
-        singleTraverseFramework(startV, this::innerDfs);
+        singleTraverseFramework(startV, this::vRecursiveDfs);
     }
 
     //重要 框架代码 整个图多节点
@@ -193,16 +191,16 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         System.out.println();
     }
     void traverseFrameworkBfs() {
-        traverseFramework(this::innerBfs);
+        traverseFramework(this::gRecurrentBfs);
     }
     void traverseFrameworkDfs() {
-        traverseFramework(this::innerDfs);
+        traverseFramework(this::vRecursiveDfs);
     }
 
     //bfs
-    //最核心的代码bfs
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
-    void innerBfs(int startV, boolean[] visited) {
+    //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
+    void gRecurrentBfs(int startV, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
@@ -230,9 +228,9 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     }
 
     //dfs
-    //最核心的代码 dfs
     //因为这个函数是递归写法，所以这里的v代表当前v顶点，不是起点，有点和bfs区别
-    void innerDfs(int v, boolean[] visited) {
+    //虽然命名是递归，以当前顶点为重，但是因为递归的特性，可以遍历到所有连通顶点，所以也是遍历连通图
+    void vRecursiveDfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
 //        visit(v);
@@ -241,7 +239,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             if (adjaMatrix[v][u]) {
                 if (!visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    innerDfs(u, visited);
+                    vRecursiveDfs(u, visited);
                 }
             }
         }
