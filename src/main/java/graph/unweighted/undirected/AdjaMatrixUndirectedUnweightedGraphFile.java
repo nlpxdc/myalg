@@ -158,18 +158,18 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //    }
 
     //重要 框架代码 单个节点
-    void connectedSkeleton(int startV, BiConsumer<Integer, boolean[]> innerTraverse) {
+    void connectedSkeleton(int startV, BiConsumer<Integer, boolean[]> traverse) {
         boolean[] visited = new boolean[n];
 
-        innerTraverse.accept(startV, visited);
+        traverse.accept(startV, visited);
 
         System.out.println();
     }
     void connectedBfs(int startV) {
-        connectedSkeleton(startV, this::gRecurrentConnectedBfs);
+        connectedSkeleton(startV, this::bfs);
     }
     void connectedDfs(int startV) {
-        connectedSkeleton(startV, this::vRecursiveConnectedDfs);
+        connectedSkeleton(startV, this::dfs);
     }
 
     //重要 框架代码 整个图多节点
@@ -191,16 +191,18 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         System.out.println();
     }
     void disConnectedBfs() {
-        disConnectedSkeleton(this::gRecurrentConnectedBfs);
+        disConnectedSkeleton(this::bfs);
     }
     void disConnectedDfs() {
-        disConnectedSkeleton(this::vRecursiveConnectedDfs);
+        disConnectedSkeleton(this::dfs);
     }
+
+    //所以下面就是遍历核心算法
 
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void gRecurrentConnectedBfs(int startV, boolean[] visited) {
+    void bfs(int startV, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
@@ -208,20 +210,21 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         visited[startV] = true;
         queue.offer(startV);
         while (!queue.isEmpty()) {
-            //先访问自己
-            Integer currentV = queue.poll();
-            visit(currentV);
+            //先访问当前自己
+            Integer v = queue.poll();
+            visit(v);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
-                if (adjaMatrix[currentV][u]) {
+                if (adjaMatrix[v][u]) {
                     if (!visited[u]) {
                         visited[u] = true;
                         queue.offer(u);
                     }
                 }
             }
-//            visit(currentV);
+            //和上面visit没区别
+//            visit(v);
         }
 
         System.out.println();
@@ -230,25 +233,27 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     //dfs 按深度连通
     //因为这个函数是递归写法，所以这里的v代表当前v顶点，不是起点，有点和bfs区别
     //虽然命名是递归，以当前顶点为重，但是因为递归的特性，可以遍历到所有连通顶点，所以也是遍历连通图
-    void vRecursiveConnectedDfs(int v, boolean[] visited) {
+    void dfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
 //        visit(v);
-        discover(v);
+//        discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
                 if (!visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    vRecursiveConnectedDfs(u, visited);
+                    dfs(u, visited);
                 }
             }
         }
         //后序遍历
-//        visit(v);
-        finish(v);
+        visit(v);
+//        finish(v);
     }
 
 }
+
+//前后 先后 顺逆 正反
 
 ////有向无权图 这个依赖邻接表 不对称
 //class AdjaDirectedUnWeightedMatrixGraph {
