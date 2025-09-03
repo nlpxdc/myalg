@@ -90,11 +90,17 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     void visit(int v) {
         System.out.print(v+",");
     }
+//    void discover(int v) {
+//        System.out.println(String.format("discover %d", v));
+//    }
+//    void finish(int v) {
+//        System.out.println(String.format("finish %d", v));
+//    }
     void discover(int v) {
-        System.out.println(String.format("discover %d", v));
+        System.out.print(String.format("D%d,", v));
     }
     void finish(int v) {
-        System.out.println(String.format("finish %d", v));
+        System.out.print(String.format("F%d,", v));
     }
 
     boolean beNullGraph() {
@@ -211,7 +217,6 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     void dfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
-        visit(v);
 //        discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
@@ -222,8 +227,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             }
         }
         //后序遍历
-//        visit(v);
-//        finish(v);
+        finish(v);
     }
 
 }
