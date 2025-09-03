@@ -200,33 +200,6 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     }
 
     //bfs
-    //假设有且只有一个连通子图 访问这个顶点的连通子图的所有顶点
-    void singleBfs(int startV) {
-        boolean[] visited = new boolean[n];
-
-        innerBfs(startV, visited);
-
-        System.out.println();
-    }
-    int bfs() {
-        //初始化临时数组，记录访问状态
-        boolean[] visited = new boolean[n];
-
-        int childrenGraphCount = 0;
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                childrenGraphCount++;
-                innerBfs(firstUnVisited, visited);
-            } else {
-                break;
-            }
-        }
-
-        System.out.println();
-
-        return childrenGraphCount;
-    }
     //最核心的代码bfs
     void innerBfs(int startV, boolean[] visited) {
         //临时队列
@@ -239,7 +212,8 @@ class AdjaMatrixUndirectedUnWeightedGraph {
             //先访问自己
             Integer currentV = queue.poll();
             visit(currentV);
-            //再按层访问邻接顶点
+            //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
+            //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[currentV][u]) {
                     if (!visited[u]) {
@@ -254,46 +228,26 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         System.out.println();
     }
 
-    //dfs preOrder & postOrder
-    void singleDfs(int startV) {
-        boolean[] visited = new boolean[n];
-
-        innerDfs(startV, visited);
-
-        System.out.println();
-    }
-    int dfs() {
-        boolean[] visited = new boolean[n];
-
-        int childrenGraphCount = 0;
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                innerDfs(firstUnVisited, visited);
-                System.out.println();
-            } else {
-                break;
-            }
-        }
-
-        System.out.println();
-
-        return childrenGraphCount;
-    }
+    //dfs
     //最核心的代码 dfs
     void innerDfs(int v, boolean[] visited) {
         visited[v] = true;
+        //前序遍历
+//        visit(v);
         discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
                 if (!visited[u]) {
+                    //这里有递归，所以访问v顶点因此有前后之别，先后之别
                     innerDfs(u, visited);
                 }
             }
         }
+        //后序遍历
+//        visit(v);
         finish(v);
     }
-    
+
 }
 
 ////有向无权图 这个依赖邻接表 不对称
