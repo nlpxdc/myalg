@@ -23,9 +23,9 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
     public static void main(String[] args) {
 //        AdjaUnDirectedUnWeightedMatrixGraph graph = new AdjaUnDirectedUnWeightedMatrixGraph(9);
         AdjaMatrixUndirectedUnWeightedGraph graph = new AdjaMatrixUndirectedUnWeightedGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
 //        graph.addEdge(2,1);
 
         graph.addEdge(0,3);
@@ -45,24 +45,18 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 
         //bfs
 //        graph.bfs();
-        graph.singleBfs(0);
+//        graph.singleBfs(0);
+        graph.singleTraverseFrameworkBfs(0);
+        graph.traverseFrameworkBfs();
+
+        graph.singleTraverseFrameworkDfs(0);
+        graph.traverseFrameworkDfs();
 
         //dfs
 //        graph.preOrderDfs();
 //        graph.postOrderDfs();
 //        graph.dfs();
     }
-
-}
-
-class InputVo {
-    int n;
-    boolean[][] adjaMatrix;
-    int v;
-    boolean[] visited;
-}
-
-class OutputVo {
 
 }
 
@@ -165,6 +159,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //        System.out.println();
 //    }
 
+    //重要 框架代码 单个节点
     void singleTraverseFramework(int startV, BiConsumer<Integer, boolean[]> innerTraverse) {
         boolean[] visited = new boolean[n];
 
@@ -172,39 +167,36 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
         System.out.println();
     }
-    void singleBfsV2(int startV) {
+    void singleTraverseFrameworkBfs(int startV) {
         singleTraverseFramework(startV, this::innerBfs);
     }
-    void singleDfsV2(int startV) {
+    void singleTraverseFrameworkDfs(int startV) {
         singleTraverseFramework(startV, this::innerDfs);
     }
 
-    int traverseFramework(BiConsumer<Integer, boolean[]> innerTraverse) {
+    //重要 框架代码 整个图多节点
+    void traverseFramework(BiConsumer<Integer, boolean[]> innerTraverse) {
         //初始化临时数组，记录访问状态
         boolean[] visited = new boolean[n];
 
-        int childrenGraphCount = 0;
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
-                childrenGraphCount++;
                 innerTraverse.accept(firstUnVisited, visited);
+                System.out.println();
             } else {
                 break;
             }
+
         }
 
         System.out.println();
-
-        return childrenGraphCount;
     }
-    int traverseBfsV2() {
-        int cnt = traverseFramework(this::innerBfs);
-        return cnt;
+    void traverseFrameworkBfs() {
+        traverseFramework(this::innerBfs);
     }
-    int traverDfsV2() {
-        int cnt = traverseFramework(this::innerDfs);
-        return cnt;
+    void traverseFrameworkDfs() {
+        traverseFramework(this::innerDfs);
     }
 
     //bfs
@@ -235,6 +227,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
         return childrenGraphCount;
     }
+    //最核心的代码bfs
     void innerBfs(int startV, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
@@ -287,6 +280,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 
         return childrenGraphCount;
     }
+    //最核心的代码 dfs
     void innerDfs(int v, boolean[] visited) {
         visited[v] = true;
         discover(v);
