@@ -45,8 +45,8 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         //dfs
 //        graph.vTraverse(0, graph::dfs);
 //        System.out.println();
-        graph.gTraverse(graph::dfs);
-        System.out.println();
+//        graph.gTraverse(graph::dfs);
+//        System.out.println();
 
     }
 
@@ -195,7 +195,8 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         while (!queue.isEmpty()) {
             //先访问当前自己
             Integer v = queue.poll();
-            visit(v);
+            //和下面的没有区别
+//            visit(v);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
@@ -206,8 +207,8 @@ class AdjaMatrixUndirectedUnWeightedGraph {
                     }
                 }
             }
-            //和上面visit没区别
-//            visit(v);
+            //和dfs的位置类似finish重要位置 但实际上和上面visit没区别
+            visit(v);
         }
     }
 
