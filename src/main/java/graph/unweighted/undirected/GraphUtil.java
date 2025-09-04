@@ -33,7 +33,7 @@ public class GraphUtil {
         boolean[] visited = new boolean[n];
 
         for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
+            Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
                 strategy.accept(firstUnVisited, visited);
                 System.out.println();
