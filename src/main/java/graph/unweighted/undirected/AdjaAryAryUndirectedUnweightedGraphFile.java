@@ -71,15 +71,6 @@ class AdjaMapSetUndirectedUnweightedGraph {
         vAdjaSet.add(u);
     }
 
-    Integer getFirstUnVisited(boolean[] visited) {
-        for (int i = 0; i < visited.length; i++) {
-            if (!visited[i]) {
-                return i;
-            }
-        }
-        return null;
-    }
-
     boolean hasUVEdge(int u, int v) {
         Set<Integer> uAdjaSet = adjaMapSet.get(u);
         if (uAdjaSet != null) {
@@ -93,7 +84,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
         boolean[] visited = new boolean[n];
 
         for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
+            Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
             if (firstUnVisited != null) {
                 strategy.accept(firstUnVisited, visited);
                 System.out.println();

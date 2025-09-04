@@ -79,14 +79,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         }
     }
 
-    Integer getFirstUnVisited(boolean[] visited) {
-        for (int i = 0; i < visited.length; i++) {
-            if (!visited[i]) {
-                return i;
-            }
-        }
-        return null;
-    }
+
     boolean beNullGraph() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -153,7 +146,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
         boolean[] visited = new boolean[n];
 
         for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
+            Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
             if (firstUnVisited != null) {
                 strategy.accept(firstUnVisited, visited);
                 System.out.println();
