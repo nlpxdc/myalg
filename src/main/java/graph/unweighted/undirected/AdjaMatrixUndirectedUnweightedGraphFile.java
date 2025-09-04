@@ -1,5 +1,7 @@
 package graph.unweighted.undirected;
 
+import graph.unweighted.GraphUtil;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,7 +20,7 @@ import java.util.Queue;
 class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
-        AdjaMatrixUndirectedUnWeightedGraph graph = new AdjaMatrixUndirectedUnWeightedGraph(9);
+        AdjaMatrixUndirectedUnweightedGraph graph = new AdjaMatrixUndirectedUnweightedGraph(9);
         graph.addEdge(0,1);
         graph.addEdge(0,2);
         graph.addEdge(1,2);
@@ -49,12 +51,12 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 //顶点遍历类似树
 
 //无向无权图 这个依赖邻接表 对称 用有向表示双向维护，所以对称
-class AdjaMatrixUndirectedUnWeightedGraph {
+class AdjaMatrixUndirectedUnweightedGraph {
     //顶点数
     int n;
     boolean[][] adjaMatrix;
 
-    AdjaMatrixUndirectedUnWeightedGraph(int n) {
+    AdjaMatrixUndirectedUnweightedGraph(int n) {
         if (n <=0) {
             throw new RuntimeException("n必须大于0");
         }

@@ -1,9 +1,9 @@
-package graph.unweighted.undirected;
+package graph.unweighted;
 
 import java.util.function.BiConsumer;
 
 public class GraphUtil {
-    static void visit(int v) {
+    public static void visit(int v) {
         System.out.print(v+",");
     }
 //    static void discover(int v) {
@@ -12,14 +12,14 @@ public class GraphUtil {
 //    static void finish(int v) {
 //        System.out.println(String.format("finish %d", v));
 //    }
-    static void discover(int v) {
+    public static void discover(int v) {
         System.out.print(String.format("D%d,", v));
     }
-    static void finish(int v) {
+    public static void finish(int v) {
         System.out.print(String.format("F%d,", v));
     }
 
-    static Integer getFirstUnVisited(boolean[] visited) {
+    public static Integer getFirstUnVisited(boolean[] visited) {
         for (int i = 0; i < visited.length; i++) {
             if (!visited[i]) {
                 return i;
@@ -28,7 +28,7 @@ public class GraphUtil {
         return null;
     }
 
-    static void traverse(int n, BiConsumer<Integer, boolean[]> strategy) {
+    public static void traverse(int n, BiConsumer<Integer, boolean[]> strategy) {
         //初始化临时数组，记录访问状态
         boolean[] visited = new boolean[n];
 
