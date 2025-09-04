@@ -1,4 +1,4 @@
-package graph.unweighted.undirected;
+package graph.unweighted.directed;
 
 import graph.unweighted.GraphUtil;
 
@@ -20,9 +20,9 @@ import java.util.*;
 //这里其实依旧使用了数组，没有用到列表，但是利用了Map映射算法，内部可以用数组带hash打散进行存储表示或者是树treemap都可以，不限制，这样节省了空间
 //第一个维度的顶点列表，节省了描述顶点集合的空间，第二维的邻接点的邻接边（有向图）或点（无向图），节省了邻接边点的空间，超出后再扩容
 //依赖hash散列，减小存储空间
-class AdjaAryAryUndirectedUnweightedGraphApp {
+class AdjaAryAryDirectedUnweightedGraphApp {
     public static void main(String[] args) {
-        AdjaMapSetUndirectedUnweightedGraph graph = new AdjaMapSetUndirectedUnweightedGraph(9);
+        AdjaMapSetDirectedUnweightedGraph graph = new AdjaMapSetDirectedUnweightedGraph(9);
         graph.addEdge(0,1);
         graph.addEdge(0,2);
         graph.addEdge(1,2);
@@ -52,11 +52,11 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
 //节点无需减半维护，利用对称性有好处？有去有回，方便找节点？回溯？
 //或者默认前后的节点是无序的，要注意，那可以维护一端？不行，这样就减半了，不能减半
 //相当于多颗树森林的遍历
-class AdjaMapSetUndirectedUnweightedGraph {
+class AdjaMapSetDirectedUnweightedGraph {
     int n;
     Map<Integer, Set<Integer>> adjaMapSet;
 
-    AdjaMapSetUndirectedUnweightedGraph(int n) {
+    AdjaMapSetDirectedUnweightedGraph(int n) {
         if (n <= 0) {
             throw new RuntimeException("n必须大于0");
         }
@@ -99,6 +99,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
         while (!queue.isEmpty()) {
             //先访问当前自己
             Integer v = queue.poll();
+            visited[v] = true;
             GraphUtil.visit(v);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
