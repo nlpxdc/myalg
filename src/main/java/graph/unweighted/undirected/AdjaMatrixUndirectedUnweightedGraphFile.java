@@ -36,10 +36,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        graph.gTraverseByBfs();
+        graph.traverseByBfs();
 
         //dfs
-        graph.gTraverseByDfs();
+        graph.traverseByDfs();
 
     }
 
@@ -103,11 +103,11 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     //多扫一遍顶点、数连通分量
     //判断连通子图个数，连通分量
 
-    void gTraverseByBfs() {
+    void traverseByBfs() {
         GraphUtil.traverse(n, this::bfs);
     }
 
-    void gTraverseByDfs() {
+    void traverseByDfs() {
         GraphUtil.traverse(n, this::dfs);
     }
 

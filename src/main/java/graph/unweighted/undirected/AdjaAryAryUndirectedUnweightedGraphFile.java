@@ -38,10 +38,10 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        graph.gTraverseByBfs();
+        graph.traverseByBfs();
 
         //dfs
-        graph.gTraverseByDfs();
+        graph.traverseByDfs();
 
     }
 }
@@ -78,11 +78,11 @@ class AdjaMapSetUndirectedUnweightedGraph {
         return false;
     }
 
-    void gTraverseByBfs() {
+    void traverseByBfs() {
         GraphUtil.traverse(n, this::bfs);
     }
 
-    void gTraverseByDfs() {
+    void traverseByDfs() {
         GraphUtil.traverse(n, this::dfs);
     }
 
