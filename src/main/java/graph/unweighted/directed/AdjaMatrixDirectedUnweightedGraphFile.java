@@ -1,5 +1,10 @@
 package graph.unweighted.directed;
 
+import graph.unweighted.GraphUtil;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
 //简单图 多重图？ 二维ary 二维vector 冗余视图结构
@@ -15,7 +20,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
-        AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(3);
+        AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(9);
         graph.addArc(0,1);
         graph.addArc(0,2);
         graph.addArc(1,2);
@@ -33,11 +38,11 @@ class AdjaMatrixDirectedUnweightedGraphApp {
         graph.addArc(2,8);
         graph.addArc(7,8);
 
-//        //bfs
-//        graph.bfs();
-//
-//        //dfs
-//        graph.dfs();
+        //bfs
+        graph.traverseByBfs();
+
+        //dfs
+        graph.traverseByDfs();
     }
 
 }
@@ -69,16 +74,58 @@ class AdjaMatrixDirectedUnweightedGraph {
         }
     }
 
-
-
     //计算连通子图的个数，连通分量，任意一个订单开始遍历，然后标记访问列表，然后再取一个顶点，从没被标记过的顶点中选，再标记，直到所有节点被标记过为止
     //那遍历了多少次，就是有多少个连通子图，也就是连通分量，用是否访问标记进行判断，被访问过和是否连通是两个事情
     //多扫一遍顶点、数连通分量
     //判断连通子图个数，连通分量
 
-    //bfs
+    void traverseByBfs() {
+        GraphUtil.traverse(n, this::bfs);
+    }
 
+    void traverseByDfs() {
+        GraphUtil.traverse(n, this::dfs);
+    }
+
+    //bfs
+    void bfs(int startV, boolean[] visited) {
+        //临时队列
+        Queue<Integer> queue = new LinkedList<>();
+
+        //这里可以是任意startV n
+        queue.offer(startV);
+        while (!queue.isEmpty()) {
+            //先访问当前自己
+            Integer v = queue.poll();
+            visited[v] = true;
+            GraphUtil.visit(v);
+            //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
+            //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
+            for (int u = 0; u < n; u++) {
+                if (adjaMatrix[v][u]) {
+                    if (!visited[u]) {
+                        queue.offer(u);
+                    }
+                }
+            }
+        }
+    }
     //dfs
+    void dfs(int v, boolean[] visited) {
+        //前序遍历
+        GraphUtil.discover(v);
+        for (int u = 0; u < n; u++) {
+            if (adjaMatrix[v][u]) {
+                if (!visited[u]) {
+                    //这里有递归，所以访问v顶点因此有前后之别，先后之别
+                    visited[u] = true;
+                    dfs(u, visited);
+                }
+            }
+        }
+        //后序遍历
+        GraphUtil.finish(v);
+    }
 
 }
 

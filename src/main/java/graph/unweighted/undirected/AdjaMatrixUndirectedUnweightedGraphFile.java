@@ -123,24 +123,21 @@ class AdjaMatrixUndirectedUnweightedGraph {
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        visited[startV] = true;
         queue.offer(startV);
         while (!queue.isEmpty()) {
             //先访问当前自己
             Integer v = queue.poll();
-            //和下面的没有区别
+            visited[v] = true;
             GraphUtil.visit(v);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[v][u]) {
                     if (!visited[u]) {
-                        visited[u] = true;
                         queue.offer(u);
                     }
                 }
             }
-//            visit(v);
         }
     }
 
@@ -148,13 +145,13 @@ class AdjaMatrixUndirectedUnweightedGraph {
     //因为这个函数是递归写法，所以这里的v代表当前v顶点，不是起点，有点和bfs区别
     //虽然命名是递归，以当前顶点为重，但是因为递归的特性，可以遍历到所有连通顶点，所以也是遍历连通图
     void dfs(int v, boolean[] visited) {
+        visited[v] = true;
         //前序遍历
         GraphUtil.discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
                 if (!visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    visited[u] = true;
                     dfs(u, visited);
                 }
             }
