@@ -1,6 +1,7 @@
 package graph.unweighted.undirected;
 
 import java.util.*;
+import java.util.function.BiConsumer;
 
 //树和分治更有关联，关心节点中key值的大小，在这个上面做文章，
 //图的话和分治关系不大？更关心节点间的关联关系，以及含有边权数据的计算问题，不太关心节点key的大小关系排序？
@@ -21,9 +22,9 @@ import java.util.*;
 class AdjaAryAryUndirectedUnweightedGraphApp {
     public static void main(String[] args) {
         AdjaMapSetUndirectedUnweightedGraph graph = new AdjaMapSetUndirectedUnweightedGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -38,8 +39,10 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
 //        graph.bfs();
+        graph.gTraverse(graph::bfs);
 
 //        graph.dfs();
+        graph.gTraverse(graph::dfs);
 
     }
 }
@@ -79,11 +82,11 @@ class AdjaMapSetUndirectedUnweightedGraph {
     void visit(Integer v) {
         System.out.print(v+",");
     }
-    void discover(Integer v) {
-        System.out.println(String.format("discover %d", v));
+    void discover(int v) {
+        System.out.print(String.format("D%d,", v));
     }
-    void finish(Integer v) {
-        System.out.println(String.format("finish %d", v));
+    void finish(int v) {
+        System.out.print(String.format("F%d,", v));
     }
 
     boolean hasUVEdge(int u, int v) {
@@ -92,6 +95,22 @@ class AdjaMapSetUndirectedUnweightedGraph {
             return uAdjaSet.contains(v);
         }
         return false;
+    }
+
+    void gTraverse(BiConsumer<Integer, boolean[]> strategy) {
+        //初始化临时数组，记录访问状态
+        boolean[] visited = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                strategy.accept(firstUnVisited, visited);
+                System.out.println();
+            } else {
+                break;
+            }
+
+        }
     }
 
     //bfs
