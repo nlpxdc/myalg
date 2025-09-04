@@ -93,21 +93,23 @@ class AdjaMatrixDirectedUnweightedGraph {
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
+        visited[startV] = true;
         queue.offer(startV);
         while (!queue.isEmpty()) {
             //先访问当前自己
             Integer v = queue.poll();
-            visited[v] = true;
             GraphUtil.visit(v);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[v][u]) {
                     if (!visited[u]) {
+                        visited[u] = true;
                         queue.offer(u);
                     }
                 }
             }
+//            GraphUtil.visit(v);
         }
     }
     //dfs
