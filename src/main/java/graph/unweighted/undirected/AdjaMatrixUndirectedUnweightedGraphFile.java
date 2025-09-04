@@ -39,7 +39,7 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.traverseByBfs();
 
         //dfs
-//        graph.traverseByDfs();
+        graph.traverseByDfs();
 
     }
 
