@@ -28,13 +28,15 @@ public class GraphUtil {
         return null;
     }
 
-    public static void traverse(int n, BiConsumer<Integer, boolean[]> strategy) {
+    public static int traverse(int n, BiConsumer<Integer, boolean[]> strategy) {
         //初始化临时数组，记录访问状态
         boolean[] visited = new boolean[n];
 
+        int count = 0;
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(visited);
             if (firstUnVisited != null) {
+                count++;
                 strategy.accept(firstUnVisited, visited);
                 System.out.println();
             } else {
@@ -42,6 +44,7 @@ public class GraphUtil {
             }
 
         }
+        return count;
     }
 
 }
