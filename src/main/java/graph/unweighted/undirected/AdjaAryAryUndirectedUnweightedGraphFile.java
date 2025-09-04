@@ -38,11 +38,11 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
         graph.addEdge(2,8);
         graph.addEdge(7,8);
 
-//        graph.bfs();
-        graph.gTraverse(graph::bfs);
+        //bfs
+        GraphUtil.gTraverse(graph.n, graph::bfs);
 
-//        graph.dfs();
-        graph.gTraverse(graph::dfs);
+        //dfs
+        GraphUtil.gTraverse(graph.n, graph::dfs);
 
     }
 }
@@ -77,22 +77,6 @@ class AdjaMapSetUndirectedUnweightedGraph {
             return uAdjaSet.contains(v);
         }
         return false;
-    }
-
-    void gTraverse(BiConsumer<Integer, boolean[]> strategy) {
-        //初始化临时数组，记录访问状态
-        boolean[] visited = new boolean[n];
-
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                strategy.accept(firstUnVisited, visited);
-                System.out.println();
-            } else {
-                break;
-            }
-
-        }
     }
 
     //bfs

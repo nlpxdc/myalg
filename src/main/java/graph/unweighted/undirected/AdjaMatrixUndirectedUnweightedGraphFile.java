@@ -37,16 +37,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-//        graph.vTraverse(0, graph::bfs);
-//        System.out.println();
-        graph.gTraverse(graph::bfs);
-        System.out.println();
+        GraphUtil.gTraverse(graph.n, graph::bfs);
 
         //dfs
-//        graph.vTraverse(0, graph::dfs);
-//        System.out.println();
-//        graph.gTraverse(graph::dfs);
-//        System.out.println();
+        GraphUtil.gTraverse(graph.n, graph::bfs);
 
     }
 
@@ -141,21 +135,7 @@ class AdjaMatrixUndirectedUnWeightedGraph {
 //    }
 
     //重要 框架代码 整个图多节点
-    void gTraverse(BiConsumer<Integer, boolean[]> strategy) {
-        //初始化临时数组，记录访问状态
-        boolean[] visited = new boolean[n];
 
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                strategy.accept(firstUnVisited, visited);
-                System.out.println();
-            } else {
-                break;
-            }
-
-        }
-    }
 
     //bfs和dfs是一种策略
 

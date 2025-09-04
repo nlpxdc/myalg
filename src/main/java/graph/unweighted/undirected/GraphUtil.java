@@ -1,5 +1,7 @@
 package graph.unweighted.undirected;
 
+import java.util.function.BiConsumer;
+
 public class GraphUtil {
     static void visit(int v) {
         System.out.print(v+",");
@@ -24,6 +26,22 @@ public class GraphUtil {
             }
         }
         return null;
+    }
+
+    static void gTraverse(int n, BiConsumer<Integer, boolean[]> strategy) {
+        //初始化临时数组，记录访问状态
+        boolean[] visited = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
+            if (firstUnVisited != null) {
+                strategy.accept(firstUnVisited, visited);
+                System.out.println();
+            } else {
+                break;
+            }
+
+        }
     }
 
 }
