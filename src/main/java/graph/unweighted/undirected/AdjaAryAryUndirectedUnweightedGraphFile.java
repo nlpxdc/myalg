@@ -79,15 +79,6 @@ class AdjaMapSetUndirectedUnweightedGraph {
         }
         return null;
     }
-    void visit(Integer v) {
-        System.out.print(v+",");
-    }
-    void discover(int v) {
-        System.out.print(String.format("D%d,", v));
-    }
-    void finish(int v) {
-        System.out.print(String.format("F%d,", v));
-    }
 
     boolean hasUVEdge(int u, int v) {
         Set<Integer> uAdjaSet = adjaMapSet.get(u);
@@ -125,7 +116,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
             //先访问当前自己
             Integer v = queue.poll();
             //和下面的没有区别
-            visit(v);
+            GraphUtil.visit(v);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
@@ -142,7 +133,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
     void dfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
-//        discover(v);
+        GraphUtil.discover(v);
         Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
         for (Integer adjaU : adjaUSet) {
             if (!visited[adjaU]) {
@@ -150,7 +141,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
             }
         }
         //后序遍历
-        finish(v);
+        GraphUtil.finish(v);
     }
 
 }
