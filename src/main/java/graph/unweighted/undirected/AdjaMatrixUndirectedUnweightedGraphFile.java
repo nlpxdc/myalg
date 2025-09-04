@@ -3,7 +3,6 @@ package graph.unweighted.undirected;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.function.BiConsumer;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
@@ -104,44 +103,12 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     //多扫一遍顶点、数连通分量
     //判断连通子图个数，连通分量
 
-    //遍历，实质就是第三他人视角 2维数组的循环，2层外里嵌套循环
-    //注意这里访问的是边，然后要转成点 这个逻辑上没啥作用
-//    void traverseVertexByEdge() {
-//        boolean[] visited = new boolean[n];
-//
-//        for (int i = 0; i < n; i++) {
-//            for (int j = 0; j < n; j++) {
-//                if (adjaMatrix[i][j]) {
-//                    if (!visited[i]) {
-//                        visited[i] = true;
-//                        visit(i);
-//                    }
-//                    if (!visited[j]) {
-//                        visited[j] = true;
-//                        visit(j);
-//                    }
-//                }
-//            }
-//        }
-//
-//        System.out.println();
-//        System.out.println();
-//    }
-
-//    //重要 框架代码 单个节点
-//    void vTraverse(int startV, BiConsumer<Integer, boolean[]> strategy) {
-//        boolean[] visited = new boolean[n];
-//        strategy.accept(startV, visited);
-//    }
-
-    //重要 框架代码 整个图多节点
-
     void gTraverseByBfs() {
-        GraphUtil.gTraverse(n, this::bfs);
+        GraphUtil.traverse(n, this::bfs);
     }
 
     void gTraverseByDfs() {
-        GraphUtil.gTraverse(n, this::dfs);
+        GraphUtil.traverse(n, this::dfs);
     }
 
     //bfs和dfs是一种策略

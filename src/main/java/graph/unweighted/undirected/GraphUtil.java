@@ -28,7 +28,7 @@ public class GraphUtil {
         return null;
     }
 
-    static void gTraverse(int n, BiConsumer<Integer, boolean[]> strategy) {
+    static void traverse(int n, BiConsumer<Integer, boolean[]> strategy) {
         //初始化临时数组，记录访问状态
         boolean[] visited = new boolean[n];
 

@@ -1,7 +1,6 @@
 package graph.unweighted.undirected;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 //树和分治更有关联，关心节点中key值的大小，在这个上面做文章，
 //图的话和分治关系不大？更关心节点间的关联关系，以及含有边权数据的计算问题，不太关心节点key的大小关系排序？
@@ -80,11 +79,11 @@ class AdjaMapSetUndirectedUnweightedGraph {
     }
 
     void gTraverseByBfs() {
-        GraphUtil.gTraverse(n, this::bfs);
+        GraphUtil.traverse(n, this::bfs);
     }
 
     void gTraverseByDfs() {
-        GraphUtil.gTraverse(n, this::dfs);
+        GraphUtil.traverse(n, this::dfs);
     }
 
     //bfs
