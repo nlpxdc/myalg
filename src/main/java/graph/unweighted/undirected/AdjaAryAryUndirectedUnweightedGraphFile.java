@@ -114,7 +114,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
     //dfs
     void dfs(int v, boolean[] visited) {
         //前序遍历
-//        GraphUtil.discover(v);
+        GraphUtil.discover(v);
         Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
         for (Integer adjaU : adjaUSet) {
             if (!visited[adjaU]) {

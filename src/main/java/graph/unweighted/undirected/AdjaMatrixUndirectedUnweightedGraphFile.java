@@ -146,13 +146,13 @@ class AdjaMatrixUndirectedUnWeightedGraph {
     //因为这个函数是递归写法，所以这里的v代表当前v顶点，不是起点，有点和bfs区别
     //虽然命名是递归，以当前顶点为重，但是因为递归的特性，可以遍历到所有连通顶点，所以也是遍历连通图
     void dfs(int v, boolean[] visited) {
-        visited[v] = true;
         //前序遍历
-//        GraphUtil.discover(v);
+        GraphUtil.discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
                 if (!visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
+                    visited[u] = true;
                     dfs(u, visited);
                 }
             }
