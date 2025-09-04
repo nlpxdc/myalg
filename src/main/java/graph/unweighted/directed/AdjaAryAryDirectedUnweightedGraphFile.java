@@ -23,21 +23,21 @@ import java.util.*;
 class AdjaAryAryDirectedUnweightedGraphApp {
     public static void main(String[] args) {
         AdjaMapSetDirectedUnweightedGraph graph = new AdjaMapSetDirectedUnweightedGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+        graph.addArc(0,1);
+        graph.addArc(0,2);
+        graph.addArc(1,2);
 
-        graph.addEdge(0,3);
-        graph.addEdge(0,4);
-        graph.addEdge(3,4);
+        graph.addArc(0,3);
+        graph.addArc(0,4);
+        graph.addArc(3,4);
 
-        graph.addEdge(1,5);
-        graph.addEdge(1,6);
-        graph.addEdge(5,6);
+        graph.addArc(1,5);
+        graph.addArc(1,6);
+        graph.addArc(5,6);
 
-        graph.addEdge(2,7);
-        graph.addEdge(2,8);
-        graph.addEdge(7,8);
+        graph.addArc(2,7);
+        graph.addArc(2,8);
+        graph.addArc(7,8);
 
         //bfs
         graph.traverseByBfs();
@@ -63,7 +63,7 @@ class AdjaMapSetDirectedUnweightedGraph {
         this.n = n;
         adjaMapSet = new HashMap<>();
     }
-    void addEdge(int from, int to) {
+    void addArc(int from, int to) {
         Set<Integer> uAdjaSet = adjaMapSet.getOrDefault(from, new HashSet<>());
         adjaMapSet.put(from, uAdjaSet);
         uAdjaSet.add(to);
