@@ -63,13 +63,10 @@ class AdjaMapSetDirectedUnweightedGraph {
         this.n = n;
         adjaMapSet = new HashMap<>();
     }
-    void addEdge(int u, int v) {
-        Set<Integer> uAdjaSet = adjaMapSet.getOrDefault(u, new HashSet<>());
-        adjaMapSet.put(u, uAdjaSet);
-        uAdjaSet.add(v);
-        Set<Integer> vAdjaSet = adjaMapSet.getOrDefault(v, new HashSet<>());
-        adjaMapSet.put(v, vAdjaSet);
-        vAdjaSet.add(u);
+    void addEdge(int from, int to) {
+        Set<Integer> uAdjaSet = adjaMapSet.getOrDefault(from, new HashSet<>());
+        adjaMapSet.put(from, uAdjaSet);
+        uAdjaSet.add(to);
     }
 
     boolean hasUVEdge(int u, int v) {
@@ -116,7 +113,7 @@ class AdjaMapSetDirectedUnweightedGraph {
     void dfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
-        GraphUtil.discover(v);
+//        GraphUtil.discover(v);
         Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
         for (Integer adjaU : adjaUSet) {
             if (!visited[adjaU]) {
@@ -124,7 +121,8 @@ class AdjaMapSetDirectedUnweightedGraph {
             }
         }
         //后序遍历
-        GraphUtil.finish(v);
+//        GraphUtil.finish(v);
+        GraphUtil.visit(v);
     }
 
 }
