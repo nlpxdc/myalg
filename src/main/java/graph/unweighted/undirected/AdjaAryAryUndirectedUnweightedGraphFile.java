@@ -41,7 +41,7 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
         graph.traverseByBfs();
 
         //dfs
-        graph.traverseByDfs();
+//        graph.traverseByDfs();
 
     }
 }
