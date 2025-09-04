@@ -38,7 +38,7 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        graph.traverseByBfs();
+//        graph.traverseByBfs();
 
         //dfs
         graph.traverseByDfs();
