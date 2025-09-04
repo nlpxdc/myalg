@@ -37,11 +37,9 @@ class AdjaAryAryUndirectedUnweightedGraphApp {
         graph.addEdge(2,8);
         graph.addEdge(7,8);
 
-//        graph.singleBfs(0);
 //        graph.bfs();
 
-//        graph.singleDfs(0);
-        graph.dfs();
+//        graph.dfs();
 
     }
 }
@@ -96,91 +94,44 @@ class AdjaMapSetUndirectedUnweightedGraph {
         return false;
     }
 
-    //依赖hasUVEdge，但这样不划算。故不考虑
-//    void traverseVertexByEdge() {}
-
     //bfs
-    void singleBfs(Integer startV) {
-        boolean[] visited = new boolean[n];
-
-        innerBfs(startV, visited);
-
-        System.out.println();
-    }
-    void bfs() {
-        boolean[] visited = new boolean[n];
-
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                innerBfs(firstUnVisited, visited);
-            } else {
-                break;
-            }
-        }
-
-        System.out.println();
-    }
-    void innerBfs(Integer startV, boolean[] visited) {
+    void bfs(int startV, boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
-        //初始化队列，塞入图的第一个顶点
+        //这里可以是任意startV n
         visited[startV] = true;
         queue.offer(startV);
         while (!queue.isEmpty()) {
-            //先访问自己
-            Integer currentV = queue.poll();
-            visit(currentV);
-            //再按层访问邻接顶点
-            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(currentV, new HashSet<>());
+            //先访问当前自己
+            Integer v = queue.poll();
+            //和下面的没有区别
+            visit(v);
+            //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
+            //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
+            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
             for (Integer adjaU : adjaUSet) {
                 if (!visited[adjaU]) {
                     visited[adjaU] = true;
                     queue.offer(adjaU);
                 }
             }
-//            visit(currentV);
+//            visit(v);
         }
-
-        System.out.println();
     }
     //dfs
-    void singleDfs(int startV) {
-        boolean[] visited = new boolean[n];
-
-        innerDfs(startV, visited);
-
-        System.out.println();
-    }
-    void dfs() {
-        boolean[] visited = new boolean[n];
-
-        for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
-            if (firstUnVisited != null) {
-                innerDfs(firstUnVisited, visited);
-                System.out.println();
-            } else {
-                break;
-            }
-        }
-
-        System.out.println();
-    }
-    void innerDfs(int v, boolean[] visited) {
+    void dfs(int v, boolean[] visited) {
         visited[v] = true;
-//        visit(v);
+        //前序遍历
 //        discover(v);
         Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
         for (Integer adjaU : adjaUSet) {
             if (!visited[adjaU]) {
-                visited[adjaU] = true;
-                innerDfs(adjaU, visited);
+                dfs(adjaU, visited);
             }
         }
-//        visit(v);
-//        finish(v);
+        //后序遍历
+        finish(v);
     }
 
 }
