@@ -112,13 +112,13 @@ class AdjaMatrixDirectedUnweightedGraph {
     }
     //dfs
     void dfs(int v, boolean[] visited) {
+        visited[v] = true;
         //前序遍历
         GraphUtil.discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
                 if (!visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    visited[u] = true;
                     dfs(u, visited);
                 }
             }
