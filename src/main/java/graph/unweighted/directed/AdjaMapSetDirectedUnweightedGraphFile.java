@@ -69,10 +69,10 @@ class AdjaMapSetDirectedUnweightedGraph {
         uAdjaSet.add(to);
     }
 
-    boolean hasUVEdge(int u, int v) {
-        Set<Integer> uAdjaSet = adjaMapSet.get(u);
-        if (uAdjaSet != null) {
-            return uAdjaSet.contains(v);
+    boolean hasUVArc(int from, int to) {
+        Set<Integer> fromAdjaSet = adjaMapSet.get(from);
+        if (fromAdjaSet != null) {
+            return fromAdjaSet.contains(to);
         }
         return false;
     }
