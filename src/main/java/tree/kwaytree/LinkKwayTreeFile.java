@@ -8,6 +8,8 @@ import java.util.*;
 //遍历加visited
 //这个比较特殊，和图的邻接节点的定义是一样的，但是在规则、语义上不一样，限制不同，可以用图的算法来写树，但是不能用树的算法来写图
 //这里可以先写下，因为太像了，作为基础，然后衍生拓展
+//任意普通树，都能转成lcrs的唯一二叉树，反之亦然。任意森林都能转成lcrs的唯一二叉树，反之亦然
+//
 class LinkKwayTreeApp {
     public static void main(String[] args) {
 //        System.out.println("aa");

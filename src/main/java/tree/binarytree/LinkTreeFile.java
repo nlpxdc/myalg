@@ -244,6 +244,8 @@ class LinkTree {
     }
 
     //Dfs in order 2..n-1
+    //线索二叉树 无栈递归隐式栈或显式栈以及无队列协助 dfs遍历bfs遍历
+    // 栈应该也都只需要一个即可
     void traverseDfsInOrder() {
         innerTraverseDfsInOrder(root);
         System.out.println();
