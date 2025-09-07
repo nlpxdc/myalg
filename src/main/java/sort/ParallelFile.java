@@ -20,6 +20,17 @@ class ParallelApp {
 
         CompletableFuture<Void> allOf = CompletableFuture.allOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
 
+//        Void join = allOf.join();
+        try {
+            Void unused1 = allOf.get(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
+        }
+
         CompletableFuture<List<SpuInfo>> allResultListCompletableFuture = allOf
                 .thenApply(unused -> {
                     System.out.println("allOf "+Thread.currentThread().getName());
