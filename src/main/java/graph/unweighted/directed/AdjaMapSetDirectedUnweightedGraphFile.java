@@ -23,27 +23,41 @@ import java.util.*;
 class AdjaMapSetDirectedUnweightedGraphApp {
     public static void main(String[] args) {
         AdjaMapSetDirectedUnweightedGraph graph = new AdjaMapSetDirectedUnweightedGraph(9);
+
+//        graph.addArc(0,1);
+//        graph.addArc(0,2);
+//        graph.addArc(1,2);
+//
+//        graph.addArc(0,3);
+//        graph.addArc(0,4);
+//        graph.addArc(3,4);
+//
+//        graph.addArc(1,5);
+//        graph.addArc(1,6);
+//        graph.addArc(5,6);
+//
+//        graph.addArc(2,7);
+//        graph.addArc(2,8);
+//        graph.addArc(7,8);
+
         graph.addArc(0,1);
         graph.addArc(0,2);
-        graph.addArc(1,2);
 
-        graph.addArc(0,3);
-        graph.addArc(0,4);
-        graph.addArc(3,4);
-
+        graph.addArc(1,3);
+        graph.addArc(1,4);
         graph.addArc(1,5);
-        graph.addArc(1,6);
-        graph.addArc(5,6);
 
+        graph.addArc(2,6);
         graph.addArc(2,7);
         graph.addArc(2,8);
-        graph.addArc(7,8);
 
-        //bfs
-        graph.traverseByBfs();
+//        //bfs
+//        graph.traverseByBfs();
+//
+//        //dfs
+//        graph.traverseByDfs();
 
-        //dfs
-        graph.traverseByDfs();
+        List<Integer> topoSortList = graph.topoSort();
 
     }
 }
@@ -122,6 +136,30 @@ class AdjaMapSetDirectedUnweightedGraph {
         //后序遍历
 //        GraphUtil.finish(v);
         GraphUtil.visit(v);
+    }
+
+    List<Integer> topoSort() {
+        //计算所有节点的入度
+        Map<Integer, Integer> inDegreeMap = new HashMap<>();
+        for (int v = 0; v < n; v++) {
+            inDegreeMap.put(v, 0);
+        }
+        for (int v = 0; v < n; v++) {
+            Set<Integer> inUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+            for (Integer inU : inUSet) {
+                inDegreeMap.put(inU, inDegreeMap.get(inU)+1);
+            }
+        }
+        //所有入度为0的节点入队
+        Queue<Integer> zeroInCntUQueue = new LinkedList<>();
+        for (int u = 0; u < n; u++) {
+            Integer uInCnt = inDegreeMap.get(u);
+            if (uInCnt <= 0) {
+                zeroInCntUQueue.offer(u);
+            }
+        }
+
+        return null;
     }
 
 }
