@@ -18,8 +18,9 @@ class ParallelApp {
 
         List<CompletableFuture<SpuInfo>> spuCfList = spuIdList.stream().map(spuId -> CompletableFuture.supplyAsync(() -> spuIntegration.getById(spuId), threadPool)).collect(Collectors.toList());
         List<CompletableFuture<CouponInfo>> couponCfList = couponIdList.stream().map(couponId -> CompletableFuture.supplyAsync(() -> couponIntegration.getById(couponId), threadPool)).collect(Collectors.toList());
-        List<? extends CompletableFuture<?>> cfList = Stream.of(spuCfList, couponCfList).flatMap(List::stream).collect(Collectors.toList());
-        CompletableFuture<Void> allOf = CompletableFuture.allOf(cfList.toArray(new CompletableFuture[0]));
+        CompletableFuture<Void> allOf = CompletableFuture.allOf(Stream.of(spuCfList, couponCfList).flatMap(List::stream).toArray(CompletableFuture[]::new));
+//        List<? extends CompletableFuture<?>> cfList = Stream.of(spuCfList, couponCfList).flatMap(List::stream).collect(Collectors.toList());
+//        CompletableFuture<Void> allOf = CompletableFuture.allOf(cfList.toArray(new CompletableFuture[0]));
         Void join = allOf.join();
 
         List<SpuInfo> spuInfoList = spuCfList.stream().map(CompletableFuture::join).collect(Collectors.toList());
