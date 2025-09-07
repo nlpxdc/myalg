@@ -2,17 +2,19 @@ package sort;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 class ParallelApp {
     public static void main(String[] args) {
         List<String> spuIdList = Arrays.asList("abc123", "cde234", "345def");
 
+        ExecutorService threadPool = getThreadPool();
         SpuIntegration spuIntegration = new SpuIntegration();
 
         List<CompletableFuture<SpuInfo>> spuInfoCompletableFutureList = spuIdList.stream().map(spuId -> {
-            CompletableFuture<SpuInfo> spuInfoCompletableFuture = CompletableFuture.supplyAsync(() -> spuIntegration.getById(spuId));
+            CompletableFuture<SpuInfo> spuInfoCompletableFuture = CompletableFuture.supplyAsync(() -> spuIntegration.getById(spuId), threadPool);
             return spuInfoCompletableFuture;
         }).collect(Collectors.toList());
 
@@ -24,6 +26,23 @@ class ParallelApp {
                         .collect(Collectors.toList()));
 
         List<SpuInfo> spuInfoList = allResultListCompletableFuture.join();
+    }
+
+    static ExecutorService getThreadPool() {
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(
+                4, 8, 60L, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(200),
+                new ThreadFactory() {
+                    private final AtomicInteger seq = new AtomicInteger();
+                    @Override public Thread newThread(Runnable r) {
+                        Thread t = new Thread(r, "cf-pool-" + seq.incrementAndGet());
+                        t.setDaemon(false);
+                        return t;
+                    }
+                },
+                new ThreadPoolExecutor.CallerRunsPolicy()
+        );
+        return pool;
     }
 
 }
