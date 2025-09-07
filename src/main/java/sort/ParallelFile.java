@@ -18,55 +18,16 @@ class ParallelApp {
             return spuInfoCompletableFuture;
         }).collect(Collectors.toList());
 
-        CompletableFuture<Void> allOf = CompletableFuture.allOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
+//        CompletableFuture<Void> allOf = CompletableFuture.allOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
+        CompletableFuture<Object> anyOf = CompletableFuture.anyOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
+        SpuInfo spuInfo = (SpuInfo) anyOf.join();
 
-//        Void join = allOf.join();
-//        try {
-//            Void unused1 = allOf.get(10, TimeUnit.SECONDS);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        } catch (ExecutionException e) {
-//            throw new RuntimeException(e);
-//        } catch (TimeoutException e) {
-//            throw new RuntimeException(e);
-//        }
-//        try {
-//            Void unused = allOf.get(10, TimeUnit.SECONDS);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        } catch (ExecutionException e) {
-//            throw new RuntimeException(e);
-//        } catch (TimeoutException e) {
-//            throw new RuntimeException(e);
-//        }
         //需要依赖内部的自己的超时
-        allOf.join();
-        List<SpuInfo> collect = spuInfoCompletableFutureList.stream().map(CompletableFuture::join).collect(Collectors.toList());
-        System.out.println();
-        threadPool.shutdown();
-//        CompletableFuture<List<SpuInfo>> allResultListCompletableFuture = allOf
-//                .thenApply(unused -> {
-//                    System.out.println("allOf "+Thread.currentThread().getName());
-//                    List<SpuInfo> spuInfoList = spuInfoCompletableFutureList.stream().
-//                            map(t -> {
-//                                System.out.println("map "+Thread.currentThread().getName());
-//                                SpuInfo spuInfo = t.join();
-//                                return spuInfo;
-//                            })
-//                            .collect(Collectors.toList());
-//                    return spuInfoList;
-//                });
+//        allOf.join();
+//        List<SpuInfo> collect = spuInfoCompletableFutureList.stream().map(CompletableFuture::join).collect(Collectors.toList());
 
-//        List<SpuInfo> spuInfoList = allResultListCompletableFuture.join();
-//        try {
-//            List<SpuInfo> spuInfoList = allResultListCompletableFuture.get(10, TimeUnit.SECONDS);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        } catch (ExecutionException e) {
-//            throw new RuntimeException(e);
-//        } catch (TimeoutException e) {
-//            throw new RuntimeException(e);
-//        }
+        threadPool.shutdown();
+
     }
 
     static ExecutorService getThreadPool() {
