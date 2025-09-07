@@ -30,30 +30,42 @@ class ParallelApp {
 //        } catch (TimeoutException e) {
 //            throw new RuntimeException(e);
 //        }
-
-        CompletableFuture<List<SpuInfo>> allResultListCompletableFuture = allOf
-                .thenApply(unused -> {
-                    System.out.println("allOf "+Thread.currentThread().getName());
-                    List<SpuInfo> spuInfoList = spuInfoCompletableFutureList.stream().
-                            map(t -> {
-                                System.out.println("map "+Thread.currentThread().getName());
-                                SpuInfo spuInfo = t.join();
-                                return spuInfo;
-                            })
-                            .collect(Collectors.toList());
-                    return spuInfoList;
-                });
+//        try {
+//            Void unused = allOf.get(10, TimeUnit.SECONDS);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        } catch (ExecutionException e) {
+//            throw new RuntimeException(e);
+//        } catch (TimeoutException e) {
+//            throw new RuntimeException(e);
+//        }
+        //需要依赖内部的自己的超时
+        allOf.join();
+        List<SpuInfo> collect = spuInfoCompletableFutureList.stream().map(CompletableFuture::join).collect(Collectors.toList());
+        System.out.println();
+//        CompletableFuture<List<SpuInfo>> allResultListCompletableFuture = allOf
+//                .thenApply(unused -> {
+//                    System.out.println("allOf "+Thread.currentThread().getName());
+//                    List<SpuInfo> spuInfoList = spuInfoCompletableFutureList.stream().
+//                            map(t -> {
+//                                System.out.println("map "+Thread.currentThread().getName());
+//                                SpuInfo spuInfo = t.join();
+//                                return spuInfo;
+//                            })
+//                            .collect(Collectors.toList());
+//                    return spuInfoList;
+//                });
 
 //        List<SpuInfo> spuInfoList = allResultListCompletableFuture.join();
-        try {
-            List<SpuInfo> spuInfoList = allResultListCompletableFuture.get(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (TimeoutException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            List<SpuInfo> spuInfoList = allResultListCompletableFuture.get(10, TimeUnit.SECONDS);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        } catch (ExecutionException e) {
+//            throw new RuntimeException(e);
+//        } catch (TimeoutException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     static ExecutorService getThreadPool() {
