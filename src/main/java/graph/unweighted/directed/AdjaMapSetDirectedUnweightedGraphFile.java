@@ -51,6 +51,10 @@ class AdjaMapSetDirectedUnweightedGraphApp {
         graph.addArc(2,7);
         graph.addArc(2,8);
 
+        graph.addArc(5,6);
+        graph.addArc(7,6);
+//        graph.addArc(6, 0);
+
 //        //bfs
 //        graph.traverseByBfs();
 //
@@ -58,6 +62,7 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 //        graph.traverseByDfs();
 
         List<Integer> topoSortList = graph.topoSort();
+        System.out.println(topoSortList);
 
     }
 }
@@ -159,7 +164,25 @@ class AdjaMapSetDirectedUnweightedGraph {
             }
         }
 
-        return null;
+        List<Integer> topoSortList = new LinkedList<>();
+        for (int i = 0; i < n && !zeroInCntUQueue.isEmpty(); i++) {
+            Integer v = zeroInCntUQueue.poll();
+            topoSortList.add(v);
+            //所有后继顶点入度减一
+            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+            for (Integer adjaU : adjaUSet) {
+                inDegreeMap.put(adjaU, inDegreeMap.get(adjaU)-1);
+                if (inDegreeMap.get(adjaU) == 0) {
+                    zeroInCntUQueue.offer(adjaU);
+                }
+            }
+        }
+
+        if (topoSortList.size() != n) {
+            return new LinkedList<>();
+        }
+
+        return topoSortList;
     }
 
 }
