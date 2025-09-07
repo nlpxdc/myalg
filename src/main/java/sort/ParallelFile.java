@@ -21,15 +21,15 @@ class ParallelApp {
         CompletableFuture<Void> allOf = CompletableFuture.allOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
 
 //        Void join = allOf.join();
-        try {
-            Void unused1 = allOf.get(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (TimeoutException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Void unused1 = allOf.get(10, TimeUnit.SECONDS);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        } catch (ExecutionException e) {
+//            throw new RuntimeException(e);
+//        } catch (TimeoutException e) {
+//            throw new RuntimeException(e);
+//        }
 
         CompletableFuture<List<SpuInfo>> allResultListCompletableFuture = allOf
                 .thenApply(unused -> {
@@ -44,7 +44,16 @@ class ParallelApp {
                     return spuInfoList;
                 });
 
-        List<SpuInfo> spuInfoList = allResultListCompletableFuture.join();
+//        List<SpuInfo> spuInfoList = allResultListCompletableFuture.join();
+        try {
+            List<SpuInfo> spuInfoList = allResultListCompletableFuture.get(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     static ExecutorService getThreadPool() {
