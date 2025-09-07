@@ -43,6 +43,7 @@ class ParallelApp {
         allOf.join();
         List<SpuInfo> collect = spuInfoCompletableFutureList.stream().map(CompletableFuture::join).collect(Collectors.toList());
         System.out.println();
+        threadPool.shutdown();
 //        CompletableFuture<List<SpuInfo>> allResultListCompletableFuture = allOf
 //                .thenApply(unused -> {
 //                    System.out.println("allOf "+Thread.currentThread().getName());
@@ -76,8 +77,8 @@ class ParallelApp {
                     private final AtomicInteger seq = new AtomicInteger();
                     @Override public Thread newThread(Runnable r) {
                         Thread t = new Thread(r, "cf-pool-" + seq.incrementAndGet());
-//                        t.setDaemon(false);
-                        t.setDaemon(true);
+                        t.setDaemon(false);
+//                        t.setDaemon(true);
                         return t;
                     }
                 },
