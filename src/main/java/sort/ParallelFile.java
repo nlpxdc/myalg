@@ -8,19 +8,30 @@ import java.util.stream.Collectors;
 
 class ParallelApp {
     public static void main(String[] args) {
-        List<String> spuIdList = Arrays.asList("abc123", "cde234", "345def");
+        List<String> spuIdList = Arrays.asList("sabc123", "scde234", "sdef345");
+        List<String> couponIdList = Arrays.asList("caaa", "cbbb", "cccc");
 
         ExecutorService threadPool = getThreadPool();
         SpuIntegration spuIntegration = new SpuIntegration();
+        CouponIntegration couponIntegration = new CouponIntegration();
 
-        List<CompletableFuture<SpuInfo>> spuInfoCompletableFutureList = spuIdList.stream().map(spuId -> {
-            CompletableFuture<SpuInfo> spuInfoCompletableFuture = CompletableFuture.supplyAsync(() -> spuIntegration.getById(spuId), threadPool);
-            return spuInfoCompletableFuture;
-        }).collect(Collectors.toList());
+        CompletableFuture<SpuInfo> spuCf = CompletableFuture.supplyAsync(() -> spuIntegration.getById("sabc123"), threadPool);
+        CompletableFuture<CouponInfo> couponCf = CompletableFuture.supplyAsync(() -> couponIntegration.getById("caaa"), threadPool);
+
+        CompletableFuture<Void> allOf = CompletableFuture.allOf(spuCf, couponCf);
+        allOf.join();
+        SpuInfo spuInfo = spuCf.join();
+        CouponInfo coupInfo = couponCf.join();
+        //combine
+
+//        List<CompletableFuture<SpuInfo>> spuInfoCompletableFutureList = spuIdList.stream().map(spuId -> {
+//            CompletableFuture<SpuInfo> spuInfoCompletableFuture = CompletableFuture.supplyAsync(() -> spuIntegration.getById(spuId), threadPool);
+//            return spuInfoCompletableFuture;
+//        }).collect(Collectors.toList());
 
 //        CompletableFuture<Void> allOf = CompletableFuture.allOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
-        CompletableFuture<Object> anyOf = CompletableFuture.anyOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
-        SpuInfo spuInfo = (SpuInfo) anyOf.join();
+//        CompletableFuture<Object> anyOf = CompletableFuture.anyOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
+//        SpuInfo spuInfo = (SpuInfo) anyOf.join();
 
         //需要依赖内部的自己的超时
 //        allOf.join();
@@ -58,11 +69,25 @@ class SpuInfo {
 class SpuIntegration {
 
     SpuInfo getById(String spuId) {
-        System.out.println(String.format("%s %s", Thread.currentThread().getName(), spuId));
+//        System.out.println(String.format("%s %s", Thread.currentThread().getName(), spuId));
         SpuInfo spuInfo = new SpuInfo();
         spuInfo.spuId = spuId;
-        spuInfo.spuName = String.format("name%s", spuId);
+        spuInfo.spuName = String.format("spuName%s", spuId);
         return spuInfo;
     }
 
+}
+
+class CouponInfo {
+    String couponId;
+    String couponName;
+}
+
+class CouponIntegration {
+    CouponInfo getById(String couponId) {
+        CouponInfo couponInfo = new CouponInfo();
+        couponInfo.couponId = couponId;
+        couponInfo.couponName = String.format("couponName%s", couponId);
+        return couponInfo;
+    }
 }
