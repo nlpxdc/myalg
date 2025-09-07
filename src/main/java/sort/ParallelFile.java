@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class ParallelApp {
     public static void main(String[] args) {
@@ -15,13 +16,22 @@ class ParallelApp {
         SpuIntegration spuIntegration = new SpuIntegration();
         CouponIntegration couponIntegration = new CouponIntegration();
 
-        CompletableFuture<SpuInfo> spuCf = CompletableFuture.supplyAsync(() -> spuIntegration.getById("sabc123"), threadPool);
-        CompletableFuture<CouponInfo> couponCf = CompletableFuture.supplyAsync(() -> couponIntegration.getById("caaa"), threadPool);
+        List<CompletableFuture<SpuInfo>> spuCfList = spuIdList.stream().map(spuId -> CompletableFuture.supplyAsync(() -> spuIntegration.getById(spuId), threadPool)).collect(Collectors.toList());
+        List<CompletableFuture<CouponInfo>> couponCfList = couponIdList.stream().map(couponId -> CompletableFuture.supplyAsync(() -> couponIntegration.getById(couponId), threadPool)).collect(Collectors.toList());
+        List<? extends CompletableFuture<?>> cfList = Stream.of(spuCfList, couponCfList).flatMap(List::stream).collect(Collectors.toList());
+        CompletableFuture<Void> allOf = CompletableFuture.allOf(cfList.toArray(new CompletableFuture[0]));
+        Void join = allOf.join();
 
-        CompletableFuture<Void> allOf = CompletableFuture.allOf(spuCf, couponCf);
-        allOf.join();
-        SpuInfo spuInfo = spuCf.join();
-        CouponInfo coupInfo = couponCf.join();
+        List<SpuInfo> spuInfoList = spuCfList.stream().map(CompletableFuture::join).collect(Collectors.toList());
+        List<CouponInfo> couponInfoList = couponCfList.stream().map(CompletableFuture::join).collect(Collectors.toList());
+        System.out.println();
+        CompletableFuture<SpuInfo> spuCf = CompletableFuture.supplyAsync(() -> spuIntegration.getById("sabc123"), threadPool);
+//        CompletableFuture<CouponInfo> couponCf = CompletableFuture.supplyAsync(() -> couponIntegration.getById("caaa"), threadPool);
+//
+//        CompletableFuture<Void> allOf = CompletableFuture.allOf(spuCf, couponCf);
+//        allOf.join();
+//        SpuInfo spuInfo = spuCf.join();
+//        CouponInfo coupInfo = couponCf.join();
         //combine
 
 //        List<CompletableFuture<SpuInfo>> spuInfoCompletableFutureList = spuIdList.stream().map(spuId -> {
