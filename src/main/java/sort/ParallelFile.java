@@ -21,9 +21,17 @@ class ParallelApp {
         CompletableFuture<Void> allOf = CompletableFuture.allOf(spuInfoCompletableFutureList.toArray(new CompletableFuture[0]));
 
         CompletableFuture<List<SpuInfo>> allResultListCompletableFuture = allOf
-                .thenApply(unused -> spuInfoCompletableFutureList.stream().
-                        map(CompletableFuture::join)
-                        .collect(Collectors.toList()));
+                .thenApply(unused -> {
+                    System.out.println("allOf "+Thread.currentThread().getName());
+                    List<SpuInfo> spuInfoList = spuInfoCompletableFutureList.stream().
+                            map(t -> {
+                                System.out.println("map "+Thread.currentThread().getName());
+                                SpuInfo spuInfo = t.join();
+                                return spuInfo;
+                            })
+                            .collect(Collectors.toList());
+                    return spuInfoList;
+                });
 
         List<SpuInfo> spuInfoList = allResultListCompletableFuture.join();
     }
@@ -36,7 +44,8 @@ class ParallelApp {
                     private final AtomicInteger seq = new AtomicInteger();
                     @Override public Thread newThread(Runnable r) {
                         Thread t = new Thread(r, "cf-pool-" + seq.incrementAndGet());
-                        t.setDaemon(false);
+//                        t.setDaemon(false);
+                        t.setDaemon(true);
                         return t;
                     }
                 },
