@@ -111,9 +111,11 @@ class AdjaMapSetUndirectedUnweightedGraph {
                 }
             }
         }
-        
+
     }
     //dfs
+    //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
+    //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
     void dfs(int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
