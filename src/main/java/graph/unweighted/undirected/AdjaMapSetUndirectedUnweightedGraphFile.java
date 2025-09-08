@@ -96,7 +96,8 @@ class AdjaMapSetUndirectedUnweightedGraph {
         //这里可以是任意startV n
         visited[startV] = true;
         queue.offer(startV);
-        while (!queue.isEmpty()) {
+
+        for (int i = 0; i < n && !queue.isEmpty(); i++) {
             //先访问当前自己
             Integer v = queue.poll();
             GraphUtil.visit(v);
@@ -110,6 +111,7 @@ class AdjaMapSetUndirectedUnweightedGraph {
                 }
             }
         }
+        
     }
     //dfs
     void dfs(int v, boolean[] visited) {
