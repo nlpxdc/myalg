@@ -28,6 +28,16 @@ public class GraphUtil {
         return null;
     }
 
+    public static int getUnVisitedCnt(boolean[] visited) {
+        int unVisitedCnt = 0;
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
+                unVisitedCnt++;
+            }
+        }
+        return unVisitedCnt;
+    }
+
 //    public static int traverse(int n, BiConsumer<Integer, boolean[]> strategy) {
 //        //初始化临时数组，记录访问状态
 //        boolean[] visited = new boolean[n];
