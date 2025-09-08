@@ -47,6 +47,8 @@ public class GraphUtil {
 //        return count;
 //    }
 
+    //这里的n是graph的metainfo，且必须是final的不能修改，可以改成单一对象，对象字段也是final的不能改变，因为都是元信息
+    //但是这里因为目前只需要一个图的顶点总数即可，所以不额外定义对象了，如果两个或多于两个元信息，那么可以额外定义对象，这里不做复杂处理了
     public static int traverse(final int n, BiConsumer<Integer, TraverseTemp> strategy) {
         //初始化临时数组，记录访问状态
         TraverseTemp traverseTemp = new TraverseTemp();
