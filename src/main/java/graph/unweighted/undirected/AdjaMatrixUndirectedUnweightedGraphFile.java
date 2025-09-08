@@ -1,6 +1,7 @@
 package graph.unweighted.undirected;
 
 import graph.unweighted.GraphUtil;
+import graph.unweighted.TraverseTemp;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -118,12 +119,12 @@ class AdjaMatrixUndirectedUnweightedGraph {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void bfs(int startV, boolean[] visited) {
+    void bfs(int startV, TraverseTemp traverseTemp) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        visited[startV] = true;
+        traverseTemp.visited[startV] = true;
         queue.offer(startV);
 
         for (int i = 0; i < n && !queue.isEmpty(); i++) {
@@ -134,8 +135,8 @@ class AdjaMatrixUndirectedUnweightedGraph {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[v][u]) {
-                    if (!visited[u]) {
-                        visited[u] = true;
+                    if (!traverseTemp.visited[u]) {
+                        traverseTemp.visited[u] = true;
                         queue.offer(u);
                     }
                 }
@@ -150,15 +151,15 @@ class AdjaMatrixUndirectedUnweightedGraph {
     //虽然命名是递归，以当前顶点为重，但是因为递归的特性，可以遍历到所有连通顶点，所以也是遍历连通图
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
-    void dfs(int v, boolean[] visited) {
-        visited[v] = true;
+    void dfs(int v, TraverseTemp traverseTemp) {
+        traverseTemp.visited[v] = true;
         //前序遍历
 //        GraphUtil.discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
-                if (!visited[u]) {
+                if (!traverseTemp.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    dfs(u, visited);
+                    dfs(u, traverseTemp);
                 }
             }
         }

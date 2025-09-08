@@ -1,6 +1,7 @@
 package graph.unweighted.undirected;
 
 import graph.unweighted.GraphUtil;
+import graph.unweighted.TraverseTemp;
 
 import java.util.*;
 
@@ -89,12 +90,12 @@ class AdjaMapSetUndirectedUnweightedGraph {
     }
 
     //bfs
-    void bfs(int startV, boolean[] visited) {
+    void bfs(int startV, TraverseTemp traverseTemp) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        visited[startV] = true;
+        traverseTemp.visited[startV] = true;
         queue.offer(startV);
 
         for (int i = 0; i < n && !queue.isEmpty(); i++) {
@@ -105,8 +106,8 @@ class AdjaMapSetUndirectedUnweightedGraph {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
             for (Integer adjaU : adjaUSet) {
-                if (!visited[adjaU]) {
-                    visited[adjaU] = true;
+                if (!traverseTemp.visited[adjaU]) {
+                    traverseTemp.visited[adjaU] = true;
                     queue.offer(adjaU);
                 }
             }
@@ -116,14 +117,14 @@ class AdjaMapSetUndirectedUnweightedGraph {
     //dfs
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
-    void dfs(int v, boolean[] visited) {
-        visited[v] = true;
+    void dfs(int v,  TraverseTemp traverseTemp) {
+        traverseTemp.visited[v] = true;
         //前序遍历
 //        GraphUtil.discover(v);
         Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
         for (Integer adjaU : adjaUSet) {
-            if (!visited[adjaU]) {
-                dfs(adjaU, visited);
+            if (!traverseTemp.visited[adjaU]) {
+                dfs(adjaU, traverseTemp);
             }
         }
         //后序遍历
