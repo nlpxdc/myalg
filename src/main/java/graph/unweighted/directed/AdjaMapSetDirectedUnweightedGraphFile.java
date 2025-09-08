@@ -105,7 +105,7 @@ class AdjaMapSetDirectedUnweightedGraph {
     }
 
     //bfs
-    void bfs(final int startV, boolean[] visited) {
+    void bfs(final int startV, final boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
@@ -128,7 +128,7 @@ class AdjaMapSetDirectedUnweightedGraph {
         }
     }
     //dfs
-    void dfs(int v, boolean[] visited) {
+    void dfs(final int v, final boolean[] visited) {
         visited[v] = true;
         //前序遍历
 //        GraphUtil.discover(v);

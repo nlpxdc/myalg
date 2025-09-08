@@ -118,7 +118,7 @@ class AdjaMatrixUndirectedUnweightedGraph {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void bfs(final int startV, boolean[] visited) {
+    void bfs(final int startV, final boolean[] visited) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
@@ -152,7 +152,7 @@ class AdjaMatrixUndirectedUnweightedGraph {
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
     //这里使用递归写法的时候，第一个参数v代表当前顶点v，不能代表起始顶点
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
-    void dfs(final int v, boolean[] visited) {
+    void dfs(final int v, final boolean[] visited) {
         visited[v] = true;
         //前序遍历
 //        GraphUtil.visit(v);
