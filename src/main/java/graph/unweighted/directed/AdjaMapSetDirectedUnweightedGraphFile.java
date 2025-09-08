@@ -112,7 +112,7 @@ class AdjaMapSetDirectedUnweightedGraph {
         //这里可以是任意startV n
         visited[startV] = true;
         queue.offer(startV);
-        for (int i = 0; i < n && !queue.isEmpty(); i++) {
+        while (!queue.isEmpty()) {
             //先访问当前自己
             Integer v = queue.poll();
             GraphUtil.visit(v);
