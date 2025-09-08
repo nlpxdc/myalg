@@ -155,6 +155,7 @@ class AdjaMatrixUndirectedUnweightedGraph {
     void dfs(final int v, boolean[] visited) {
         visited[v] = true;
         //前序遍历
+//        GraphUtil.visit(v);
 //        GraphUtil.discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
@@ -165,8 +166,9 @@ class AdjaMatrixUndirectedUnweightedGraph {
             }
         }
         //后序遍历
-//        GraphUtil.finish(v);
         GraphUtil.visit(v);
+//        GraphUtil.finish(v);
+
     }
 
 }
