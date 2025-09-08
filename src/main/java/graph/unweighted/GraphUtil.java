@@ -47,7 +47,7 @@ public class GraphUtil {
 //        return count;
 //    }
 
-    public static int traverse(int n, BiConsumer<Integer, TraverseTemp> strategy) {
+    public static int traverse(final int n, BiConsumer<Integer, TraverseTemp> strategy) {
         //初始化临时数组，记录访问状态
         TraverseTemp traverseTemp = new TraverseTemp();
         traverseTemp.visited = new boolean[n];
