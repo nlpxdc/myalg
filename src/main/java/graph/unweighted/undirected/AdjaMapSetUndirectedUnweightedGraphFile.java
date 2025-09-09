@@ -62,6 +62,9 @@ class AdjaMapSetUndirectedUnweightedGraph {
         }
         this.n = n;
         adjaMapSet = new HashMap<>();
+        for (int v = 0; v < n; v++) {
+            adjaMapSet.put(v, new HashSet<>());
+        }
     }
     void addEdge(int u, int v) {
         Set<Integer> uAdjaSet = adjaMapSet.getOrDefault(u, new HashSet<>());
