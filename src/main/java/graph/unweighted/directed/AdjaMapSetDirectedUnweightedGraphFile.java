@@ -86,7 +86,7 @@ class AdjaMapSetDirectedUnweightedGraph {
         }
     }
     void addArc(int from, int to) {
-        Set<Integer> uAdjaSet = adjaMapSet.getOrDefault(from, new HashSet<>());
+        Set<Integer> uAdjaSet = adjaMapSet.get(from);
         adjaMapSet.put(from, uAdjaSet);
         uAdjaSet.add(to);
     }
@@ -121,7 +121,7 @@ class AdjaMapSetDirectedUnweightedGraph {
             GraphUtil.visit(v);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
-            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+            Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
                 if (!visited[adjaU]) {
                     visited[adjaU] = true;
@@ -135,7 +135,7 @@ class AdjaMapSetDirectedUnweightedGraph {
         visited[v] = true;
         //前序遍历
 //        GraphUtil.discover(v);
-        Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+        Set<Integer> adjaUSet = adjaMapSet.get(v);
         for (Integer adjaU : adjaUSet) {
             if (!visited[adjaU]) {
                 dfs(adjaU, visited);
@@ -153,7 +153,7 @@ class AdjaMapSetDirectedUnweightedGraph {
             inDegreeMap.put(v, 0);
         }
         for (int v = 0; v < n; v++) {
-            Set<Integer> inUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+            Set<Integer> inUSet = adjaMapSet.get(v);
             for (Integer inU : inUSet) {
                 inDegreeMap.put(inU, inDegreeMap.get(inU)+1);
             }
@@ -172,7 +172,7 @@ class AdjaMapSetDirectedUnweightedGraph {
             Integer v = zeroInCntUQueue.poll();
             topoSortList.add(v);
             //所有后继顶点入度减一
-            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+            Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
                 inDegreeMap.put(adjaU, inDegreeMap.get(adjaU)-1);
                 if (inDegreeMap.get(adjaU) == 0) {
@@ -213,7 +213,7 @@ class AdjaMapSetDirectedUnweightedGraph {
             Integer v = zeroInCntUQueue.poll();
             topoSortList.add(v);
             //所有后继顶点入度减一
-            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+            Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
                 inDegreeMap.put(adjaU, inDegreeMap.get(adjaU)-1);
                 if (inDegreeMap.get(adjaU) == 0) {
