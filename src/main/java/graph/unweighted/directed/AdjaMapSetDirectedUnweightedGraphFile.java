@@ -55,14 +55,14 @@ class AdjaMapSetDirectedUnweightedGraphApp {
         graph.addArc(7,6);
 //        graph.addArc(6, 0);
 
-//        //bfs
-//        graph.traverseByBfs();
-//
-//        //dfs
-//        graph.traverseByDfs();
+        //bfs
+        graph.traverseByBfs();
 
-        List<Integer> topoSortList = graph.topoSort();
-        System.out.println(topoSortList);
+        //dfs
+        graph.traverseByDfs();
+
+//        List<Integer> topoSortList = graph.topoSort();
+//        System.out.println(topoSortList);
 
     }
 }
@@ -81,6 +81,9 @@ class AdjaMapSetDirectedUnweightedGraph {
         }
         this.n = n;
         adjaMapSet = new HashMap<>();
+        for (int v = 0; v < n; v++) {
+            adjaMapSet.put(v, new HashSet<>());
+        }
     }
     void addArc(int from, int to) {
         Set<Integer> uAdjaSet = adjaMapSet.getOrDefault(from, new HashSet<>());
@@ -157,6 +160,47 @@ class AdjaMapSetDirectedUnweightedGraph {
         }
         //所有入度为0的节点入队
         Queue<Integer> zeroInCntUQueue = new LinkedList<>();
+        for (int u = 0; u < n; u++) {
+            Integer uInCnt = inDegreeMap.get(u);
+            if (uInCnt <= 0) {
+                zeroInCntUQueue.offer(u);
+            }
+        }
+
+        List<Integer> topoSortList = new LinkedList<>();
+        for (int i = 0; i < n && !zeroInCntUQueue.isEmpty(); i++) {
+            Integer v = zeroInCntUQueue.poll();
+            topoSortList.add(v);
+            //所有后继顶点入度减一
+            Set<Integer> adjaUSet = adjaMapSet.getOrDefault(v, new HashSet<>());
+            for (Integer adjaU : adjaUSet) {
+                inDegreeMap.put(adjaU, inDegreeMap.get(adjaU)-1);
+                if (inDegreeMap.get(adjaU) == 0) {
+                    zeroInCntUQueue.offer(adjaU);
+                }
+            }
+        }
+
+        if (topoSortList.size() != n) {
+            return new LinkedList<>();
+        }
+
+        return topoSortList;
+    }
+
+    List<Integer> topoSortV2() {
+        //计算所有节点的入度
+        Map<Integer, Integer> inDegreeMap = new HashMap<>();
+        adjaMapSet.forEach((v, us) -> {
+            us.forEach(u -> {
+                inDegreeMap.merge(u, 1, Integer::sum);
+            });
+        });
+        //所有入度为0的节点入队
+        Queue<Integer> zeroInCntUQueue = new LinkedList<>();
+        inDegreeMap.forEach((u, cnt) -> {
+
+        });
         for (int u = 0; u < n; u++) {
             Integer uInCnt = inDegreeMap.get(u);
             if (uInCnt <= 0) {
