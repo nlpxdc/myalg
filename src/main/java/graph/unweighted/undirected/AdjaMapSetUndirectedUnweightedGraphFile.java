@@ -134,6 +134,10 @@ class AdjaMapSetUndirectedUnweightedGraph {
         GraphUtil.visit(v);
     }
 
+    //判环
+    //bfs版
+    //dfs版
+
 }
 
 ////有向无权图 这个重要，因为这个是结构相关的，权不影响结构
