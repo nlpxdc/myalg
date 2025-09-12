@@ -6,4 +6,8 @@ public class VDfsDo {
     Integer discoverSn;
     Integer finishSn;
     Integer discoverFinishSn;
+
+    public VDfsDo(Integer v) {
+        this.v = v;
+    }
 }

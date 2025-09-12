@@ -64,16 +64,37 @@ public class GraphUtil {
     //另外一个值就是临时变量，放两个重要内容，一个是记录节点的被访问状态数组，另一个是顶点被访问的总次数，这里因为有两个需要记录的变脸，所以定义对象了
     //但是如果只给被访问的数组也是可以的够的，但是给出visitCnt会更好，这是针对元数据n的临时变量，可以控制总体循环逻辑，避免写错进入无限死循环
     //上面不要对象了，visitCnt其实是个计算属性，根据visited数组可以算出来的
-    public static int traverse(final int n, final BiConsumer<Integer, boolean[]> maxConnectedChildGraphTraverse) {
+//    public static int traverse(final int n, final BiConsumer<Integer, boolean[]> maxConnectedChildGraphTraverse) {
+//        //初始化临时数组，记录访问状态
+//        boolean[] visited = new boolean[n];
+//
+//        int maxConnectedChildGraphCnt = 0;
+//        for (int i = 0; i < n; i++) {
+//            Integer firstUnVisited = getFirstUnVisited(visited);
+//            if (firstUnVisited != null) {
+//                maxConnectedChildGraphCnt++;
+//                maxConnectedChildGraphTraverse.accept(firstUnVisited, visited);
+//                System.out.println();
+//            } else {
+//                break;
+//            }
+//
+//        }
+//        return maxConnectedChildGraphCnt;
+//    }
+
+    public static int traverse(final int n, final BiConsumer<Integer, SingleVo> maxConnectedChildGraphTraverse) {
         //初始化临时数组，记录访问状态
-        boolean[] visited = new boolean[n];
+//        boolean[] visited = new boolean[n];
+        SingleVo singleVo = new SingleVo(n);
 
         int maxConnectedChildGraphCnt = 0;
         for (int i = 0; i < n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(visited);
+            Integer firstUnVisited = getFirstUnVisited(singleVo.visited);
             if (firstUnVisited != null) {
                 maxConnectedChildGraphCnt++;
-                maxConnectedChildGraphTraverse.accept(firstUnVisited, visited);
+//                maxConnectedChildGraphTraverse.accept(firstUnVisited, visited);
+                maxConnectedChildGraphTraverse.accept(firstUnVisited, singleVo);
                 System.out.println();
             } else {
                 break;

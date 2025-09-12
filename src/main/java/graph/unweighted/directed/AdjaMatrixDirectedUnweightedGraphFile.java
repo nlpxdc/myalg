@@ -1,6 +1,7 @@
 package graph.unweighted.directed;
 
 import graph.unweighted.GraphUtil;
+import graph.unweighted.SingleVo;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -88,12 +89,12 @@ class AdjaMatrixDirectedUnweightedGraph {
     }
 
     //bfs
-    void bfs(final int startV, final boolean[] visited) {
+    void bfs(final int startV, final SingleVo singleVo) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        visited[startV] = true;
+        singleVo.visited[startV] = true;
         queue.offer(startV);
         while (!queue.isEmpty()) {
             //先访问当前自己
@@ -103,8 +104,8 @@ class AdjaMatrixDirectedUnweightedGraph {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[v][u]) {
-                    if (!visited[u]) {
-                        visited[u] = true;
+                    if (!singleVo.visited[u]) {
+                        singleVo.visited[u] = true;
                         queue.offer(u);
                     }
                 }
@@ -113,15 +114,15 @@ class AdjaMatrixDirectedUnweightedGraph {
         }
     }
     //dfs
-    void dfs(final int v, final boolean[] visited) {
-        visited[v] = true;
+    void dfs(final int v, final SingleVo singleVo) {
+        singleVo.visited[v] = true;
         //前序遍历
 //        GraphUtil.discover(v);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[v][u]) {
-                if (!visited[u]) {
+                if (!singleVo.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    dfs(u, visited);
+                    dfs(u, singleVo);
                 }
             }
         }

@@ -1,6 +1,7 @@
 package graph.unweighted.directed;
 
 import graph.unweighted.GraphUtil;
+import graph.unweighted.SingleVo;
 
 import java.util.*;
 
@@ -108,12 +109,12 @@ class AdjaMapSetDirectedUnweightedGraph {
     }
 
     //bfs
-    void bfs(final int startV, final boolean[] visited) {
+    void bfs(final int startV, final SingleVo singleVo) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        visited[startV] = true;
+        singleVo.visited[startV] = true;
         queue.offer(startV);
         while (!queue.isEmpty()) {
             //先访问当前自己
@@ -123,22 +124,22 @@ class AdjaMapSetDirectedUnweightedGraph {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
-                if (!visited[adjaU]) {
-                    visited[adjaU] = true;
+                if (!singleVo.visited[adjaU]) {
+                    singleVo.visited[adjaU] = true;
                     queue.offer(adjaU);
                 }
             }
         }
     }
     //dfs
-    void dfs(final int v, final boolean[] visited) {
-        visited[v] = true;
+    void dfs(final int v, final SingleVo singleVo) {
+        singleVo.visited[v] = true;
         //前序遍历
 //        GraphUtil.discover(v);
         Set<Integer> adjaUSet = adjaMapSet.get(v);
         for (Integer adjaU : adjaUSet) {
-            if (!visited[adjaU]) {
-                dfs(adjaU, visited);
+            if (!singleVo.visited[adjaU]) {
+                dfs(adjaU, singleVo);
             }
         }
         //后序遍历
