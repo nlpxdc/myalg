@@ -1,5 +1,6 @@
 package graph.unweighted;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class AllVo {
@@ -11,6 +12,14 @@ public class AllVo {
 
     List<List<Integer>> dfsDiscoverListList;
     List<List<Integer>> dfsFinishListList;
-//    List<List<Integer>> dfsDiscoverFinishListList;
+    List<List<String>> dfsDiscoverFinishListList;
+
+    public AllVo() {
+        bfsListList = new LinkedList<>();
+
+        dfsDiscoverListList = new LinkedList<>();
+        dfsFinishListList = new LinkedList<>();
+        dfsDiscoverFinishListList = new LinkedList<>();
+    }
 
 }
