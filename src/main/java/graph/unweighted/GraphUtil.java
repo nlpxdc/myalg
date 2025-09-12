@@ -3,8 +3,12 @@ package graph.unweighted;
 import java.util.function.BiConsumer;
 
 public class GraphUtil {
-    public static void visit(int v) {
-        System.out.print(v+",");
+//    public static void visit(int v, SingleVo singleVo) {
+//        System.out.print(v+",");
+//    }
+    public static void bfsVisit(int v, SingleVo singleVo) {
+//        System.out.print(v+",");
+        singleVo.bfsList.add(v);
     }
 //    static void discover(int v) {
 //        System.out.println(String.format("discover %d", v));
@@ -12,11 +16,15 @@ public class GraphUtil {
 //    static void finish(int v) {
 //        System.out.println(String.format("finish %d", v));
 //    }
-    public static void discover(int v) {
-        System.out.print(String.format("D%d,", v));
+    public static void dfsDiscover(int v, SingleVo singleVo) {
+//        System.out.print(String.format("D%d,", v));
+        singleVo.dfsDiscoverList.add(v);
+        singleVo.dfsDiscoverFinishList.add(String.format("D%d",v));
     }
-    public static void finish(int v) {
-        System.out.print(String.format("F%d,", v));
+    public static void dfsFinish(int v, SingleVo singleVo) {
+//        System.out.print(String.format("F%d,", v));
+        singleVo.dfsFinishList.add(v);
+        singleVo.dfsDiscoverFinishList.add(String.format("F%d",v));
     }
 
     public static Integer getFirstUnVisited(boolean[] visited) {
