@@ -16,7 +16,7 @@ public class SingleVo {
     //时间序
     List<Integer> dfsDiscoverList;
     List<Integer> dfsFinishList;
-    List<Integer> dfsDiscoverFinishList;
+    List<String> dfsDiscoverFinishList;
     //点维度聚合角度，根据内部字段算出上面三种序
     Map<Integer, VDfsDo> dfsVDfsDo;
 
