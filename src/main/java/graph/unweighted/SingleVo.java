@@ -1,16 +1,23 @@
 package graph.unweighted;
 
 import java.util.List;
+import java.util.Map;
+//import java.util.Set;
 
 public class SingleVo {
-    int childGraphCnt;
+    //real param from out
+    Integer startV;
 
-    //一下可以再算一次计算属性 平铺称一维的线性结构
+    //as result temp var to record content
+    boolean[] visited;
+//    private Set<Integer> visited; 起始List也可以？用distinct？但是依赖算法可以O(1)
 
-    List<List<Integer>> bfsListList;
-
-    List<List<Integer>> dfsDiscoverListList;
-    List<List<Integer>> dfsFinishListList;
-//    List<List<Integer>> dfsDiscoverFinishListList;
+    List<Integer> bfsList;
+    //时间序
+    List<Integer> dfsDiscoverList;
+    List<Integer> dfsFinishList;
+    List<Integer> dfsDiscoverFinishList;
+    //点维度聚合角度，根据内部字段算出上面三种序
+    Map<Integer, VDfsDo> dfsVDfsDo;
 
 }
