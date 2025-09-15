@@ -1,6 +1,7 @@
 package graph.unweighted.undirected;
 
 import graph.unweighted.GraphUtil;
+import graph.unweighted.SingleParam;
 import graph.unweighted.SingleVo;
 
 import java.util.*;
@@ -93,13 +94,13 @@ class AdjaMapSetUndirectedUnweightedGraph {
     }
 
     //bfs
-    void bfs(final int startV, final SingleVo singleVo) {
+    void bfs(final SingleParam singleParam, final SingleVo singleVo) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        singleVo.visited[startV] = true;
-        queue.offer(startV);
+        singleVo.visited[singleParam.startV] = true;
+        queue.offer(singleParam.startV);
 
         while (!queue.isEmpty()) {
             //先访问当前自己
@@ -120,19 +121,20 @@ class AdjaMapSetUndirectedUnweightedGraph {
     //dfs
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
-    void dfs(final int v,  final SingleVo singleVo) {
-        singleVo.visited[v] = true;
+    void dfs(final SingleParam singleParam, final SingleVo singleVo) {
+        singleVo.visited[singleParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(v, singleVo);
-        Set<Integer> adjaUSet = adjaMapSet.get(v);
+        GraphUtil.dfsDiscover(singleParam.v, singleVo);
+        Set<Integer> adjaUSet = adjaMapSet.get(singleParam.v);
         for (Integer adjaU : adjaUSet) {
             if (!singleVo.visited[adjaU]) {
-                dfs(adjaU, singleVo);
+                singleParam.v = adjaU;
+                dfs(singleParam, singleVo);
             }
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinish(v, singleVo);
+        GraphUtil.dfsFinish(singleParam.v, singleVo);
     }
 
     //判环

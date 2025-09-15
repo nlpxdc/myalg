@@ -1,6 +1,7 @@
 package graph.unweighted.directed;
 
 import graph.unweighted.GraphUtil;
+import graph.unweighted.SingleParam;
 import graph.unweighted.SingleVo;
 
 import java.util.LinkedList;
@@ -89,13 +90,13 @@ class AdjaMatrixDirectedUnweightedGraph {
     }
 
     //bfs
-    void bfs(final int startV, final SingleVo singleVo) {
+    void bfs(final SingleParam singleParam, final SingleVo singleVo) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        singleVo.visited[startV] = true;
-        queue.offer(startV);
+        singleVo.visited[singleParam.startV] = true;
+        queue.offer(singleParam.startV);
         while (!queue.isEmpty()) {
             //先访问当前自己
             Integer v = queue.poll();
@@ -114,21 +115,22 @@ class AdjaMatrixDirectedUnweightedGraph {
         }
     }
     //dfs
-    void dfs(final int v, final SingleVo singleVo) {
-        singleVo.visited[v] = true;
+    void dfs(final SingleParam singleParam, final SingleVo singleVo) {
+        singleVo.visited[singleParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(v, singleVo);
+        GraphUtil.dfsDiscover(singleParam.v, singleVo);
         for (int u = 0; u < n; u++) {
-            if (adjaMatrix[v][u]) {
+            if (adjaMatrix[singleParam.v][u]) {
                 if (!singleVo.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    dfs(u, singleVo);
+                    singleParam.v = u;
+                    dfs(singleParam, singleVo);
                 }
             }
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinish(v, singleVo);
+        GraphUtil.dfsFinish(singleParam.v, singleVo);
     }
 
 }

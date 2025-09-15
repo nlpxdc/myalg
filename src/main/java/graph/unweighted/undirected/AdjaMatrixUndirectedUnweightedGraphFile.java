@@ -1,6 +1,7 @@
 package graph.unweighted.undirected;
 
 import graph.unweighted.GraphUtil;
+import graph.unweighted.SingleParam;
 import graph.unweighted.SingleVo;
 
 import java.util.Arrays;
@@ -119,13 +120,13 @@ class AdjaMatrixUndirectedUnweightedGraph {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void bfs(final int startV, final SingleVo singleVo) {
+    void bfs(final SingleParam singleParam, final SingleVo singleVo) {
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        singleVo.visited[startV] = true;
-        queue.offer(startV);
+        singleVo.visited[singleParam.startV] = true;
+        queue.offer(singleParam.startV);
 
         while (!queue.isEmpty()) {
             //先访问当前自己
@@ -154,21 +155,22 @@ class AdjaMatrixUndirectedUnweightedGraph {
     //这里使用递归写法的时候，第一个参数v代表当前顶点v，不能代表起始顶点
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
-    void dfs(final int v, final SingleVo singleVo) {
+    void dfs(final SingleParam singleParam, final SingleVo singleVo) {
 //        visited[v] = true;
-        singleVo.visited[v] = true;
+        singleVo.visited[singleParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(v, singleVo);
+        GraphUtil.dfsDiscover(singleParam.v, singleVo);
         for (int u = 0; u < n; u++) {
-            if (adjaMatrix[v][u]) {
+            if (adjaMatrix[singleParam.v][u]) {
                 if (!singleVo.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    dfs(u, singleVo);
+                    singleParam.v = u;
+                    dfs(singleParam, singleVo);
                 }
             }
         }
         //后序遍历
-        GraphUtil.dfsFinish(v, singleVo);
+        GraphUtil.dfsFinish(singleParam.v, singleVo);
 
     }
 
