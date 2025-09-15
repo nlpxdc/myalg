@@ -1,5 +1,6 @@
 package graph.unweighted.undirected;
 
+import graph.unweighted.GraphMeta;
 import graph.unweighted.GraphUtil;
 import graph.unweighted.SingleParam;
 import graph.unweighted.SingleVo;
@@ -54,8 +55,8 @@ class AdjaMapSetUndirectedUnweightedGraphApp {
 //节点无需减半维护，利用对称性有好处？有去有回，方便找节点？回溯？
 //或者默认前后的节点是无序的，要注意，那可以维护一端？不行，这样就减半了，不能减半
 //相当于多颗树森林的遍历
-class AdjaMapSetUndirectedUnweightedGraph {
-    int n;
+class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
+//    int n;
     Map<Integer, Set<Integer>> adjaMapSet;
 
     AdjaMapSetUndirectedUnweightedGraph(int n) {
@@ -86,11 +87,11 @@ class AdjaMapSetUndirectedUnweightedGraph {
     }
 
     void traverseByBfs() {
-        GraphUtil.traverse(n, this::bfs);
+        GraphUtil.traverse(this, this::bfs);
     }
 
     void traverseByDfs() {
-        GraphUtil.traverse(n, this::dfs);
+        GraphUtil.traverse(this, this::dfs);
     }
 
     //bfs

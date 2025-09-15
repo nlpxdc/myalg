@@ -1,5 +1,6 @@
 package graph.unweighted.directed;
 
+import graph.unweighted.GraphMeta;
 import graph.unweighted.GraphUtil;
 import graph.unweighted.SingleParam;
 import graph.unweighted.SingleVo;
@@ -58,9 +59,9 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 //}
 
 //有向无权图 这个依赖邻接表 不对称
-class AdjaMatrixDirectedUnweightedGraph {
+class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     //顶点数
-    int n;
+//    int n;
     boolean[][] adjaMatrix;
 
     AdjaMatrixDirectedUnweightedGraph(int n) {
@@ -82,11 +83,11 @@ class AdjaMatrixDirectedUnweightedGraph {
     //判断连通子图个数，连通分量
 
     void traverseByBfs() {
-        GraphUtil.traverse(n, this::bfs);
+        GraphUtil.traverse(this, this::bfs);
     }
 
     void traverseByDfs() {
-        GraphUtil.traverse(n, this::dfs);
+        GraphUtil.traverse(this, this::dfs);
     }
 
     //bfs
