@@ -103,7 +103,7 @@ public class GraphUtil {
         int maxConnectedChildGraphCnt = 0;
         for (int i = 0; i < n; i++) {
             Integer firstUnVisited = getFirstUnVisited(singleVo.visited);
-            SingleParam singleParam = new SingleParam(firstUnVisited);
+            SingleParam singleParam = new SingleParam(firstUnVisited, maxConnectedChildGraphCnt);
             if (firstUnVisited != null) {
                 maxConnectedChildGraphCnt++;
 //                maxConnectedChildGraphTraverse.accept(firstUnVisited, visited);
