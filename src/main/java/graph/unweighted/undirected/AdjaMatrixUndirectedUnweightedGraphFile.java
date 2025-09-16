@@ -158,11 +158,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 //    void dfs(final int v, final boolean[] visited) {
     void dfs(final SingleParam singleParam, final SingleVo singleVo) {
         VParam vParam = new VParam(singleParam.startV);
+        vParam.dfsVDepth = -1;
         dfsRecur(vParam, singleVo);
     }
 
     void dfsRecur(final VParam vParam, final SingleVo singleVo) {
 //        visited[v] = true;
+        vParam.dfsVDepth = vParam.dfsVDepth+1;
         singleVo.visited[vParam.v] = true;
         //前序遍历
 

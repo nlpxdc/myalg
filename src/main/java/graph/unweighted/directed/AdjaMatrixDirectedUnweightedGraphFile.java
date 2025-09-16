@@ -120,6 +120,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         dfsRecur(vParam, singleVo);
     }
     void dfsRecur(final VParam vParam, final SingleVo singleVo) {
+        vParam.dfsVDepth = vParam.dfsVDepth+1;
         singleVo.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscover(vParam, singleVo);
