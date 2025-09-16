@@ -1,9 +1,6 @@
 package graph.unweighted.undirected;
 
-import graph.unweighted.GraphMeta;
-import graph.unweighted.GraphUtil;
-import graph.unweighted.SingleParam;
-import graph.unweighted.SingleVo;
+import graph.unweighted.*;
 
 import java.util.*;
 
@@ -103,10 +100,12 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         singleVo.visited[singleParam.startV] = true;
         queue.offer(singleParam.startV);
 
-        while (!queue.isEmpty()) {
+        for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty() ; i++) {
             //先访问当前自己
             Integer v = queue.poll();
-            GraphUtil.bfsVisit(v, singleVo);
+            VParam vParam = new VParam(v);
+            vParam.bfsVLevel = i;
+            GraphUtil.bfsVisit(vParam, singleVo);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.get(v);

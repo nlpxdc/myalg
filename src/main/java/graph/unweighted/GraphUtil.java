@@ -6,9 +6,9 @@ public class GraphUtil {
 //    public static void visit(int v, SingleVo singleVo) {
 //        System.out.print(v+",");
 //    }
-    public static void bfsVisit(int v, SingleVo singleVo) {
+    public static void bfsVisit(VParam vParam, SingleVo singleVo) {
 //        System.out.print(v+",");
-        singleVo.bfsList.add(v);
+        singleVo.bfsList.add(vParam.v);
     }
 //    static void discover(int v) {
 //        System.out.println(String.format("discover %d", v));
