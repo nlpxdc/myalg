@@ -16,15 +16,15 @@ public class GraphUtil {
 //    static void finish(int v) {
 //        System.out.println(String.format("finish %d", v));
 //    }
-    public static void dfsDiscover(int v, SingleVo singleVo) {
+    public static void dfsDiscover(VParam vParam, SingleVo singleVo) {
 //        System.out.print(String.format("D%d,", v));
-        singleVo.dfsDiscoverList.add(v);
-        singleVo.dfsDiscoverFinishList.add(String.format("D%d",v));
+        singleVo.dfsDiscoverList.add(vParam.v);
+        singleVo.dfsDiscoverFinishList.add(String.format("D%d", vParam.v));
     }
-    public static void dfsFinish(int v, SingleVo singleVo) {
+    public static void dfsFinish(VParam vParam, SingleVo singleVo) {
 //        System.out.print(String.format("F%d,", v));
-        singleVo.dfsFinishList.add(v);
-        singleVo.dfsDiscoverFinishList.add(String.format("F%d",v));
+        singleVo.dfsFinishList.add(vParam.v);
+        singleVo.dfsDiscoverFinishList.add(String.format("F%d", vParam.v));
     }
 
     public static Integer getFirstUnVisited(boolean[] visited) {

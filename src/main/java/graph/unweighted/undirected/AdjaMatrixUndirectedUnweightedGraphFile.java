@@ -157,21 +157,27 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
     void dfs(final SingleParam singleParam, final SingleVo singleVo) {
+        VParam vParam = new VParam(singleParam.startV);
+        dfsRecur(vParam, singleVo);
+    }
+
+    void dfsRecur(final VParam vParam, final SingleVo singleVo) {
 //        visited[v] = true;
-        singleVo.visited[singleParam.v] = true;
+        singleVo.visited[vParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(singleParam.v, singleVo);
+
+        GraphUtil.dfsDiscover(vParam, singleVo);
         for (int u = 0; u < n; u++) {
-            if (adjaMatrix[singleParam.v][u]) {
+            if (adjaMatrix[vParam.v][u]) {
                 if (!singleVo.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    singleParam.v = u;
-                    dfs(singleParam, singleVo);
+                    vParam.v = u;
+                    dfsRecur(vParam, singleVo);
                 }
             }
         }
         //后序遍历
-        GraphUtil.dfsFinish(singleParam.v, singleVo);
+        GraphUtil.dfsFinish(vParam, singleVo);
 
     }
 

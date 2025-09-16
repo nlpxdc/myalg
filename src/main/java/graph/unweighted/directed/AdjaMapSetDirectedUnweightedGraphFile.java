@@ -134,19 +134,24 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     }
     //dfs
     void dfs(final SingleParam singleParam, final SingleVo singleVo) {
-        singleVo.visited[singleParam.v] = true;
+        VParam vParam = new VParam(singleParam.startV);
+        dfsRecur(vParam, singleVo);
+    }
+
+    void dfsRecur(final VParam vParam, final SingleVo singleVo) {
+        singleVo.visited[vParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(singleParam.v, singleVo);
-        Set<Integer> adjaUSet = adjaMapSet.get(singleParam.v);
+        GraphUtil.dfsDiscover(vParam, singleVo);
+        Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             if (!singleVo.visited[adjaU]) {
-                singleParam.v = adjaU;
-                dfs(singleParam, singleVo);
+                vParam.v = adjaU;
+                dfsRecur(vParam, singleVo);
             }
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinish(singleParam.v, singleVo);
+        GraphUtil.dfsFinish(vParam, singleVo);
     }
 
     List<Integer> topoSort() {

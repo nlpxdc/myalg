@@ -122,19 +122,23 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
     void dfs(final SingleParam singleParam, final SingleVo singleVo) {
-        singleVo.visited[singleParam.v] = true;
+        VParam vParam = new VParam(singleParam.startV);
+        dfsRecur(vParam, singleVo);
+    }
+    void dfsRecur(final VParam vParam, final SingleVo singleVo) {
+        singleVo.visited[vParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(singleParam.v, singleVo);
-        Set<Integer> adjaUSet = adjaMapSet.get(singleParam.v);
+        GraphUtil.dfsDiscover(vParam, singleVo);
+        Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             if (!singleVo.visited[adjaU]) {
-                singleParam.v = adjaU;
-                dfs(singleParam, singleVo);
+                vParam.v = adjaU;
+                dfsRecur(vParam, singleVo);
             }
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinish(singleParam.v, singleVo);
+        GraphUtil.dfsFinish(vParam, singleVo);
     }
 
     //判环

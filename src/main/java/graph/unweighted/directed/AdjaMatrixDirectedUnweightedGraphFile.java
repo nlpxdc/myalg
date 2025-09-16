@@ -116,21 +116,25 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
     //dfs
     void dfs(final SingleParam singleParam, final SingleVo singleVo) {
-        singleVo.visited[singleParam.v] = true;
+        VParam vParam = new VParam(singleParam.startV);
+        dfsRecur(vParam, singleVo);
+    }
+    void dfsRecur(final VParam vParam, final SingleVo singleVo) {
+        singleVo.visited[vParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(singleParam.v, singleVo);
+        GraphUtil.dfsDiscover(vParam, singleVo);
         for (int u = 0; u < n; u++) {
-            if (adjaMatrix[singleParam.v][u]) {
+            if (adjaMatrix[vParam.v][u]) {
                 if (!singleVo.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    singleParam.v = u;
-                    dfs(singleParam, singleVo);
+                    vParam.v = u;
+                    dfsRecur(vParam, singleVo);
                 }
             }
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinish(singleParam.v, singleVo);
+        GraphUtil.dfsFinish(vParam, singleVo);
     }
 
 }
