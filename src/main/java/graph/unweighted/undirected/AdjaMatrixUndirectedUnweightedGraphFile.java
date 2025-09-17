@@ -38,7 +38,7 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        graph.traverseByBfs();
+        AllVo allVo = graph.traverseByBfs();
 
         //dfs
 //        graph.traverseByDfs();
@@ -122,26 +122,28 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
     void bfs(final SingleParam singleParam, final SingleVo singleVo) {
         //临时队列
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
         singleVo.visited[singleParam.startV] = true;
-        queue.offer(singleParam.startV);
+        VParam startVParam = new VParam(singleParam.startV);
+        startVParam.bfsVLevel = 0;
+        queue.offer(startVParam);
 
         for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty() ; i++) {
 //        while (!queue.isEmpty()) {
             //先访问当前自己
-            Integer v = queue.poll();
-            VParam vParam = new VParam(v);
-            vParam.bfsVLevel = i;
+            VParam vParam = queue.poll();
             GraphUtil.bfsVisit(vParam, singleVo);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
-                if (adjaMatrix[v][u]) {
+                if (adjaMatrix[vParam.v][u]) {
                     if (!singleVo.visited[u]) {
                         singleVo.visited[u] = true;
-                        queue.offer(u);
+                        VParam uParam = new VParam(u);
+                        uParam.bfsVLevel = vParam.bfsVLevel+1;
+                        queue.offer(uParam);
                     }
                 }
             }
