@@ -21,9 +21,9 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
         AdjaMatrixUndirectedUnweightedGraph graph = new AdjaMatrixUndirectedUnweightedGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -121,6 +121,8 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
     void bfs(final SingleParam singleParam, final SingleVo singleVo) {
+        singleVo.bfsList = new LinkedList<>();
+
         //临时队列
         Queue<VParam> queue = new LinkedList<>();
 

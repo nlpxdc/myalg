@@ -8,7 +8,7 @@ public class AllVo {
 
     //一下可以再算一次计算属性 平铺称一维的线性结构
 
-    List<List<Integer>> bfsListList;
+    List<List<VParam>> bfsListList;
 
     List<List<Integer>> dfsDiscoverListList;
     List<List<Integer>> dfsFinishListList;

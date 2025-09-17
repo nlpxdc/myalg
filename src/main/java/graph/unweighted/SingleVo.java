@@ -15,7 +15,7 @@ public class SingleVo {
     public final boolean[] visited;
 //    private Set<Integer> visited; 起始List也可以？用distinct？但是依赖算法可以O(1)
 
-    public final List<Integer> bfsList;
+    public List<VParam> bfsList;
     //时间序
     public final List<Integer> dfsDiscoverList;
     public final List<Integer> dfsFinishList;

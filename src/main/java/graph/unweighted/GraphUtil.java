@@ -8,7 +8,7 @@ public class GraphUtil {
 //    }
     public static void bfsVisit(VParam vParam, SingleVo singleVo) {
 //        System.out.print(v+",");
-        singleVo.bfsList.add(vParam.v);
+        singleVo.bfsList.add(vParam);
     }
 //    static void discover(int v) {
 //        System.out.println(String.format("discover %d", v));
