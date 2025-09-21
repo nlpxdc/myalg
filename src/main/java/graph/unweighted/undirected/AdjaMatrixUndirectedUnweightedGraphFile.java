@@ -120,7 +120,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    SingleVo bfs(final GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
+    SingleVo bfs(final GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
 //        singleVo.bfsList = new LinkedList<>();
         SingleVo singleVo = new SingleVo(graphMeta.n);
 
@@ -128,8 +128,8 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        graphTempVo.visited[singleParam.startV] = true;
-        VParam startVParam = new VParam(singleParam.startV);
+        allTemp.visited[singleStartParam.startV] = true;
+        VParam startVParam = new VParam(singleStartParam.startV);
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
 
@@ -142,8 +142,8 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[vParam.v][u]) {
-                    if (!graphTempVo.visited[u]) {
-                        graphTempVo.visited[u] = true;
+                    if (!allTemp.visited[u]) {
+                        allTemp.visited[u] = true;
                         VParam uParam = new VParam(u);
                         uParam.bfsVLevel = vParam.bfsVLevel+1;
                         queue.offer(uParam);
@@ -163,27 +163,27 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //这里使用递归写法的时候，第一个参数v代表当前顶点v，不能代表起始顶点
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
-    SingleVo dfs(final GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
-        VParam vParam = new VParam(singleParam.startV);
+    SingleVo dfs(final GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
+        VParam vParam = new VParam(singleStartParam.startV);
         vParam.dfsVDepth = -1;
         SingleVo singleVo = new SingleVo(graphMeta.n);
-        dfsRecur(vParam, graphTempVo, singleVo);
+        dfsRecur(vParam, allTemp, singleVo);
         return singleVo;
     }
 
-    void dfsRecur(final VParam vParam, final GraphTempVo graphTempVo, SingleVo singleVo) {
+    void dfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {
 //        visited[v] = true;
         vParam.dfsVDepth = vParam.dfsVDepth+1;
-        graphTempVo.visited[vParam.v] = true;
+        allTemp.visited[vParam.v] = true;
         //前序遍历
 
         GraphUtil.dfsDiscover(vParam, singleVo);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[vParam.v][u]) {
-                if (!graphTempVo.visited[u]) {
+                if (!allTemp.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
                     vParam.v = u;
-                    dfsRecur(vParam, graphTempVo, singleVo);
+                    dfsRecur(vParam, allTemp, singleVo);
                 }
             }
         }

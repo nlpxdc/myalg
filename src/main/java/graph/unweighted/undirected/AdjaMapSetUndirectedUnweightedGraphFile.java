@@ -94,14 +94,14 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    SingleVo bfs(GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
+    SingleVo bfs(GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo(graphMeta.n);
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        graphTempVo.visited[singleParam.startV] = true;
-        queue.offer(singleParam.startV);
+        allTemp.visited[singleStartParam.startV] = true;
+        queue.offer(singleStartParam.startV);
 
         for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty() ; i++) {
             //先访问当前自己
@@ -113,8 +113,8 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
-                if (!graphTempVo.visited[adjaU]) {
-                    graphTempVo.visited[adjaU] = true;
+                if (!allTemp.visited[adjaU]) {
+                    allTemp.visited[adjaU] = true;
                     queue.offer(adjaU);
                 }
             }
@@ -124,22 +124,22 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     //dfs
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
-    SingleVo dfs(GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
+    SingleVo dfs(GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo(graphMeta.n);
-        VParam vParam = new VParam(singleParam.startV);
-        dfsRecur(vParam, graphTempVo, singleVo);
+        VParam vParam = new VParam(singleStartParam.startV);
+        dfsRecur(vParam, allTemp, singleVo);
         return singleVo;
     }
-    void dfsRecur(final VParam vParam, final GraphTempVo graphTempVo, final SingleVo singleVo) {
+    void dfsRecur(final VParam vParam, final AllTemp allTemp, final SingleVo singleVo) {
         vParam.dfsVDepth = vParam.dfsVDepth+1;
-        graphTempVo.visited[vParam.v] = true;
+        allTemp.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscover(vParam, singleVo);
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
-            if (!graphTempVo.visited[adjaU]) {
+            if (!allTemp.visited[adjaU]) {
                 vParam.v = adjaU;
-                dfsRecur(vParam, graphTempVo, singleVo);
+                dfsRecur(vParam, allTemp, singleVo);
             }
         }
         //后序遍历
