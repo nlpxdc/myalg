@@ -12,7 +12,7 @@ public class SingleVo {
     public final int n;
 
     //as result temp var to record content
-    public final boolean[] visited;
+//    public final boolean[] visited;
 //    private Set<Integer> visited; 起始List也可以？用distinct？但是依赖算法可以O(1)
 
     public List<VParam> bfsList;
@@ -25,7 +25,7 @@ public class SingleVo {
 
     public SingleVo(int n) {
         this.n = n;
-        visited = new boolean[n];
+//        visited = new boolean[n];
 
         bfsList = new LinkedList<>();
         dfsDiscoverList = new LinkedList<>();

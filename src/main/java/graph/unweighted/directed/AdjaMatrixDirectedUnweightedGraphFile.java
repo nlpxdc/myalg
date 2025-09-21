@@ -90,12 +90,13 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void bfs(final SingleParam singleParam, final SingleVo singleVo) {
+    SingleVo bfs(GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
+        SingleVo singleVo = new SingleVo(graphMeta.n);
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        singleVo.visited[singleParam.startV] = true;
+        graphTempVo.visited[singleParam.startV] = true;
         queue.offer(singleParam.startV);
         for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty() ; i++) {
             //先访问当前自己
@@ -107,31 +108,34 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[v][u]) {
-                    if (!singleVo.visited[u]) {
-                        singleVo.visited[u] = true;
+                    if (!graphTempVo.visited[u]) {
+                        graphTempVo.visited[u] = true;
                         queue.offer(u);
                     }
                 }
             }
 //            GraphUtil.visit(v);
         }
+        return singleVo;
     }
     //dfs
-    void dfs(final SingleParam singleParam, final SingleVo singleVo) {
+    SingleVo dfs(final GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
+        SingleVo singleVo = new SingleVo(graphMeta.n);
         VParam vParam = new VParam(singleParam.startV);
-        dfsRecur(vParam, singleVo);
+        dfsRecur(vParam, graphTempVo, singleVo);
+        return singleVo;
     }
-    void dfsRecur(final VParam vParam, final SingleVo singleVo) {
+    void dfsRecur(final VParam vParam, final GraphTempVo graphTempVo, SingleVo singleVo) {
         vParam.dfsVDepth = vParam.dfsVDepth+1;
-        singleVo.visited[vParam.v] = true;
+        graphTempVo.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscover(vParam, singleVo);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[vParam.v][u]) {
-                if (!singleVo.visited[u]) {
+                if (!graphTempVo.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
                     vParam.v = u;
-                    dfsRecur(vParam, singleVo);
+                    dfsRecur(vParam, graphTempVo, singleVo);
                 }
             }
         }

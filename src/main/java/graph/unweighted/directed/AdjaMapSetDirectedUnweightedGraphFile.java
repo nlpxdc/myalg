@@ -110,12 +110,13 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void bfs(final SingleParam singleParam, final SingleVo singleVo) {
+    SingleVo bfs(GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
+        SingleVo singleVo = new SingleVo(graphMeta.n);
         //临时队列
         Queue<Integer> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        singleVo.visited[singleParam.startV] = true;
+        graphTempVo.visited[singleParam.startV] = true;
         queue.offer(singleParam.startV);
         for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty() ; i++) {
             //先访问当前自己
@@ -127,29 +128,32 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
-                if (!singleVo.visited[adjaU]) {
-                    singleVo.visited[adjaU] = true;
+                if (!graphTempVo.visited[adjaU]) {
+                    graphTempVo.visited[adjaU] = true;
                     queue.offer(adjaU);
                 }
             }
         }
+        return singleVo;
     }
     //dfs
-    void dfs(final SingleParam singleParam, final SingleVo singleVo) {
+    SingleVo dfs(final GraphMeta graphMeta, final SingleParam singleParam, final GraphTempVo graphTempVo) {
+        SingleVo singleVo = new SingleVo(graphMeta.n);
         VParam vParam = new VParam(singleParam.startV);
-        dfsRecur(vParam, singleVo);
+        dfsRecur(vParam, graphTempVo, singleVo);
+        return singleVo;
     }
 
-    void dfsRecur(final VParam vParam, final SingleVo singleVo) {
+    void dfsRecur(final VParam vParam, final GraphTempVo graphTempVo, SingleVo singleVo) {
         vParam.dfsVDepth = vParam.dfsVDepth+1;
-        singleVo.visited[vParam.v] = true;
+        graphTempVo.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscover(vParam, singleVo);
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
-            if (!singleVo.visited[adjaU]) {
+            if (!graphTempVo.visited[adjaU]) {
                 vParam.v = adjaU;
-                dfsRecur(vParam, singleVo);
+                dfsRecur(vParam, graphTempVo, singleVo);
             }
         }
         //后序遍历
