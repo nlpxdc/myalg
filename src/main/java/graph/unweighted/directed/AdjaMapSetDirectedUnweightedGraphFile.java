@@ -140,20 +140,21 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     SingleVo dfs(final GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo(graphMeta.n);
         VParam vParam = new VParam(singleStartParam.startV);
+        vParam.dfsVDepth = 0;
         dfsRecur(vParam, allTemp, singleVo);
         return singleVo;
     }
 
     void dfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {
-        vParam.dfsVDepth = vParam.dfsVDepth+1;
         allTemp.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscover(vParam, singleVo);
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             if (!allTemp.visited[adjaU]) {
-                vParam.v = adjaU;
-                dfsRecur(vParam, allTemp, singleVo);
+                VParam uParam = new VParam(adjaU);
+                uParam.dfsVDepth = vParam.dfsVDepth+1;
+                dfsRecur(uParam, allTemp, singleVo);
             }
         }
         //后序遍历
