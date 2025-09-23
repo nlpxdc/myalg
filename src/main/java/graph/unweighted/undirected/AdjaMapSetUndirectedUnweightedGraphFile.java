@@ -97,25 +97,27 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     SingleVo bfs(GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo(graphMeta.n);
         //临时队列
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
         allTemp.visited[singleStartParam.startV] = true;
-        queue.offer(singleStartParam.startV);
+        VParam startVParam = new VParam(singleStartParam.startV);
+        startVParam.bfsVLevel = 0;
+        queue.offer(startVParam);
 
         for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty() ; i++) {
             //先访问当前自己
-            Integer v = queue.poll();
-            VParam vParam = new VParam(v);
-            vParam.bfsVLevel = i;
+            VParam vParam = queue.poll();
             GraphUtil.bfsVisit(vParam, singleVo);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
-            Set<Integer> adjaUSet = adjaMapSet.get(v);
+            Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
             for (Integer adjaU : adjaUSet) {
                 if (!allTemp.visited[adjaU]) {
                     allTemp.visited[adjaU] = true;
-                    queue.offer(adjaU);
+                    VParam uParam = new VParam(adjaU);
+                    uParam.bfsVLevel = vParam.bfsVLevel+1;
+                    queue.offer(uParam);
                 }
             }
         }
