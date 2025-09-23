@@ -21,9 +21,9 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
         AdjaMatrixUndirectedUnweightedGraph graph = new AdjaMatrixUndirectedUnweightedGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -38,10 +38,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        AllVo allVo = graph.traverseByBfs();
+//        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-//        graph.traverseByDfs();
+        AllVo allVo = graph.traverseByDfs();
 
     }
 
@@ -165,7 +165,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 //    void dfs(final int v, final boolean[] visited) {
     SingleVo dfs(final GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
         VParam vParam = new VParam(singleStartParam.startV);
-        vParam.dfsVDepth = -1;
+        vParam.dfsVDepth = 0;
         SingleVo singleVo = new SingleVo(graphMeta.n);
         dfsRecur(vParam, allTemp, singleVo);
         return singleVo;
@@ -173,7 +173,6 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 
     void dfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {
 //        visited[v] = true;
-        vParam.dfsVDepth = vParam.dfsVDepth+1;
         allTemp.visited[vParam.v] = true;
         //前序遍历
 
@@ -182,8 +181,9 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             if (adjaMatrix[vParam.v][u]) {
                 if (!allTemp.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    vParam.v = u;
-                    dfsRecur(vParam, allTemp, singleVo);
+                    VParam uParam = new VParam(u);
+                    uParam.dfsVDepth = vParam.dfsVDepth+1;
+                    dfsRecur(uParam, allTemp, singleVo);
                 }
             }
         }
