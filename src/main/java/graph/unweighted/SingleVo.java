@@ -9,7 +9,7 @@ import java.util.Map;
 public class SingleVo {
     //real param from out
 //    Integer startV;
-    public final int n;
+//    public final int n;
 
     //as result temp var to record content
 //    public final boolean[] visited;
@@ -23,8 +23,8 @@ public class SingleVo {
     //点维度聚合角度，根据内部字段算出上面三种序
     public final Map<Integer, VDfsDo> dfsVDfsDoMap;
 
-    public SingleVo(int n) {
-        this.n = n;
+    public SingleVo() {
+//        this.n = n;
 //        visited = new boolean[n];
 
         bfsList = new LinkedList<>();
@@ -33,10 +33,6 @@ public class SingleVo {
         dfsDiscoverFinishList = new LinkedList<>();
 
         dfsVDfsDoMap = new HashMap<>();
-
-        for (int v= 0; v < n; v++) {
-            dfsVDfsDoMap.put(v, new VDfsDo(v));
-        }
     }
 
 }
