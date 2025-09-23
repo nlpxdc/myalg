@@ -2,6 +2,7 @@ package graph.unweighted;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class AllVo {
     int childGraphCnt;
@@ -13,6 +14,7 @@ public class AllVo {
     List<List<Integer>> dfsDiscoverListList;
     List<List<Integer>> dfsFinishListList;
     List<List<String>> dfsDiscoverFinishListList;
+    List<Map<Integer, VDfsDo>> dfsVDfsDoMapList;
 
     public AllVo() {
         bfsListList = new LinkedList<>();
@@ -20,6 +22,7 @@ public class AllVo {
         dfsDiscoverListList = new LinkedList<>();
         dfsFinishListList = new LinkedList<>();
         dfsDiscoverFinishListList = new LinkedList<>();
+        dfsVDfsDoMapList = new LinkedList<>();
     }
 
 }

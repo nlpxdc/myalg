@@ -10,12 +10,13 @@ public class SingleVo {
     //real param from out
 //    Integer startV;
 //    public final int n;
+    public final Long startNanoTime;
 
     //as result temp var to record content
 //    public final boolean[] visited;
 //    private Set<Integer> visited; 起始List也可以？用distinct？但是依赖算法可以O(1)
 
-    public List<VParam> bfsList;
+    public final List<VParam> bfsList;
     //时间序
     public final List<Integer> dfsDiscoverList;
     public final List<Integer> dfsFinishList;
@@ -26,6 +27,7 @@ public class SingleVo {
     public SingleVo() {
 //        this.n = n;
 //        visited = new boolean[n];
+        startNanoTime = System.nanoTime();
 
         bfsList = new LinkedList<>();
         dfsDiscoverList = new LinkedList<>();
