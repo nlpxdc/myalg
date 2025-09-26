@@ -129,6 +129,9 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
             for (Integer adjaU : adjaUSet) {
+                ArcParam arcParam = new ArcParam(vParam.v, adjaU);
+                GraphUtil.visitArc(arcParam);
+
                 if (!allTemp.visited[adjaU]) {
                     allTemp.visited[adjaU] = true;
                     VParam uParam = new VParam(adjaU);
@@ -154,6 +157,9 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         GraphUtil.dfsDiscover(vParam, singleVo);
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
+            ArcParam arcParam = new ArcParam(vParam.v, adjaU);
+            GraphUtil.visitArc(arcParam);
+
             if (!allTemp.visited[adjaU]) {
                 VParam uParam = new VParam(adjaU);
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
