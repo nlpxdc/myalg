@@ -133,10 +133,13 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
 
                 if (!allTemp.visited[adjaU]) {
+                    arcParam.bfsArcType = BfsArcType.BFS_TREE_ARC;
                     allTemp.visited[adjaU] = true;
                     VParam uParam = new VParam(adjaU);
                     uParam.bfsVLevel = vParam.bfsVLevel+1;
                     queue.offer(uParam);
+                } else {
+                    arcParam.bfsArcType = BfsArcType.BFS_NON_TREE_ARC;
                 }
                 GraphUtil.bfsVisitArc(arcParam);
             }
