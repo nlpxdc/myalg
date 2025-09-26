@@ -120,7 +120,8 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         VParam startVParam = new VParam(singleStartParam.startV);
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
-        for (int i = 0; i < Integer.MAX_VALUE && !queue.isEmpty() ; i++) {
+
+        while (!queue.isEmpty()) {
             //先访问当前自己
             VParam vParam = queue.poll();
             GraphUtil.bfsVisit(vParam, singleVo);
