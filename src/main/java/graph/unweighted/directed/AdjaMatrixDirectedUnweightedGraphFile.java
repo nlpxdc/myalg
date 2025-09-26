@@ -90,7 +90,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    SingleVo bfs(GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
+    SingleVo bfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo();
         //临时队列
         Queue<VParam> queue = new LinkedList<>();
@@ -121,7 +121,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         return singleVo;
     }
     //dfs
-    SingleVo dfs(final GraphMeta graphMeta, final SingleStartParam singleStartParam, final AllTemp allTemp) {
+    SingleVo dfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo();
         VParam vParam = new VParam(singleStartParam.startV);
         vParam.dfsVDepth = 0;
