@@ -148,10 +148,13 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
 
                 if (!allTemp.visited[adjaU]) {
+                    arcParam.dfsArcType = DfsArcType.DFS_TREE_ARC;
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
                     VParam uParam = new VParam(adjaU);
                     uParam.dfsVDepth = vParam.dfsVDepth+1;
                     dfsRecur(uParam, allTemp, singleVo);
+                } else {
+
                 }
                 GraphUtil.dfsVisitArc(arcParam);
             }

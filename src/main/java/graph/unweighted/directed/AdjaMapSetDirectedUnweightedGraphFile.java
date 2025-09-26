@@ -165,9 +165,12 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
 
             if (!allTemp.visited[adjaU]) {
+                arcParam.dfsArcType = DfsArcType.DFS_TREE_ARC;
                 VParam uParam = new VParam(adjaU);
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
                 dfsRecur(uParam, allTemp, singleVo);
+            } else {
+
             }
             GraphUtil.dfsVisitArc(arcParam);
         }
