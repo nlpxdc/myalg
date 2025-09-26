@@ -124,7 +124,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         while (!queue.isEmpty()) {
             //先访问当前自己
             VParam vParam = queue.poll();
-            GraphUtil.bfsVisit(vParam, singleVo);
+            GraphUtil.bfsVisitV(vParam, singleVo);
             //再按层访问邻接顶点 这里没有递归，所以访问写在前后无所谓，最终都是在前
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
@@ -154,7 +154,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     void dfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {
         allTemp.visited[vParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscover(vParam, singleVo);
+        GraphUtil.dfsDiscoverV(vParam, singleVo);
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             ArcParam arcParam = new ArcParam(vParam.v, adjaU);
@@ -168,7 +168,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinish(vParam, singleVo);
+        GraphUtil.dfsFinishV(vParam, singleVo);
     }
 
     List<Integer> topoSort() {
