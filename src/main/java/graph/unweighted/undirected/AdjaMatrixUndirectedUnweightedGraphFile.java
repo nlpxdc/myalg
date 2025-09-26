@@ -143,16 +143,15 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                 if (adjaMatrix[vParam.v][u]) {
                     Integer adjaU = u;
                     EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
-                    GraphUtil.bfsVisitEdge(edgeParam);
 
                     if (!allTemp.visited[adjaU]) {
                         allTemp.visited[adjaU] = true;
                         VParam uParam = new VParam(adjaU);
                         uParam.bfsVLevel = vParam.bfsVLevel+1;
                         queue.offer(uParam);
-
-//                        System.out.println(String.format("Edge:%d->%d",vParam.v, u));
                     }
+
+                    GraphUtil.bfsVisitEdge(edgeParam);
                 }
             }
 //            GraphUtil.visit(v);
@@ -186,7 +185,6 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             if (adjaMatrix[vParam.v][u]) {
                 Integer adjaU = u;
                 EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
-                GraphUtil.dfsVisitEdge(edgeParam);
 
                 if (!allTemp.visited[adjaU]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
@@ -194,6 +192,8 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                     uParam.dfsVDepth = vParam.dfsVDepth+1;
                     dfsRecur(uParam, allTemp, singleVo);
                 }
+
+                GraphUtil.dfsVisitEdge(edgeParam);
             }
         }
         //后序遍历
