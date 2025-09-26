@@ -13,7 +13,10 @@ public class EdgeParam {
 
     @Override
     public String toString() {
-        return String.format("Edge:%d<->%d", v, u);
+        return String.format("Edge:%d<->%d %s %s",
+                v, u,
+                bfsEdgeType == null ? "null" : bfsEdgeType.name(),
+                dfsEdgeType == null ? "null" : dfsEdgeType.name());
     }
 
 }

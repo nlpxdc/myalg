@@ -38,10 +38,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        AllVo allVo = graph.traverseByBfs();
+//        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-//        AllVo allVo = graph.traverseByDfs();
+        AllVo allVo = graph.traverseByDfs();
 
     }
 
@@ -145,10 +145,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                     EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
 
                     if (!allTemp.visited[adjaU]) {
+                        edgeParam.bfsEdgeType = BfsEdgeType.BFS_TREE_EDGE;
                         allTemp.visited[adjaU] = true;
                         VParam uParam = new VParam(adjaU);
                         uParam.bfsVLevel = vParam.bfsVLevel+1;
                         queue.offer(uParam);
+                    } else {
+                        edgeParam.bfsEdgeType = BfsEdgeType.BFS_NON_TREE_EDGE;
                     }
 
                     GraphUtil.bfsVisitEdge(edgeParam);
@@ -187,10 +190,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                 EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
 
                 if (!allTemp.visited[adjaU]) {
+                    edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
                     VParam uParam = new VParam(adjaU);
                     uParam.dfsVDepth = vParam.dfsVDepth+1;
                     dfsRecur(uParam, allTemp, singleVo);
+                } else {
+                    edgeParam.dfsEdgeType = DfsEdgeType.DFS_NON_TREE_EDGE;
                 }
 
                 GraphUtil.dfsVisitEdge(edgeParam);
