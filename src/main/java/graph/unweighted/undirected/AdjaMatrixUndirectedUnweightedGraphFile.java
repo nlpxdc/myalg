@@ -141,12 +141,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[vParam.v][u]) {
-                    EdgeParam edgeParam = new EdgeParam(vParam.v, u);
+                    Integer adjaU = u;
+                    EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
                     GraphUtil.visitEdge(edgeParam);
 
-                    if (!allTemp.visited[u]) {
-                        allTemp.visited[u] = true;
-                        VParam uParam = new VParam(u);
+                    if (!allTemp.visited[adjaU]) {
+                        allTemp.visited[adjaU] = true;
+                        VParam uParam = new VParam(adjaU);
                         uParam.bfsVLevel = vParam.bfsVLevel+1;
                         queue.offer(uParam);
 
@@ -183,12 +184,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         GraphUtil.dfsDiscover(vParam, singleVo);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[vParam.v][u]) {
-                EdgeParam edgeParam = new EdgeParam(vParam.v, u);
+                Integer adjaU = u;
+                EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
                 GraphUtil.visitEdge(edgeParam);
 
-                if (!allTemp.visited[u]) {
+                if (!allTemp.visited[adjaU]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    VParam uParam = new VParam(u);
+                    VParam uParam = new VParam(adjaU);
                     uParam.dfsVDepth = vParam.dfsVDepth+1;
                     dfsRecur(uParam, allTemp, singleVo);
                 }
