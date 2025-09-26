@@ -38,10 +38,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        AllVo allVo = graph.traverseByBfs();
+//        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-//        AllVo allVo = graph.traverseByDfs();
+        AllVo allVo = graph.traverseByDfs();
 
     }
 
@@ -183,6 +183,9 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         GraphUtil.dfsDiscover(vParam, singleVo);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[vParam.v][u]) {
+                ArcParam arcParam = new ArcParam(vParam.v, u);
+                GraphUtil.visitArc(arcParam);
+
                 if (!allTemp.visited[u]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
                     VParam uParam = new VParam(u);
