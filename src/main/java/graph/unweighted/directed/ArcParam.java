@@ -1,4 +1,4 @@
-package graph.unweighted;
+package graph.unweighted.directed;
 
 public class ArcParam {
     public Integer fromV;

@@ -1,5 +1,7 @@
 package graph.unweighted;
 
+import graph.unweighted.directed.ArcParam;
+
 public class GraphUtil {
     public static void visitArc(ArcParam arcParam) {
         System.out.println(arcParam);
