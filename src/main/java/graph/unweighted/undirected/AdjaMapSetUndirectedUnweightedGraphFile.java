@@ -114,7 +114,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
             Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
             for (Integer adjaU : adjaUSet) {
                 EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
-                GraphUtil.visitEdge(edgeParam);
+                GraphUtil.bfsVisitEdge(edgeParam);
 
                 if (!allTemp.visited[adjaU]) {
                     allTemp.visited[adjaU] = true;
@@ -143,7 +143,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
-            GraphUtil.visitEdge(edgeParam);
+            GraphUtil.dfsVisitEdge(edgeParam);
 
             if (!allTemp.visited[adjaU]) {
                 VParam uParam = new VParam(adjaU);

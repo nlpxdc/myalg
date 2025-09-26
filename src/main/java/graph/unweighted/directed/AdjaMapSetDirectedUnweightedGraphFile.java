@@ -130,7 +130,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
             Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
             for (Integer adjaU : adjaUSet) {
                 ArcParam arcParam = new ArcParam(vParam.v, adjaU);
-                GraphUtil.visitArc(arcParam);
+                GraphUtil.bfsVisitArc(arcParam);
 
                 if (!allTemp.visited[adjaU]) {
                     allTemp.visited[adjaU] = true;
@@ -158,7 +158,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             ArcParam arcParam = new ArcParam(vParam.v, adjaU);
-            GraphUtil.visitArc(arcParam);
+            GraphUtil.dfsVisitArc(arcParam);
 
             if (!allTemp.visited[adjaU]) {
                 VParam uParam = new VParam(adjaU);

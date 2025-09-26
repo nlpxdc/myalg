@@ -111,7 +111,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                 if (adjaMatrix[vParam.v][u]) {
                     Integer adjaU = u;
                     ArcParam arcParam = new ArcParam(vParam.v, adjaU);
-                    GraphUtil.visitArc(arcParam);
+                    GraphUtil.bfsVisitArc(arcParam);
 
                     if (!allTemp.visited[adjaU]) {
                         allTemp.visited[adjaU] = true;
@@ -141,7 +141,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
             if (adjaMatrix[vParam.v][u]) {
                 Integer adjaU = u;
                 ArcParam arcParam = new ArcParam(vParam.v, adjaU);
-                GraphUtil.visitArc(arcParam);
+                GraphUtil.dfsVisitArc(arcParam);
 
                 if (!allTemp.visited[adjaU]) {
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
