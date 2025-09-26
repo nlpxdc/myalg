@@ -1,8 +1,12 @@
 package graph.unweighted;
 
 import graph.unweighted.directed.ArcParam;
+import graph.unweighted.undirected.EdgeParam;
 
 public class GraphUtil {
+    public static void visitEdge(EdgeParam edgeParam) {
+        System.out.println(edgeParam);
+    }
     public static void visitArc(ArcParam arcParam) {
         System.out.println(arcParam);
     }

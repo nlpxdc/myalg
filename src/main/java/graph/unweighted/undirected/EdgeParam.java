@@ -23,5 +23,5 @@ public class EdgeParam {
     public String toString() {
         return String.format("Edge:%d->%d", smallV, bigV);
     }
-    
+
 }
