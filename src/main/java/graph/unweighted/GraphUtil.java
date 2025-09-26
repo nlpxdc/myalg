@@ -1,6 +1,9 @@
 package graph.unweighted;
 
 public class GraphUtil {
+    public static void visitArc(ArcParam arcParam) {
+        System.out.println(arcParam);
+    }
     public static void bfsVisit(VParam vParam, SingleVo singleVo) {
         singleVo.bfsList.add(vParam);
     }

@@ -21,9 +21,9 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
         AdjaMatrixUndirectedUnweightedGraph graph = new AdjaMatrixUndirectedUnweightedGraph(9);
-//        graph.addEdge(0,1);
-//        graph.addEdge(0,2);
-//        graph.addEdge(1,2);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -38,10 +38,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-//        AllVo allVo = graph.traverseByBfs();
+        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-        AllVo allVo = graph.traverseByDfs();
+//        AllVo allVo = graph.traverseByDfs();
 
     }
 
@@ -141,11 +141,16 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             //这里就按照顺序从小到大，从左到右即可，反过来也行，但没什么本质区别
             for (int u = 0; u < n; u++) {
                 if (adjaMatrix[vParam.v][u]) {
+                    ArcParam arcParam = new ArcParam(vParam.v, u);
+                    GraphUtil.visitArc(arcParam);
+
                     if (!allTemp.visited[u]) {
                         allTemp.visited[u] = true;
                         VParam uParam = new VParam(u);
                         uParam.bfsVLevel = vParam.bfsVLevel+1;
                         queue.offer(uParam);
+
+//                        System.out.println(String.format("Edge:%d->%d",vParam.v, u));
                     }
                 }
             }
