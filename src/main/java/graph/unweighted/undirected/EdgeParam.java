@@ -3,6 +3,8 @@ package graph.unweighted.undirected;
 public class EdgeParam {
     public Integer v;
     public Integer u;
+    public BfsEdgeType bfsEdgeType;
+    public DfsEdgeType dfsEdgeType;
 
     public EdgeParam(Integer v, Integer u) {
         this.v = v;

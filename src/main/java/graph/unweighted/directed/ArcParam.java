@@ -3,6 +3,8 @@ package graph.unweighted.directed;
 public class ArcParam {
     public Integer fromV;
     public Integer toV;
+    public BfsArcType bfsArcType;
+    public DfsArcType dfsArcType;
 
     public ArcParam(Integer fromV, Integer toV) {
         this.fromV = fromV;
