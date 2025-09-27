@@ -21,10 +21,10 @@ class AdjaMatrixDirectedUnweightedGraphApp {
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
         AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(9);
-//        graph.addArc(0,1);
-//        graph.addArc(0,2);
-//        graph.addArc(1,2);
-//        graph.addArc(2,1);
+        graph.addArc(0,1);
+        graph.addArc(0,2);
+        graph.addArc(1,2);
+        graph.addArc(2,1);
 
         graph.addArc(0,3);
         graph.addArc(0,4);
@@ -155,7 +155,19 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                     uParam.dfsVDepth = vParam.dfsVDepth+1;
                     dfsRecur(uParam, allTemp, singleVo);
                 } else {
-
+                    if (allTemp.vStatuses[adjaU] == VStatus.GRAY) {
+                        arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
+                    } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
+                        Long vDiscoverTime = singleVo.dfsVDfsDoMap.get(vParam.v).discoverTime;
+                        Long adjUDiscoverTime = singleVo.dfsVDfsDoMap.get(adjaU).discoverTime;
+                        if (vDiscoverTime < adjUDiscoverTime) {
+                            arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
+                        } else if (vDiscoverTime > adjUDiscoverTime){
+                            arcParam.dfsArcType = DfsArcType.DFS_CROSS_ARC;
+                        } else {
+                            throw new RuntimeException("impossible");
+                        }
+                    }
                 }
                 GraphUtil.dfsVisitArc(arcParam);
             }
