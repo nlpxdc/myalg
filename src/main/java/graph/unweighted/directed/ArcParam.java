@@ -13,6 +13,9 @@ public class ArcParam {
 
     @Override
     public String toString() {
-        return String.format("Arc:%d->%d", fromV, toV);
+        return String.format("Arc:%d->%d %s %s",
+                fromV, toV,
+                bfsArcType == null ? "null" : bfsArcType.name(),
+                dfsArcType == null ? "null" : dfsArcType.name());
     }
 }
