@@ -21,10 +21,10 @@ class AdjaMatrixDirectedUnweightedGraphApp {
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
         AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(9);
-        graph.addArc(0,1);
-        graph.addArc(0,2);
-        graph.addArc(1,2);
-        graph.addArc(2,1);
+//        graph.addArc(0,1);
+//        graph.addArc(0,2);
+//        graph.addArc(1,2);
+//        graph.addArc(2,1);
 
         graph.addArc(0,3);
         graph.addArc(0,4);
@@ -141,6 +141,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         allTemp.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscoverV(vParam, singleVo);
+        allTemp.vStatuses[vParam.v] = VStatus.GRAY;
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[vParam.v][u]) {
                 Integer adjaU = u;
@@ -162,6 +163,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         //后序遍历
 //        GraphUtil.finish(v);
         GraphUtil.dfsFinishV(vParam, singleVo);
+        allTemp.vStatuses[vParam.v] = VStatus.BLACK;
     }
 
 }
