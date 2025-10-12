@@ -129,7 +129,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 
         //这里可以是任意startV n
         allTemp.visited[singleStartParam.startV] = true;
-        VParam startVParam = new VParam(singleStartParam.startV);
+        VParam startVParam = new VParam(null, singleStartParam.startV);
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
 
@@ -147,7 +147,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                     if (!allTemp.visited[adjaU]) {
                         edgeParam.bfsEdgeType = BfsEdgeType.BFS_TREE_EDGE;
                         allTemp.visited[adjaU] = true;
-                        VParam uParam = new VParam(adjaU);
+                        VParam uParam = new VParam(vParam.v, adjaU);
                         uParam.bfsVLevel = vParam.bfsVLevel+1;
                         queue.offer(uParam);
                     } else {
@@ -171,7 +171,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
     SingleVo dfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
-        VParam vParam = new VParam(singleStartParam.startV);
+        VParam vParam = new VParam(null, singleStartParam.startV);
         vParam.dfsVDepth = 0;
         SingleVo singleVo = new SingleVo();
         dfsRecur(vParam, allTemp, singleVo);
@@ -192,7 +192,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                 if (!allTemp.visited[adjaU]) {
                     edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
-                    VParam uParam = new VParam(adjaU);
+                    VParam uParam = new VParam(vParam.v, adjaU);
                     uParam.dfsVDepth = vParam.dfsVDepth+1;
                     dfsRecur(uParam, allTemp, singleVo);
                 } else {

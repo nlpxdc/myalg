@@ -1,11 +1,12 @@
 package graph.unweighted;
 
 public class VParam {
+    public Integer parent;
     public Integer v;
     public Integer bfsVLevel;
     public Integer dfsVDepth;
 
-    public VParam(int v) {
+    public VParam(Integer parent, Integer v) {
         this.v = v;
     }
 }
