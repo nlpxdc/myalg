@@ -102,6 +102,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         //这里可以是任意startV n
         allTemp.visited[singleStartParam.startV] = true;
         VParam startVParam = new VParam(null, singleStartParam.startV);
+        allTemp.parents[singleStartParam.startV] = null;
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
 
@@ -120,6 +121,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
                     edgeParam.bfsEdgeType = BfsEdgeType.BFS_TREE_EDGE;
                     allTemp.visited[adjaU] = true;
                     VParam uParam = new VParam(vParam.v, adjaU);
+                    allTemp.parents[adjaU] = vParam.v;
                     uParam.bfsVLevel = vParam.bfsVLevel+1;
                     queue.offer(uParam);
                 } else {
@@ -136,6 +138,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     SingleVo dfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo();
         VParam vParam = new VParam(null, singleStartParam.startV);
+        allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
         dfsRecur(vParam, allTemp, singleVo);
         return singleVo;
@@ -152,6 +155,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
             if (!allTemp.visited[adjaU]) {
                 edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
                 VParam uParam = new VParam(vParam.v, adjaU);
+                allTemp.parents[adjaU] = vParam.v;
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
                 dfsRecur(uParam, allTemp, singleVo);
             } else {
