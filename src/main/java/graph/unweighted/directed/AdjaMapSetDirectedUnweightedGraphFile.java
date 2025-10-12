@@ -56,7 +56,7 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 //        graph.addArc(6, 0);
 
         //bfs
-        graph.traverseByBfs();
+//        graph.traverseByBfs();
 
         //dfs
         graph.traverseByDfs();
@@ -159,6 +159,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         allTemp.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscoverV(vParam, singleVo);
+        allTemp.vStatuses[vParam.v] = VStatus.GRAY;
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             ArcParam arcParam = new ArcParam(vParam.v, adjaU);
@@ -170,7 +171,21 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
                 dfsRecur(uParam, allTemp, singleVo);
             } else {
-
+                if (allTemp.vStatuses[adjaU] == VStatus.GRAY) {
+                    arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
+                } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
+                    Long vDiscoverTime = singleVo.dfsVDfsDoMap.get(vParam.v).discoverTime;
+                    Long adjUDiscoverTime = singleVo.dfsVDfsDoMap.get(adjaU).discoverTime;
+                    if (vDiscoverTime < adjUDiscoverTime) {
+                        arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
+                    } else if (vDiscoverTime > adjUDiscoverTime){
+                        arcParam.dfsArcType = DfsArcType.DFS_CROSS_ARC;
+                    } else {
+                        throw new RuntimeException("impossible1");
+                    }
+                } else {
+                    throw new RuntimeException("impossible2");
+                }
             }
             GraphUtil.dfsVisitArc(arcParam);
         }

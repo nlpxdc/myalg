@@ -165,8 +165,10 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                         } else if (vDiscoverTime > adjUDiscoverTime){
                             arcParam.dfsArcType = DfsArcType.DFS_CROSS_ARC;
                         } else {
-                            throw new RuntimeException("impossible");
+                            throw new RuntimeException("impossible1");
                         }
+                    } else {
+                        throw new RuntimeException("impossible2");
                     }
                 }
                 GraphUtil.dfsVisitArc(arcParam);
