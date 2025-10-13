@@ -7,6 +7,7 @@ public class VParam {
     public Integer dfsVDepth;
 
     public VParam(Integer parent, Integer v) {
+        this.parent = parent;
         this.v = v;
     }
 }

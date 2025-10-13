@@ -23,14 +23,14 @@ public class GraphUtil {
     public static void dfsDiscoverV(VParam vParam, SingleVo singleVo) {
         singleVo.dfsDiscoverList.add(vParam.v);
         singleVo.dfsDiscoverFinishList.add(String.format("D%d", vParam.v));
-        VDfsDo vDfsDo = singleVo.dfsVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.v));
+        VDfsDo vDfsDo = singleVo.dfsVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVDfsDoMap.put(vParam.v, vDfsDo);
         vDfsDo.discoverTime = System.nanoTime() - singleVo.startNanoTime;
     }
     public static void dfsFinishV(VParam vParam, SingleVo singleVo) {
         singleVo.dfsFinishList.add(vParam.v);
         singleVo.dfsDiscoverFinishList.add(String.format("F%d", vParam.v));
-        VDfsDo vDfsDo = singleVo.dfsVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.v));
+        VDfsDo vDfsDo = singleVo.dfsVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVDfsDoMap.put(vParam.v, vDfsDo);
         vDfsDo.finishTime = System.nanoTime() - singleVo.startNanoTime;
     }
