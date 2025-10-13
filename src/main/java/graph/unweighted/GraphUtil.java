@@ -25,14 +25,14 @@ public class GraphUtil {
         singleVo.dfsVDiscoverFinishList.add(String.format("D%d", vParam.v));
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
-        vDfsDo.discoverTime = System.nanoTime() - singleVo.vStartNanoTime;
+        vDfsDo.discoverTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
     }
     public static void dfsFinishV(VParam vParam, SingleVo singleVo) {
         singleVo.dfsVFinishList.add(vParam.v);
         singleVo.dfsVDiscoverFinishList.add(String.format("F%d", vParam.v));
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
-        vDfsDo.finishTime = System.nanoTime() - singleVo.vStartNanoTime;
+        vDfsDo.finishTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
     }
 
     public static Integer getFirstUnVisited(boolean[] visited) {

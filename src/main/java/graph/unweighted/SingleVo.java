@@ -10,7 +10,7 @@ public class SingleVo {
     //real param from out
 //    Integer startV;
 //    public final int n;
-    public final Long vStartNanoTime;
+    public final Long dfsVStartNanoTime;
 
     //as result temp var to record content
 //    public final boolean[] visited;
@@ -29,7 +29,7 @@ public class SingleVo {
     public SingleVo() {
 //        this.n = n;
 //        visited = new boolean[n];
-        vStartNanoTime = System.nanoTime();
+        dfsVStartNanoTime = System.nanoTime();
 
         bfsVList = new LinkedList<>();
         dfsVDiscoverList = new LinkedList<>();
