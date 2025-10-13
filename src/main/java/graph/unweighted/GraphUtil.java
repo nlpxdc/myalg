@@ -18,21 +18,21 @@ public class GraphUtil {
         System.out.println(arcParam);
     }
     public static void bfsVisitV(VParam vParam, SingleVo singleVo) {
-        singleVo.bfsList.add(vParam);
+        singleVo.bfsVList.add(vParam);
     }
     public static void dfsDiscoverV(VParam vParam, SingleVo singleVo) {
-        singleVo.dfsDiscoverList.add(vParam.v);
-        singleVo.dfsDiscoverFinishList.add(String.format("D%d", vParam.v));
-        VDfsDo vDfsDo = singleVo.dfsVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
-        singleVo.dfsVDfsDoMap.put(vParam.v, vDfsDo);
-        vDfsDo.discoverTime = System.nanoTime() - singleVo.startNanoTime;
+        singleVo.dfsVDiscoverList.add(vParam.v);
+        singleVo.dfsVDiscoverFinishList.add(String.format("D%d", vParam.v));
+        VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
+        singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
+        vDfsDo.discoverTime = System.nanoTime() - singleVo.vStartNanoTime;
     }
     public static void dfsFinishV(VParam vParam, SingleVo singleVo) {
-        singleVo.dfsFinishList.add(vParam.v);
-        singleVo.dfsDiscoverFinishList.add(String.format("F%d", vParam.v));
-        VDfsDo vDfsDo = singleVo.dfsVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
-        singleVo.dfsVDfsDoMap.put(vParam.v, vDfsDo);
-        vDfsDo.finishTime = System.nanoTime() - singleVo.startNanoTime;
+        singleVo.dfsVFinishList.add(vParam.v);
+        singleVo.dfsVDiscoverFinishList.add(String.format("F%d", vParam.v));
+        VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
+        singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
+        vDfsDo.finishTime = System.nanoTime() - singleVo.vStartNanoTime;
     }
 
     public static Integer getFirstUnVisited(boolean[] visited) {
@@ -66,11 +66,11 @@ public class GraphUtil {
             if (firstUnVisited != null) {
                 maxConnectedChildGraphCnt++;
                 SingleVo singleVo = maxConnectedChildGraphTraverse.accept(singleStartParam, allTemp);
-                allVo.bfsListList.add(singleVo.bfsList);
-                allVo.dfsDiscoverListList.add(singleVo.dfsDiscoverList);
-                allVo.dfsFinishListList.add(singleVo.dfsFinishList);
-                allVo.dfsDiscoverFinishListList.add(singleVo.dfsDiscoverFinishList);
-                allVo.dfsVDfsDoMapList.add(singleVo.dfsVDfsDoMap);
+                allVo.bfsListList.add(singleVo.bfsVList);
+                allVo.dfsDiscoverListList.add(singleVo.dfsVDiscoverList);
+                allVo.dfsFinishListList.add(singleVo.dfsVFinishList);
+                allVo.dfsDiscoverFinishListList.add(singleVo.dfsVDiscoverFinishList);
+                allVo.dfsVDfsDoMapList.add(singleVo.dfsVVDfsDoMap);
             } else {
                 break;
             }

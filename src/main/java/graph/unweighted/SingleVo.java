@@ -10,31 +10,33 @@ public class SingleVo {
     //real param from out
 //    Integer startV;
 //    public final int n;
-    public final Long startNanoTime;
+    public final Long vStartNanoTime;
 
     //as result temp var to record content
 //    public final boolean[] visited;
 //    private Set<Integer> visited; 起始List也可以？用distinct？但是依赖算法可以O(1)
 
-    public final List<VParam> bfsList;
+    public final List<VParam> bfsVList;
     //时间序
-    public final List<Integer> dfsDiscoverList;
-    public final List<Integer> dfsFinishList;
-    public final List<String> dfsDiscoverFinishList;
+    public final List<Integer> dfsVDiscoverList;
+    public final List<Integer> dfsVFinishList;
+    public final List<String> dfsVDiscoverFinishList;
     //点维度聚合角度，根据内部字段算出上面三种序
-    public final Map<Integer, VDfsDo> dfsVDfsDoMap;
+    public final Map<Integer, VDfsDo> dfsVVDfsDoMap;
+
+//    public final List<EdgeParam> bfsEdgeList;
 
     public SingleVo() {
 //        this.n = n;
 //        visited = new boolean[n];
-        startNanoTime = System.nanoTime();
+        vStartNanoTime = System.nanoTime();
 
-        bfsList = new LinkedList<>();
-        dfsDiscoverList = new LinkedList<>();
-        dfsFinishList = new LinkedList<>();
-        dfsDiscoverFinishList = new LinkedList<>();
+        bfsVList = new LinkedList<>();
+        dfsVDiscoverList = new LinkedList<>();
+        dfsVFinishList = new LinkedList<>();
+        dfsVDiscoverFinishList = new LinkedList<>();
 
-        dfsVDfsDoMap = new HashMap<>();
+        dfsVVDfsDoMap = new HashMap<>();
     }
 
 }
