@@ -1,5 +1,8 @@
 package graph.unweighted;
 
+import graph.unweighted.directed.ArcParam;
+import graph.unweighted.undirected.EdgeParam;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +27,10 @@ public class SingleVo {
     //点维度聚合角度，根据内部字段算出上面三种序
     public final Map<Integer, VDfsDo> dfsVVDfsDoMap;
 
-//    public final List<EdgeParam> bfsEdgeList;
+    public final List<EdgeParam> bfsEdgeList;
+    public final List<EdgeParam> dfsEdgeList;
+    public final List<ArcParam> bfsArcList;
+    public final List<ArcParam> dfsArcList;
 
     public SingleVo() {
 //        this.n = n;
@@ -37,6 +43,11 @@ public class SingleVo {
         dfsVDiscoverFinishList = new LinkedList<>();
 
         dfsVVDfsDoMap = new HashMap<>();
+
+        bfsEdgeList = new LinkedList<>();
+        dfsEdgeList = new LinkedList<>();
+        bfsArcList = new LinkedList<>();
+        dfsArcList = new LinkedList<>();
     }
 
 }
