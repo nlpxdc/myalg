@@ -5,21 +5,33 @@ import graph.unweighted.undirected.EdgeParam;
 
 public class GraphUtil {
 
+    //无向边要判重
     public static void bfsVisitEdge(EdgeParam edgeParam, SingleVo singleVo) {
-        singleVo.bfsEdgeList.add(edgeParam);
-        System.out.println(edgeParam);
+        if (!singleVo.bfsEdgeList.contains(edgeParam)) {
+            singleVo.bfsEdgeList.add(edgeParam);
+            System.out.println(edgeParam);
+        }
     }
+    //无向边要判重
     public static void dfsVisitEdge(EdgeParam edgeParam, SingleVo singleVo) {
-        singleVo.dfsEdgeList.add(edgeParam);
-        System.out.println(edgeParam);
+        if (!singleVo.dfsEdgeList.contains(edgeParam)) {
+            singleVo.dfsEdgeList.add(edgeParam);
+            System.out.println(edgeParam);
+        }
     }
+    //有向边可以不判，因为理论上不会重复，极致性能去掉判重
     public static void bfsVisitArc(ArcParam arcParam, SingleVo singleVo) {
-        singleVo.bfsArcList.add(arcParam);
-        System.out.println(arcParam);
+        if (!singleVo.bfsArcList.contains(arcParam)) {
+            singleVo.bfsArcList.add(arcParam);
+            System.out.println(arcParam);
+        }
     }
+    //有向边可以不判，因为理论上不会重复，极致性能去掉判重
     public static void dfsVisitArc(ArcParam arcParam, SingleVo singleVo) {
-        singleVo.dfsArcList.add(arcParam);
-        System.out.println(arcParam);
+        if (!singleVo.dfsArcList.contains(arcParam)) {
+            singleVo.dfsArcList.add(arcParam);
+            System.out.println(arcParam);
+        }
     }
     public static void bfsVisitV(VParam vParam, SingleVo singleVo) {
         singleVo.bfsVList.add(vParam);
