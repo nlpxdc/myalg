@@ -156,7 +156,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                         edgeParam.bfsEdgeType = BfsEdgeType.BFS_NON_TREE_EDGE;
                     }
 
-                    GraphUtil.bfsVisitEdge(edgeParam);
+                    GraphUtil.bfsVisitEdge(edgeParam, singleVo);
                 }
             }
 //            GraphUtil.visit(v);
@@ -203,7 +203,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                     edgeParam.dfsEdgeType = DfsEdgeType.DFS_NON_TREE_EDGE;
                 }
 
-                GraphUtil.dfsVisitEdge(edgeParam);
+                GraphUtil.dfsVisitEdge(edgeParam, singleVo);
             }
         }
         //后序遍历

@@ -124,7 +124,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                     } else {
                         arcParam.bfsArcType = BfsArcType.BFS_NON_TREE_ARC;
                     }
-                    GraphUtil.bfsVisitArc(arcParam);
+                    GraphUtil.bfsVisitArc(arcParam, singleVo);
                 }
             }
 //            GraphUtil.visit(v);
@@ -175,7 +175,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                         throw new RuntimeException("impossible2");
                     }
                 }
-                GraphUtil.dfsVisitArc(arcParam);
+                GraphUtil.dfsVisitArc(arcParam, singleVo);
             }
         }
         //后序遍历

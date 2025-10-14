@@ -127,7 +127,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
                 } else {
                     edgeParam.bfsEdgeType = BfsEdgeType.BFS_NON_TREE_EDGE;
                 }
-                GraphUtil.bfsVisitEdge(edgeParam);
+                GraphUtil.bfsVisitEdge(edgeParam, singleVo);
             }
         }
         return singleVo;
@@ -161,7 +161,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
             } else {
                 edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
             }
-            GraphUtil.dfsVisitEdge(edgeParam);
+            GraphUtil.dfsVisitEdge(edgeParam, singleVo);
         }
         //后序遍历
 //        GraphUtil.finish(v);

@@ -5,16 +5,16 @@ import graph.unweighted.undirected.EdgeParam;
 
 public class GraphUtil {
 
-    public static void bfsVisitEdge(EdgeParam edgeParam) {
+    public static void bfsVisitEdge(EdgeParam edgeParam, SingleVo singleVo) {
         System.out.println(edgeParam);
     }
-    public static void dfsVisitEdge(EdgeParam edgeParam) {
+    public static void dfsVisitEdge(EdgeParam edgeParam, SingleVo singleVo) {
         System.out.println(edgeParam);
     }
-    public static void bfsVisitArc(ArcParam arcParam) {
+    public static void bfsVisitArc(ArcParam arcParam, SingleVo singleVo) {
         System.out.println(arcParam);
     }
-    public static void dfsVisitArc(ArcParam arcParam) {
+    public static void dfsVisitArc(ArcParam arcParam, SingleVo singleVo) {
         System.out.println(arcParam);
     }
     public static void bfsVisitV(VParam vParam, SingleVo singleVo) {
