@@ -156,14 +156,15 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
 
             if (!allTemp.visited[adjaU]) {
                 edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
+                GraphUtil.dfsVisitEdge(edgeParam, singleVo);
                 VParam uParam = new VParam(vParam.v, adjaU);
                 allTemp.parents[adjaU] = vParam.v;
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
                 dfsRecur(uParam, allTemp, singleVo);
             } else {
                 edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
+                GraphUtil.dfsVisitEdge(edgeParam, singleVo);
             }
-            GraphUtil.dfsVisitEdge(edgeParam, singleVo);
         }
         //后序遍历
 //        GraphUtil.finish(v);

@@ -172,6 +172,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
             if (!allTemp.visited[adjaU]) {
                 arcParam.dfsArcType = DfsArcType.DFS_TREE_ARC;
+                GraphUtil.dfsVisitArc(arcParam, singleVo);
                 VParam uParam = new VParam(vParam.v, adjaU);
                 allTemp.parents[adjaU] = vParam.v;
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
@@ -179,13 +180,16 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
             } else {
                 if (allTemp.vStatuses[adjaU] == VStatus.GRAY) {
                     arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
+                    GraphUtil.dfsVisitArc(arcParam, singleVo);
                 } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
                     Long vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTime;
                     Long adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTime;
                     if (vDiscoverTime < adjUDiscoverTime) {
                         arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
+                        GraphUtil.dfsVisitArc(arcParam, singleVo);
                     } else if (vDiscoverTime > adjUDiscoverTime){
                         arcParam.dfsArcType = DfsArcType.DFS_CROSS_ARC;
+                        GraphUtil.dfsVisitArc(arcParam, singleVo);
                     } else {
                         throw new RuntimeException("impossible1");
                     }
@@ -193,7 +197,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
                     throw new RuntimeException("impossible2");
                 }
             }
-            GraphUtil.dfsVisitArc(arcParam, singleVo);
+
         }
         //后序遍历
 //        GraphUtil.finish(v);

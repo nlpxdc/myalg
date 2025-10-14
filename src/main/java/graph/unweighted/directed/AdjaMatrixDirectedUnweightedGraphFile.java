@@ -155,6 +155,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
                 if (!allTemp.visited[adjaU]) {
                     arcParam.dfsArcType = DfsArcType.DFS_TREE_ARC;
+                    GraphUtil.dfsVisitArc(arcParam, singleVo);
                     //这里有递归，所以访问v顶点因此有前后之别，先后之别
                     VParam uParam = new VParam(vParam.v, adjaU);
                     allTemp.parents[adjaU] = vParam.v;
@@ -163,13 +164,16 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                 } else {
                     if (allTemp.vStatuses[adjaU] == VStatus.GRAY) {
                         arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
+                        GraphUtil.dfsVisitArc(arcParam, singleVo);
                     } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
                         Long vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTime;
                         Long adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTime;
                         if (vDiscoverTime < adjUDiscoverTime) {
                             arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
+                            GraphUtil.dfsVisitArc(arcParam, singleVo);
                         } else if (vDiscoverTime > adjUDiscoverTime){
                             arcParam.dfsArcType = DfsArcType.DFS_CROSS_ARC;
+                            GraphUtil.dfsVisitArc(arcParam, singleVo);
                         } else {
                             throw new RuntimeException("impossible1");
                         }
@@ -177,7 +181,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                         throw new RuntimeException("impossible2");
                     }
                 }
-                GraphUtil.dfsVisitArc(arcParam, singleVo);
+
             }
         }
         //后序遍历
