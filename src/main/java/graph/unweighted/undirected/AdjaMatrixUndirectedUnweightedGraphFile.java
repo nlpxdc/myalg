@@ -147,6 +147,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 
                     if (!allTemp.visited[adjaU]) {
                         edgeParam.bfsEdgeType = BfsEdgeType.BFS_TREE_EDGE;
+                        GraphUtil.bfsVisitEdge(edgeParam, singleVo);
                         allTemp.visited[adjaU] = true;
                         VParam uParam = new VParam(vParam.v, adjaU);
                         allTemp.parents[adjaU] = vParam.v;
@@ -154,9 +155,8 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                         queue.offer(uParam);
                     } else {
                         edgeParam.bfsEdgeType = BfsEdgeType.BFS_NON_TREE_EDGE;
+                        GraphUtil.bfsVisitEdge(edgeParam, singleVo);
                     }
-
-                    GraphUtil.bfsVisitEdge(edgeParam, singleVo);
                 }
             }
 //            GraphUtil.visit(v);

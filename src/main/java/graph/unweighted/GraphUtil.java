@@ -18,6 +18,7 @@ public class GraphUtil {
             singleVo.dfsEdgeList.add(edgeParam);
             System.out.println(edgeParam);
         }
+//        System.out.println(edgeParam);
     }
     //有向边可以不判，因为理论上不会重复，极致性能去掉判重
     public static void bfsVisitArc(ArcParam arcParam, SingleVo singleVo) {
