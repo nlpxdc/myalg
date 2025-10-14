@@ -33,5 +33,5 @@ public class ArcParam {
     public int hashCode() {
         return Objects.hash(fromV, toV);
     }
-    
+
 }

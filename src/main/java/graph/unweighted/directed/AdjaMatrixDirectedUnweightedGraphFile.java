@@ -38,6 +38,8 @@ class AdjaMatrixDirectedUnweightedGraphApp {
         graph.addArc(2,8);
         graph.addArc(7,8);
 
+        graph.addArc(7,4);
+
         //bfs
 //        graph.traverseByBfs();
 
