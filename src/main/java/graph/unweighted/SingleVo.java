@@ -1,6 +1,10 @@
 package graph.unweighted;
 
 import graph.unweighted.directed.ArcParam;
+import graph.unweighted.directed.BfsArcType;
+import graph.unweighted.directed.DfsArcType;
+import graph.unweighted.undirected.BfsEdgeType;
+import graph.unweighted.undirected.DfsEdgeType;
 import graph.unweighted.undirected.EdgeParam;
 
 import java.util.HashMap;
@@ -10,6 +14,7 @@ import java.util.Map;
 //import java.util.Set;
 
 public class SingleVo {
+    public final Boolean directed;
     //real param from out
 //    Integer startV;
 //    public final int n;
@@ -32,7 +37,8 @@ public class SingleVo {
     public final List<ArcParam> bfsArcList;
     public final List<ArcParam> dfsArcList;
 
-    public SingleVo() {
+    public SingleVo(Boolean directed) {
+        this.directed = directed;
 //        this.n = n;
 //        visited = new boolean[n];
         dfsVStartNanoTime = System.nanoTime();
@@ -48,6 +54,48 @@ public class SingleVo {
         dfsEdgeList = new LinkedList<>();
         bfsArcList = new LinkedList<>();
         dfsArcList = new LinkedList<>();
+    }
+
+    public Boolean undigraphBeCyclic() {
+        if (directed == null) {
+            throw new RuntimeException("server error");
+        }
+        if (directed) {
+            throw new RuntimeException("server error");
+        } else {
+            for (EdgeParam edgeParam : bfsEdgeList) {
+                if (!edgeParam.bfsEdgeType.equals(BfsEdgeType.BFS_TREE_EDGE)) {
+                    return true;
+                }
+            }
+            for (EdgeParam edgeParam : dfsEdgeList) {
+                if (!edgeParam.dfsEdgeType.equals(DfsEdgeType.DFS_TREE_EDGE)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public Boolean digraphBeCyclic() {
+        if (directed == null) {
+            throw new RuntimeException("server error");
+        }
+        if (directed) {
+            for (ArcParam arcParam : bfsArcList) {
+                if (!arcParam.bfsArcType.equals(BfsArcType.BFS_TREE_ARC)) {
+                    return true;
+                }
+            }
+            for (ArcParam arcParam : dfsArcList) {
+                if (!arcParam.dfsArcType.equals(DfsArcType.DFS_TREE_ARC)) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            throw new RuntimeException("server error");
+        }
     }
 
 }

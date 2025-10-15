@@ -122,7 +122,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
     SingleVo bfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
 //        singleVo.bfsList = new LinkedList<>();
-        SingleVo singleVo = new SingleVo();
+        SingleVo singleVo = new SingleVo(false);
 
         //临时队列
         Queue<VParam> queue = new LinkedList<>();
@@ -176,7 +176,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
-        SingleVo singleVo = new SingleVo();
+        SingleVo singleVo = new SingleVo(false);
         dfsRecur(vParam, allTemp, singleVo);
         return singleVo;
     }
