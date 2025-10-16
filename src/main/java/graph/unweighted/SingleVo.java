@@ -7,10 +7,7 @@ import graph.unweighted.undirected.BfsEdgeType;
 import graph.unweighted.undirected.DfsEdgeType;
 import graph.unweighted.undirected.EdgeParam;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 //import java.util.Set;
 
 public class SingleVo {
@@ -64,17 +61,23 @@ public class SingleVo {
 //            throw new RuntimeException("server error");
             return null;
         } else {
-            for (EdgeParam edgeParam : bfsEdgeList) {
-                if (!edgeParam.bfsEdgeType.equals(BfsEdgeType.BFS_TREE_EDGE)) {
-                    return true;
+            if (bfsEdgeList != null && !bfsEdgeList.isEmpty()) {
+                for (EdgeParam edgeParam : bfsEdgeList) {
+                    if (!edgeParam.bfsEdgeType.equals(BfsEdgeType.BFS_TREE_EDGE)) {
+                        return true;
+                    }
                 }
+                return false;
             }
-            for (EdgeParam edgeParam : dfsEdgeList) {
-                if (!edgeParam.dfsEdgeType.equals(DfsEdgeType.DFS_TREE_EDGE)) {
-                    return true;
+            if (dfsEdgeList != null && !dfsEdgeList.isEmpty()) {
+                for (EdgeParam edgeParam : dfsEdgeList) {
+                    if (!edgeParam.dfsEdgeType.equals(DfsEdgeType.DFS_TREE_EDGE)) {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
+            return null;
         }
     }
 
@@ -83,17 +86,22 @@ public class SingleVo {
             throw new RuntimeException("server error");
         }
         if (directed) {
-            for (ArcParam arcParam : bfsArcList) {
-                if (!arcParam.bfsArcType.equals(BfsArcType.BFS_TREE_ARC)) {
-                    return true;
+            //bfs区分不了
+//            for (ArcParam arcParam : bfsArcList) {
+//                if (!arcParam.bfsArcType.equals(BfsArcType.BFS_TREE_ARC)) {
+//                    return true;
+//                }
+//            }
+            if (dfsArcList != null && !dfsArcList.isEmpty()) {
+                for (ArcParam arcParam : dfsArcList) {
+//                if (!arcParam.dfsArcType.equals(DfsArcType.DFS_TREE_ARC)) {
+                    if (arcParam.dfsArcType.equals(DfsArcType.DFS_BACKWARD_ARC)) {
+                        return true;
+                    }
                 }
+                return false;
             }
-            for (ArcParam arcParam : dfsArcList) {
-                if (!arcParam.dfsArcType.equals(DfsArcType.DFS_TREE_ARC)) {
-                    return true;
-                }
-            }
-            return false;
+            return null;
         } else {
 //            throw new RuntimeException("server error");
             return null;

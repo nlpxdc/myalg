@@ -24,14 +24,15 @@ class AdjaMapSetDirectedUnweightedGraphApp {
     public static void main(String[] args) {
         AdjaMapSetDirectedUnweightedGraph graph = new AdjaMapSetDirectedUnweightedGraph(9);
 
-        graph.addArc(0,1);
-        graph.addArc(0,2);
-        graph.addArc(1,2);
-        graph.addArc(2,1);
+//        graph.addArc(0,1);
+//        graph.addArc(0,2);
+//        graph.addArc(1,2);
+//        graph.addArc(2,1);
 
         graph.addArc(0,3);
-        graph.addArc(0,4);
+//        graph.addArc(0,4);
         graph.addArc(3,4);
+        graph.addArc(4,0);
 
         graph.addArc(1,5);
         graph.addArc(1,6);
@@ -40,8 +41,9 @@ class AdjaMapSetDirectedUnweightedGraphApp {
         graph.addArc(2,7);
         graph.addArc(2,8);
         graph.addArc(7,8);
+        graph.addArc(8,7);
 
-        graph.addArc(7,4);
+//        graph.addArc(7,4);
 
 //        graph.addArc(0,1);
 //        graph.addArc(0,2);
@@ -59,10 +61,10 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 //        graph.addArc(6, 0);
 
         //bfs
-//        graph.traverseByBfs();
+        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-        graph.traverseByDfs();
+        AllVo allVo1 = graph.traverseByDfs();
 
 //        List<Integer> topoSortList = graph.topoSort();
 //        System.out.println(topoSortList);
@@ -89,6 +91,9 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         }
     }
     void addArc(int from, int to) {
+        if (from == to) {
+            throw new RuntimeException("不能有自环弧");
+        }
         Set<Integer> uAdjaSet = adjaMapSet.get(from);
         adjaMapSet.put(from, uAdjaSet);
         uAdjaSet.add(to);

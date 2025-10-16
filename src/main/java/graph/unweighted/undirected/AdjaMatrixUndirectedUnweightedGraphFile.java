@@ -64,6 +64,9 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         adjaMatrix = new boolean[n][n];
     }
     void addEdge(int u, int v) {
+        if (u == v) {
+            throw new RuntimeException("不能有自环边");
+        }
         if (adjaMatrix[u][v] != adjaMatrix[v][u]) {
             throw new RuntimeException("数据错误，请检查");
         }

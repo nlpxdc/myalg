@@ -67,6 +67,9 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         }
     }
     void addEdge(int u, int v) {
+        if (u == v) {
+            throw new RuntimeException("不能有自环边");
+        }
         Set<Integer> uAdjaSet = adjaMapSet.get(u);
         adjaMapSet.put(u, uAdjaSet);
         uAdjaSet.add(v);

@@ -21,10 +21,10 @@ class AdjaMatrixDirectedUnweightedGraphApp {
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
         AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(9);
-        graph.addArc(0,1);
-        graph.addArc(0,2);
-        graph.addArc(1,2);
-        graph.addArc(2,1);
+//        graph.addArc(0,1);
+//        graph.addArc(0,2);
+//        graph.addArc(1,2);
+//        graph.addArc(2,1);
 
         graph.addArc(0,3);
         graph.addArc(0,4);
@@ -33,18 +33,19 @@ class AdjaMatrixDirectedUnweightedGraphApp {
         graph.addArc(1,5);
         graph.addArc(1,6);
         graph.addArc(5,6);
+        graph.addArc(6,5);
 
         graph.addArc(2,7);
         graph.addArc(2,8);
         graph.addArc(7,8);
 
-        graph.addArc(7,4);
+//        graph.addArc(7,4);
 
         //bfs
-//        graph.traverseByBfs();
+        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-        graph.traverseByDfs();
+        AllVo allVo1 = graph.traverseByDfs();
     }
 
 }
@@ -71,6 +72,9 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         adjaMatrix = new boolean[n][n];
     }
     void addArc(int from, int to) {
+        if (from == to) {
+            throw new RuntimeException("不能有自环弧");
+        }
         if (!adjaMatrix[from][to]) {
             adjaMatrix[from][to] = true;
         }
