@@ -38,10 +38,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-//        AllVo allVo = graph.traverseByBfs();
+        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-        AllVo allVo = graph.traverseByDfs();
+//        AllVo allVo = graph.traverseByDfs();
 
     }
 

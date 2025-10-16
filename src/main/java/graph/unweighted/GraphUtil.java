@@ -82,6 +82,9 @@ public class GraphUtil {
             if (firstUnVisited != null) {
                 maxConnectedChildGraphCnt++;
                 SingleVo singleVo = maxConnectedChildGraphTraverse.accept(singleStartParam, allTemp);
+                allVo.directed = singleVo.directed;
+                allVo.undirectedCyclic = singleVo.undigraphBeCyclic();
+                allVo.directedCyclic = singleVo.digraphBeCyclic();
                 allVo.bfsListList.add(singleVo.bfsVList);
                 allVo.dfsDiscoverListList.add(singleVo.dfsVDiscoverList);
                 allVo.dfsFinishListList.add(singleVo.dfsVFinishList);

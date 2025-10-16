@@ -61,7 +61,8 @@ public class SingleVo {
             throw new RuntimeException("server error");
         }
         if (directed) {
-            throw new RuntimeException("server error");
+//            throw new RuntimeException("server error");
+            return null;
         } else {
             for (EdgeParam edgeParam : bfsEdgeList) {
                 if (!edgeParam.bfsEdgeType.equals(BfsEdgeType.BFS_TREE_EDGE)) {
@@ -94,7 +95,8 @@ public class SingleVo {
             }
             return false;
         } else {
-            throw new RuntimeException("server error");
+//            throw new RuntimeException("server error");
+            return null;
         }
     }
 
