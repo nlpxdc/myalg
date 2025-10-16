@@ -170,7 +170,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
                 dfsRecur(uParam, allTemp, singleVo);
             } else {
-                edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
+                edgeParam.dfsEdgeType = DfsEdgeType.DFS_NON_TREE_EDGE;
                 GraphUtil.dfsVisitEdge(edgeParam, singleVo);
             }
         }
