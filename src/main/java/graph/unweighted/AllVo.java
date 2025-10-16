@@ -5,11 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AllVo {
-    Boolean directed;
-    //弱连通（有向转无向后的连通）
-    Boolean undirectedCyclic;
-    //强连通
-    Boolean directedCyclic;
+
 
     int childGraphCnt;
 
@@ -22,6 +18,12 @@ public class AllVo {
     final List<List<String>> dfsDiscoverFinishListList;
     final List<Map<Integer, VDfsDo>> dfsVDfsDoMapList;
 
+    final List<Boolean> directedList;
+    //弱连通环（有向转无向后的连通）
+    final List<Boolean> undirectedCyclicList;
+    //强连通环
+    final List<Boolean> directedCyclicList;
+
     public AllVo() {
         bfsListList = new LinkedList<>();
 
@@ -29,6 +31,21 @@ public class AllVo {
         dfsFinishListList = new LinkedList<>();
         dfsDiscoverFinishListList = new LinkedList<>();
         dfsVDfsDoMapList = new LinkedList<>();
+
+        directedList = new LinkedList<>();
+        undirectedCyclicList = new LinkedList<>();
+        directedCyclicList = new LinkedList<>();
+    }
+
+    public Boolean directed() {
+        long cnt = directedList.stream().distinct().count();
+        if (cnt > 1) {
+            throw new RuntimeException("server error, pls check");
+        }
+        if (cnt < 1) {
+            throw new RuntimeException("server error, pls check");
+        }
+        return directedList.get(0);
     }
 
 }

@@ -21,9 +21,9 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
         AdjaMatrixUndirectedUnweightedGraph graph = new AdjaMatrixUndirectedUnweightedGraph(9);
-        graph.addEdge(0,1);
-        graph.addEdge(0,2);
-        graph.addEdge(1,2);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,2);
 
         graph.addEdge(0,3);
         graph.addEdge(0,4);
@@ -41,7 +41,7 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         AllVo allVo = graph.traverseByBfs();
 
         //dfs
-//        AllVo allVo = graph.traverseByDfs();
+        AllVo allVo1 = graph.traverseByDfs();
 
     }
 
