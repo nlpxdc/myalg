@@ -40,7 +40,7 @@ class AdjaMapSetUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        graph.traverseByBfs();
+//        graph.traverseByBfs();
 
         //dfs
         graph.traverseByDfs();
@@ -116,6 +116,10 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
             for (Integer adjaU : adjaUSet) {
                 EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
 
+                //无向图独有
+                if (adjaU.equals(vParam.parent)) {
+                    continue;
+                }
 
                 if (!allTemp.visited[adjaU]) {
                     edgeParam.bfsEdgeType = BfsEdgeType.BFS_TREE_EDGE;
@@ -153,6 +157,10 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         for (Integer adjaU : adjaUSet) {
             EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
 
+            //无向图独有
+            if (adjaU.equals(vParam.parent)) {
+                continue;
+            }
 
             if (!allTemp.visited[adjaU]) {
                 edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;

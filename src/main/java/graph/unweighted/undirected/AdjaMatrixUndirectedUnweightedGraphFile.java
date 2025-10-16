@@ -145,6 +145,11 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                     Integer adjaU = u;
                     EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
 
+                    //无向图独有
+                    if (adjaU.equals(vParam.parent)) {
+                        continue;
+                    }
+
                     if (!allTemp.visited[adjaU]) {
                         edgeParam.bfsEdgeType = BfsEdgeType.BFS_TREE_EDGE;
                         GraphUtil.bfsVisitEdge(edgeParam, singleVo);
@@ -173,10 +178,10 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
     SingleVo dfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
+        SingleVo singleVo = new SingleVo(false);
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
-        SingleVo singleVo = new SingleVo(false);
         dfsRecur(vParam, allTemp, singleVo);
         return singleVo;
     }
@@ -191,6 +196,11 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             if (adjaMatrix[vParam.v][u]) {
                 Integer adjaU = u;
                 EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
+
+                //无向图独有
+                if (adjaU.equals(vParam.parent)) {
+                    continue;
+                }
 
                 if (!allTemp.visited[adjaU]) {
                     edgeParam.dfsEdgeType = DfsEdgeType.DFS_TREE_EDGE;
