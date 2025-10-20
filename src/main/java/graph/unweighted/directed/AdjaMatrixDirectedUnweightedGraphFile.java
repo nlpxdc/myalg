@@ -42,7 +42,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 //        graph.addArc(7,4);
 
         //bfs
-        AllVo allVo = graph.traverseByBfs();
+//        AllVo allVo = graph.traverseByBfs();
 
         //dfs
         AllVo allVo1 = graph.traverseByDfs();
@@ -151,7 +151,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     void dfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {
         allTemp.visited[vParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscoverV(vParam, singleVo);
+        GraphUtil.dfsDiscoverV(vParam, allTemp, singleVo);
         allTemp.vStatuses[vParam.v] = VStatus.GRAY;
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[vParam.v][u]) {
@@ -172,8 +172,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                         arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
                         GraphUtil.dfsVisitArc(arcParam, singleVo);
                     } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
-                        Long vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTime;
-                        Long adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTime;
+                        int vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTime;
+                        int adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTime;
                         if (vDiscoverTime < adjUDiscoverTime) {
                             arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
                             GraphUtil.dfsVisitArc(arcParam, singleVo);
@@ -192,7 +192,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinishV(vParam, singleVo);
+        GraphUtil.dfsFinishV(vParam, allTemp, singleVo);
         allTemp.vStatuses[vParam.v] = VStatus.BLACK;
     }
 

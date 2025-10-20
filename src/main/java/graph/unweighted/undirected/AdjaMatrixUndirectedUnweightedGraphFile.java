@@ -194,7 +194,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         allTemp.visited[vParam.v] = true;
         //前序遍历
 
-        GraphUtil.dfsDiscoverV(vParam, singleVo);
+        GraphUtil.dfsDiscoverV(vParam, allTemp, singleVo);
         for (int u = 0; u < n; u++) {
             if (adjaMatrix[vParam.v][u]) {
                 Integer adjaU = u;
@@ -222,7 +222,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             }
         }
         //后序遍历
-        GraphUtil.dfsFinishV(vParam, singleVo);
+        GraphUtil.dfsFinishV(vParam, allTemp, singleVo);
 
     }
 

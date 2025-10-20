@@ -36,19 +36,21 @@ public class GraphUtil {
     public static void bfsVisitV(VParam vParam, SingleVo singleVo) {
         singleVo.bfsVList.add(vParam);
     }
-    public static void dfsDiscoverV(VParam vParam, SingleVo singleVo) {
+    public static void dfsDiscoverV(VParam vParam, AllTemp allTemp, SingleVo singleVo) {
         singleVo.dfsVDiscoverList.add(vParam.v);
         singleVo.dfsVDiscoverFinishList.add(String.format("D%d", vParam.v));
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
-        vDfsDo.discoverTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
+//        vDfsDo.discoverTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
+        vDfsDo.discoverTime = ++allTemp.dfsVTime;
     }
-    public static void dfsFinishV(VParam vParam, SingleVo singleVo) {
+    public static void dfsFinishV(VParam vParam, AllTemp allTemp, SingleVo singleVo) {
         singleVo.dfsVFinishList.add(vParam.v);
         singleVo.dfsVDiscoverFinishList.add(String.format("F%d", vParam.v));
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
-        vDfsDo.finishTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
+//        vDfsDo.finishTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
+        vDfsDo.finishTime = ++allTemp.dfsVTime;
     }
 
     public static Integer getFirstUnVisited(boolean[] visited) {

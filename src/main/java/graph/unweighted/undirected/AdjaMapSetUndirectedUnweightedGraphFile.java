@@ -155,7 +155,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     void dfsRecur(final VParam vParam, final AllTemp allTemp, final SingleVo singleVo) {
         allTemp.visited[vParam.v] = true;
         //前序遍历
-        GraphUtil.dfsDiscoverV(vParam, singleVo);
+        GraphUtil.dfsDiscoverV(vParam, allTemp, singleVo);
         Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
         for (Integer adjaU : adjaUSet) {
             EdgeParam edgeParam = new EdgeParam(vParam.v, adjaU);
@@ -179,7 +179,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         }
         //后序遍历
 //        GraphUtil.finish(v);
-        GraphUtil.dfsFinishV(vParam, singleVo);
+        GraphUtil.dfsFinishV(vParam, allTemp, singleVo);
     }
 
     //判环
