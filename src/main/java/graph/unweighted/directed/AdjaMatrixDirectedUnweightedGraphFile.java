@@ -3,6 +3,7 @@ package graph.unweighted.directed;
 import graph.unweighted.*;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
@@ -194,6 +195,16 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 //        GraphUtil.finish(v);
         GraphUtil.dfsFinishV(vParam, allTemp, singleVo);
         allTemp.vStatuses[vParam.v] = VStatus.BLACK;
+    }
+
+    //kahn算法，入度必0，bfs变种，分层不带路径，第三视角
+    List<Integer> topoOrderByBfs() {
+        return null;
+    }
+
+    //入度任意，标准dfs，带路劲，第一视角
+    List<Integer> topoOrderByDfs() {
+        return null;
     }
 
 }

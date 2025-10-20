@@ -213,7 +213,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         allTemp.vStatuses[vParam.v] = VStatus.BLACK;
     }
 
-    List<Integer> topoSort() {
+    List<Integer> topoOrderByBfs() {
         //计算所有节点的入度
         Map<Integer, Integer> inDegreeMap = new HashMap<>();
         for (int v = 0; v < n; v++) {
@@ -255,7 +255,8 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         return topoSortList;
     }
 
-    List<Integer> topoSortV2() {
+    //简洁写法
+    List<Integer> topoOrderByBfsV2() {
         //计算所有节点的入度
         Map<Integer, Integer> inDegreeMap = new HashMap<>();
         adjaMapSet.forEach((v, us) -> {
@@ -294,6 +295,10 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         }
 
         return topoSortList;
+    }
+
+    List<Integer> topoOrderByDfs() {
+        return null;
     }
 
 }
