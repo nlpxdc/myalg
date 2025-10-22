@@ -103,6 +103,16 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         return null;
     }
 
+    @Override
+    public List<Integer> topoOrderByBfs() {
+        return null;
+    }
+
+    @Override
+    public List<Integer> topoOrderByDfs() {
+        return null;
+    }
+
     //bfs
     SingleVo bfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo(false);

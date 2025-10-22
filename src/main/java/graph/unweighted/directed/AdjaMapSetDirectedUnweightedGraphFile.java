@@ -237,7 +237,8 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         allTemp.vStatuses[vParam.v] = VStatus.BLACK;
     }
 
-    List<Integer> topoOrderByBfs() {
+    @Override
+    public List<Integer> topoOrderByBfs() {
         //计算所有节点的入度
         Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
         //所有入度为0的节点入队
@@ -267,38 +268,8 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         return topoSortList;
     }
 
-    //简洁写法
-    List<Integer> topoOrderByBfsV2() {
-        //计算所有节点的入度
-        Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
-        //所有入度为0的节点入队
-        Queue<Integer> zeroInDegreeList = inDegreeMap.entrySet().stream()
-                .filter(entry -> entry.getValue() <= 0)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toCollection(LinkedList::new));
-
-        List<Integer> topoSortList = new LinkedList<>();
-        for (int i = 0; i < n && !zeroInDegreeList.isEmpty(); i++) {
-            Integer v = zeroInDegreeList.poll();
-            topoSortList.add(v);
-            //所有后继顶点入度减一
-            Set<Integer> adjaUSet = adjaMapSet.get(v);
-            for (Integer adjaU : adjaUSet) {
-                inDegreeMap.put(adjaU, inDegreeMap.get(adjaU)-1);
-                if (inDegreeMap.get(adjaU) == 0) {
-                    zeroInDegreeList.offer(adjaU);
-                }
-            }
-        }
-
-        if (topoSortList.size() != n) {
-            return new LinkedList<>();
-        }
-
-        return topoSortList;
-    }
-
-    List<Integer> topoOrderByDfs() {
+    @Override
+    public List<Integer> topoOrderByDfs() {
         return null;
     }
 

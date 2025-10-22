@@ -2,10 +2,7 @@ package graph.unweighted.undirected;
 
 import graph.unweighted.*;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
@@ -121,6 +118,16 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 
     @Override
     public Map<Integer, Integer> calcInDegreeMap() {
+        return null;
+    }
+
+    @Override
+    public List<Integer> topoOrderByBfs() {
+        return null;
+    }
+
+    @Override
+    public List<Integer> topoOrderByDfs() {
         return null;
     }
 

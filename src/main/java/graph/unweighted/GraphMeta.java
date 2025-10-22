@@ -1,5 +1,6 @@
 package graph.unweighted;
 
+import java.util.List;
 import java.util.Map;
 
 public abstract class GraphMeta {
@@ -12,5 +13,9 @@ public abstract class GraphMeta {
     public abstract AllVo traverseByDfs();
 
     public abstract Map<Integer, Integer> calcInDegreeMap();
+
+    public abstract List<Integer> topoOrderByBfs();
+
+    public abstract List<Integer> topoOrderByDfs();
 
 }

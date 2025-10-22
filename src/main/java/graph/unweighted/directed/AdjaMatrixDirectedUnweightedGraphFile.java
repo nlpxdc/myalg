@@ -225,7 +225,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 //    Map<Integer, Integer> calcInDegree
 
     //kahn算法，入度必0，bfs变种，分层不带路径，第三视角
-    List<Integer> topoOrderByBfs() {
+    @Override
+    public List<Integer> topoOrderByBfs() {
         //计算所有节点的入度
         Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
         //计算所有入度为0的节点
@@ -238,7 +239,9 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     //入度任意，标准dfs，带路劲，第一视角
-    List<Integer> topoOrderByDfs() {
+
+    @Override
+    public List<Integer> topoOrderByDfs() {
         return null;
     }
 
