@@ -4,6 +4,7 @@ import graph.unweighted.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
@@ -86,12 +87,14 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     //多扫一遍顶点、数连通分量
     //判断连通子图个数，连通分量
 
-    AllVo traverseByBfs() {
+    @Override
+    public AllVo traverseByBfs() {
         AllVo allVo = GraphUtil.traverse(this, this::bfs);
         return allVo;
     }
 
-    AllVo traverseByDfs() {
+    @Override
+    public AllVo traverseByDfs() {
         AllVo allVo = GraphUtil.traverse(this, this::dfs);
         return allVo;
     }
@@ -196,6 +199,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         GraphUtil.dfsFinishV(vParam, allTemp, singleVo);
         allTemp.vStatuses[vParam.v] = VStatus.BLACK;
     }
+
+//    Map<Integer, Integer> calcInDegree
 
     //kahn算法，入度必0，bfs变种，分层不带路径，第三视角
     List<Integer> topoOrderByBfs() {

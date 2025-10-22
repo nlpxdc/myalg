@@ -86,12 +86,14 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         return false;
     }
 
-    AllVo traverseByBfs() {
+    @Override
+    public AllVo traverseByBfs() {
         AllVo allVo = GraphUtil.traverse(this, this::bfs);
         return allVo;
     }
 
-    AllVo traverseByDfs() {
+    @Override
+    public AllVo traverseByDfs() {
         AllVo allVo = GraphUtil.traverse(this, this::dfs);
         return allVo;
     }
