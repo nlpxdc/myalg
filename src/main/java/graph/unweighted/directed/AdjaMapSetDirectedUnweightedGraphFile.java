@@ -5,6 +5,7 @@ import graph.unweighted.*;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 //树和分治更有关联，关心节点中key值的大小，在这个上面做文章，
 //图的话和分治关系不大？更关心节点间的关联关系，以及含有边权数据的计算问题，不太关心节点key的大小关系排序？
@@ -238,35 +239,23 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
     List<Integer> topoOrderByBfs() {
         //计算所有节点的入度
-        Map<Integer, Integer> inDegreeMap = new HashMap<>();
-        for (int v = 0; v < n; v++) {
-            inDegreeMap.put(v, 0);
-        }
-        for (int v = 0; v < n; v++) {
-            Set<Integer> inUSet = adjaMapSet.get(v);
-            for (Integer inU : inUSet) {
-                inDegreeMap.put(inU, inDegreeMap.get(inU)+1);
-            }
-        }
+        Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
         //所有入度为0的节点入队
-        Queue<Integer> zeroInCntUQueue = new LinkedList<>();
-        for (int u = 0; u < n; u++) {
-            Integer uInCnt = inDegreeMap.get(u);
-            if (uInCnt <= 0) {
-                zeroInCntUQueue.offer(u);
-            }
-        }
+        Queue<Integer> zeroInDegreeList = inDegreeMap.entrySet().stream()
+                .filter(entry -> entry.getValue() <= 0)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toCollection(LinkedList::new));
 
         List<Integer> topoSortList = new LinkedList<>();
-        for (int i = 0; i < n && !zeroInCntUQueue.isEmpty(); i++) {
-            Integer v = zeroInCntUQueue.poll();
+        for (int i = 0; i < n && !zeroInDegreeList.isEmpty(); i++) {
+            Integer v = zeroInDegreeList.poll();
             topoSortList.add(v);
             //所有后继顶点入度减一
             Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
                 inDegreeMap.put(adjaU, inDegreeMap.get(adjaU)-1);
                 if (inDegreeMap.get(adjaU) == 0) {
-                    zeroInCntUQueue.offer(adjaU);
+                    zeroInDegreeList.offer(adjaU);
                 }
             }
         }
@@ -281,34 +270,23 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     //简洁写法
     List<Integer> topoOrderByBfsV2() {
         //计算所有节点的入度
-        Map<Integer, Integer> inDegreeMap = new HashMap<>();
-        adjaMapSet.forEach((v, us) -> {
-            us.forEach(u -> {
-                inDegreeMap.merge(u, 1, Integer::sum);
-            });
-        });
+        Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
         //所有入度为0的节点入队
-        Queue<Integer> zeroInCntUQueue = new LinkedList<>();
-        inDegreeMap.forEach((u, cnt) -> {
-
-        });
-        for (int u = 0; u < n; u++) {
-            Integer uInCnt = inDegreeMap.get(u);
-            if (uInCnt <= 0) {
-                zeroInCntUQueue.offer(u);
-            }
-        }
+        Queue<Integer> zeroInDegreeList = inDegreeMap.entrySet().stream()
+                .filter(entry -> entry.getValue() <= 0)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toCollection(LinkedList::new));
 
         List<Integer> topoSortList = new LinkedList<>();
-        for (int i = 0; i < n && !zeroInCntUQueue.isEmpty(); i++) {
-            Integer v = zeroInCntUQueue.poll();
+        for (int i = 0; i < n && !zeroInDegreeList.isEmpty(); i++) {
+            Integer v = zeroInDegreeList.poll();
             topoSortList.add(v);
             //所有后继顶点入度减一
             Set<Integer> adjaUSet = adjaMapSet.get(v);
             for (Integer adjaU : adjaUSet) {
                 inDegreeMap.put(adjaU, inDegreeMap.get(adjaU)-1);
                 if (inDegreeMap.get(adjaU) == 0) {
-                    zeroInCntUQueue.offer(adjaU);
+                    zeroInDegreeList.offer(adjaU);
                 }
             }
         }

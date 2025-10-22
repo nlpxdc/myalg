@@ -3,6 +3,9 @@ package graph.unweighted.directed;
 import graph.unweighted.*;
 
 import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
@@ -46,7 +49,8 @@ class AdjaMatrixDirectedUnweightedGraphApp {
         //dfs
 //        AllVo allVo1 = graph.traverseByDfs();
 
-        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
+//        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
+        List<Integer> integers = graph.topoOrderByBfs();
     }
 
 }
@@ -222,6 +226,14 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
     //kahn算法，入度必0，bfs变种，分层不带路径，第三视角
     List<Integer> topoOrderByBfs() {
+        //计算所有节点的入度
+        Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
+        //计算所有入度为0的节点
+        Queue<Integer> zeroInDegreeList = inDegreeMap.entrySet().stream()
+                .filter(entry -> entry.getValue() <= 0)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toCollection(LinkedList::new));
+
         return null;
     }
 
