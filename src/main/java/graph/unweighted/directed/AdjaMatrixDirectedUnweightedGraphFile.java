@@ -4,6 +4,7 @@ import graph.unweighted.*;
 
 import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -23,23 +24,23 @@ class AdjaMatrixDirectedUnweightedGraphApp {
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
         AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(9);
-//        graph.addArc(0,1);
-//        graph.addArc(0,2);
-//        graph.addArc(1,2);
+        graph.addArc(0,1);
+        graph.addArc(0,2);
+        graph.addArc(1,2);
 //        graph.addArc(2,1);
 
-        graph.addArc(0,3);
-        graph.addArc(0,4);
-        graph.addArc(3,4);
-
-        graph.addArc(1,5);
-        graph.addArc(1,6);
-        graph.addArc(5,6);
-        graph.addArc(6,5);
-
-        graph.addArc(2,7);
-        graph.addArc(2,8);
-        graph.addArc(7,8);
+//        graph.addArc(0,3);
+//        graph.addArc(0,4);
+//        graph.addArc(3,4);
+//
+//        graph.addArc(1,5);
+//        graph.addArc(1,6);
+//        graph.addArc(5,6);
+//        graph.addArc(6,5);
+//
+//        graph.addArc(2,7);
+//        graph.addArc(2,8);
+//        graph.addArc(7,8);
 
 //        graph.addArc(7,4);
 
@@ -50,7 +51,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 //        AllVo allVo1 = graph.traverseByDfs();
 
 //        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
-        List<Integer> integers = graph.topoOrderByBfs();
+        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
     }
 
 }
@@ -227,15 +228,51 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     //kahn算法，入度必0，bfs变种，分层不带路径，第三视角
     @Override
     public List<Integer> topoOrderByBfs() {
+        List<Integer> topoList = new LinkedList<>();
         //计算所有节点的入度
         Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
         //计算所有入度为0的节点
-        Queue<Integer> zeroInDegreeList = inDegreeMap.entrySet().stream()
+        List<Integer> zeroInDegreeList = inDegreeMap.entrySet().stream()
                 .filter(entry -> entry.getValue() <= 0)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toCollection(LinkedList::new));
 
-        return null;
+        //开始bfs框架
+//        boolean[] visited = new boolean[n];
+        Queue<Integer> queue = new LinkedList<>();
+        zeroInDegreeList.forEach(v -> {
+//            visited[v] = true;
+            queue.offer(v);
+        });
+
+        for (int i = 0; i < n && !queue.isEmpty(); i++) {
+            Integer v = queue.poll();
+            //visit v
+            topoList.add(v);
+            for (int j = 0; j < n; j++) {
+                if (adjaMatrix[i][j]) {
+//                    if (!visited[j]) {
+//                        visited[j] = true;
+
+                        Integer inDegree = inDegreeMap.get(j);
+                        inDegreeMap.put(j, inDegree-1);
+                        if ((inDegree-1) <= 0) {
+                            queue.offer(j);
+                        } else {
+                            throw new RuntimeException("impossible");
+                        }
+//                    }
+                }
+            }
+        }
+
+        if (topoList.size() < n) {
+            return null;
+        } else if (topoList.size() > n) {
+            throw new RuntimeException("impossible");
+        }
+
+        return topoList;
     }
 
     //入度任意，标准dfs，带路劲，第一视角
