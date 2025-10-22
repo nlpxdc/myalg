@@ -258,7 +258,11 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                         inDegreeMap.put(j, inDegree-1);
                         if ((inDegree-1) == 0) {
                             queue.offer(j);
-                        } else if ((inDegree-1) < 0){
+                        } else if ((inDegree-1) > 0){
+                            //nothing to do
+                        } else if ((inDegree-1) < 0) {
+                            throw new RuntimeException("impossible");
+                        } else {
                             throw new RuntimeException("impossible");
                         }
 //                    }
@@ -266,13 +270,15 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
             }
         }
 
-        if (topoList.size() < n) {
+        if (topoList.size() == n) {
+            return topoList;
+        } else if (topoList.size() < n) {
             return null;
         } else if (topoList.size() > n) {
             throw new RuntimeException("impossible");
+        } else {
+            throw new RuntimeException("impossible");
         }
-
-        return topoList;
     }
 
     //入度任意，标准dfs，带路劲，第一视角

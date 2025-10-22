@@ -27,24 +27,24 @@ class AdjaMapSetDirectedUnweightedGraphApp {
     public static void main(String[] args) {
         AdjaMapSetDirectedUnweightedGraph graph = new AdjaMapSetDirectedUnweightedGraph(9);
 
-//        graph.addArc(0,1);
-//        graph.addArc(0,2);
-//        graph.addArc(1,2);
-//        graph.addArc(2,1);
+        graph.addArc(0,1);
+        graph.addArc(0,2);
+        graph.addArc(1,2);
+        graph.addArc(2,1);
 
-        graph.addArc(0,3);
-//        graph.addArc(0,4);
-        graph.addArc(3,4);
-        graph.addArc(4,0);
-
-        graph.addArc(1,5);
-        graph.addArc(1,6);
-        graph.addArc(5,6);
-
-        graph.addArc(2,7);
-        graph.addArc(2,8);
-        graph.addArc(7,8);
-        graph.addArc(8,7);
+//        graph.addArc(0,3);
+////        graph.addArc(0,4);
+//        graph.addArc(3,4);
+//        graph.addArc(4,0);
+//
+//        graph.addArc(1,5);
+//        graph.addArc(1,6);
+//        graph.addArc(5,6);
+//
+//        graph.addArc(2,7);
+//        graph.addArc(2,8);
+//        graph.addArc(7,8);
+//        graph.addArc(8,7);
 
 //        graph.addArc(7,4);
 
@@ -72,7 +72,9 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 //        List<Integer> topoSortList = graph.topoSort();
 //        System.out.println(topoSortList);
 
-        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
+//        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
+
+        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
 
     }
 }
@@ -256,19 +258,35 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
             queue.offer(v);
         });
 
-        adjaMapSet.forEach((i, jSet) -> {
-            jSet.forEach(j -> {
+        for (int i = 0; i < n && !queue.isEmpty(); i++) {
+            Integer v = queue.poll();
+            //visit
+            topoList.add(v);
+            Set<Integer> jSet = adjaMapSet.get(v);
+            for (Integer j : jSet) {
+                Integer inDegree = inDegreeMap.get(j);
+                inDegreeMap.put(j, inDegree-1);
+                if ((inDegree-1) == 0) {
+                    queue.offer(j);
+                } else if ((inDegree-1) > 0){
+                    //nothing to do
+                } else if ((inDegree-1) < 0) {
+                    throw new RuntimeException("impossible");
+                } else {
+                    throw new RuntimeException("impossible");
+                }
+            }
+        }
 
-            });
-        });
-
-        if (topoList.size() < n) {
+        if (topoList.size() == n) {
+            return topoList;
+        } else if (topoList.size() < n) {
             return null;
         } else if (topoList.size() > n) {
             throw new RuntimeException("impossible");
+        } else {
+            throw new RuntimeException("impossible");
         }
-
-        return topoList;
     }
 
     @Override
