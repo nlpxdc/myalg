@@ -1,5 +1,7 @@
 package graph.unweighted;
 
+import java.util.Map;
+
 public abstract class GraphMeta {
     public int n;
 //    public int edgeN;
@@ -8,5 +10,7 @@ public abstract class GraphMeta {
     public abstract AllVo traverseByBfs();
 
     public abstract AllVo traverseByDfs();
+
+    public abstract Map<Integer, Integer> calcInDegree();
 
 }

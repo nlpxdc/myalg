@@ -119,6 +119,11 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         return allVo;
     }
 
+    @Override
+    public Map<Integer, Integer> calcInDegree() {
+        return null;
+    }
+
     //bfs
     SingleVo bfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
         SingleVo singleVo = new SingleVo(true);

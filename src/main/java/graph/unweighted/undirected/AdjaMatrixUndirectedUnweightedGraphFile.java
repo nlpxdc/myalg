@@ -4,6 +4,7 @@ import graph.unweighted.*;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
@@ -116,6 +117,11 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     public AllVo traverseByDfs() {
         AllVo allVo = GraphUtil.traverse(this, this::dfs);
         return allVo;
+    }
+
+    @Override
+    public Map<Integer, Integer> calcInDegree() {
+        return null;
     }
 
     //bfs和dfs是一种策略
