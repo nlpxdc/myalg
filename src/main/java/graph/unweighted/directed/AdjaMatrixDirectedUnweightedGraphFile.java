@@ -250,15 +250,15 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
             //visit v
             topoList.add(v);
             for (int j = 0; j < n; j++) {
-                if (adjaMatrix[i][j]) {
+                if (adjaMatrix[v][j]) {
 //                    if (!visited[j]) {
 //                        visited[j] = true;
 
                         Integer inDegree = inDegreeMap.get(j);
                         inDegreeMap.put(j, inDegree-1);
-                        if ((inDegree-1) <= 0) {
+                        if ((inDegree-1) == 0) {
                             queue.offer(j);
-                        } else {
+                        } else if ((inDegree-1) < 0){
                             throw new RuntimeException("impossible");
                         }
 //                    }
