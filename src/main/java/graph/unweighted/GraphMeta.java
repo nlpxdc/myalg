@@ -11,6 +11,6 @@ public abstract class GraphMeta {
 
     public abstract AllVo traverseByDfs();
 
-    public abstract Map<Integer, Integer> calcInDegree();
+    public abstract Map<Integer, Integer> calcInDegreeMap();
 
 }

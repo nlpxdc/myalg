@@ -2,10 +2,7 @@ package graph.unweighted.directed;
 
 import graph.unweighted.*;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
 //二维数组的表示，表示图
@@ -47,7 +44,9 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 //        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-        AllVo allVo1 = graph.traverseByDfs();
+//        AllVo allVo1 = graph.traverseByDfs();
+
+        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
     }
 
 }
@@ -100,8 +99,22 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     @Override
-    public Map<Integer, Integer> calcInDegree() {
-        return null;
+    public Map<Integer, Integer> calcInDegreeMap() {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(i,0);
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (adjaMatrix[i][j]) {
+                    Integer inDegree = map.get(j);
+                    map.put(j, inDegree+1);
+                }
+            }
+        }
+
+        return map;
     }
 
     //bfs

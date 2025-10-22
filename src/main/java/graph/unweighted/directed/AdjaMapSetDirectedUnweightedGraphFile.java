@@ -3,6 +3,8 @@ package graph.unweighted.directed;
 import graph.unweighted.*;
 
 import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 //树和分治更有关联，关心节点中key值的大小，在这个上面做文章，
 //图的话和分治关系不大？更关心节点间的关联关系，以及含有边权数据的计算问题，不太关心节点key的大小关系排序？
@@ -64,10 +66,12 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 //        AllVo allVo = graph.traverseByBfs();
 
         //dfs
-        AllVo allVo1 = graph.traverseByDfs();
+//        AllVo allVo1 = graph.traverseByDfs();
 
 //        List<Integer> topoSortList = graph.topoSort();
 //        System.out.println(topoSortList);
+
+        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
 
     }
 }
@@ -120,8 +124,20 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     }
 
     @Override
-    public Map<Integer, Integer> calcInDegree() {
-        return null;
+    public Map<Integer, Integer> calcInDegreeMap() {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(i,0);
+        }
+
+        adjaMapSet.forEach((i, jSet) -> {
+            jSet.forEach(j -> {
+                Integer inDegree = map.get(j);
+                map.put(j, inDegree+1);
+            });
+        });
+        
+        return map;
     }
 
     //bfs

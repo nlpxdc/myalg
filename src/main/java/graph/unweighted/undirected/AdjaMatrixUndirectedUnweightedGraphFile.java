@@ -120,7 +120,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     }
 
     @Override
-    public Map<Integer, Integer> calcInDegree() {
+    public Map<Integer, Integer> calcInDegreeMap() {
         return null;
     }
 
