@@ -108,13 +108,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 
     public AllVo allTraverseByBfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.allTraverse(this, this::bfs, allVo);
+        GraphUtil.allTraverse(this, this::singleTraverseByBfs, allVo);
         return allVo;
     }
 
     public AllVo allTraverseByDfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.allTraverse(this, this::dfs, allVo);
+        GraphUtil.allTraverse(this, this::singleTraverseByDfs, allVo);
         return allVo;
     }
 
@@ -138,11 +138,11 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void bfs(final SingleStartParam singleStartParam,
-             final SingleTemp singleTemp,
-             final AllTemp allTemp,
-             final SingleVo singleVo,
-             final AllVo allVo) {
+    void singleTraverseByBfs(final SingleStartParam singleStartParam,
+                             final SingleTemp singleTemp,
+                             final AllTemp allTemp,
+                             final SingleVo singleVo,
+                             final AllVo allVo) {
 //        singleVo.bfsList = new LinkedList<>();
 //        SingleVo singleVo = new SingleVo(false);
         singleVo.directed = false;
@@ -200,11 +200,11 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //这里使用递归写法的时候，第一个参数v代表当前顶点v，不能代表起始顶点
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
-    void dfs(final SingleStartParam singleStartParam,
-             final SingleTemp singleTemp,
-             final AllTemp allTemp,
-             final SingleVo singleVo,
-             final AllVo allVo) {
+    void singleTraverseByDfs(final SingleStartParam singleStartParam,
+                             final SingleTemp singleTemp,
+                             final AllTemp allTemp,
+                             final SingleVo singleVo,
+                             final AllVo allVo) {
 //        SingleVo singleVo = new SingleVo(false);
         singleVo.directed = false;
         VParam vParam = new VParam(null, singleStartParam.startV);

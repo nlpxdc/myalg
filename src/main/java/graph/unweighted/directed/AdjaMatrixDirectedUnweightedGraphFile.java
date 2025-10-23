@@ -92,14 +92,14 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     @Override
     public AllVo allTraverseByBfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.allTraverse(this, this::bfs, allVo);
+        GraphUtil.allTraverse(this, this::singleTraverseByBfs, allVo);
         return allVo;
     }
 
     @Override
     public AllVo allTraverseByDfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.allTraverse(this, this::dfs, allVo);
+        GraphUtil.allTraverse(this, this::singleTraverseByDfs, allVo);
         return allVo;
     }
 
@@ -123,11 +123,11 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void bfs(final SingleStartParam singleStartParam,
-             final SingleTemp singleTemp,
-             final AllTemp allTemp,
-             final SingleVo singleVo,
-             final AllVo allVo) {
+    void singleTraverseByBfs(final SingleStartParam singleStartParam,
+                             final SingleTemp singleTemp,
+                             final AllTemp allTemp,
+                             final SingleVo singleVo,
+                             final AllVo allVo) {
 //        SingleVo singleVo = new SingleVo(true);
         singleVo.directed = true;
         //临时队列
@@ -172,11 +172,11 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 //        return singleVo;
     }
     //dfs
-    void dfs(final SingleStartParam singleStartParam,
-             final SingleTemp singleTemp,
-             final AllTemp allTemp,
-             final SingleVo singleVo,
-             final AllVo allVo) {
+    void singleTraverseByDfs(final SingleStartParam singleStartParam,
+                             final SingleTemp singleTemp,
+                             final AllTemp allTemp,
+                             final SingleVo singleVo,
+                             final AllVo allVo) {
 //        SingleVo singleVo = new SingleVo(true);
         singleVo.directed = true;
         VParam vParam = new VParam(null, singleStartParam.startV);
