@@ -23,7 +23,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
-        AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(9);
+        AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(3);
         graph.addArc(0,1);
         graph.addArc(0,2);
         graph.addArc(1,2);
@@ -51,7 +51,8 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 //        AllVo allVo1 = graph.traverseByDfs();
 
 //        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
-        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
+//        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
+        List<Integer> topoOrderByDfsList = graph.topoOrderByDfs();
     }
 
 }
@@ -285,8 +286,44 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
     @Override
     public List<Integer> topoOrderByDfs() {
-        return null;
+        //dfs框架
+        List<Integer> topoList = new LinkedList<>();
+
+        boolean[] visited = new boolean[n];
+        int[] vStatuses = new int[n];
+
+        try {
+            topoOrderByDfsRecur(0, visited, vStatuses, topoList);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+        Collections.reverse(topoList);
+        return topoList;
     }
+
+    private void topoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+        visited[v] = true;
+        vStatuses[v] = VStatusConstant.GRAY;
+        //discover
+        for (int j = 0; j < n; j++) {
+            if (adjaMatrix[v][j]) {
+                if (!visited[j]) {
+                    topoOrderByDfsRecur(j, visited, vStatuses, topoList);
+                } else {
+                    if (vStatuses[j] == VStatusConstant.GRAY) {
+                        throw new RuntimeException("be cyclic, no topo order");
+                    }
+                }
+            }
+        }
+        //finish
+        topoList.add(v);
+        vStatuses[v] = VStatusConstant.BLACK;
+    }
+
+
 
 }
 
