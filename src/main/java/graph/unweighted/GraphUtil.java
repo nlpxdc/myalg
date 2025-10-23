@@ -75,7 +75,6 @@ public class GraphUtil {
     //如果有必要都可转换成对象，起始一个Func也可以，但是区分开来Param和vo更好，有区别
 //    public static AllVo traverse(final GraphMeta graphMeta, final GraphFunc<SingleStartParam, AllTemp, SingleVo> maxConnectedChildGraphTraverse) {
     public static void allTraverse(final GraphMeta graphMeta, final SingleTraverse<SingleStartParam, SingleTemp, AllTemp, SingleVo, AllVo> singleTraverse, SingleVo singleVo, AllVo allVo) {
-        SingleTemp singleTemp = new SingleTemp();
         AllTemp allTemp = new AllTemp(graphMeta);
 
 //        AllVo allVo = new AllVo();
@@ -87,6 +86,7 @@ public class GraphUtil {
                 maxConnectedChildGraphCnt++;
 //                SingleVo singleVo = maxConnectedChildGraphTraverse.accept(singleStartParam, allTemp);
 //                SingleVo singleVo = new SingleVo();
+                SingleTemp singleTemp = new SingleTemp();
                 singleTraverse.callSingleTraverse(singleStartParam, singleTemp, allTemp, singleVo, allVo);
                 allVo.directedList.add(singleVo.directed);
                 allVo.undirectedCyclicList.add(singleVo.undigraphBeCyclic());
