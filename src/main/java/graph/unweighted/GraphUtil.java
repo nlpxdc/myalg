@@ -73,10 +73,11 @@ public class GraphUtil {
     //这里的n可以是图的元信息metadata 这里BiConsumer不用Func或BiFunc，因为需要原地，bfs可以函数是但是dfs递归不可以，需要原地
     //除非改造dfs为stack版本，这里分两种参数，第一参数是输入信息真实参数，第二参数起始是返回结果，也可认为是临时数据，原地处理，所以作为入参传入
     //如果有必要都可转换成对象，起始一个Func也可以，但是区分开来Param和vo更好，有区别
-    public static AllVo traverse(final GraphMeta graphMeta, final GraphFunc<SingleStartParam, AllTemp, SingleVo> maxConnectedChildGraphTraverse) {
+//    public static AllVo traverse(final GraphMeta graphMeta, final GraphFunc<SingleStartParam, AllTemp, SingleVo> maxConnectedChildGraphTraverse) {
+    public static void traverse(final GraphMeta graphMeta, final GraphFunc<SingleStartParam, AllTemp, SingleVo> maxConnectedChildGraphTraverse, AllVo allVo) {
         AllTemp allTemp = new AllTemp(graphMeta);
 
-        AllVo allVo = new AllVo();
+//        AllVo allVo = new AllVo();
         int maxConnectedChildGraphCnt = 0;
         for (int i = 0; i < graphMeta.n; i++) {
             Integer firstUnVisited = getFirstUnVisited(allTemp.visited);
@@ -98,7 +99,7 @@ public class GraphUtil {
 
         }
         allVo.childGraphCnt = maxConnectedChildGraphCnt;
-        return allVo;
+//        return allVo;
     }
 
 }
