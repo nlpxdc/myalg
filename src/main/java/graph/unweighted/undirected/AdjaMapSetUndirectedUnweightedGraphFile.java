@@ -40,10 +40,10 @@ class AdjaMapSetUndirectedUnweightedGraphApp {
 //        graph.addEdge(7,8);
 
         //bfs
-        AllVo allVo = graph.traverseByBfs();
+        AllVo allVo = graph.allTraverseByBfs();
 
         //dfs
-        AllVo allVo1 = graph.traverseByDfs();
+        AllVo allVo1 = graph.allTraverseByDfs();
 
     }
 }
@@ -87,14 +87,14 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     }
 
     @Override
-    public AllVo traverseByBfs() {
+    public AllVo allTraverseByBfs() {
         AllVo allVo = new AllVo();
         GraphUtil.allTraverse(this, this::bfs, allVo);
         return allVo;
     }
 
     @Override
-    public AllVo traverseByDfs() {
+    public AllVo allTraverseByDfs() {
         AllVo allVo = new AllVo();
         GraphUtil.allTraverse(this, this::dfs, allVo);
         return allVo;

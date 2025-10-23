@@ -36,10 +36,10 @@ class AdjaMatrixUndirectedUnweightedGraphApp {
         graph.addEdge(7,8);
 
         //bfs
-        AllVo allVo = graph.traverseByBfs();
+        AllVo allVo = graph.allTraverseByBfs();
 
         //dfs
-        AllVo allVo1 = graph.traverseByDfs();
+        AllVo allVo1 = graph.allTraverseByDfs();
 
     }
 
@@ -106,13 +106,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //多扫一遍顶点、数连通分量
     //判断连通子图个数，连通分量
 
-    public AllVo traverseByBfs() {
+    public AllVo allTraverseByBfs() {
         AllVo allVo = new AllVo();
         GraphUtil.allTraverse(this, this::bfs, allVo);
         return allVo;
     }
 
-    public AllVo traverseByDfs() {
+    public AllVo allTraverseByDfs() {
         AllVo allVo = new AllVo();
         GraphUtil.allTraverse(this, this::dfs, allVo);
         return allVo;

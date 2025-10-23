@@ -8,9 +8,9 @@ public abstract class GraphMeta {
 //    public int edgeN;
 //    public int arcN;
 
-    public abstract AllVo traverseByBfs();
+    public abstract AllVo allTraverseByBfs();
 
-    public abstract AllVo traverseByDfs();
+    public abstract AllVo allTraverseByDfs();
 
     public abstract Map<Integer, Integer> calcInDegreeMap();
 
