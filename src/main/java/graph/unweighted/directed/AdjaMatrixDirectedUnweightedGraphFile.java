@@ -300,7 +300,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         //dfs框架
         List<Integer> topoList = new LinkedList<>();
 
-        //必要时还能加上discoverTimeNo和finishTimeNo数组
+        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容
+        //多个数组列式记录，不同于对象数组的行式记录
 
         boolean[] visited = new boolean[n];
         int[] vStatuses = new int[n];
@@ -309,7 +310,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
             for (int i = 0; i < n; i++) {
                 Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
                 if (firstUnVisited != null) {
-                    singleTopoOrderByDfsRecur(firstUnVisited, visited, vStatuses, topoList);
+                    singleTopoOrderByDfs(firstUnVisited, visited, vStatuses, topoList);
                 } else {
                     break;
                 }
@@ -323,6 +324,12 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         return topoList;
     }
 
+    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+        //初始化部分 nothing to do
+        //主体部分
+        singleTopoOrderByDfsRecur(v, visited, vStatuses, topoList);
+    }
+
     private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
         visited[v] = true;
         vStatuses[v] = VStatusConstant.GRAY;
@@ -333,6 +340,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                     singleTopoOrderByDfsRecur(j, visited, vStatuses, topoList);
                 } else {
                     if (vStatuses[j] == VStatusConstant.GRAY) {
+                        //这里为什么用抛异常，因为可以直接停止整个递归调用，无须再进行下去了
+                        //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
                         throw new RuntimeException("be cyclic, no topo order");
                     }
                 }
@@ -342,8 +351,6 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         topoList.add(v);
         vStatuses[v] = VStatusConstant.BLACK;
     }
-
-
 
 }
 
