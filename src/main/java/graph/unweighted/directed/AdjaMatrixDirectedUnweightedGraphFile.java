@@ -23,24 +23,24 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 
     public static void main(String[] args) {
 //        AdjaDirectedUnWeightedMatrixGraph graph = new AdjaDirectedUnWeightedMatrixGraph(9);
-        AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(3);
-        graph.addArc(0,1);
-        graph.addArc(0,2);
-        graph.addArc(1,2);
+        AdjaMatrixDirectedUnweightedGraph graph = new AdjaMatrixDirectedUnweightedGraph(9);
+//        graph.addArc(0,1);
+//        graph.addArc(0,2);
+//        graph.addArc(1,2);
 //        graph.addArc(2,1);
 
-//        graph.addArc(0,3);
-//        graph.addArc(0,4);
-//        graph.addArc(3,4);
+        graph.addArc(0,3);
+        graph.addArc(0,4);
+        graph.addArc(3,4);
 //
-//        graph.addArc(1,5);
-//        graph.addArc(1,6);
-//        graph.addArc(5,6);
-//        graph.addArc(6,5);
+        graph.addArc(1,5);
+        graph.addArc(1,6);
+        graph.addArc(5,6);
+        graph.addArc(6,5);
 //
-//        graph.addArc(2,7);
-//        graph.addArc(2,8);
-//        graph.addArc(7,8);
+        graph.addArc(2,7);
+        graph.addArc(2,8);
+        graph.addArc(7,8);
 
 //        graph.addArc(7,4);
 
@@ -293,7 +293,11 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         int[] vStatuses = new int[n];
 
         try {
-            topoOrderByDfsRecur(0, visited, vStatuses, topoList);
+            for (int v = 0; v < n; v++) {
+                if (!visited[v]) {
+                    topoOrderByDfsRecur(v, visited, vStatuses, topoList);
+                }
+            }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return null;
