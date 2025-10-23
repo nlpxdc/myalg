@@ -1,4 +1,4 @@
-package graph.unweighted;
+package graph.unweighted.directed;
 
 public enum VStatus {
     WHITE,
