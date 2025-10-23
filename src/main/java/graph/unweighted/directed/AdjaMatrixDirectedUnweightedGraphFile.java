@@ -33,7 +33,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
         graph.addArc(1,5);
         graph.addArc(1,6);
         graph.addArc(5,6);
-        graph.addArc(6,5);
+//        graph.addArc(6,5);
 //
         graph.addArc(2,7);
         graph.addArc(2,8);
@@ -304,9 +304,12 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         int[] vStatuses = new int[n];
 
         try {
-            for (int v = 0; v < n; v++) {
-                if (!visited[v]) {
-                    topoOrderByDfsRecur(v, visited, vStatuses, topoList);
+            for (int i = 0; i < n; i++) {
+                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
+                if (firstUnVisited != null) {
+                    singleTopoOrderByDfsRecur(firstUnVisited, visited, vStatuses, topoList);
+                } else {
+                    break;
                 }
             }
         } catch (Exception ex) {
@@ -318,14 +321,14 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         return topoList;
     }
 
-    private void topoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
         visited[v] = true;
         vStatuses[v] = VStatusConstant.GRAY;
         //discover
         for (int j = 0; j < n; j++) {
             if (adjaMatrix[v][j]) {
                 if (!visited[j]) {
-                    topoOrderByDfsRecur(j, visited, vStatuses, topoList);
+                    singleTopoOrderByDfsRecur(j, visited, vStatuses, topoList);
                 } else {
                     if (vStatuses[j] == VStatusConstant.GRAY) {
                         throw new RuntimeException("be cyclic, no topo order");
