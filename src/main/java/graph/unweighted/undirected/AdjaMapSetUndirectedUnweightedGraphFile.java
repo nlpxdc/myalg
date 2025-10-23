@@ -121,7 +121,6 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
-//        SingleVo singleVo = new SingleVo(false);
         singleVo.directed = false;
         //临时队列
         Queue<VParam> queue = new LinkedList<>();
@@ -163,7 +162,6 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
 
             }
         }
-//        return singleVo;
     }
     //dfs
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
@@ -173,13 +171,11 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
-//        SingleVo singleVo = new SingleVo(false);
         singleVo.directed = false;
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
         singleTraverseByDfsRecur(vParam, allTemp, singleVo);
-//        return singleVo;
     }
     void singleTraverseByDfsRecur(final VParam vParam, final AllTemp allTemp, final SingleVo singleVo) {
         allTemp.visited[vParam.v] = true;

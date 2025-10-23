@@ -149,7 +149,6 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
-//        SingleVo singleVo = new SingleVo(true);
         singleVo.directed = true;
         //临时队列
         Queue<VParam> queue = new LinkedList<>();
@@ -187,7 +186,6 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
             }
         }
-//        return singleVo;
     }
     //dfs
     void singleTraverseByDfs(final SingleStartParam singleStartParam,
@@ -195,13 +193,11 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
-//        SingleVo singleVo = new SingleVo(true);
         singleVo.directed = true;
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
         singleTraverseByDfsRecur(vParam, allTemp, singleVo);
-//        return singleVo;
     }
 
     void singleTraverseByDfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {

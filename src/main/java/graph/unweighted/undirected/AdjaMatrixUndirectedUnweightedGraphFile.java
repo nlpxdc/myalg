@@ -143,8 +143,6 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
-//        singleVo.bfsList = new LinkedList<>();
-//        SingleVo singleVo = new SingleVo(false);
         singleVo.directed = false;
 
         //临时队列
@@ -189,7 +187,6 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             }
 //            GraphUtil.visit(v);
         }
-//        return singleVo;
     }
 
     //dfs 按深度连通
@@ -205,17 +202,14 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
-//        SingleVo singleVo = new SingleVo(false);
         singleVo.directed = false;
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
         singleTraverseByDfsRecur(vParam, allTemp, singleVo);
-//        return singleVo;
     }
 
     void singleTraverseByDfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {
-//        visited[v] = true;
         allTemp.visited[vParam.v] = true;
         //前序遍历
 
