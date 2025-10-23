@@ -145,6 +145,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
+        //初始化部分
         singleVo.directed = false;
 
         //临时队列
@@ -157,6 +158,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
 
+        //循环迭代部分，这部分没有递归
         while (!queue.isEmpty()) {
             //先访问当前自己
             VParam vParam = queue.poll();
@@ -204,10 +206,12 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
+        //初始化部分
         singleVo.directed = false;
         VParam vParam = new VParam(null, singleStartParam.v);
         allTemp.parents[singleStartParam.v] = null;
         vParam.dfsVDepth = 0;
+        //递归部分，这部分可以用栈的方式替代成循环迭代方式，就不用新开函数了，因为递归方式一定要额外定义函数
         singleTraverseByDfsRecur(vParam, singleTemp, allTemp, singleVo, allVo);
     }
 
