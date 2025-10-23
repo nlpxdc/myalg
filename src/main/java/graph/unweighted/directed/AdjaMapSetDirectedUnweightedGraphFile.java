@@ -72,7 +72,7 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 
 //        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
 
-        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
+        List<Integer> topoOrderByBfsList = graph.allTopoOrderByBfs();
 
     }
 }
@@ -252,7 +252,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     }
 
     @Override
-    public List<Integer> topoOrderByBfs() {
+    public List<Integer> allTopoOrderByBfs() {
         List<Integer> topoList = new LinkedList<>();
         //计算所有节点的入度
         Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
@@ -302,7 +302,7 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     }
 
     @Override
-    public List<Integer> topoOrderByDfs() {
+    public List<Integer> allTopoOrderByDfs() {
         return null;
     }
 

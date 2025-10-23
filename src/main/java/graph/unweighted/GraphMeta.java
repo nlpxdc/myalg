@@ -17,8 +17,8 @@ public abstract class GraphMeta {
 
     public abstract Map<Integer, Integer> calcInDegreeMap();
 
-    public abstract List<Integer> topoOrderByBfs();
+    public abstract List<Integer> allTopoOrderByBfs();
 
-    public abstract List<Integer> topoOrderByDfs();
+    public abstract List<Integer> allTopoOrderByDfs();
 
 }

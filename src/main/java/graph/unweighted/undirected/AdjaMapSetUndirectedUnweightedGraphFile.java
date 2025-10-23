@@ -108,12 +108,12 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     }
 
     @Override
-    public List<Integer> topoOrderByBfs() {
+    public List<Integer> allTopoOrderByBfs() {
         return null;
     }
 
     @Override
-    public List<Integer> topoOrderByDfs() {
+    public List<Integer> allTopoOrderByDfs() {
         return null;
     }
 

@@ -49,7 +49,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 
 //        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
 //        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
-        List<Integer> topoOrderByDfsList = graph.topoOrderByDfs();
+        List<Integer> topoOrderByDfsList = graph.allTopoOrderByDfs();
     }
 
 }
@@ -239,7 +239,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
     //kahn算法，入度必0，bfs变种，分层不带路径，第三视角
     @Override
-    public List<Integer> topoOrderByBfs() {
+    public List<Integer> allTopoOrderByBfs() {
         List<Integer> topoList = new LinkedList<>();
         //计算所有节点的入度
         Map<Integer, Integer> inDegreeMap = calcInDegreeMap();
@@ -296,7 +296,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     //入度任意，标准dfs，带路劲，第一视角
 
     @Override
-    public List<Integer> topoOrderByDfs() {
+    public List<Integer> allTopoOrderByDfs() {
         //dfs框架
         List<Integer> topoList = new LinkedList<>();
 
