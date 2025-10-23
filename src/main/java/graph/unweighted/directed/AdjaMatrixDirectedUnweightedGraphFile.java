@@ -3,9 +3,6 @@ package graph.unweighted.directed;
 import graph.unweighted.*;
 
 import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 //第三他人全局视角 是矩阵 如果是稠密，直接用，不用转稀疏矩阵，直接矩阵计算，解全局问题
@@ -95,14 +92,14 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     @Override
     public AllVo traverseByBfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.traverse(this, this::bfs, allVo);
+        GraphUtil.allTraverse(this, this::bfs, allVo);
         return allVo;
     }
 
     @Override
     public AllVo traverseByDfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.traverse(this, this::dfs, allVo);
+        GraphUtil.allTraverse(this, this::dfs, allVo);
         return allVo;
     }
 

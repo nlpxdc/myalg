@@ -108,13 +108,13 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 
     public AllVo traverseByBfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.traverse(this, this::bfs, allVo);
+        GraphUtil.allTraverse(this, this::bfs, allVo);
         return allVo;
     }
 
     public AllVo traverseByDfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.traverse(this, this::dfs, allVo);
+        GraphUtil.allTraverse(this, this::dfs, allVo);
         return allVo;
     }
 

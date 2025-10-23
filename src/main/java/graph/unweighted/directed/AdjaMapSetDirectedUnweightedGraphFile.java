@@ -3,8 +3,6 @@ package graph.unweighted.directed;
 import graph.unweighted.*;
 
 import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 //树和分治更有关联，关心节点中key值的大小，在这个上面做文章，
@@ -117,14 +115,14 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
     @Override
     public AllVo traverseByBfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.traverse(this, this::bfs, allVo);
+        GraphUtil.allTraverse(this, this::bfs, allVo);
         return allVo;
     }
 
     @Override
     public AllVo traverseByDfs() {
         AllVo allVo = new AllVo();
-        GraphUtil.traverse(this, this::dfs, allVo);
+        GraphUtil.allTraverse(this, this::dfs, allVo);
         return allVo;
     }
 
