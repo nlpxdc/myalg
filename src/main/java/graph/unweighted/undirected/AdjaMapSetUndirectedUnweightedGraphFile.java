@@ -178,10 +178,10 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
-        dfsRecur(vParam, allTemp, singleVo);
+        singleTraverseByDfsRecur(vParam, allTemp, singleVo);
 //        return singleVo;
     }
-    void dfsRecur(final VParam vParam, final AllTemp allTemp, final SingleVo singleVo) {
+    void singleTraverseByDfsRecur(final VParam vParam, final AllTemp allTemp, final SingleVo singleVo) {
         allTemp.visited[vParam.v] = true;
         //前序遍历
         GraphUtil.dfsDiscoverV(vParam, allTemp, singleVo);
@@ -200,7 +200,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
                 VParam uParam = new VParam(vParam.v, adjaU);
                 allTemp.parents[adjaU] = vParam.v;
                 uParam.dfsVDepth = vParam.dfsVDepth+1;
-                dfsRecur(uParam, allTemp, singleVo);
+                singleTraverseByDfsRecur(uParam, allTemp, singleVo);
             } else {
                 edgeParam.dfsEdgeType = DfsEdgeType.DFS_NON_TREE_EDGE;
                 GraphUtil.dfsVisitEdge(edgeParam, singleVo);
