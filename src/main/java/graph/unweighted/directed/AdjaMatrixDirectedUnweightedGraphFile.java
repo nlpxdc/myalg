@@ -249,7 +249,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toCollection(LinkedList::new));
 
-        //开始bfs框架
+        //开始bfs框架 变种 这是单个遍历的代码，变种后是整图
 //        boolean[] visited = new boolean[n];
         Queue<Integer> queue = new LinkedList<>();
         zeroInDegreeList.forEach(v -> {
