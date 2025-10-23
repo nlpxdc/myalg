@@ -300,7 +300,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         //dfs框架
         List<Integer> topoList = new LinkedList<>();
 
-        //必要时还能加上discover数组
+        //必要时还能加上discoverTimeNo和finishTimeNo数组
 
         boolean[] visited = new boolean[n];
         int[] vStatuses = new int[n];
