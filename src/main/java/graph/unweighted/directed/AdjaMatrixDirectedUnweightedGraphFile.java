@@ -123,7 +123,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void bfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo) {
+    void bfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo, AllVo allVo) {
 //        SingleVo singleVo = new SingleVo(true);
         singleVo.directed = true;
         //临时队列
@@ -168,7 +168,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 //        return singleVo;
     }
     //dfs
-    void dfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo) {
+    void dfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo, AllVo allVo) {
 //        SingleVo singleVo = new SingleVo(true);
         singleVo.directed = true;
         VParam vParam = new VParam(null, singleStartParam.startV);
