@@ -60,6 +60,8 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         }
         this.n = n;
         adjaMatrix = new boolean[n][n];
+        this.weighted = false;
+        this.directed = false;
     }
     void addEdge(int u, int v) {
         if (u == v) {

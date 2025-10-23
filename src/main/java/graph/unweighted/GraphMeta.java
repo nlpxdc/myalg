@@ -5,8 +5,9 @@ import java.util.Map;
 
 public abstract class GraphMeta {
     public int n;
-//    public boolean directed;
-//    public boolean weighted;
+    public boolean weighted;
+    public boolean directed;
+
 //    public int edgeN;
 //    public int arcN;
 

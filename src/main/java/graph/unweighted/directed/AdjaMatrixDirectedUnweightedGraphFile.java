@@ -74,6 +74,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         }
         this.n = n;
         adjaMatrix = new boolean[n][n];
+        this.weighted = false;
+        this.directed = true;
     }
     void addArc(int from, int to) {
         if (from == to) {

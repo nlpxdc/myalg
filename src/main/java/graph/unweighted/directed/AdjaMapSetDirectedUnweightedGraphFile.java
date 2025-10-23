@@ -94,6 +94,8 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         for (int v = 0; v < n; v++) {
             adjaMapSet.put(v, new HashSet<>());
         }
+        this.weighted = false;
+        this.directed = true;
     }
     void addArc(int from, int to) {
         if (from == to) {

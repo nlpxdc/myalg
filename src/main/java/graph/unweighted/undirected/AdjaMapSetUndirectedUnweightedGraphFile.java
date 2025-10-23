@@ -65,6 +65,8 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         for (int v = 0; v < n; v++) {
             adjaMapSet.put(v, new HashSet<>());
         }
+        this.weighted = false;
+        this.directed = false;
     }
     void addEdge(int u, int v) {
         if (u == v) {
