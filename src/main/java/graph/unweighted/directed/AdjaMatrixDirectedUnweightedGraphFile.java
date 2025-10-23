@@ -91,16 +91,16 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
     @Override
     public AllVo traverseByBfs() {
-        SingleVo singleVo = new SingleVo();
         AllVo allVo = new AllVo();
+        SingleVo singleVo = new SingleVo();
         GraphUtil.allTraverse(this, this::bfs, singleVo, allVo);
         return allVo;
     }
 
     @Override
     public AllVo traverseByDfs() {
-        SingleVo singleVo = new SingleVo();
         AllVo allVo = new AllVo();
+        SingleVo singleVo = new SingleVo();
         GraphUtil.allTraverse(this, this::dfs, singleVo, allVo);
         return allVo;
     }
