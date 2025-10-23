@@ -107,14 +107,16 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //判断连通子图个数，连通分量
 
     public AllVo traverseByBfs() {
+        SingleVo singleVo = new SingleVo();
         AllVo allVo = new AllVo();
-        GraphUtil.allTraverse(this, this::bfs, allVo);
+        GraphUtil.allTraverse(this, this::bfs, singleVo, allVo);
         return allVo;
     }
 
     public AllVo traverseByDfs() {
+        SingleVo singleVo = new SingleVo();
         AllVo allVo = new AllVo();
-        GraphUtil.allTraverse(this, this::dfs, allVo);
+        GraphUtil.allTraverse(this, this::dfs, singleVo, allVo);
         return allVo;
     }
 
