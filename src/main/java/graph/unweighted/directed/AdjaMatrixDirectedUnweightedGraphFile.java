@@ -125,7 +125,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void singleTraverseByBfs(final SingleStartParam singleStartParam,
+    void singleTraverseByBfs(final VParam singleStartParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
@@ -135,9 +135,9 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        allTemp.visited[singleStartParam.startV] = true;
-        VParam startVParam = new VParam(null, singleStartParam.startV);
-        allTemp.parents[singleStartParam.startV] = null;
+        allTemp.visited[singleStartParam.v] = true;
+        VParam startVParam = new VParam(null, singleStartParam.v);
+        allTemp.parents[singleStartParam.v] = null;
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
 
@@ -172,14 +172,14 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         }
     }
     //dfs
-    void singleTraverseByDfs(final SingleStartParam singleStartParam,
+    void singleTraverseByDfs(final VParam singleStartParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
         singleVo.directed = true;
-        VParam vParam = new VParam(null, singleStartParam.startV);
-        allTemp.parents[singleStartParam.startV] = null;
+        VParam vParam = new VParam(null, singleStartParam.v);
+        allTemp.parents[singleStartParam.v] = null;
         vParam.dfsVDepth = 0;
         singleTraverseByDfsRecur(vParam, singleTemp, allTemp, singleVo, allVo);
     }

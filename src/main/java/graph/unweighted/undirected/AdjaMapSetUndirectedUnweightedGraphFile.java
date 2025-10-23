@@ -118,7 +118,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void singleTraverseByBfs(final SingleStartParam singleStartParam,
+    void singleTraverseByBfs(final VParam singleStartParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
@@ -128,9 +128,9 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        allTemp.visited[singleStartParam.startV] = true;
-        VParam startVParam = new VParam(null, singleStartParam.startV);
-        allTemp.parents[singleStartParam.startV] = null;
+        allTemp.visited[singleStartParam.v] = true;
+        VParam startVParam = new VParam(null, singleStartParam.v);
+        allTemp.parents[singleStartParam.v] = null;
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
 
@@ -168,14 +168,14 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     //dfs
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
-    void singleTraverseByDfs(final SingleStartParam singleStartParam,
+    void singleTraverseByDfs(final VParam singleStartParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
         singleVo.directed = false;
-        VParam vParam = new VParam(null, singleStartParam.startV);
-        allTemp.parents[singleStartParam.startV] = null;
+        VParam vParam = new VParam(null, singleStartParam.v);
+        allTemp.parents[singleStartParam.v] = null;
         vParam.dfsVDepth = 0;
         singleTraverseByDfsRecur(vParam, singleTemp, allTemp, singleVo, allVo);
     }

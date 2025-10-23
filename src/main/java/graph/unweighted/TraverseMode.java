@@ -1,8 +1,8 @@
 package graph.unweighted;
 
 @FunctionalInterface
-public interface TraverseMode<SingleStartParam, SingleTemp, AllTemp, SingleVo, AllVo> {
+public interface TraverseMode<VParam, SingleTemp, AllTemp, SingleVo, AllVo> {
 
-    void singleTraverse(SingleStartParam singleStartParam, SingleTemp singleTemp, AllTemp allTemp, SingleVo singleVo, AllVo allVo);
+    void singleTraverse(VParam vParam, SingleTemp singleTemp, AllTemp allTemp, SingleVo singleVo, AllVo allVo);
 
 }

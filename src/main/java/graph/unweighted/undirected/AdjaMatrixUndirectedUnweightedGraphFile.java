@@ -140,7 +140,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void singleTraverseByBfs(final SingleStartParam singleStartParam,
+    void singleTraverseByBfs(final VParam singleStartParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
@@ -151,9 +151,9 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        allTemp.visited[singleStartParam.startV] = true;
-        VParam startVParam = new VParam(null, singleStartParam.startV);
-        allTemp.parents[singleStartParam.startV] = null;
+        allTemp.visited[singleStartParam.v] = true;
+        VParam startVParam = new VParam(null, singleStartParam.v);
+        allTemp.parents[singleStartParam.v] = null;
         startVParam.bfsVLevel = 0;
         queue.offer(startVParam);
 
@@ -199,14 +199,14 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //这里使用递归写法的时候，第一个参数v代表当前顶点v，不能代表起始顶点
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
-    void singleTraverseByDfs(final SingleStartParam singleStartParam,
+    void singleTraverseByDfs(final VParam singleStartParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
         singleVo.directed = false;
-        VParam vParam = new VParam(null, singleStartParam.startV);
-        allTemp.parents[singleStartParam.startV] = null;
+        VParam vParam = new VParam(null, singleStartParam.v);
+        allTemp.parents[singleStartParam.v] = null;
         vParam.dfsVDepth = 0;
         singleTraverseByDfsRecur(vParam, singleTemp, allTemp, singleVo, allVo);
     }
