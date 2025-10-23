@@ -138,9 +138,10 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    SingleVo bfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
+    void bfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo) {
 //        singleVo.bfsList = new LinkedList<>();
-        SingleVo singleVo = new SingleVo(false);
+//        SingleVo singleVo = new SingleVo(false);
+        singleVo.directed = false;
 
         //临时队列
         Queue<VParam> queue = new LinkedList<>();
@@ -184,7 +185,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
             }
 //            GraphUtil.visit(v);
         }
-        return singleVo;
+//        return singleVo;
     }
 
     //dfs 按深度连通
@@ -195,13 +196,14 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //这里使用递归写法的时候，第一个参数v代表当前顶点v，不能代表起始顶点
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
-    SingleVo dfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
-        SingleVo singleVo = new SingleVo(false);
+    void dfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo) {
+//        SingleVo singleVo = new SingleVo(false);
+        singleVo.directed = false;
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
         dfsRecur(vParam, allTemp, singleVo);
-        return singleVo;
+//        return singleVo;
     }
 
     void dfsRecur(final VParam vParam, final AllTemp allTemp, SingleVo singleVo) {

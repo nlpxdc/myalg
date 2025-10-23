@@ -116,8 +116,9 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    SingleVo bfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
-        SingleVo singleVo = new SingleVo(false);
+    void bfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo) {
+//        SingleVo singleVo = new SingleVo(false);
+        singleVo.directed = false;
         //临时队列
         Queue<VParam> queue = new LinkedList<>();
 
@@ -158,18 +159,19 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
 
             }
         }
-        return singleVo;
+//        return singleVo;
     }
     //dfs
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
-    SingleVo dfs(final SingleStartParam singleStartParam, final AllTemp allTemp) {
-        SingleVo singleVo = new SingleVo(false);
+    void dfs(final SingleStartParam singleStartParam, final AllTemp allTemp, SingleVo singleVo) {
+//        SingleVo singleVo = new SingleVo(false);
+        singleVo.directed = false;
         VParam vParam = new VParam(null, singleStartParam.startV);
         allTemp.parents[singleStartParam.startV] = null;
         vParam.dfsVDepth = 0;
         dfsRecur(vParam, allTemp, singleVo);
-        return singleVo;
+//        return singleVo;
     }
     void dfsRecur(final VParam vParam, final AllTemp allTemp, final SingleVo singleVo) {
         allTemp.visited[vParam.v] = true;

@@ -84,7 +84,9 @@ public class GraphUtil {
             SingleStartParam singleStartParam = new SingleStartParam(firstUnVisited);
             if (firstUnVisited != null) {
                 maxConnectedChildGraphCnt++;
-                SingleVo singleVo = maxConnectedChildGraphTraverse.accept(singleStartParam, allTemp);
+//                SingleVo singleVo = maxConnectedChildGraphTraverse.accept(singleStartParam, allTemp);
+                SingleVo singleVo = new SingleVo();
+                maxConnectedChildGraphTraverse.singleTraverse(singleStartParam, allTemp, singleVo);
                 allVo.directedList.add(singleVo.directed);
                 allVo.undirectedCyclicList.add(singleVo.undigraphBeCyclic());
                 allVo.directedCyclicList.add(singleVo.digraphBeCyclic());

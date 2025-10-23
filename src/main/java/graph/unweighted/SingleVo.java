@@ -11,7 +11,8 @@ import java.util.*;
 //import java.util.Set;
 
 public class SingleVo {
-    public final Boolean directed;
+//    public final Boolean directed;
+    public Boolean directed;
     //real param from out
 //    Integer startV;
 //    public final int n;
@@ -34,8 +35,9 @@ public class SingleVo {
     public final List<ArcParam> bfsArcList;
     public final List<ArcParam> dfsArcList;
 
-    public SingleVo(Boolean directed) {
-        this.directed = directed;
+//    public SingleVo(Boolean directed) {
+    public SingleVo() {
+//        this.directed = directed;
 //        this.n = n;
 //        visited = new boolean[n];
 //        dfsVStartNanoTime = System.nanoTime();
