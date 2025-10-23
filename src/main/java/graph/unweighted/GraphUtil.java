@@ -42,7 +42,7 @@ public class GraphUtil {
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
 //        vDfsDo.discoverTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
-        vDfsDo.discoverTime = ++allTemp.dfsVTime;
+        vDfsDo.discoverTime = ++allTemp.allDfsVTime;
     }
     public static void dfsFinishV(VParam vParam, AllTemp allTemp, SingleVo singleVo) {
         singleVo.dfsVFinishList.add(vParam.v);
@@ -50,7 +50,7 @@ public class GraphUtil {
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
         singleVo.dfsVVDfsDoMap.put(vParam.v, vDfsDo);
 //        vDfsDo.finishTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
-        vDfsDo.finishTime = ++allTemp.dfsVTime;
+        vDfsDo.finishTime = ++allTemp.allDfsVTime;
     }
 
     public static Integer getFirstUnVisited(boolean[] visited) {
