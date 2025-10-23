@@ -228,8 +228,8 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
                     arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
                     GraphUtil.dfsVisitArc(arcParam, singleVo);
                 } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
-                    int vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTime;
-                    int adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTime;
+                    int vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTimeNo;
+                    int adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTimeNo;
                     if (vDiscoverTime < adjUDiscoverTime) {
                         arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
                         GraphUtil.dfsVisitArc(arcParam, singleVo);

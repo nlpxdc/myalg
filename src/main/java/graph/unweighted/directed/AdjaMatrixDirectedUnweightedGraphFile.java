@@ -211,8 +211,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                         arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
                         GraphUtil.dfsVisitArc(arcParam, singleVo);
                     } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
-                        int vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTime;
-                        int adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTime;
+                        int vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTimeNo;
+                        int adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTimeNo;
                         if (vDiscoverTime < adjUDiscoverTime) {
                             arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
                             GraphUtil.dfsVisitArc(arcParam, singleVo);
@@ -299,6 +299,8 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     public List<Integer> allTopoOrderByDfs() {
         //dfs框架
         List<Integer> topoList = new LinkedList<>();
+
+        //必要时还能加上discover数组
 
         boolean[] visited = new boolean[n];
         int[] vStatuses = new int[n];

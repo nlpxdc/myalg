@@ -4,8 +4,8 @@ public class VDfsDo {
     Integer parent;
     Integer v;
 
-    public int discoverTime;
-    public int finishTime;
+    public int discoverTimeNo;
+    public int finishTimeNo;
 
     public VDfsDo(Integer parent, Integer v) {
         this.parent = parent;
