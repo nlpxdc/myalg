@@ -197,9 +197,11 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         singleVo.directed = true;
         allTemp.parents[singleStartVParam.v] = null;
         singleStartVParam.dfsVDepth = 0;
+        //这个等价于循环迭代
         singleTraverseByDfsRecur(singleStartVParam, singleTemp, allTemp, singleVo, allVo);
     }
 
+    //这个等价于循环迭代
     void singleTraverseByDfsRecur(final VParam vParam,
                                   final SingleTemp singleTemp,
                                   final AllTemp allTemp,
