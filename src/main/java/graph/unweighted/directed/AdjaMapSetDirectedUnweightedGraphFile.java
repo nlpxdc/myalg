@@ -157,10 +157,10 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
         //这里可以是任意startV n
         allTemp.visited[singleStartParam.v] = true;
-        VParam startVParam = new VParam(null, singleStartParam.v);
+//        VParam startVParam = new VParam(null, singleStartParam.v);
         allTemp.parents[singleStartParam.v] = null;
-        startVParam.bfsVLevel = 0;
-        queue.offer(startVParam);
+        singleStartParam.bfsVLevel = 0;
+        queue.offer(singleStartParam);
 
         while (!queue.isEmpty()) {
             //先访问当前自己

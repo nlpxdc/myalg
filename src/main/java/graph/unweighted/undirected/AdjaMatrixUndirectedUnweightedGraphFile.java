@@ -208,11 +208,11 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
                              final AllVo allVo) {
         //初始化部分
         singleVo.directed = false;
-        VParam vParam = new VParam(null, singleStartParam.v);
+//        VParam vParam = new VParam(null, singleStartParam.v);
         allTemp.parents[singleStartParam.v] = null;
-        vParam.dfsVDepth = 0;
+        singleStartParam.dfsVDepth = 0;
         //递归部分，这部分可以用栈的方式替代成循环迭代方式，就不用新开函数了，因为递归方式一定要额外定义函数
-        singleTraverseByDfsRecur(vParam, singleTemp, allTemp, singleVo, allVo);
+        singleTraverseByDfsRecur(singleStartParam, singleTemp, allTemp, singleVo, allVo);
     }
 
     void singleTraverseByDfsRecur(final VParam vParam,
