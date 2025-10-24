@@ -153,12 +153,12 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
 
         //这里可以是任意startV n
         allTemp.visited[singleStartParam.v] = true;
-        VParam startVParam = new VParam(null, singleStartParam.v);
+//        VParam startVParam = new VParam(null, singleStartParam.v);
         allTemp.parents[singleStartParam.v] = null;
-        startVParam.bfsVLevel = 0;
-        queue.offer(startVParam);
+        singleStartParam.bfsVLevel = 0;
+        queue.offer(singleStartParam);
 
-        //循环迭代部分，这部分没有递归
+        //循环迭代部分，这部分没有递归，是否可强行递归？
         while (!queue.isEmpty()) {
             //先访问当前自己
             VParam vParam = queue.poll();

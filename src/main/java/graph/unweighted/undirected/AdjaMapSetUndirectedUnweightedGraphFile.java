@@ -174,10 +174,10 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
                              final SingleVo singleVo,
                              final AllVo allVo) {
         singleVo.directed = false;
-        VParam vParam = new VParam(null, singleStartParam.v);
+//        VParam vParam = new VParam(null, singleStartParam.v);
         allTemp.parents[singleStartParam.v] = null;
-        vParam.dfsVDepth = 0;
-        singleTraverseByDfsRecur(vParam, singleTemp, allTemp, singleVo, allVo);
+        singleStartParam.dfsVDepth = 0;
+        singleTraverseByDfsRecur(singleStartParam, singleTemp, allTemp, singleVo, allVo);
     }
     void singleTraverseByDfsRecur(final VParam vParam,
                                   final SingleTemp singleTemp,
