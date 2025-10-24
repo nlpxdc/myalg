@@ -157,7 +157,6 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
         //这里可以是任意startV n
         allTemp.visited[singleStartVParam.v] = true;
-//        VParam startVParam = new VParam(null, singleStartVParam.v);
         allTemp.parents[singleStartVParam.v] = null;
         singleStartVParam.bfsVLevel = 0;
         queue.offer(singleStartVParam);
@@ -196,7 +195,6 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
                              final SingleVo singleVo,
                              final AllVo allVo) {
         singleVo.directed = true;
-//        VParam vParam = new VParam(null, singleStartVParam.v);
         allTemp.parents[singleStartVParam.v] = null;
         singleStartVParam.dfsVDepth = 0;
         singleTraverseByDfsRecur(singleStartVParam, singleTemp, allTemp, singleVo, allVo);
