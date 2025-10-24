@@ -118,7 +118,7 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void singleTraverseByBfs(final VParam singleStartParam,
+    void singleTraverseByBfs(final VParam singleStartVParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
@@ -128,11 +128,11 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        allTemp.visited[singleStartParam.v] = true;
-//        VParam startVParam = new VParam(null, singleStartParam.v);
-        allTemp.parents[singleStartParam.v] = null;
-        singleStartParam.bfsVLevel = 0;
-        queue.offer(singleStartParam);
+        allTemp.visited[singleStartVParam.v] = true;
+//        VParam startVParam = new VParam(null, singleStartVParam.v);
+        allTemp.parents[singleStartVParam.v] = null;
+        singleStartVParam.bfsVLevel = 0;
+        queue.offer(singleStartVParam);
 
         while (!queue.isEmpty()) {
             //先访问当前自己
@@ -168,16 +168,16 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
     //dfs
     //可以再加一个额外变量记录访问的节点总数，然后整体来限制递归访问的总数，一面错误导致爆掉
     //bfs因为不是递归，所以在自身逻辑中即可依赖递推迭代循环自身来控制总数限制，这是核心有别的地方
-    void singleTraverseByDfs(final VParam singleStartParam,
+    void singleTraverseByDfs(final VParam singleStartVParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
         singleVo.directed = false;
-//        VParam vParam = new VParam(null, singleStartParam.v);
-        allTemp.parents[singleStartParam.v] = null;
-        singleStartParam.dfsVDepth = 0;
-        singleTraverseByDfsRecur(singleStartParam, singleTemp, allTemp, singleVo, allVo);
+//        VParam vParam = new VParam(null, singleStartVParam.v);
+        allTemp.parents[singleStartVParam.v] = null;
+        singleStartVParam.dfsVDepth = 0;
+        singleTraverseByDfsRecur(singleStartVParam, singleTemp, allTemp, singleVo, allVo);
     }
     void singleTraverseByDfsRecur(final VParam vParam,
                                   final SingleTemp singleTemp,

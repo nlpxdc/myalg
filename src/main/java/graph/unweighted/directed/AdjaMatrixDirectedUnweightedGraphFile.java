@@ -125,7 +125,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     //bfs
-    void singleTraverseByBfs(final VParam singleStartParam,
+    void singleTraverseByBfs(final VParam singleStartVParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
@@ -135,11 +135,11 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        allTemp.visited[singleStartParam.v] = true;
-//        VParam startVParam = new VParam(null, singleStartParam.v);
-        allTemp.parents[singleStartParam.v] = null;
-        singleStartParam.bfsVLevel = 0;
-        queue.offer(singleStartParam);
+        allTemp.visited[singleStartVParam.v] = true;
+//        VParam startVParam = new VParam(null, singleStartVParam.v);
+        allTemp.parents[singleStartVParam.v] = null;
+        singleStartVParam.bfsVLevel = 0;
+        queue.offer(singleStartVParam);
 
         while (!queue.isEmpty()) {
             //先访问当前自己
@@ -172,16 +172,16 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         }
     }
     //dfs
-    void singleTraverseByDfs(final VParam singleStartParam,
+    void singleTraverseByDfs(final VParam singleStartVParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
         singleVo.directed = true;
-//        VParam vParam = new VParam(null, singleStartParam.v);
-        allTemp.parents[singleStartParam.v] = null;
-        singleStartParam.dfsVDepth = 0;
-        singleTraverseByDfsRecur(singleStartParam, singleTemp, allTemp, singleVo, allVo);
+//        VParam vParam = new VParam(null, singleStartVParam.v);
+        allTemp.parents[singleStartVParam.v] = null;
+        singleStartVParam.dfsVDepth = 0;
+        singleTraverseByDfsRecur(singleStartVParam, singleTemp, allTemp, singleVo, allVo);
     }
     void singleTraverseByDfsRecur(final VParam vParam,
                                   final SingleTemp singleTemp,

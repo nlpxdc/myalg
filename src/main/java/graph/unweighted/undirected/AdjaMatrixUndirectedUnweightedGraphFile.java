@@ -140,7 +140,7 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //bfs 按广度（层）连通
     //因为这个函数是非递归写法，所以这里的startV代表起始顶点，不是当前节点，有点和dfs区别
     //这里遍历连通图，不是遍历单个顶点的意思，这也和dfs有别，这里直接强调整个图。连通图而不是当前顶点
-    void singleTraverseByBfs(final VParam singleStartParam,
+    void singleTraverseByBfs(final VParam singleStartVParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
@@ -152,11 +152,11 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
         Queue<VParam> queue = new LinkedList<>();
 
         //这里可以是任意startV n
-        allTemp.visited[singleStartParam.v] = true;
-//        VParam startVParam = new VParam(null, singleStartParam.v);
-        allTemp.parents[singleStartParam.v] = null;
-        singleStartParam.bfsVLevel = 0;
-        queue.offer(singleStartParam);
+        allTemp.visited[singleStartVParam.v] = true;
+//        VParam startVParam = new VParam(null, singleStartVParam.v);
+        allTemp.parents[singleStartVParam.v] = null;
+        singleStartVParam.bfsVLevel = 0;
+        queue.offer(singleStartVParam);
 
         //循环迭代部分，这部分没有递归，是否可强行递归？
         while (!queue.isEmpty()) {
@@ -201,18 +201,18 @@ class AdjaMatrixUndirectedUnweightedGraph extends GraphMeta {
     //这里使用递归写法的时候，第一个参数v代表当前顶点v，不能代表起始顶点
     //如果使用显式栈的时候，那么可以和bfs的队列保持一致了，是可以代表startV
 //    void dfs(final int v, final boolean[] visited) {
-    void singleTraverseByDfs(final VParam singleStartParam,
+    void singleTraverseByDfs(final VParam singleStartVParam,
                              final SingleTemp singleTemp,
                              final AllTemp allTemp,
                              final SingleVo singleVo,
                              final AllVo allVo) {
         //初始化部分
         singleVo.directed = false;
-//        VParam vParam = new VParam(null, singleStartParam.v);
-        allTemp.parents[singleStartParam.v] = null;
-        singleStartParam.dfsVDepth = 0;
+//        VParam vParam = new VParam(null, singleStartVParam.v);
+        allTemp.parents[singleStartVParam.v] = null;
+        singleStartVParam.dfsVDepth = 0;
         //递归部分，这部分可以用栈的方式替代成循环迭代方式，就不用新开函数了，因为递归方式一定要额外定义函数
-        singleTraverseByDfsRecur(singleStartParam, singleTemp, allTemp, singleVo, allVo);
+        singleTraverseByDfsRecur(singleStartVParam, singleTemp, allTemp, singleVo, allVo);
     }
 
     void singleTraverseByDfsRecur(final VParam vParam,
