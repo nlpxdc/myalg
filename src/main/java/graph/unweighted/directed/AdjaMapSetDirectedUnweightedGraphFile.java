@@ -3,6 +3,7 @@ package graph.unweighted.directed;
 import graph.unweighted.*;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 //树和分治更有关联，关心节点中key值的大小，在这个上面做文章，
@@ -28,7 +29,7 @@ class AdjaMapSetDirectedUnweightedGraphApp {
         graph.addArc(0,1);
         graph.addArc(0,2);
         graph.addArc(1,2);
-        graph.addArc(2,1);
+//        graph.addArc(2,1);
 
 //        graph.addArc(0,3);
 ////        graph.addArc(0,4);
@@ -72,7 +73,9 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 
 //        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
 
-        List<Integer> topoOrderByBfsList = graph.allTopoOrderByBfs();
+//        List<Integer> topoOrderByBfsList = graph.allTopoOrderByBfs();
+
+        List<Integer> allTopoOrderByDfsList = graph.allTopoOrderByDfs();
 
     }
 }
@@ -303,7 +306,60 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
     @Override
     public List<Integer> allTopoOrderByDfs() {
-        return null;
+        //dfs框架
+        List<Integer> topoList = new LinkedList<>();
+
+        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容
+        //多个数组列式记录，不同于对象数组的行式记录
+
+        boolean[] visited = new boolean[n];
+        int[] vStatuses = new int[n];
+
+        try {
+            for (int i = 0; i < n; i++) {
+                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
+                if (firstUnVisited != null) {
+                    singleTopoOrderByDfs(firstUnVisited, visited, vStatuses, topoList);
+                } else {
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+        Collections.reverse(topoList);
+        return topoList;
+    }
+
+    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+        //初始化部分 nothing to do
+        //主体部分
+        singleTopoOrderByDfsRecur(v, visited, vStatuses, topoList);
+    }
+
+    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+        visited[v] = true;
+        vStatuses[v] = VStatusConstant.GRAY;
+        //discover
+
+        Set<Integer> jSet = adjaMapSet.get(v);
+        for (Integer j : jSet) {
+            if (!visited[j]) {
+                singleTopoOrderByDfsRecur(j, visited, vStatuses, topoList);
+            } else {
+                if (vStatuses[j] == VStatusConstant.GRAY) {
+                    //这里为什么用抛异常，因为可以直接停止整个递归调用，无须再进行下去了
+                    //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
+                    throw new RuntimeException("be cyclic, no topo order");
+                }
+            }
+        }
+
+        //finish
+        topoList.add(v);
+        vStatuses[v] = VStatusConstant.BLACK;
     }
 
 }
