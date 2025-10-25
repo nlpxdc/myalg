@@ -49,7 +49,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 
 //        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
 //        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
-        List<Integer> topoOrderByDfsList = graph.allTopoOrderByDfs();
+//        List<Integer> topoOrderByDfsList = graph.allTopoOrderByDfs();
     }
 
 }
@@ -295,62 +295,113 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
     @Override
     public List<Integer> allTopoOrderByDfs() {
+        if (n <= 0) {
+            throw new RuntimeException("invalid params");
+        }
         //dfs框架
-        List<Integer> topoList = new LinkedList<>();
+        AllTopoOrderByDfsVo allTopoOrderByDfsVo = new AllTopoOrderByDfsVo();
 
-        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容
+        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容，这个用来判断前向边forward和横叉边cross的
         //多个数组列式记录，不同于对象数组的行式记录
 
         boolean[] visited = new boolean[n];
         int[] vStatuses = new int[n];
 
-        try {
-            for (int v = 0; v < n; v++) {
+        for (int v = 0; v < n; v++) {
 //                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
-                if (!visited[v]) {
-                    singleTopoOrderByDfs(v, visited, vStatuses, topoList);
-                }
+            if (!visited[v]) {
+                singleTopoOrderByDfs(v, visited, vStatuses, allTopoOrderByDfsVo);
             }
-        } catch (SingleTopoOrderByDfsBeCyclicException ex) {
-            System.out.println(ex.getMessage());
-            return null;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            throw new RuntimeException("server error");
         }
 
-        Collections.reverse(topoList);
-        return topoList;
+//        try {
+//            for (int v = 0; v < n; v++) {
+////                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
+//                if (!visited[v]) {
+//                    singleTopoOrderByDfs(v, visited, vStatuses, topoList);
+//                }
+//            }
+//        } catch (SingleTopoOrderByDfsBeCyclicException ex) {
+//            System.out.println(ex.getMessage());
+//            return null;
+//        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            throw new RuntimeException("server error");
+//        }
+
+        if (allTopoOrderByDfsVo.beCyclic) {
+            allTopoOrderByDfsVo.topoList = Collections.emptyList();
+            return null;
+        } else {
+            Collections.reverse(allTopoOrderByDfsVo.topoList);
+            return allTopoOrderByDfsVo.topoList;
+        }
     }
 
-    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) throws SingleTopoOrderByDfsBeCyclicException {
+//    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) throws SingleTopoOrderByDfsBeCyclicException {
+//        //初始化部分 nothing to do
+//        //主体部分
+//        singleTopoOrderByDfsRecur(v, visited, vStatuses, topoList);
+//    }
+
+    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
         //初始化部分 nothing to do
         //主体部分
-        singleTopoOrderByDfsRecur(v, visited, vStatuses, topoList);
+        singleTopoOrderByDfsRecur(v, visited, vStatuses, allTopoOrderByDfsVo);
     }
 
     //递归里的短路操作，直接抛异常更简单，因为如果用return处理，那么外层需要小心处理if-else等各种问题，分支问题，非主体逻辑，所以用抛异常
     //但是异常最好是自定义特殊异常，这样方便区分实际业务情况，避免因代码错误导致的系统异常
-    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) throws SingleTopoOrderByDfsBeCyclicException {
+//    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) throws SingleTopoOrderByDfsBeCyclicException {
+//        visited[v] = true;
+//        vStatuses[v] = VStatusConstant.GRAY;
+//        //discover
+//        for (int j = 0; j < n; j++) {
+//            if (adjaMatrix[v][j]) {
+//                if (!visited[j]) {
+//                    singleTopoOrderByDfsRecur(j, visited, vStatuses, topoList);
+//                } else {
+//                    if (vStatuses[j] == VStatusConstant.GRAY) {
+//                        //这里为什么用抛异常，因为可以直接停止整个递归调用，无须再进行下去了
+//                        //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
+//                        //这里是短路操作，需要退出，不仅退出自身调用，要退出整个递归，即退出整个循环迭代，用抛异常最简单，用return麻烦
+//                        throw new SingleTopoOrderByDfsBeCyclicException("be cyclic, no topo order");
+//                    }
+//                }
+//            }
+//        }
+//        //finish
+//        topoList.add(v);
+//        vStatuses[v] = VStatusConstant.BLACK;
+//    }
+
+    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
+        //短路判断
+        if (allTopoOrderByDfsVo.beCyclic) {
+            return;
+        }
+
         visited[v] = true;
         vStatuses[v] = VStatusConstant.GRAY;
         //discover
         for (int j = 0; j < n; j++) {
             if (adjaMatrix[v][j]) {
                 if (!visited[j]) {
-                    singleTopoOrderByDfsRecur(j, visited, vStatuses, topoList);
+                    singleTopoOrderByDfsRecur(j, visited, vStatuses, allTopoOrderByDfsVo);
                 } else {
                     if (vStatuses[j] == VStatusConstant.GRAY) {
                         //这里为什么用抛异常，因为可以直接停止整个递归调用，无须再进行下去了
                         //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
                         //这里是短路操作，需要退出，不仅退出自身调用，要退出整个递归，即退出整个循环迭代，用抛异常最简单，用return麻烦
-                        throw new SingleTopoOrderByDfsBeCyclicException("be cyclic, no topo order");
+                        allTopoOrderByDfsVo.beCyclic = true;
+                        allTopoOrderByDfsVo.topoList = Collections.emptyList();
+//                        Collections.unmodifiableList(topoList);
                     }
                 }
             }
         }
         //finish
-        topoList.add(v);
+        allTopoOrderByDfsVo.topoList.add(v);
         vStatuses[v] = VStatusConstant.BLACK;
     }
 

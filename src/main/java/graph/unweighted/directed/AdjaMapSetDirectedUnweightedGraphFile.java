@@ -75,7 +75,7 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 
 //        List<Integer> topoOrderByBfsList = graph.allTopoOrderByBfs();
 
-        List<Integer> allTopoOrderByDfsList = graph.allTopoOrderByDfs();
+//        List<Integer> allTopoOrderByDfsList = graph.allTopoOrderByDfs();
 
     }
 }
@@ -306,29 +306,30 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
     @Override
     public List<Integer> allTopoOrderByDfs() {
-        //dfs框架
-        List<Integer> topoList = new LinkedList<>();
-
-        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容
-        //多个数组列式记录，不同于对象数组的行式记录
-
-        boolean[] visited = new boolean[n];
-        int[] vStatuses = new int[n];
-
-        try {
-            for (int v = 0; v < n; v++) {
-//                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
-                if (!visited[v]) {
-                    singleTopoOrderByDfs(v, visited, vStatuses, topoList);
-                }
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return null;
-        }
-
-        Collections.reverse(topoList);
-        return topoList;
+        return null;
+//        //dfs框架
+//        List<Integer> topoList = new LinkedList<>();
+//
+//        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容
+//        //多个数组列式记录，不同于对象数组的行式记录
+//
+//        boolean[] visited = new boolean[n];
+//        int[] vStatuses = new int[n];
+//
+//        try {
+//            for (int v = 0; v < n; v++) {
+////                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
+//                if (!visited[v]) {
+//                    singleTopoOrderByDfs(v, visited, vStatuses, topoList);
+//                }
+//            }
+//        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            return null;
+//        }
+//
+//        Collections.reverse(topoList);
+//        return topoList;
     }
 
     private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
