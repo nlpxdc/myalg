@@ -33,10 +33,18 @@ public class GraphUtil {
             System.out.println(arcParam);
         }
     }
-    public static void bfsVisitV(VParam vParam, SingleVo singleVo) {
+    public static void bfsVisitV(final VParam vParam,
+                                 final SingleTemp singleTemp,
+                                 final AllTemp allTemp,
+                                 final SingleVo singleVo,
+                                 final AllVo allVo) {
         singleVo.bfsVList.add(vParam);
     }
-    public static void dfsDiscoverV(VParam vParam, AllTemp allTemp, SingleVo singleVo) {
+    public static void dfsDiscoverV(final VParam vParam,
+                                    final SingleTemp singleTemp,
+                                    final AllTemp allTemp,
+                                    final SingleVo singleVo,
+                                    final AllVo allVo) {
         singleVo.dfsVDiscoverList.add(vParam.v);
         singleVo.dfsVDiscoverFinishList.add(String.format("D%d", vParam.v));
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
@@ -44,7 +52,11 @@ public class GraphUtil {
 //        vDfsDo.discoverTime = System.nanoTime() - singleVo.dfsVStartNanoTime;
         vDfsDo.discoverTimeNo = ++allTemp.allDfsVTimeNo;
     }
-    public static void dfsFinishV(VParam vParam, AllTemp allTemp, SingleVo singleVo) {
+    public static void dfsFinishV(final VParam vParam,
+                                  final SingleTemp singleTemp,
+                                  final AllTemp allTemp,
+                                  final SingleVo singleVo,
+                                  final AllVo allVo) {
         singleVo.dfsVFinishList.add(vParam.v);
         singleVo.dfsVDiscoverFinishList.add(String.format("F%d", vParam.v));
         VDfsDo vDfsDo = singleVo.dfsVVDfsDoMap.getOrDefault(vParam.v, new VDfsDo(vParam.parent, vParam.v));
