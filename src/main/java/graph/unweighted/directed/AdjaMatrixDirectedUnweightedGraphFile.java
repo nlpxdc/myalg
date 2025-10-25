@@ -311,22 +311,27 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                     singleTopoOrderByDfs(v, visited, vStatuses, topoList);
                 }
             }
-        } catch (Exception ex) {
+        } catch (SingleTopoOrderByDfsBeCyclicException ex) {
             System.out.println(ex.getMessage());
             return null;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            throw new RuntimeException("server error");
         }
 
         Collections.reverse(topoList);
         return topoList;
     }
 
-    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) throws SingleTopoOrderByDfsBeCyclicException {
         //初始化部分 nothing to do
         //主体部分
         singleTopoOrderByDfsRecur(v, visited, vStatuses, topoList);
     }
 
-    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+    //递归里的短路操作，直接抛异常更简单，因为如果用return处理，那么外层需要小心处理if-else等各种问题，分支问题，非主体逻辑，所以用抛异常
+    //但是异常最好是自定义特殊异常，这样方便区分实际业务情况，避免因代码错误导致的系统异常
+    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) throws SingleTopoOrderByDfsBeCyclicException {
         visited[v] = true;
         vStatuses[v] = VStatusConstant.GRAY;
         //discover
@@ -338,7 +343,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                     if (vStatuses[j] == VStatusConstant.GRAY) {
                         //这里为什么用抛异常，因为可以直接停止整个递归调用，无须再进行下去了
                         //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
-                        throw new RuntimeException("be cyclic, no topo order");
+                        throw new SingleTopoOrderByDfsBeCyclicException("be cyclic, no topo order");
                     }
                 }
             }
