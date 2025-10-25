@@ -343,6 +343,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                     if (vStatuses[j] == VStatusConstant.GRAY) {
                         //这里为什么用抛异常，因为可以直接停止整个递归调用，无须再进行下去了
                         //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
+                        //这里是短路操作，需要退出，不仅退出自身调用，要退出整个递归，即退出整个循环迭代，用抛异常最简单，用return麻烦
                         throw new SingleTopoOrderByDfsBeCyclicException("be cyclic, no topo order");
                     }
                 }
