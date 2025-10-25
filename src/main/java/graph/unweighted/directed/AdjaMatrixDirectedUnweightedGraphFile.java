@@ -400,9 +400,9 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                 }
             }
         }
+        vStatuses[v] = VStatusConstant.BLACK;
         //finish
         singleTopoOrderByDfsRecurFinishV(v, visited, vStatuses, allTopoOrderByDfsVo);
-        vStatuses[v] = VStatusConstant.BLACK;
     }
 
     private void singleTopoOrderByDfsRecurFinishV(Integer v, boolean[] visited, int[] vStatuses, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
