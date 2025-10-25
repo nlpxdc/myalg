@@ -53,14 +53,14 @@ public class GraphUtil {
         vDfsDo.finishTimeNo = ++allTemp.allDfsVTimeNo;
     }
 
-    public static Integer getFirstUnVisited(boolean[] visited) {
-        for (int i = 0; i < visited.length; i++) {
-            if (!visited[i]) {
-                return i;
-            }
-        }
-        return null;
-    }
+//    public static Integer getFirstUnVisited(boolean[] visited) {
+//        for (int i = 0; i < visited.length; i++) {
+//            if (!visited[i]) {
+//                return i;
+//            }
+//        }
+//        return null;
+//    }
 
     //这里的n是graph的metainfo，且必须是final的不能修改，可以改成单一对象，对象字段也是final的不能改变，因为都是元信息
     //但是这里因为目前只需要一个图的顶点总数即可，所以不额外定义对象了，如果两个或多于两个元信息，那么可以额外定义对象，这里不做复杂处理了
@@ -77,10 +77,10 @@ public class GraphUtil {
         AllTemp allTemp = new AllTemp(graphMeta);
 
         int maxConnectedChildGraphCnt = 0;
-        for (int i = 0; i < graphMeta.n; i++) {
-            Integer firstUnVisited = getFirstUnVisited(allTemp.visited);
-            VParam singleStartVParam = new VParam(null, firstUnVisited);
-            if (firstUnVisited != null) {
+        for (int v = 0; v < graphMeta.n; v++) {
+//            Integer firstUnVisited = getFirstUnVisited(allTemp.visited);
+            if (!allTemp.visited[v]) {
+                VParam singleStartVParam = new VParam(null, v);
                 maxConnectedChildGraphCnt++;
                 SingleVo singleVo = new SingleVo();
                 SingleTemp singleTemp = new SingleTemp();
@@ -93,8 +93,6 @@ public class GraphUtil {
                 allVo.dfsFinishListList.add(singleVo.dfsVFinishList);
                 allVo.dfsDiscoverFinishListList.add(singleVo.dfsVDiscoverFinishList);
                 allVo.dfsVDfsDoMapList.add(singleVo.dfsVVDfsDoMap);
-            } else {
-                break;
             }
         }
         allVo.childGraphCnt = maxConnectedChildGraphCnt;

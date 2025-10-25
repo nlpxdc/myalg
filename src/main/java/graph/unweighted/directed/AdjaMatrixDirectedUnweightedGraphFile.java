@@ -305,12 +305,10 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         int[] vStatuses = new int[n];
 
         try {
-            for (int i = 0; i < n; i++) {
-                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
-                if (firstUnVisited != null) {
-                    singleTopoOrderByDfs(firstUnVisited, visited, vStatuses, topoList);
-                } else {
-                    break;
+            for (int v = 0; v < n; v++) {
+//                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
+                if (!visited[v]) {
+                    singleTopoOrderByDfs(v, visited, vStatuses, topoList);
                 }
             }
         } catch (Exception ex) {
