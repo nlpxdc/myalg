@@ -5,28 +5,28 @@ import graph.unweighted.undirected.EdgeParam;
 
 public class GraphUtil {
 
-    //无向边要判重
+    //无向边要判重，入参可带AllVo
     public static void bfsVisitEdge(EdgeParam edgeParam, SingleVo singleVo) {
         if (!singleVo.bfsEdgeList.contains(edgeParam)) {
             singleVo.bfsEdgeList.add(edgeParam);
             System.out.println(edgeParam);
         }
     }
-    //无向边要判重
+    //无向边要判重，入参可带AllVo
     public static void dfsVisitEdge(EdgeParam edgeParam, SingleVo singleVo) {
         if (!singleVo.dfsEdgeList.contains(edgeParam)) {
             singleVo.dfsEdgeList.add(edgeParam);
             System.out.println(edgeParam);
         }
     }
-    //有向边可以不判，因为理论上不会重复，极致性能去掉判重
+    //有向边可以不判，因为理论上不会重复，极致性能去掉判重，入参可带AllVo
     public static void bfsVisitArc(ArcParam arcParam, SingleVo singleVo) {
         if (!singleVo.bfsArcList.contains(arcParam)) {
             singleVo.bfsArcList.add(arcParam);
             System.out.println(arcParam);
         }
     }
-    //有向边可以不判，因为理论上不会重复，极致性能去掉判重
+    //有向边可以不判，因为理论上不会重复，极致性能去掉判重，入参可带AllVo
     public static void dfsVisitArc(ArcParam arcParam, SingleVo singleVo) {
         if (!singleVo.dfsArcList.contains(arcParam)) {
             singleVo.dfsArcList.add(arcParam);
