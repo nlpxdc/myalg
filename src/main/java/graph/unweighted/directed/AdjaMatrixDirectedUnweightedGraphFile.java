@@ -418,13 +418,11 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
     }
 
     private void singleTopoOrderByDfsRecurDiscoverV(Integer v, AllTopoOrderByDfsTemp allTopoOrderByDfsTemp, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
-        ++allTopoOrderByDfsTemp.timeNo;
-        allTopoOrderByDfsTemp.discoverVTimes[v] = allTopoOrderByDfsTemp.timeNo;
+        allTopoOrderByDfsTemp.discoverVTimes[v] = ++allTopoOrderByDfsTemp.timeNo;
     }
 
     private void singleTopoOrderByDfsRecurFinishV(Integer v, AllTopoOrderByDfsTemp allTopoOrderByDfsTemp, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
-        ++allTopoOrderByDfsTemp.timeNo;
-        allTopoOrderByDfsTemp.finishVTimes[v] = allTopoOrderByDfsTemp.timeNo;
+        allTopoOrderByDfsTemp.finishVTimes[v] = ++allTopoOrderByDfsTemp.timeNo;
         allTopoOrderByDfsVo.topoList.add(v);
     }
 
