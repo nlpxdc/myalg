@@ -49,7 +49,7 @@ class AdjaMatrixDirectedUnweightedGraphApp {
 
 //        Map<Integer, Integer> inDegreeMap = graph.calcInDegreeMap();
 //        List<Integer> topoOrderByBfsList = graph.topoOrderByBfs();
-//        List<Integer> topoOrderByDfsList = graph.allTopoOrderByDfs();
+        List<Integer> topoOrderByDfsList = graph.allTopoOrderByDfs();
     }
 
 }
@@ -330,7 +330,7 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 //        }
 
         if (allTopoOrderByDfsVo.beCyclic) {
-            allTopoOrderByDfsVo.topoList = Collections.emptyList();
+            allTopoOrderByDfsVo.topoList = null;
             return null;
         } else {
             Collections.reverse(allTopoOrderByDfsVo.topoList);
@@ -394,15 +394,19 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
                         //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
                         //这里是短路操作，需要退出，不仅退出自身调用，要退出整个递归，即退出整个循环迭代，用抛异常最简单，用return麻烦
                         allTopoOrderByDfsVo.beCyclic = true;
-                        allTopoOrderByDfsVo.topoList = Collections.emptyList();
+                        allTopoOrderByDfsVo.topoList = null;
 //                        Collections.unmodifiableList(topoList);
                     }
                 }
             }
         }
         //finish
-        allTopoOrderByDfsVo.topoList.add(v);
+        singleTopoOrderByDfsRecurFinishV(v, visited, vStatuses, allTopoOrderByDfsVo);
         vStatuses[v] = VStatusConstant.BLACK;
+    }
+
+    private void singleTopoOrderByDfsRecurFinishV(Integer v, boolean[] visited, int[] vStatuses, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
+        allTopoOrderByDfsVo.topoList.add(v);
     }
 
 }
