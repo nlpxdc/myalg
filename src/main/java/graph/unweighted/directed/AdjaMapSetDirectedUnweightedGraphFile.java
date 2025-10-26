@@ -29,7 +29,7 @@ class AdjaMapSetDirectedUnweightedGraphApp {
         graph.addArc(0,1);
         graph.addArc(0,2);
         graph.addArc(1,2);
-//        graph.addArc(2,1);
+        graph.addArc(2,1);
 
 //        graph.addArc(0,3);
 ////        graph.addArc(0,4);
@@ -75,7 +75,7 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 
 //        List<Integer> topoOrderByBfsList = graph.allTopoOrderByBfs();
 
-//        List<Integer> allTopoOrderByDfsList = graph.allTopoOrderByDfs();
+        List<Integer> allTopoOrderByDfsList = graph.allTopoOrderByDfs();
 
     }
 }
@@ -306,58 +306,100 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
 
     @Override
     public List<Integer> allTopoOrderByDfs() {
+        if (n <= 0) {
+            throw new RuntimeException("invalid params");
+        }
         //dfs框架
-        List<Integer> topoList = new LinkedList<>();
+        AllTopoOrderByDfsVo allTopoOrderByDfsVo = new AllTopoOrderByDfsVo();
 
-        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容
+        //必要时还能加上discoverTimeNo和finishTimeNo数组 属于vo，亦可用来调条件判断，配合temp内容，这个用来判断前向边forward和横叉边cross的
         //多个数组列式记录，不同于对象数组的行式记录
 
-        boolean[] visited = new boolean[n];
-        int[] vStatuses = new int[n];
+        AllTopoOrderByDfsTemp allTopoOrderByDfsTemp = new AllTopoOrderByDfsTemp(n);
 
-        try {
-            for (int v = 0; v < n; v++) {
+        for (int v = 0; v < n; v++) {
 //                Integer firstUnVisited = GraphUtil.getFirstUnVisited(visited);
-                if (!visited[v]) {
-                    singleTopoOrderByDfs(v, visited, vStatuses, topoList);
-                }
+            if (!allTopoOrderByDfsTemp.visited[v]) {
+                singleTopoOrderByDfs(v, allTopoOrderByDfsTemp, allTopoOrderByDfsVo);
             }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return null;
         }
 
-        Collections.reverse(topoList);
-        return topoList;
+        if (allTopoOrderByDfsVo.beCyclic) {
+            allTopoOrderByDfsVo.topoList = null;
+            return null;
+        } else {
+            Collections.reverse(allTopoOrderByDfsVo.topoList);
+            return allTopoOrderByDfsVo.topoList;
+        }
     }
 
-    private void singleTopoOrderByDfs(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
+    private void singleTopoOrderByDfs(Integer v,
+                                      AllTopoOrderByDfsTemp allTopoOrderByDfsTemp,
+                                      AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
         //初始化部分 nothing to do
         //主体部分
-        singleTopoOrderByDfsRecur(v, visited, vStatuses, topoList);
+        singleTopoOrderByDfsRecur(v, allTopoOrderByDfsTemp, allTopoOrderByDfsVo);
     }
 
-    private void singleTopoOrderByDfsRecur(Integer v, boolean[] visited, int[] vStatuses, List<Integer> topoList) {
-        visited[v] = true;
-        vStatuses[v] = VStatusConstant.GRAY;
+    private void singleTopoOrderByDfsRecur(Integer v,
+                                           AllTopoOrderByDfsTemp allTopoOrderByDfsTemp,
+                                           AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
+        //短路判断
+        if (allTopoOrderByDfsVo.beCyclic) {
+            return;
+        }
+
+        allTopoOrderByDfsTemp.visited[v] = true;
+        allTopoOrderByDfsTemp.vStatuses[v] = VStatusConstant.GRAY;
         //discover
+        singleTopoOrderByDfsRecurDiscoverV(v, allTopoOrderByDfsTemp, allTopoOrderByDfsVo);
 
         Set<Integer> jSet = adjaMapSet.get(v);
         for (Integer j : jSet) {
-            if (!visited[j]) {
-                singleTopoOrderByDfsRecur(j, visited, vStatuses, topoList);
+            if (!allTopoOrderByDfsTemp.visited[j]) {
+                singleTopoOrderByDfsRecur(j, allTopoOrderByDfsTemp, allTopoOrderByDfsVo);
             } else {
-                if (vStatuses[j] == VStatusConstant.GRAY) {
+                if (allTopoOrderByDfsTemp.vStatuses[j] == VStatusConstant.GRAY) {
                     //这里为什么用抛异常，因为可以直接停止整个递归调用，无须再进行下去了
                     //如果使用return，那就要做很多if-else的额外判断，因为这里是递归别忘记了，所以这里抛异常最简单
-                    throw new RuntimeException("be cyclic, no topo order");
+                    //这里是短路操作，需要退出，不仅退出自身调用，要退出整个递归，即退出整个循环迭代，用抛异常最简单，用return麻烦
+                    allTopoOrderByDfsVo.beCyclic = true;
+                    allTopoOrderByDfsVo.topoList = null;
+//                        Collections.unmodifiableList(topoList);
+                } else if (allTopoOrderByDfsTemp.vStatuses[j] == VStatusConstant.BLACK) {
+                    int vDiscoverTime = allTopoOrderByDfsTemp.discoverVTimes[v];
+                    int jDiscoverTime = allTopoOrderByDfsTemp.discoverVTimes[j];
+                    if (vDiscoverTime < jDiscoverTime) {
+                        //forward arc
+                    } else if (jDiscoverTime < vDiscoverTime) {
+                        //cross arc
+                    }
                 }
             }
         }
-
+//        for (int j = 0; j < n; j++) {
+//            if (adjaMatrix[v][j]) {
+//
+//            }
+//        }
+//        Set<Integer> jSet = adjaMapSet.get(v);
+//        for (Integer j : jSet) {
+//
+//        }
+        allTopoOrderByDfsTemp.vStatuses[v] = VStatusConstant.BLACK;
         //finish
-        topoList.add(v);
-        vStatuses[v] = VStatusConstant.BLACK;
+        singleTopoOrderByDfsRecurFinishV(v, allTopoOrderByDfsTemp, allTopoOrderByDfsVo);
+    }
+
+    private void singleTopoOrderByDfsRecurDiscoverV(Integer v, AllTopoOrderByDfsTemp allTopoOrderByDfsTemp, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
+        allTopoOrderByDfsTemp.discoverVTimes[v] = ++allTopoOrderByDfsTemp.timeNo;
+    }
+
+    private void singleTopoOrderByDfsRecurFinishV(Integer v, AllTopoOrderByDfsTemp allTopoOrderByDfsTemp, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
+        allTopoOrderByDfsTemp.finishVTimes[v] = ++allTopoOrderByDfsTemp.timeNo;
+        if (allTopoOrderByDfsVo.topoList != null) {
+            allTopoOrderByDfsVo.topoList.add(v);
+        }
     }
 
 }

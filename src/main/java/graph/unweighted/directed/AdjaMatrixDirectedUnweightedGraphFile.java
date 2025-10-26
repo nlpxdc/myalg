@@ -423,7 +423,9 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
 
     private void singleTopoOrderByDfsRecurFinishV(Integer v, AllTopoOrderByDfsTemp allTopoOrderByDfsTemp, AllTopoOrderByDfsVo allTopoOrderByDfsVo) {
         allTopoOrderByDfsTemp.finishVTimes[v] = ++allTopoOrderByDfsTemp.timeNo;
-        allTopoOrderByDfsVo.topoList.add(v);
+        if (allTopoOrderByDfsVo.topoList != null) {
+            allTopoOrderByDfsVo.topoList.add(v);
+        }
     }
 
 }
