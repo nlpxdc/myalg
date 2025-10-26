@@ -1,4 +1,4 @@
-package forest;
+package forestvariant;
 
 //并查集
 class AryUnionFindSetApp {
