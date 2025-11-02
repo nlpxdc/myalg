@@ -1,6 +1,6 @@
 package alg2.repeat.recurrence;
 
-public class Q001Sum100 {
+class Q001Sum100File {
 
     public static void main(String[] args) {
         int sum = 0;
