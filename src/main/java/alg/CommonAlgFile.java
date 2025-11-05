@@ -6,5 +6,4 @@ class CommonAlgApp {
     }
 }
 
-//滑动窗口 sliding window 不变长度
-//滚动窗口 rolling window 可变长度
+//滑动窗口 sliding window 不变长 可变长
