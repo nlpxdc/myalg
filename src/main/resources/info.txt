@@ -21,6 +21,8 @@ static long qpow(long a, long b, long mod) {
     return res;
 }
 
+
+蒙哥马利规约 = 用移位+乘法代替除法，让大数模乘飞起，是快速幂底层加速器。
 precompute: R = 2^k , R⁻¹ mod p , p' = (-p⁻¹) mod R
 
 function mont_reduce(T):        // T = aR*bR = abR²
@@ -28,4 +30,3 @@ function mont_reduce(T):        // T = aR*bR = abR²
     t = (T + m*p) >> k          // 右移代替除 p
     if t ≥ p: t -= p            // 最终归一
     return t                    // = abR mod p  （仍在域内）
-    
