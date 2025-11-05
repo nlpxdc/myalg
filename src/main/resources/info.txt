@@ -1,2 +1,31 @@
 三目运算符换成位运算，如 (x < y ? 1 : 0) → -((x-y)>>31)&1，消除分支
 JVM 的 JIT 对“小常量计数”的循环会自动展开
+
+奇偶判断：x & 1 == 1 ⇔ 奇数
+交换两数：a ^= b; b ^= a; a ^= b;
+快速幂：x << n 等价 x * 2ⁿ，x >> n 等价 x // 2ⁿ
+
+BigInteger base = new BigInteger("7");
+BigInteger exp  = new BigInteger("2025");
+BigInteger mod  = new BigInteger("1000000007");
+System.out.println(base.modPow(exp, mod)); // 7^2025 % 1e9+7
+
+static long qpow(long a, long b, long mod) {
+    long res = 1L;
+    a %= mod;
+    while (b > 0) {
+        if ((b & 1) == 1) res = res * a % mod;
+        a = a * a % mod;
+        b >>= 1;
+    }
+    return res;
+}
+
+precompute: R = 2^k , R⁻¹ mod p , p' = (-p⁻¹) mod R
+
+function mont_reduce(T):        // T = aR*bR = abR²
+    m = (T mod R) * p' mod R    // 低位乘一次
+    t = (T + m*p) >> k          // 右移代替除 p
+    if t ≥ p: t -= p            // 最终归一
+    return t                    // = abR mod p  （仍在域内）
+    
