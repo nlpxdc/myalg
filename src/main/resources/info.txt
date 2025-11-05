@@ -31,3 +31,6 @@ function mont_reduce(T):        // T = aR*bR = abR²
     t = (T + m*p) >> k          // 右移代替除 p
     if t ≥ p: t -= p            // 最终归一
     return t                    // = abR mod p  （仍在域内）
+
+链式前向星
+一维数组模拟单链表
