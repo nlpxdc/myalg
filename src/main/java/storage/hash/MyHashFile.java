@@ -30,9 +30,9 @@ class MyHashFile {
         String def = new String("def");
         String ghi = new String("ghi");
 
-        stringAry[myHashCode("abc")] = abc;
-        stringAry[myHashCode("def")] = def;
-        stringAry[myHashCode("ghi")] = ghi;
+        stringAry[myHashCode("abc")%100000] = abc;
+        stringAry[myHashCode("def")%100000] = def;
+        stringAry[myHashCode("ghi")%100000] = ghi;
 
     }
 
