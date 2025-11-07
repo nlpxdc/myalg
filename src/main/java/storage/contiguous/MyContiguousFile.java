@@ -27,6 +27,8 @@ class MyContiguousFile {
 
         MyObj[] myObjs = new MyObj[100000];
 
+        //头插O(n)，尾插O(1)
+
     }
 }
 

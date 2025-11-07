@@ -11,6 +11,8 @@ class MyLinkedFile {
         myNode1.next = myNode2;
         myNode2.next = null;
 
+        //头插O(1)，尾插 单链O(n) 双链O(1)
+
     }
 }
 
