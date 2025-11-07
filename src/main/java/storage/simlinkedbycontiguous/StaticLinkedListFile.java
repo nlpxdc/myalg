@@ -4,25 +4,60 @@ class StaticLinkedListFileApp {
     public static void main(String[] args) {
         System.out.println("aa");
 
-        MyNode[] myNodes = new MyNode[100000];
+        MyObj[] myObjs = new MyObj[100000];
 
-        int headIdx = 123;
+        int chainAHeadIdx = 1123;
+        int chainBHeadIdx = 2456;
+        int chainCHeadIdx = 3789;
 
-        MyNode myNode0 = new MyNode();
-        myNodes[123] = myNode0;
-        myNode0.nextIdx = 456;
+        int[] chainHeadIdxAry = new int[3];
+        chainHeadIdxAry[0] = chainAHeadIdx;
+        chainHeadIdxAry[1] = chainBHeadIdx;
+        chainHeadIdxAry[2] = chainCHeadIdx;
 
-        MyNode myNode1 = new MyNode();
-        myNodes[456] = myNode1;
-        myNode1.nextIdx = 789;
+        //头插O1 尾插On
 
-        MyNode myNode2 = new MyNode();
-        myNodes[789] = myNode2;
-        myNode2.nextIdx = -1;
+        MyObj myObja0 = new MyObj();
+        myObjs[1123] = myObja0;
+        myObja0.nextIdx = 1133;
+
+        MyObj myObja1 = new MyObj();
+        myObjs[1133] = myObja1;
+        myObja1.nextIdx = 1143;
+
+        MyObj myObja2 = new MyObj();
+        myObjs[1143] = myObja2;
+        myObja2.nextIdx = -1;
+
+        MyObj myObjb0 = new MyObj();
+        myObjs[2456] = myObjb0;
+        myObjb0.nextIdx = 2466;
+
+        MyObj myObjb1 = new MyObj();
+        myObjs[2466] = myObjb1;
+        myObjb1.nextIdx = 2476;
+
+        MyObj myObjb2 = new MyObj();
+        myObjs[2476] = myObjb2;
+        myObjb2.nextIdx = -1;
+
+        MyObj myObjc0 = new MyObj();
+        myObjs[3789] = myObjc0;
+        myObjc0.nextIdx = 3779;
+
+        MyObj myObjc1 = new MyObj();
+        myObjs[3779] = myObjc1;
+        myObjc1.nextIdx = 3769;
+
+        MyObj myObjc2 = new MyObj();
+        myObjs[3769] = myObjc2;
+        myObjc2.nextIdx = -1;
+
     }
+
 }
 
-class MyNode {
+class MyObj {
     Object val;
     int nextIdx;
 }
