@@ -36,4 +36,6 @@ class ArcAryGraph6 {
         vertexOutArcsHeadIdxAry[from] = outArcCnt-1;
     }
 
+    //写下bfs和dfs，应该可以继承元图抽象类
+
 }
