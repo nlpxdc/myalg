@@ -1,5 +1,10 @@
 package graph.weighted.directed;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 class ArcAryGraphApp3 {
     public static void main(String[] args) {
         ArcAryGraph3 arcAryGraph = new ArcAryGraph3();
@@ -36,7 +41,11 @@ class ArcAryGraph3 {
 
     void addArc(int from, int to, int weight) {
         arcCnt++;
-        Vertex vertex = vertexAry[from];
+        List<Vertex> list = Arrays.stream(vertexAry)
+                .filter(Objects::nonNull)
+                .filter(vertex -> vertex.vertexNo == from)
+                .collect(Collectors.toList());
+        Vertex vertex = list.get(0);
         vertex.outArcCnt++;
         Arc arc = new Arc(from, to, weight);
         vertex.outArcAry[vertex.outArcCnt-1] = arc;
