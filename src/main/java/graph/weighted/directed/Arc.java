@@ -6,6 +6,7 @@ public class Arc {
     int from;
     int to;
     int weight;
+    int nextIdx;
 
 //    public Arc(String from , String to, int weight) {
 //        this.from = from;
@@ -13,10 +14,11 @@ public class Arc {
 //        this.weight = weight;
 //    }
 
-    public Arc(int from , int to, int weight) {
+    public Arc(int from , int to, int weight, int nextIdx) {
         this.from = from;
         this.to = to;
         this.weight = weight;
+        this.nextIdx = nextIdx;
     }
 
 }
