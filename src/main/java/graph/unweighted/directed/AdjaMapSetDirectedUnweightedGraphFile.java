@@ -64,11 +64,11 @@ class AdjaMapSetDirectedUnweightedGraphApp {
 
         //bfs
 //        AllVo allVo = graph.traverseByBfs();
-//        AllVo allVo = graph.allTraverseByBfs();
+        AllVo allVo = graph.allTraverseByBfs();
 
         //dfs
 //        AllVo allVo1 = graph.traverseByDfs();
-        AllVo allVo = graph.allTraverseByDfs();
+//        AllVo allVo = graph.allTraverseByDfs();
 
 //        List<Integer> topoSortList = graph.topoSort();
 //        System.out.println(topoSortList);

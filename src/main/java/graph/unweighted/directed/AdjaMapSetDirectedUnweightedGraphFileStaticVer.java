@@ -30,9 +30,9 @@ class ChainForwardStarGraphApp {
 
         //--------------------------------------
 
-//        AllVo allVo = graph.allTraverseByBfs();
+        AllVo allVo = graph.allTraverseByBfs();
 
-        AllVo allVo = graph.allTraverseByDfs();
+//        AllVo allVo = graph.allTraverseByDfs();
 
     }
 
