@@ -6,12 +6,31 @@ import java.util.*;
 
 class ChainForwardStarGraphApp {
     public static void main(String[] args) {
-        ChainForwardStarGraph chainForwardStarGraph = new ChainForwardStarGraph(3);
+        ChainForwardStarGraph graph = new ChainForwardStarGraph(9);
 
-        chainForwardStarGraph.addArc(0,1);
-        chainForwardStarGraph.addArc(0,2);
-        chainForwardStarGraph.addArc(1,2);
-        chainForwardStarGraph.addArc(2,1);
+        graph.addArc(0,1);
+        graph.addArc(0,2);
+        graph.addArc(1,2);
+        graph.addArc(2,1);
+
+        graph.addArc(0,3);
+//        graph.addArc(0,4);
+        graph.addArc(3,4);
+        graph.addArc(4,0);
+
+        graph.addArc(1,5);
+        graph.addArc(1,6);
+        graph.addArc(5,6);
+
+        graph.addArc(2,7);
+        graph.addArc(2,8);
+        graph.addArc(7,8);
+        graph.addArc(8,7);
+
+        graph.addArc(7,4);
+
+        AllVo allVo = graph.allTraverseByBfs();
+
     }
 
 }
@@ -90,6 +109,9 @@ class ChainForwardStarGraph extends GraphMeta {
             //根据顶点v获取v的所有邻接节点(出顶点)（通过邻接出边弧arc）
 //            Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
             int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v];
+            if (vOutArcsHeadIdx < 0) {
+                continue;
+            }
             OutArc currOutArc = outArcAry[vOutArcsHeadIdx];
             for (int i = 0;
                  i < outArcCnt && currOutArc != null;
