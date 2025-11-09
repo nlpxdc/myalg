@@ -29,7 +29,9 @@ class ChainForwardStarGraphApp {
 
         graph.addArc(7,4);
 
-        AllVo allVo = graph.allTraverseByBfs();
+//        AllVo allVo = graph.allTraverseByBfs();
+
+        AllVo allVo = graph.allTraverseByDfs();
 
     }
 
@@ -64,7 +66,9 @@ class ChainForwardStarGraph extends GraphMeta {
 
     @Override
     public AllVo allTraverseByDfs() {
-        return null;
+        AllVo allVo = new AllVo();
+        GraphUtil.allTraverse(this, this::singleTraverseByDfs, allVo);
+        return allVo;
     }
 
     @Override
@@ -136,6 +140,80 @@ class ChainForwardStarGraph extends GraphMeta {
             }
 
         }
+    }
+
+    //dfs
+    void singleTraverseByDfs(final VParam singleStartVParam,
+                             final SingleTemp singleTemp,
+                             final AllTemp allTemp,
+                             final SingleVo singleVo,
+                             final AllVo allVo) {
+        singleVo.directed = true;
+        allTemp.parents[singleStartVParam.v] = null;
+        singleStartVParam.dfsVDepth = 0;
+        //这个等价于循环迭代
+        singleTraverseByDfsRecur(singleStartVParam, singleTemp, allTemp, singleVo, allVo);
+    }
+
+    //这个等价于循环迭代
+    void singleTraverseByDfsRecur(final VParam vParam,
+                                  final SingleTemp singleTemp,
+                                  final AllTemp allTemp,
+                                  final SingleVo singleVo,
+                                  final AllVo allVo) {
+        allTemp.visited[vParam.v] = true;
+        //前序遍历
+        GraphUtil.dfsDiscoverV(vParam, singleTemp, allTemp, singleVo, allVo);
+        allTemp.vStatuses[vParam.v] = VStatus.GRAY;
+
+        //根据顶点v获取v的所有邻接节点(出顶点)（通过邻接出边弧arc）
+//            Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
+        int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v];
+        if (vOutArcsHeadIdx < 0) {
+            return;
+        }
+        OutArc currOutArc = outArcAry[vOutArcsHeadIdx];
+        for (int i = 0;
+             i < outArcCnt && currOutArc != null;
+             i++, currOutArc = currOutArc.nextIdx < 0 ? null : outArcAry[currOutArc.nextIdx]) {
+
+            Integer adjaU = currOutArc.to;
+            ArcParam arcParam = new ArcParam(vParam.v, adjaU);
+
+            if (!allTemp.visited[adjaU]) {
+                arcParam.dfsArcType = DfsArcType.DFS_TREE_ARC;
+                GraphUtil.dfsVisitArc(arcParam, singleVo);
+                VParam uParam = new VParam(vParam.v, adjaU);
+                allTemp.parents[adjaU] = vParam.v;
+                uParam.dfsVDepth = vParam.dfsVDepth+1;
+                singleTraverseByDfsRecur(uParam, singleTemp, allTemp, singleVo, allVo);
+            } else {
+                if (allTemp.vStatuses[adjaU] == VStatus.GRAY) {
+                    arcParam.dfsArcType = DfsArcType.DFS_BACKWARD_ARC;
+                    GraphUtil.dfsVisitArc(arcParam, singleVo);
+                } else if (allTemp.vStatuses[adjaU] == VStatus.BLACK) {
+                    int vDiscoverTime = singleVo.dfsVVDfsDoMap.get(vParam.v).discoverTimeNo;
+                    int adjUDiscoverTime = singleVo.dfsVVDfsDoMap.get(adjaU).discoverTimeNo;
+                    if (vDiscoverTime < adjUDiscoverTime) {
+                        arcParam.dfsArcType = DfsArcType.DFS_FORWARD_ARC;
+                        GraphUtil.dfsVisitArc(arcParam, singleVo);
+                    } else if (vDiscoverTime > adjUDiscoverTime){
+                        arcParam.dfsArcType = DfsArcType.DFS_CROSS_ARC;
+                        GraphUtil.dfsVisitArc(arcParam, singleVo);
+                    } else {
+                        throw new RuntimeException("impossible1");
+                    }
+                } else {
+                    throw new RuntimeException("impossible2");
+                }
+            }
+
+        }
+
+        //后序遍历
+//        GraphUtil.finish(v);
+        GraphUtil.dfsFinishV(vParam, singleTemp, allTemp, singleVo, allVo);
+        allTemp.vStatuses[vParam.v] = VStatus.BLACK;
     }
 
 }
