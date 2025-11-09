@@ -95,9 +95,11 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
             throw new RuntimeException("n必须大于0");
         }
         this.n = n;
-        adjaMapSet = new HashMap<>();
+//        adjaMapSet = new HashMap<>();
+        adjaMapSet = new LinkedHashMap<>();
         for (int v = 0; v < n; v++) {
-            adjaMapSet.put(v, new HashSet<>());
+//            adjaMapSet.put(v, new HashSet<>());
+            adjaMapSet.put(v, new LinkedHashSet<>());
         }
         this.weighted = false;
         this.directed = true;
