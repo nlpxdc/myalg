@@ -50,6 +50,14 @@
             <version>9.14.6206</version>
         </dependency>
 
+<!--        https://github.com/thomasmueller/minperf-->
+        <!-- https://mvnrepository.com/artifact/it.unimi.dsi/sux4j -->
+        <dependency>
+            <groupId>it.unimi.dsi</groupId>
+            <artifactId>sux4j</artifactId>
+            <version>5.4.1</version>
+        </dependency>
+
     </dependencies>
 
 </project>
