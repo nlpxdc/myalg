@@ -50,12 +50,18 @@ class ChainForwardStarGraph extends GraphMeta {
         this.outArcAry = new OutArc[100000];
     }
 
-    void addArc(int from, int to) {
+    @Override
+    public void addArc(int from, int to) {
         outArcCnt++;
         int origFromHeadIdx = vertexOutArcsHeadIdxAry[from];
         OutArc outArc = new OutArc(to, origFromHeadIdx);
         outArcAry[outArcCnt-1] = outArc;
         vertexOutArcsHeadIdxAry[from] = outArcCnt-1;
+    }
+
+    @Override
+    public void addEdge(int u, int v) {
+        throw new RuntimeException("not supported");
     }
 
     @Override

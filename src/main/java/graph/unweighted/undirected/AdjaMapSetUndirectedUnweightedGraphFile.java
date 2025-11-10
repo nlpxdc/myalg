@@ -68,7 +68,14 @@ class AdjaMapSetUndirectedUnweightedGraph extends GraphMeta {
         this.weighted = false;
         this.directed = false;
     }
-    void addEdge(int u, int v) {
+
+    @Override
+    public void addArc(int from, int to) {
+        throw new RuntimeException("not supported");
+    }
+
+    @Override
+    public void addEdge(int u, int v) {
         if (u == v) {
             throw new RuntimeException("不能有自环边");
         }

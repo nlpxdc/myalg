@@ -77,13 +77,19 @@ class AdjaMatrixDirectedUnweightedGraph extends GraphMeta {
         this.weighted = false;
         this.directed = true;
     }
-    void addArc(int from, int to) {
+    @Override
+    public void addArc(int from, int to) {
         if (from == to) {
             throw new RuntimeException("不能有自环弧");
         }
         if (!adjaMatrix[from][to]) {
             adjaMatrix[from][to] = true;
         }
+    }
+
+    @Override
+    public void addEdge(int u, int v) {
+        throw new RuntimeException("not supported");
     }
 
     //计算连通子图的个数，连通分量，任意一个订单开始遍历，然后标记访问列表，然后再取一个顶点，从没被标记过的顶点中选，再标记，直到所有节点被标记过为止

@@ -104,13 +104,19 @@ class AdjaMapSetDirectedUnweightedGraph extends GraphMeta {
         this.weighted = false;
         this.directed = true;
     }
-    void addArc(int from, int to) {
+    @Override
+    public void addArc(int from, int to) {
         if (from == to) {
             throw new RuntimeException("不能有自环弧");
         }
         Set<Integer> uAdjaSet = adjaMapSet.get(from);
         adjaMapSet.put(from, uAdjaSet);
         uAdjaSet.add(to);
+    }
+
+    @Override
+    public void addEdge(int u, int v) {
+        throw new RuntimeException("not supported");
     }
 
     boolean hasUVArc(int from, int to) {
