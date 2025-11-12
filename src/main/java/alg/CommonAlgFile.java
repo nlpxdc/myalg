@@ -1,5 +1,6 @@
 package alg;
 
+//重要！！！每种算法需要分析其时空复杂度
 class CommonAlgApp {
     public static void main(String[] args) {
         System.out.println("aa");
