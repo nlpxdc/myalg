@@ -1,4 +1,4 @@
-package storage.linked.static4dynamic;
+package storage.reference.static4dynamic;
 
 class MySimLinkedByContiguousFile {
     public static void main(String[] args) {

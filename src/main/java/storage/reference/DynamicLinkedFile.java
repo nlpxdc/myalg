@@ -1,13 +1,13 @@
-package storage.linked.dynamic;
+package storage.reference;
 
 //指针 引用 传统动态
-class MyLinkedFile {
+class DynamicLinkedFile {
     public static void main(String[] args) {
         System.out.println("aa");
 
-        MyNode myNode = new MyNode();
-        MyNode myNode1 = new MyNode();
-        MyNode myNode2 = new MyNode();
+        DynamicNode myNode = new DynamicNode();
+        DynamicNode myNode1 = new DynamicNode();
+        DynamicNode myNode2 = new DynamicNode();
         myNode.next = myNode1;
         myNode1.next = myNode2;
         myNode2.next = null;
@@ -17,7 +17,7 @@ class MyLinkedFile {
     }
 }
 
-class MyNode {
+class DynamicNode {
     Object val;
-    MyNode next;
+    DynamicNode next;
 }
