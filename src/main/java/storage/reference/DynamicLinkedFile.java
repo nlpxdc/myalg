@@ -1,6 +1,6 @@
 package storage.reference;
 
-//指针 引用 传统动态
+//指针 引用 传统动态 够大 碎片化
 class DynamicLinkedFile {
     public static void main(String[] args) {
         System.out.println("aa");

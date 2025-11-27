@@ -1,6 +1,10 @@
-package storage.hash;
+package storage.indexno.hash;
 
-class MyHashFile {
+//一块区域，散列摆放，记录个数 meta元信息， 中间隔开可null
+//数学知识 散列技巧 概率论（随机过程）数论？ 数学证明  >数理统计 （实际验证）
+//O(1) 参考SimRef的O(logn)
+//和contiguous冲突，不合作 和动态simref合作组合
+class MyHashApp {
     public static void main(String[] args) {
         System.out.println("aa");
 

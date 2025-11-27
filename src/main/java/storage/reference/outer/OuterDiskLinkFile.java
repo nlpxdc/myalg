@@ -1,6 +1,6 @@
-package storage.reference.static4dynamic;
+package storage.reference.outer;
 
-class MySimLinkedByContiguousFile {
+class OuterDiskLinkApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

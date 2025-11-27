@@ -1,7 +1,6 @@
-package storage.reference.static4dynamic;
+package storage.indexno.simref;
 
-//下标 索引 充当指针引用 受限动态
-class StaticLinkedListFileApp {
+class StaticLinkedListApp {
     public static void main(String[] args) {
         System.out.println("aa");
 
