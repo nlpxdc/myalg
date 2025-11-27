@@ -1,5 +1,6 @@
-package storage.simlinkedbycontiguous;
+package storage.linked.static4dynamic;
 
+//下标 索引 充当指针引用 受限动态
 class StaticLinkedListFileApp {
     public static void main(String[] args) {
         System.out.println("aa");

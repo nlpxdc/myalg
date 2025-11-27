@@ -1,5 +1,6 @@
-package storage.linked;
+package storage.linked.dynamic;
 
+//指针 引用 传统动态
 class MyLinkedFile {
     public static void main(String[] args) {
         System.out.println("aa");
