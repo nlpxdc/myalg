@@ -4,6 +4,7 @@ package storage.indexno.hash;
 //数学知识 散列技巧 概率论（随机过程）数论？ 数学证明  >数理统计 （实际验证）
 //O(1) 参考SimRef的O(logn)
 //和contiguous冲突，不合作 和动态simref合作组合
+//一一映射，不讲区间
 class MyHashApp {
     public static void main(String[] args) {
         System.out.println("aa");
