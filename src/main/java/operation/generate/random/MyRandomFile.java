@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-//带时间的hash
+//带时间的hash，讲周期，seed+time 有time就要研究周期
 //“移位 + 异或 + 乘法” 这条组合拳在两者里都出现，原因是它既廉价又能快速扩散比特。
 //PRNG 用它拉长周期并降低自相关
 //评价指标和调参方向完全不同，只能算“共用砖块”，不是“共用建筑图纸”。

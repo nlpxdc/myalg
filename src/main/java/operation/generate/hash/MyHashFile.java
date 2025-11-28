@@ -2,7 +2,7 @@ package operation.generate.hash;
 
 import java.nio.ByteBuffer;
 
-//common的
+//common的 不带时间的输入input 就一个种子seed，讲空间均匀分布，不讲周期不讲时间
 //“移位 + 异或 + 乘法” 这条组合拳在两者里都出现，原因是它既廉价又能快速扩散比特。
 //hash 用它加速雪崩并降低碰撞
 //评价指标和调参方向完全不同，只能算“共用砖块”，不是“共用建筑图纸”。
