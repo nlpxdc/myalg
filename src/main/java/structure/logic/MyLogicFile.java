@@ -7,6 +7,8 @@ package structure.logic;
 //处理元素可以不只是单纯传统的数字可算术计算，还包括向量（一维数组，字符串） 以及广义表（二维数组，字符串数组，甚至更高）
 //线性 树 图 ，元素的邻接关系划分
 //map 元素的关联关系划分，所以独立
+//map -> set 也独立
+//最终落到 线性 树 图这些逻辑结构上，借助他们，最后最后 落到存储结构上 indexno ref
 class MyLogicApp {
     public static void main(String[] args) {
         System.out.println("aa");
