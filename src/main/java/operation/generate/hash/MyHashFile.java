@@ -2,6 +2,14 @@ package operation.generate.hash;
 
 import java.nio.ByteBuffer;
 
+//common的
+//“移位 + 异或 + 乘法” 这条组合拳在两者里都出现，原因是它既廉价又能快速扩散比特。
+//hash 用它加速雪崩并降低碰撞
+//评价指标和调参方向完全不同，只能算“共用砖块”，不是“共用建筑图纸”。
+//PRNG 用本原多项式、Lagged Fibonacci 的借位链、WELL 的巨型状态矩阵——这些在 hash 里根本不会出现；
+//但“不重复”背后的理论工具、评价指标、调参目标完全不同
+//hash 玩的是碰撞概率 + 雪崩速度。
+//PRNG 玩的是周期长度 + 序列均匀性；
 class MyHashApp {
     public static void main(String[] args) {
 //        System.out.println("aa");

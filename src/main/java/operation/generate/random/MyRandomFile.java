@@ -6,6 +6,12 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+//带时间的hash
+//“移位 + 异或 + 乘法” 这条组合拳在两者里都出现，原因是它既廉价又能快速扩散比特。
+//PRNG 用它拉长周期并降低自相关
+//评价指标和调参方向完全不同，只能算“共用砖块”，不是“共用建筑图纸”。
+//hash 用长度编码、分块并行、树形合并、尾部填充——PRNG 没有“任意长度”问题，也用不到。
+//但“不重复”背后的理论工具、评价指标、调参目标完全不同
 class MyRandomApp {
     public static void main(String[] args) {
         System.out.println("aa");
