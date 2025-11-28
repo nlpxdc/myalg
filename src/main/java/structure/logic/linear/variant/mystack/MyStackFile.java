@@ -1,9 +1,9 @@
 package structure.logic.linear.variant.mystack;
 
-import common2.AryNode;
-import common2.DLinkNode;
-import common2.LinkNode;
-import common2.Node;
+import structure.common2.AryNode;
+import structure.common2.DLinkNode;
+import structure.common2.LinkNode;
+import structure.common2.Node;
 
 //也能用于多线程，不只是队列，栈顶一把锁即可，队列队头队尾需要两把锁提高并发度，也可以一把锁
 class MyStackApp {

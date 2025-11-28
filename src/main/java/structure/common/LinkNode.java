@@ -1,4 +1,4 @@
-package common;
+package structure.common;
 
 public class LinkNode {
     int val;

@@ -1,4 +1,4 @@
-package common2;
+package structure.common2;
 
 public class DLinkNode extends Node {
     DLinkNode prev;
