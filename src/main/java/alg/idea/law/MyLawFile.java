@@ -1,7 +1,7 @@
-package alg2.repeat.recursion;
+package alg.idea.law;
 
-//重复
-public class MyRecursionFile {
+//数学 O(1)
+class MyLawApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

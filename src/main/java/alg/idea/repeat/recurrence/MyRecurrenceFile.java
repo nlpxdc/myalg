@@ -1,7 +1,7 @@
-package alg2.independent.decrease;
+package alg.idea.repeat.recurrence;
 
-//拆解
-public class MyDecreaseFile {
+//重复 O(n)
+class MyRecurrenceApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

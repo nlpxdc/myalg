@@ -1,7 +1,7 @@
-package alg2.independent.divide;
+package alg.idea.repeat.recursion;
 
-//拆解 分治
-public class MyDivideFile {
+//重复 O(n)
+class MyRecursionApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

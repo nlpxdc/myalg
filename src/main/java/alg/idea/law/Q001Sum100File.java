@@ -1,6 +1,6 @@
-package alg2.o1;
+package alg.idea.law;
 
-class Q001Sum100File {
+class Q001Sum100App {
     public static void main(String[] args) {
         int fn = fn(100);
         int fn1 = fn(101);
