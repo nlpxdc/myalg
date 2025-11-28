@@ -1,0 +1,1 @@
+package structure.logic.map.variant;
