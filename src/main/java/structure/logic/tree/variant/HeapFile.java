@@ -1,4 +1,4 @@
-package structure.logic.tree.viriant;
+package structure.logic.tree.variant;
 
 class HeapApp {
     public static void main(String[] args) {
