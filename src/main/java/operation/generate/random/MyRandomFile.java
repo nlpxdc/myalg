@@ -10,7 +10,9 @@ import java.util.concurrent.ThreadLocalRandom;
 //“移位 + 异或 + 乘法” 这条组合拳在两者里都出现，原因是它既廉价又能快速扩散比特。
 //PRNG 用它拉长周期并降低自相关
 //评价指标和调参方向完全不同，只能算“共用砖块”，不是“共用建筑图纸”。
+//PRNG 用本原多项式、Lagged Fibonacci 的借位链、WELL 的巨型状态矩阵——这些在 hash 里根本不会出现；
 //hash 用长度编码、分块并行、树形合并、尾部填充——PRNG 没有“任意长度”问题，也用不到。
+//PRNG 玩的是周期长度 + 序列均匀性；
 //但“不重复”背后的理论工具、评价指标、调参目标完全不同
 class MyRandomApp {
     public static void main(String[] args) {
