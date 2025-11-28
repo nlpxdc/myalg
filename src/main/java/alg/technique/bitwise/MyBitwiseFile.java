@@ -1,7 +1,8 @@
-package alg.bitwise;
+package alg.technique.bitwise;
 
 import java.math.BigInteger;
 
+//这属于trick 也能属于technique？
 class MyBitwiseApp {
     public static void main(String[] args) {
         System.out.println("aa");

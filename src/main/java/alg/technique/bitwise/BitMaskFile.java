@@ -1,6 +1,6 @@
-package alg.bitwise;
+package alg.technique.bitwise;
 
-class BitMaskFile {
+class BitMaskApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

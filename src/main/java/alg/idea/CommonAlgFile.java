@@ -1,4 +1,4 @@
-package alg;
+package alg.idea;
 
 //重要！！！每种算法需要分析其时空复杂度
 //有意识的，条件反射式的，去分析数据总量，算时间空间复杂度，评价好坏
@@ -17,4 +17,4 @@ class CommonAlgApp {
     }
 }
 
-//滑动窗口 sliding window 不变长 可变长
+
