@@ -1,13 +1,13 @@
 package storage.reference;
 
-//指针 引用 传统动态 够大 碎片化
-class DynamicLinkedFile {
+//动态 指针 引用 传统动态 够大 碎片化
+class LinkedApp {
     public static void main(String[] args) {
         System.out.println("aa");
 
-        DynamicNode myNode = new DynamicNode();
-        DynamicNode myNode1 = new DynamicNode();
-        DynamicNode myNode2 = new DynamicNode();
+        Node myNode = new Node();
+        Node myNode1 = new Node();
+        Node myNode2 = new Node();
         myNode.next = myNode1;
         myNode1.next = myNode2;
         myNode2.next = null;
@@ -17,7 +17,7 @@ class DynamicLinkedFile {
     }
 }
 
-class DynamicNode {
+class Node {
     Object val;
-    DynamicNode next;
+    Node next;
 }
