@@ -1,4 +1,4 @@
-package alg.idea.law;
+package alg.idea.math;
 
 class Q001Sum100App {
     public static void main(String[] args) {

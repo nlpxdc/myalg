@@ -1,7 +1,7 @@
-package alg.idea.law;
+package alg.idea.math;
 
 //数学 O(1)
-class MyLawApp {
+class MyMathApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
