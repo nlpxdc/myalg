@@ -1,4 +1,4 @@
-package alg.idea.repeat.recursion;
+package alg.idea.repeat.method.recursion;
 
 class Q001Sum100App {
     public static void main(String[] args) {

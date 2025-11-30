@@ -1,4 +1,4 @@
-package alg.idea.independent.divide;
+package alg.idea.repeat.split.independent.divide;
 
 //拆解 分治
 public class MyDivideFile {

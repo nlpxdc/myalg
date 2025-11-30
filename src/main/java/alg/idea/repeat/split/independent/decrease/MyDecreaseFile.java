@@ -1,4 +1,4 @@
-package alg.idea.independent.decrease;
+package alg.idea.repeat.split.independent.decrease;
 
 //拆解
 public class MyDecreaseFile {

@@ -1,7 +1,7 @@
-package alg.idea.repeat.recursion;
+package alg.idea.repeat.method.recurrence;
 
 //重复 O(n)
-class MyRecursionApp {
+class MyRecurrenceApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

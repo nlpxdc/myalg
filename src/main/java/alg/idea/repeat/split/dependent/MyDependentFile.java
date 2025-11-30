@@ -1,4 +1,4 @@
-package alg.idea.dependent;
+package alg.idea.repeat.split.dependent;
 
 //最重要前提空气 马尔可夫性质
 //有依赖
@@ -11,6 +11,11 @@ package alg.idea.dependent;
 //和系统设计 System Design hard 具体业务相关
 //时间复杂度 greedy O(n) dp O(n2)O(n3)O(2n) 准实时处理 或 离线处理
 //再往上hard 就要近似了 概率 随机 启发
+
+//先暴力蛮力brute traverse，基准对拍，再聪明剪枝
+//最优？运筹，管理，有限资源下，包括时间，空间等，管理学上一切实际业务指标，寻找最优参数，调参，数理统计，深度学习，神经网络？
+//需要聪明的遍历traverse，也就是需要剪枝条
+//剪枝的技巧手段，dfs（回溯？），bfs，约束条件，分支界限，A*，IDA等
 class MyDependentApp {
     public static void main(String[] args) {
         System.out.println("aa");

@@ -1,4 +1,4 @@
-package alg.idea.dependent.greedy;
+package alg.idea.repeat.split.dependent.greedy;
 
 //最优 系统设计 精准 常见 准实时？t+0 t+e 满足贪心选择性质
 //多需要预处理
