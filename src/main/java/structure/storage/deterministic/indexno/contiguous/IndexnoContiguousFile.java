@@ -1,8 +1,8 @@
-package structure.storage.indexno.contiguous;
+package structure.storage.deterministic.indexno.contiguous;
 
 //一块区域，连续摆放 从头开始，记录个数 meta元信息， 后面可null
 //和hash冲突，不合作 和动态simref合作组合
-class MyContiguousApp {
+class IndexnoContiguousApp {
     public static void main(String[] args) {
         System.out.println("aa");
 

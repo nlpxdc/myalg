@@ -1,4 +1,4 @@
-package structure.storage.indexno.hash;
+package structure.storage.stochastic.indexno.hash;
 
 //一块区域，散列摆放，记录个数 meta元信息， 中间隔开可null
 //数学知识 散列技巧 概率论（随机过程）数论？ 数学证明  >数理统计 （实际验证）

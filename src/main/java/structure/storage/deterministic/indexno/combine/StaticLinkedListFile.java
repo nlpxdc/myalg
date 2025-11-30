@@ -1,4 +1,4 @@
-package structure.storage.indexno.simref;
+package structure.storage.deterministic.indexno.combine;
 
 class StaticLinkedListApp {
     public static void main(String[] args) {
