@@ -2,6 +2,10 @@ package structure.storage.deterministic;
 
 public interface TListAdt<T> {
     T loadAtNo(int no);
+    //val -> idx
+    int[] search(T val);
+    int searchFirst(T val);
+    int searchLast(T val);
 
     void addAtNo(int no, T val);
     void delAtNo(int no);
