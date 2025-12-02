@@ -1,5 +1,7 @@
 package structure.storage.deterministic.indexno.contiguous;
 
+import structure.storage.deterministic.TListAdt;
+
 //一块区域，连续摆放 从头开始，记录个数 meta元信息， 后面可null
 //和hash冲突，不合作 和动态simref合作组合
 class IndexnoContiguousApp {
@@ -38,4 +40,78 @@ class MyObj {
     int age;
     Long[] longs;
     String[][] strAryAry;
+}
+
+class MyAryList implements TListAdt<Integer> {
+
+    private final Integer[] ary;
+    private int size;
+
+    public MyAryList() {
+        ary = new Integer[10000];
+        size = 0;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public Integer loadAtNo(int no) {
+        //O(1)
+        return ary[no];
+    }
+
+    @Override
+    public int[] search(Integer val) {
+        return null;
+    }
+
+    @Override
+    public int searchFirst(Integer val) {
+        //O(n)
+        for (int i = 0; i < size; i++) {
+            if (val.equals(ary[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int searchLast(Integer val) {
+        //O(n)
+        for (int i = size-1; i >= 0; i--) {
+            if (val.equals(ary[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public void addAtNo(int no, Integer val) {
+        //O(n)
+        for (int i = size-1; i >= no; i--) {
+            ary[i+1] = ary[i];
+        }
+        ary[no] = val;
+        size++;
+    }
+
+    @Override
+    public void delAtNo(int no) {
+        //O(n)
+        for (int i = no; i < size; i++) {
+            ary[i] = ary[i+1];
+        }
+        size--;
+    }
+
+    @Override
+    public void updateAtNo(int no, Integer val) {
+        //O(1)
+        ary[no] = val;
+    }
 }

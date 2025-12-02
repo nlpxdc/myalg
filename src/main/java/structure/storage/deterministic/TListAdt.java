@@ -1,6 +1,7 @@
 package structure.storage.deterministic;
 
 public interface TListAdt<T> {
+    int size();
     T loadAtNo(int no);
     //val -> idx
     int[] search(T val);
