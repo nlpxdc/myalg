@@ -46,6 +46,7 @@ class MyAryList implements TListAdt<Integer> {
 
     private final Integer[] ary;
     private int size;
+    //天然头尾指针定位，因为连续规定，所以写入要维护这个规则，要移动，每个都要移动，就O(n)了
 
     public MyAryList() {
         ary = new Integer[10000];
@@ -59,7 +60,7 @@ class MyAryList implements TListAdt<Integer> {
 
     @Override
     public Integer loadAtNo(int no) {
-        //O(1)
+        //O(1) 定位址O(1)，取值
         return ary[no];
     }
 
@@ -70,7 +71,7 @@ class MyAryList implements TListAdt<Integer> {
 
     @Override
     public int searchFirst(Integer val) {
-        //O(n)
+        //O(n) 定位值的O(n)
         for (int i = 0; i < size; i++) {
             if (val.equals(ary[i])) {
                 return i;
@@ -81,7 +82,7 @@ class MyAryList implements TListAdt<Integer> {
 
     @Override
     public int searchLast(Integer val) {
-        //O(n)
+        //O(n) 定位值的O(n)
         for (int i = size-1; i >= 0; i--) {
             if (val.equals(ary[i])) {
                 return i;
@@ -92,26 +93,28 @@ class MyAryList implements TListAdt<Integer> {
 
     @Override
     public void addAtNo(int no, Integer val) {
-        //O(n)
+        //O(n) 移动址修改的O(n)
         for (int i = size-1; i >= no; i--) {
             ary[i+1] = ary[i];
         }
+        //O(1) 定位址O(1)，同时修改
         ary[no] = val;
         size++;
     }
 
     @Override
     public void delAtNo(int no) {
-        //O(n)
+        //O(n) 移动址修改的O(n)
         for (int i = no; i < size; i++) {
             ary[i] = ary[i+1];
         }
+        //O(1)
         size--;
     }
 
     @Override
     public void updateAtNo(int no, Integer val) {
-        //O(1)
+        //O(1) 定位址O(1)，同时修改
         ary[no] = val;
     }
 }
