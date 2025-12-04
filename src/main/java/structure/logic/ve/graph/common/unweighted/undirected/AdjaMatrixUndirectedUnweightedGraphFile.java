@@ -1,7 +1,5 @@
 package structure.logic.ve.graph.common.unweighted.undirected;
 
-import graph.unweighted.*;
-import structure.logic.graph.common.unweighted.*;
 import structure.logic.ve.graph.common.unweighted.*;
 
 import java.util.*;
