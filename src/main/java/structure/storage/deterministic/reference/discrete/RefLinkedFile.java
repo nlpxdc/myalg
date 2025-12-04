@@ -32,12 +32,12 @@ class Node<T> {
 
 class MyLinkedList implements TListAdt<Integer> {
 
-    private int size;
-    private Node<Integer> head;
+    int size;
+    Node<Integer> head;
     //todo 可对称反向，设计成双链
 //    private Node<Integer> tail;
 
-    public MyLinkedList() {
+    MyLinkedList() {
         size = 0;
         head = null;
 //        tail = null;
@@ -48,7 +48,7 @@ class MyLinkedList implements TListAdt<Integer> {
         return size;
     }
 
-    private Node<Integer> loadAtNoWithNode(int no) {
+    Node<Integer> loadAtNoWithNode(int no) {
         //O(n) 定位址的O(n)
         Node<Integer> curr = head;
         for (int i = 0; i < no && curr != null; i++, curr = curr.next) {
