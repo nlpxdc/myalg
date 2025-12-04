@@ -91,14 +91,21 @@ class MyAryList implements TListAdt<Integer> {
         return -1;
     }
 
+//    @Override
+//    public void addAtNo(int no, Integer val) {
+//        //O(n) 移动址修改的O(n)
+//        for (int i = size-1; i >= no; i--) {
+//            ary[i+1] = ary[i];
+//        }
+//        //O(1) 定位址O(1)，同时修改
+//        ary[no] = val;
+//        size++;
+//    }
+
     @Override
-    public void addAtNo(int no, Integer val) {
-        //O(n) 移动址修改的O(n)
-        for (int i = size-1; i >= no; i--) {
-            ary[i+1] = ary[i];
-        }
-        //O(1) 定位址O(1)，同时修改
-        ary[no] = val;
+    public void add(Integer val) {
+        //O(1) 尾插法
+        ary[size] = val;
         size++;
     }
 

@@ -8,7 +8,8 @@ public interface TListAdt<T> {
     int searchFirst(T val);
     int searchLast(T val);
 
-    void addAtNo(int no, T val);
+//    void addAtNo(int no, T val);
+    void add(T val);
     void delAtNo(int no);
     void updateAtNo(int no, T val);
 }

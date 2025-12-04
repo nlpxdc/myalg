@@ -89,19 +89,28 @@ class MyLinkedList implements TListAdt<Integer> {
         throw new RuntimeException();
     }
 
-    //头插，即no固定为0，即把n控制为1常数，复杂度为O(1)
-    //todo 注意边界条件
-    //对称双链时，可尾插
+//    //头插，即no固定为0，即把n控制为1常数，复杂度为O(1)
+//    //todo 注意边界条件
+//    //对称双链时，可尾插
+//    @Override
+//    public void addAtNo(int no, Integer val) {
+//        size++;
+//        //O(n) 定位址的O(n)
+//        Node<Integer> node1 = loadAtNoWithNode(no-1);
+//        Node<Integer> node2 = node1.next;
+//        //O(1) 修改的O(1)
+//        Node<Integer> addNode = new Node<>(val);
+//        node1.next = addNode;
+//        addNode .next = node2;
+//    }
+
     @Override
-    public void addAtNo(int no, Integer val) {
+    public void add(Integer val) {
+        //O(1) 头插法
         size++;
-        //O(n) 定位址的O(n)
-        Node<Integer> node1 = loadAtNoWithNode(no-1);
-        Node<Integer> node2 = node1.next;
-        //O(1) 修改的O(1)
-        Node<Integer> addNode = new Node<>(val);
-        node1.next = addNode;
-        addNode .next = node2;
+        Node<Integer> node = new Node<>(val);
+        node.next = head;
+        head = node;
     }
 
     //同add

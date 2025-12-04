@@ -15,26 +15,26 @@ class IndexnoLinkedApp {
 
 class Node<T> {
     T val;
-    int next;
+    int nextIdx;
 
     Node(T val) {
         this.val = val;
-        next = -1;
+        nextIdx = -1;
     }
 }
 
 class MyIndexnoLinkedList<T> implements TListAdt<T> {
 
     int size;
+    //局部性好，空间时间，预取，不能手动开辟ary情况，省去空间常数
     Node<T>[] ary;
-    int head;
+    int headIdx;
 
     MyIndexnoLinkedList() {
         size = 0;
         ary = new Node[10000];
-        head = -1;
+        headIdx = -1;
     }
-
 
     @Override
     public int size() {
@@ -43,11 +43,11 @@ class MyIndexnoLinkedList<T> implements TListAdt<T> {
 
     Node<T> loadAtNoWithNode(int no) {
         //O(n)
-        int curr = head;
-        for (int i = 0; i < no && curr >= 0; i++, curr = ary[curr].next) {
+        int currIdx = headIdx;
+        for (int i = 0; i < no && currIdx >=0; i++, currIdx = ary[currIdx].nextIdx) {
 
         }
-        return ary[curr];
+        return ary[currIdx];
     }
 
     @Override
@@ -65,9 +65,9 @@ class MyIndexnoLinkedList<T> implements TListAdt<T> {
     @Override
     public int searchFirst(T val) {
         //O(n)
-        int curr = head;
-        for (int i = 0; i < size && curr >=0; i++, curr = ary[curr].next) {
-            if (ary[curr].val.equals(val)) {
+        int currIdx = headIdx;
+        for (int i = 0; i < size && currIdx >=0; i++, currIdx = ary[currIdx].nextIdx) {
+            if (ary[currIdx].val.equals(val)) {
                 return i;
             }
         }
@@ -81,28 +81,19 @@ class MyIndexnoLinkedList<T> implements TListAdt<T> {
     }
 
     @Override
-    public void addAtNo(int no, T val) {
-        throw new RuntimeException();
-    }
-
     public void add(T val) {
-        //O(1)
+        //O(1) 存储尾插 逻辑头插
         Node<T> node = new Node<>(val);
-        node.next = head;
+        node.nextIdx = headIdx;
         ary[size] = node;
-        head = size;
+        headIdx = size;
         size++;
     }
 
     @Override
     public void delAtNo(int no) {
-        //O(n)
-        Node<T> node1 = loadAtNoWithNode(no - 1);
-        Node<T> node2 = ary[node1.next];
-        //O(1)
-        int t = node1.next;
-        node1.next = node2.next;
-        ary[t] = null;
+//        ary[no] = null;
+        throw new RuntimeException();
     }
 
     @Override
