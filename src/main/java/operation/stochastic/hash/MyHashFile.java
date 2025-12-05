@@ -14,6 +14,7 @@ import java.nio.ByteBuffer;
 //但“不重复”背后的理论工具、评价指标、调参目标完全不同
 //hash 玩的是碰撞概率 + 雪崩速度。
 //经常用在map中，天然适配
+//还有完美hash
 class MyHashApp {
     public static void main(String[] args) {
 //        System.out.println("aa");
