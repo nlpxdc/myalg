@@ -1,4 +1,4 @@
-package structure.storage.deterministic.indexno.combine;
+package structure.storage.indexno.combine;
 
 import structure.storage.deterministic.TListAdt;
 

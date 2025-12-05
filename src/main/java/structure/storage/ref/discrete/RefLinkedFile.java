@@ -1,4 +1,4 @@
-package structure.storage.deterministic.reference.discrete;
+package structure.storage.ref.discrete;
 
 import structure.storage.deterministic.TListAdt;
 
