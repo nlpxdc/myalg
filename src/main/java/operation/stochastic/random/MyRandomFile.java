@@ -14,6 +14,8 @@ import java.util.concurrent.ThreadLocalRandom;
 //hash 用长度编码、分块并行、树形合并、尾部填充——PRNG 没有“任意长度”问题，也用不到。
 //PRNG 玩的是周期长度 + 序列均匀性；
 //但“不重复”背后的理论工具、评价指标、调参目标完全不同
+//测哈希：SMhasher 最全面，Hashcat 看纯速度。
+//        测随机：TestU01 / PractRand / dieharder 三件套，统计学报告直接出。
 class MyRandomApp {
     public static void main(String[] args) {
         System.out.println("aa");

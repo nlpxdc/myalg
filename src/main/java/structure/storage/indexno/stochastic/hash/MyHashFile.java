@@ -7,6 +7,8 @@ package structure.storage.indexno.stochastic.hash;
 //一一映射，不讲区间
 //在连续中，玩离散，解决冲突，散列冲突
 //假设前提散列不冲突 完美hash算法 （用一个common的来模拟即可）
+//测哈希：SMhasher 最全面，Hashcat 看纯速度。
+//        测随机：TestU01 / PractRand / dieharder 三件套，统计学报告直接出。
 class MyHashApp {
     public static void main(String[] args) {
         System.out.println("aa");

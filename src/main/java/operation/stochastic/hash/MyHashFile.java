@@ -15,6 +15,8 @@ import java.nio.ByteBuffer;
 //hash 玩的是碰撞概率 + 雪崩速度。
 //经常用在map中，天然适配
 //还有完美hash
+//测哈希：SMhasher 最全面，Hashcat 看纯速度。
+//        测随机：TestU01 / PractRand / dieharder 三件套，统计学报告直接出。
 class MyHashApp {
     public static void main(String[] args) {
 //        System.out.println("aa");
