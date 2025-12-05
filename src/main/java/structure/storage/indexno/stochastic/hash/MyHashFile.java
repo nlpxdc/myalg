@@ -5,6 +5,7 @@ package structure.storage.indexno.stochastic.hash;
 //O(1) 参考SimRef的O(logn)
 //和contiguous冲突，不合作 和动态simref合作组合
 //一一映射，不讲区间
+//在连续中，玩离散，解决冲突，散列冲突
 class MyHashApp {
     public static void main(String[] args) {
         System.out.println("aa");

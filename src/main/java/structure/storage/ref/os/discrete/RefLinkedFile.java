@@ -1,4 +1,4 @@
-package structure.storage.ref.discrete;
+package structure.storage.ref.os.discrete;
 
 import structure.storage.common.TListAdt;
 
