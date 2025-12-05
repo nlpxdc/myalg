@@ -9,6 +9,9 @@ package structure.logic;
 //map 元素的关联关系划分，所以独立
 //map -> set 也独立
 //最终落到 线性 树 图这些逻辑结构上，借助他们，最后最后 落到存储结构上 indexno ref
+//第一维度 indexno(显式) vs ref（隐式）
+//第二维度 deterministic vs stochastic（随机空间 hash（只散列固定） 随机时间随机过程random含(t 不固定（逻辑t和现实t）和种子seed熵防猜测防碰撞)）
+//随机冲突后，多次hash或多次random解决，配合其他方法
 class MyLogicApp {
     public static void main(String[] args) {
         System.out.println("aa");
