@@ -1,6 +1,6 @@
 package structure.storage.ref.discrete;
 
-import structure.storage.deterministic.TListAdt;
+import structure.storage.common.TListAdt;
 
 //动态 指针 引用 传统动态 够大 碎片化
 class RefLinkedApp {

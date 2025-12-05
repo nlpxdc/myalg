@@ -1,4 +1,4 @@
-package structure.storage.deterministic;
+package structure.storage.common;
 
 public interface TListAdt<T> {
     int size();
