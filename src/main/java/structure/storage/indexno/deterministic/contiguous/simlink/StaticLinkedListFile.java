@@ -1,4 +1,4 @@
-package structure.storage.indexno.combine;
+package structure.storage.indexno.deterministic.contiguous.simlink;
 
 class StaticLinkedListApp {
     public static void main(String[] args) {

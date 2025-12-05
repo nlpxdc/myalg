@@ -1,4 +1,4 @@
-package structure.storage.indexno.contiguous;
+package structure.storage.indexno.deterministic.contiguous;
 
 import structure.storage.common.TListAdt;
 
