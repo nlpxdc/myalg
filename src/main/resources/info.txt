@@ -34,3 +34,7 @@ function mont_reduce(T):        // T = aR*bR = abR²
 
 链式前向星 边的静态单链表 边e，结构体对象，可省
 一维数组模拟单链表 静态单链表 顶点v，整数
+
+    public static boolean isNaN(float v) {
+        return (v != v);
+    }
