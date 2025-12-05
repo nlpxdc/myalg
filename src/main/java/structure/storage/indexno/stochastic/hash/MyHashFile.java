@@ -6,6 +6,7 @@ package structure.storage.indexno.stochastic.hash;
 //和contiguous冲突，不合作 和动态simref合作组合
 //一一映射，不讲区间
 //在连续中，玩离散，解决冲突，散列冲突
+//假设前提散列不冲突 完美hash算法 （用一个common的来模拟即可）
 class MyHashApp {
     public static void main(String[] args) {
         System.out.println("aa");
