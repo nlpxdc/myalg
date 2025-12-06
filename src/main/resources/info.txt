@@ -38,3 +38,6 @@ function mont_reduce(T):        // T = aR*bR = abR²
     public static boolean isNaN(float v) {
         return (v != v);
     }
+
+    int i = 0;
+    int a = n++ + ++n;;   // 合法，等价于 (i++) + (++i)
