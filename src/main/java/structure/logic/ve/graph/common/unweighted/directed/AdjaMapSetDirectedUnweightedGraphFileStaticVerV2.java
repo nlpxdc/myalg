@@ -58,7 +58,7 @@ class ChainForwardStarGraphV2 extends GraphMetaV2 {
     @Override
     public void addArc(Character from, Character to) {
         outArcCnt++;
-        int origFromHeadIdx = vertexOutArcsHeadIdxAry[from];
+        int origFromHeadIdx = vertexOutArcsHeadIdxAry[from-'A'];
 //        OutArc outArc = new OutArc(to, origFromHeadIdx);
 //        outArcAry[outArcCnt-1] = outArc;
         toAry[outArcCnt-1] = to;
@@ -126,18 +126,18 @@ class ChainForwardStarGraphV2 extends GraphMetaV2 {
 
             //根据顶点v获取v的所有邻接节点(出顶点)（通过邻接出边弧arc）
 //            Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
-            int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v];
+            int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v-'A'];
             if (vOutArcsHeadIdx < 0) {
                 continue;
             }
 //            OutArc currOutArc = outArcAry[vOutArcsHeadIdx];
             char currTo = toAry[vOutArcsHeadIdx];
-            int currNextIdx = nextIdxAry[vOutArcsHeadIdx];
+            int currIdx = vOutArcsHeadIdx;
             for (int i = 0;
 //                 i < outArcCnt && currOutArc != null;
-                 i < outArcCnt && currTo>0;
+                 i < outArcCnt && currIdx>=0;
 //                 i++, currOutArc = currOutArc.nextIdx < 0 ? null : outArcAry[currOutArc.nextIdx]) {
-                 i++, currNextIdx = nextIdxAry[currNextIdx], currTo = toAry[currNextIdx]) {
+                 i++, currIdx = nextIdxAry[currIdx], currTo = toAry[currIdx]) {
 
 //                Integer adjaU = currOutArc.to;
                 Character adjaU = currTo;
@@ -187,18 +187,18 @@ class ChainForwardStarGraphV2 extends GraphMetaV2 {
 
         //根据顶点v获取v的所有邻接节点(出顶点)（通过邻接出边弧arc）
 //            Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
-        int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v];
+        int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v-'A'];
         if (vOutArcsHeadIdx < 0) {
             return;
         }
 //        OutArc currOutArc = outArcAry[vOutArcsHeadIdx];
         char currTo = toAry[vOutArcsHeadIdx];
-        int currNextIdx = nextIdxAry[vOutArcsHeadIdx];
+        int currIdx = vOutArcsHeadIdx;
         for (int i = 0;
 //             i < outArcCnt && currOutArc != null;
-             i < outArcCnt && currTo>0;
+             i < outArcCnt && currIdx>=0;
 //             i++, currOutArc = currOutArc.nextIdx < 0 ? null : outArcAry[currOutArc.nextIdx]) {
-             i++, currNextIdx = nextIdxAry[currNextIdx], currTo = toAry[currNextIdx]) {
+             i++, currIdx = nextIdxAry[currIdx], currTo = toAry[currIdx]) {
 
 //            Integer adjaU = currOutArc.to;
             Character adjaU = currTo;
