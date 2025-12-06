@@ -63,7 +63,7 @@ class ChainForwardStarGraphV2 extends GraphMetaV2 {
 //        outArcAry[outArcCnt-1] = outArc;
         toAry[outArcCnt-1] = to;
         nextIdxAry[outArcCnt-1] = origFromHeadIdx;
-        vertexOutArcsHeadIdxAry[from] = outArcCnt-1;
+        vertexOutArcsHeadIdxAry[from-'A'] = outArcCnt-1;
     }
 
     @Override
@@ -126,7 +126,7 @@ class ChainForwardStarGraphV2 extends GraphMetaV2 {
 
             //根据顶点v获取v的所有邻接节点(出顶点)（通过邻接出边弧arc）
 //            Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
-            int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v-'A'];
+            int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v];
             if (vOutArcsHeadIdx < 0) {
                 continue;
             }
@@ -187,7 +187,7 @@ class ChainForwardStarGraphV2 extends GraphMetaV2 {
 
         //根据顶点v获取v的所有邻接节点(出顶点)（通过邻接出边弧arc）
 //            Set<Integer> adjaUSet = adjaMapSet.get(vParam.v);
-        int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v-'A'];
+        int vOutArcsHeadIdx = vertexOutArcsHeadIdxAry[vParam.v];
         if (vOutArcsHeadIdx < 0) {
             return;
         }
