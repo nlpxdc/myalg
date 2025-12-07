@@ -1,1 +1,0 @@
-package structure.logic.ve.graph.common.weighted.directed;
