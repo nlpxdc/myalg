@@ -3,7 +3,10 @@ package structure.storage.indexno.stochastic.hash;
 import com.google.common.hash.Hashing;
 import structure.storage.common.TListAdt;
 
-import java.util.zip.CRC32;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 //一块区域，散列摆放，记录个数 meta元信息， 中间隔开可null
 //数学知识 散列技巧 概率论（随机过程）数论？ 数学证明  >数理统计 （实际验证）
@@ -14,7 +17,8 @@ import java.util.zip.CRC32;
 //假设前提散列不冲突 完美hash算法 （用一个common的来模拟即可）
 //测哈希：SMhasher 最全面，Hashcat 看纯速度。
 //        测随机：TestU01 / PractRand / dieharder 三件套，统计学报告直接出。
-class MyHashApp {
+//带解冲突的，必须要用概率来分析 时空复杂度
+class MyHashAppV2 {
     public static void main(String[] args) {
         System.out.println("aa");
 
@@ -75,15 +79,40 @@ class MyHashApp {
 //
 //}
 
-class MyHashList implements TListAdt<Integer> {
+class Node {
+    int no;
+    Integer val;
+
+    Node(int no, Integer val) {
+        this.no = no;
+        this.val = val;
+    }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Node node = (Node) o;
+//        return no == node.no && val.equals(node.val);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(no, val);
+//    }
+}
+
+class MyHashListV2 implements TListAdt<Integer> {
 
     int size;
-    final int[] ary;
+//    final int[] ary;
+    final List<List<Node>> ary;
     static final int max = 100000;
 
-    public MyHashList() {
+    public MyHashListV2() {
         size = 0;
-        ary = new int[max];
+//        ary = new int[max];
+        ary = new ArrayList<>(max);
     }
 
     @Override
@@ -95,7 +124,15 @@ class MyHashList implements TListAdt<Integer> {
     public Integer loadAtNo(int no) {
         //O(1)
         int noIdx = MyHashUtil.noIdx(no, max);
-        return ary[noIdx];
+        List<Node> nodeList = ary.get(noIdx);
+        //这里可以树来降低搜索的时间复杂度，bst，avl或红黑树（工程实现）
+        //O(n) 可能多维度独立元素？ O(m+n) O(m*N) O(logmN)
+        for (Node node : nodeList) {
+            if (node.no == no) {
+                return node.val;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -108,8 +145,11 @@ class MyHashList implements TListAdt<Integer> {
         //O(n)
         for (int i = 0; i < size; i++) {
             int noIdx = MyHashUtil.noIdx(i, max);
-            if (ary[noIdx] == val) {
-                return i;
+            List<Node> nodeList = ary.get(noIdx);
+            for (Node node : nodeList) {
+                if (node.val.equals(val)) {
+                    return node.no;
+                }
             }
         }
         return -1;
@@ -120,8 +160,12 @@ class MyHashList implements TListAdt<Integer> {
         //O(n)
         for (int i = size-1; i >= 0; i--) {
             int noIdx = MyHashUtil.noIdx(i, max);
-            if (ary[noIdx] == val) {
-                return i;
+            List<Node> nodeList = ary.get(noIdx);
+            Collections.reverse(nodeList);
+            for (Node node : nodeList) {
+                if (node.val.equals(val)) {
+                    return node.no;
+                }
             }
         }
         return -1;
@@ -131,7 +175,8 @@ class MyHashList implements TListAdt<Integer> {
     public void add(Integer val) {
         //O(1)
         int noIdx = MyHashUtil.noIdx(size, max);
-        ary[noIdx] = val;
+        List<Node> nodes = ary.get(noIdx);
+        nodes.add(new Node(size, val));
         size++;
     }
 
@@ -139,19 +184,36 @@ class MyHashList implements TListAdt<Integer> {
     public void delAtNo(int no) {
         //O(1)
         int noIdx = MyHashUtil.noIdx(no, max);
-        ary[noIdx] = 0;
-        size--;
+        List<Node> nodeList = ary.get(no);
+        Node toDelNode = null;
+        for (Node node : nodeList) {
+            if (node.no == no) {
+                toDelNode = node;
+            }
+        }
+        if (toDelNode == null) {
+            throw new RuntimeException();
+        } else {
+            nodeList.remove(toDelNode);
+            size--;
+        }
     }
 
     @Override
     public void updateAtNo(int no, Integer val) {
         //O(1)
         int noIdx = MyHashUtil.noIdx(no, max);
-        ary[noIdx] = val;
+        List<Node> nodeList = ary.get(noIdx);
+        for (Node node : nodeList) {
+            if (node.no == no) {
+                node.val = val;
+            }
+        }
+        throw new RuntimeException();
     }
 }
 
-class MyHashUtil {
+class MyHashUtilV2 {
     //内部可以自己写，自定义，也可以用任何三方的，jdk的等等，自由度很大，不限制
     //这里假设默认hash不会冲突去写
     //如果考虑有冲突，需要考虑解决冲突，开发地址法，或者链表法，这里就先不搞复杂了，重点关注散列地址本身这个策略
