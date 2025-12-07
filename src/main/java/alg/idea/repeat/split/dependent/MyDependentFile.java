@@ -16,6 +16,7 @@ package alg.idea.repeat.split.dependent;
 //最优？运筹，管理，有限资源下，包括时间，空间等，管理学上一切实际业务指标，寻找最优参数，调参，数理统计，深度学习，神经网络？
 //需要聪明的遍历traverse，也就是需要剪枝条
 //剪枝的技巧手段，dfs（回溯？），bfs，约束条件，分支界限，A*，IDA等
+//常依赖有权图（边权）
 class MyDependentApp {
     public static void main(String[] args) {
         System.out.println("aa");
