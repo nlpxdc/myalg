@@ -11,6 +11,10 @@ class IdxnoDisjointSetApp {
     }
 }
 
+//栈式撤销（可回退并查集）
+//        标准并查集路径压缩后无法回退；按秩/按 size 合并但不做路径压缩，同时把每次修改的父指针和秩压进栈，就能按操作序撤销。
+//        封装：同一文件里加 #define UNDOABLE 开关，两份代码共存，用时切换。
+
 class IndxnoDisjointSet implements DisjointSetAdt {
 
     int size;

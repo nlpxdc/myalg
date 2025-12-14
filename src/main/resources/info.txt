@@ -41,3 +41,17 @@ function mont_reduce(T):        // T = aR*bR = abR²
 
     int i = 0;
     int a = n++ + ++n;;   // 合法，等价于 (i++) + (++i)
+
+
+$HOME/ac-lib/
+├── data-structure/
+│   ├── unionfind.hpp
+│   ├── fenwick.hpp
+│   ├── segmenttree.hpp
+├── graph/
+│   ├── dinic.hpp
+│   ├── scc.hpp
+├── string/
+│   ├── kmp.hpp
+│   ├── sam.hpp
+└── template.cpp          // 空白 main，已 include 所有常用头
