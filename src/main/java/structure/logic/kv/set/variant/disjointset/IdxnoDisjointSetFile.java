@@ -29,8 +29,12 @@ class IndxnoDisjointSet implements DisjointSetAdt {
     @Override
     public int find(int no) {
         if (no == pAry[no]) {
+            //根节点
             return no;
         } else {
+//            int noParentNo = find(pAry[no]);
+//            return pAry[no] = noParentNo;
+            //递归后，这里的值就是根节点
             return pAry[no] = find(pAry[no]);
         }
     }
