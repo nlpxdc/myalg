@@ -10,3 +10,29 @@ class IdxnoDisjointSetApp {
         System.out.println("aa");
     }
 }
+
+class IndxnoDisjointSet implements DisjointSetAdt {
+
+    int size;
+    //下标idxno充当no序号
+    int[] pAry;
+
+    IndxnoDisjointSet(int size) {
+        this.size = size;
+        pAry = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            pAry[i] = i;
+        }
+    }
+
+    @Override
+    public int find(int no) {
+        return 0;
+    }
+
+    @Override
+    public void union(int no1, int no2) {
+
+    }
+}
