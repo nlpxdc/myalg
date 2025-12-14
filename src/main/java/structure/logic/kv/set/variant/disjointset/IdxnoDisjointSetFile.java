@@ -28,7 +28,11 @@ class IndxnoDisjointSet implements DisjointSetAdt {
 
     @Override
     public int find(int no) {
-        return 0;
+        if (no == pAry[no]) {
+            return no;
+        } else {
+            return pAry[no] = find(pAry[no]);
+        }
     }
 
     @Override
