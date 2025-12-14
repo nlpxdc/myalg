@@ -41,6 +41,15 @@ class IndxnoDisjointSet implements DisjointSetAdt {
 
     @Override
     public void union(int no1, int no2) {
+        union1(no1, no2);
+    }
 
+    //随意合并，不考虑其他任何情况，但是树高可能高，影响效率
+    void union1(int no1, int no2) {
+        int root1 = find(no1);
+        int root2 = find(no2);
+        if (root1 != root2) {
+            pAry[root2] = root1;
+        }
     }
 }
