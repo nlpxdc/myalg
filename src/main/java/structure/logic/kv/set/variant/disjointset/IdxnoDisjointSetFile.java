@@ -15,30 +15,33 @@ class IndxnoDisjointSet implements DisjointSetAdt {
 
     int size;
     //下标idxno充当no序号
-    int[] pAry;
-    int[] hAry;
+    int[] parentAry;
+    int[] heightAry;
+    int[] sizeAry;
 
     IndxnoDisjointSet(int size) {
         this.size = size;
-        pAry = new int[size];
-        hAry = new int[size];
+        parentAry = new int[size];
+        heightAry = new int[size];
+        sizeAry = new int[size];
 
         for (int i = 0; i < size; i++) {
-            pAry[i] = i;
-            hAry[i] = 1;
+            parentAry[i] = i;
+            heightAry[i] = 1;
+            sizeAry[i] = 1;
         }
     }
 
     @Override
     public int find(int no) {
-        if (no == pAry[no]) {
+        if (no == parentAry[no]) {
             //根节点
             return no;
         } else {
 //            int noParentNo = find(pAry[no]);
 //            return pAry[no] = noParentNo;
             //递归后，这里的值就是根节点
-            return pAry[no] = find(pAry[no]);
+            return parentAry[no] = find(parentAry[no]);
         }
     }
 
@@ -52,7 +55,7 @@ class IndxnoDisjointSet implements DisjointSetAdt {
         int root1 = find(no1);
         int root2 = find(no2);
         if (root1 != root2) {
-            pAry[root2] = root1;
+            parentAry[root2] = root1;
         }
     }
 
@@ -62,21 +65,35 @@ class IndxnoDisjointSet implements DisjointSetAdt {
     void union2(int no1, int no2) {
         int root1 = find(no1);
         int root2 = find(no2);
-        if (hAry[root1] < hAry[root2]) {
+        if (heightAry[root1] < heightAry[root2]) {
             //root1高度小于root2高度，root1矮小，root1挂到root2下
-            pAry[root1] = root2;
-        } else if (hAry[root1] > hAry[root2]) {
+            parentAry[root1] = root2;
+        } else if (heightAry[root1] > heightAry[root2]) {
             //root1消毒大于root2，root1更高，root2挂到root1下
-            pAry[root2] = root1;
+            parentAry[root2] = root1;
         } else {
             //root1高度和root2高度一样，随便怎么挂，或者再根据第二维度大小？不复杂了，随意挂，数学证明高度是logn，最终看高度
-            pAry[root2]  = root1;
-            hAry[root1]++;
+            parentAry[root2]  = root1;
+            heightAry[root1]++;
         }
     }
 
     //按大小合并，个数
     void union3(int no1, int no2) {
-
+        int root1 = find(no1);
+        int root2 = find(no2);
+        if (sizeAry[root1] < sizeAry[root2]) {
+            //root1的数量小于root2的数量，root1挂到root2下
+            parentAry[root1] = root2;
+            sizeAry[root2] += sizeAry[root1];
+        } else if (sizeAry[root1] > sizeAry[root2]) {
+            //root1的数量大于root2的数量，root2挂到root1下
+            parentAry[root2] = root1;
+            sizeAry[root1] =+ sizeAry[root2];
+        } else {
+            //root1的数量和root2的数量一样，随便挂，或者再看height？
+            parentAry[root2] = root1;
+            sizeAry[root1] =+ sizeAry[root2];
+        }
     }
 }
