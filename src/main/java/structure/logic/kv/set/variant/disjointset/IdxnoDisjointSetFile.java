@@ -89,11 +89,11 @@ class IndxnoDisjointSet implements DisjointSetAdt {
         } else if (sizeAry[root1] > sizeAry[root2]) {
             //root1的数量大于root2的数量，root2挂到root1下
             parentAry[root2] = root1;
-            sizeAry[root1] =+ sizeAry[root2];
+            sizeAry[root1] += sizeAry[root2];
         } else {
             //root1的数量和root2的数量一样，随便挂，或者再看height？
             parentAry[root2] = root1;
-            sizeAry[root1] =+ sizeAry[root2];
+            sizeAry[root1] += sizeAry[root2];
         }
     }
 }

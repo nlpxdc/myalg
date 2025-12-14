@@ -76,6 +76,7 @@ class IndxnoDisjointSetV2 implements DisjointSetAdt {
             //root1高度和root2高度一样，随便怎么挂，或者再根据第二维度大小？不复杂了，随意挂，数学证明高度是logn，最终看高度
             parentAry[root2]  = root1;
             parentAry[root1]--;
+            //可以再结合size数组
         }
     }
 
@@ -90,11 +91,11 @@ class IndxnoDisjointSetV2 implements DisjointSetAdt {
 //        } else if (sizeAry[root1] > sizeAry[root2]) {
 //            //root1的数量大于root2的数量，root2挂到root1下
 //            parentAry[root2] = root1;
-//            sizeAry[root1] =+ sizeAry[root2];
+//            sizeAry[root1] += sizeAry[root2];
 //        } else {
 //            //root1的数量和root2的数量一样，随便挂，或者再看height？
 //            parentAry[root2] = root1;
-//            sizeAry[root1] =+ sizeAry[root2];
+//            sizeAry[root1] += sizeAry[root2];
 //        }
 //    }
 }
