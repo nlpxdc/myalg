@@ -55,3 +55,17 @@ $HOME/ac-lib/
 │   ├── kmp.hpp
 │   ├── sam.hpp
 └── template.cpp          // 空白 main，已 include 所有常用头
+
+并查集（路径压缩 + 按秩）
+栈式撤销并查集
+Fenwick / 树状数组（单点、区间、二维）
+线段树（区间加、区间最值、懒标记、离散化）
+稀疏表 ST 表（静态 RMQ）
+网络流 Dinic（当前弧优化、多路增广）
+SCC（Tarjan / Kosaraju）
+后缀自动机 SAM（线建、拓扑序、endpos 统计）
+凸包 / 半平面交（计算几何）
+多项式 FFT/NTT（ rarely 用，但必须有）
+
+Java 板子时，把小函数写成 private static final，JIT 会自动内联，性能足够。
+SegmentTree（线段树）：万能区间结构，支持加、乘、最值、历史版本等
