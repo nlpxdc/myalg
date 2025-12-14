@@ -20,7 +20,7 @@ class IndxnoDisjointSet implements DisjointSetAdt {
     int size;
     //下标idxno充当no序号
     int[] parentAry;
-    int[] heightAry;
+    int[] heightAry; //取名rank？已经非真实高度，实际高度小，因为find路径压缩了
     int[] sizeAry;
 
     IndxnoDisjointSet(int size) {
@@ -98,6 +98,7 @@ class IndxnoDisjointSet implements DisjointSetAdt {
             //root1的数量和root2的数量一样，随便挂，或者再看height？
             parentAry[root2] = root1;
             sizeAry[root1] += sizeAry[root2];
+//            heightAry[root1]++;
         }
     }
 }

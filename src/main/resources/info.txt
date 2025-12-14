@@ -69,3 +69,6 @@ SCC（Tarjan / Kosaraju）
 
 Java 板子时，把小函数写成 private static final，JIT 会自动内联，性能足够。
 SegmentTree（线段树）：万能区间结构，支持加、乘、最值、历史版本等
+
+前缀后缀技巧
+只要信息满足结合律，就能用前缀/后缀把“区间”拆成“两次查询”，复杂度立刻降一个维度。
