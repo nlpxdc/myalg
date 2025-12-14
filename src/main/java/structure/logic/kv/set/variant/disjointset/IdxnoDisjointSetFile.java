@@ -16,13 +16,16 @@ class IndxnoDisjointSet implements DisjointSetAdt {
     int size;
     //下标idxno充当no序号
     int[] pAry;
+    int[] hAry;
 
     IndxnoDisjointSet(int size) {
         this.size = size;
         pAry = new int[size];
+        hAry = new int[size];
 
         for (int i = 0; i < size; i++) {
             pAry[i] = i;
+            hAry[i] = 1;
         }
     }
 
@@ -51,5 +54,29 @@ class IndxnoDisjointSet implements DisjointSetAdt {
         if (root1 != root2) {
             pAry[root2] = root1;
         }
+    }
+
+    //按秩合并
+
+    //按高度合并
+    void union2(int no1, int no2) {
+        int root1 = find(no1);
+        int root2 = find(no2);
+        if (hAry[root1] < hAry[root2]) {
+            //root1高度小于root2高度，root1矮小，root1挂到root2下
+            pAry[root1] = root2;
+        } else if (hAry[root1] > hAry[root2]) {
+            //root1消毒大于root2，root1更高，root2挂到root1下
+            pAry[root2] = root1;
+        } else {
+            //root1高度和root2高度一样，随便怎么挂，或者再根据第二维度大小？不复杂了，随意挂，数学证明高度是logn，最终看高度
+            pAry[root2]  = root1;
+            hAry[root1]++;
+        }
+    }
+
+    //按大小合并，个数
+    void union3(int no1, int no2) {
+
     }
 }
