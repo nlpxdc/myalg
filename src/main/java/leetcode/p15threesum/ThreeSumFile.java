@@ -11,18 +11,18 @@ class ThreeSumApp {
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
-        HashSet<String> set = new HashSet<>();
+
+        HashSet<Long> set = new HashSet<>();
         List<List<Integer>> listList = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
             for (int j = i+1; j < nums.length; j++) {
                 for (int k = j+1; k < nums.length; k++) {
                     if (i != j && i != k && j != k) {
                         if (nums[i]+nums[j]+nums[k] == 0) {
-                            String str = String.format("%d,%d,%d", nums[i], nums[j], nums[k]);
-                            if (!set.contains(str)) {
+                            long key = key(nums[i], nums[j], nums[k]);
+                            if (!set.contains(key)) {
                                 listList.add(Arrays.asList(nums[i],nums[j],nums[k]));
-                                set.add(str);
+                                set.add(key);
                             }
                         }
                     }
@@ -30,6 +30,13 @@ class ThreeSumApp {
             }
         }
         return listList;
+    }
+
+    private static long key(int x, int y, int z) {
+        if (x > y) { int t = x; x = y; y = t;}
+        if (x > z) { int t = x; x = z; z = t;}
+        if (y > z) { int t = y; y = z; z = t;}
+        return (((long) x) << 42) | (((long) y) << 21) | (((long) z)) ;
     }
 
 }
