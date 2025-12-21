@@ -5,13 +5,17 @@ import java.util.*;
 class ThreeSumApp {
     public static void main(String[] args) {
         System.out.println("aa");
-        int[] nums = {-1,0,1,2,-1,-4,-2,-3,3,0,4};
+        int[] nums = {-1,0,1,2,-1,-4};
         ThreeSumApp threeSumApp = new ThreeSumApp();
         List<List<Integer>> lists = threeSumApp.threeSum(nums);
     }
 
     public List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
+//        Arrays.sort(nums);
+//        if (nums[0] == 0 && nums[nums.length-1] == 0) {
+//            return Collections.singletonList(Arrays.asList(0, 0, 0));
+//        }
+        nums = Arrays.stream(nums).distinct().sorted().toArray();
 
 
         List<List<Integer>> listList = new ArrayList<>();
@@ -20,17 +24,14 @@ class ThreeSumApp {
             int delta = -nums[i];
             List<int[]> aryList = twoSum(nums, delta);
             for (int[] ints : aryList) {
-                if (ints != null && i != ints[0] && i != ints[1]) {
-//                long key = key(nums[i], nums[ints[0]], nums[ints[1]]);
-                    int x = nums[i], y = nums[ints[0]], z = nums[ints[1]];
-                    if (x > y) { int t = x; x = y; y = t;}
-                    if (x > z) { int t = x; x = z; z = t;}
-                    if (y > z) { int t = y; y = z; z = t;}
-                    String str = String.format("%d,%d,%d", x, y, z);
-                    if (!set.contains(str)) {
-                        listList.add(Arrays.asList(nums[i], nums[ints[0]], nums[ints[1]]));
-                        set.add(str);
-                    }
+                int x = nums[i], y = nums[ints[0]], z = nums[ints[1]];
+                if (x > y) { int t = x; x = y; y = t;}
+                if (x > z) { int t = x; x = z; z = t;}
+                if (y > z) { int t = y; y = z; z = t;}
+                String str = String.format("%d,%d,%d", x, y, z);
+                if (!set.contains(str)) {
+                    listList.add(Arrays.asList(nums[i], nums[ints[0]], nums[ints[1]]));
+                    set.add(str);
                 }
             }
         }
