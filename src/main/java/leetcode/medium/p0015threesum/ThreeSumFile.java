@@ -1,4 +1,4 @@
-package leetcode.p15threesum;
+package leetcode.medium.p0015threesum;
 
 import java.util.*;
 
