@@ -10,8 +10,9 @@ class PalindromeNumberApp {
     }
 
     public boolean isPalindrome(int x) {
-        Integer boxedX = new Integer(x);
-        String xStr = boxedX.toString();
+//        Integer boxedX = new Integer(x);
+//        String xStr = boxedX.toString();
+        String xStr = String.valueOf(x);
         char[] xCharAry = xStr.toCharArray();
         for (int i = 0, j = xCharAry.length-1; i < xCharAry.length/2 && j >= xCharAry.length/2; i++, j--) {
             if (xCharAry[i] != xCharAry[j]) {
