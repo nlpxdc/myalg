@@ -4,8 +4,9 @@ class PalindromeNumberApp {
     public static void main(String[] args) {
         System.out.println("aa");
         PalindromeNumberApp app = new PalindromeNumberApp();
-        int x = 121;
-        boolean palindrome = app.isPalindrome(x);
+        int x = 13562478;
+        int i = app.digitCount(x);
+//        boolean palindrome = app.isPalindrome(x);
 
     }
 
@@ -21,5 +22,19 @@ class PalindromeNumberApp {
         }
         return true;
     }
+
+    public int digitCount(int x) {
+        int cnt = 0;
+        for (; x > 0; ) {
+            x /= 10;
+            cnt++;
+        }
+        return cnt;
+    }
+
+//    for (char c : String.valueOf(n).toCharArray()) {
+//        int d = c - '0';
+//    ...
+//    }
 
 }
