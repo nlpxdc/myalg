@@ -6,6 +6,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+//伪随机
 //对值处理，不可预期，不可对地址处理，因为是生成
 //带时间的hash，讲周期，seed+time 有time就要研究周期
 //“移位 + 异或 + 乘法” 这条组合拳在两者里都出现，原因是它既廉价又能快速扩散比特。
