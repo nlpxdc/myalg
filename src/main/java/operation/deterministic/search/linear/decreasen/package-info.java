@@ -1,0 +1,1 @@
+package operation.deterministic.search.linear.decreasen;
