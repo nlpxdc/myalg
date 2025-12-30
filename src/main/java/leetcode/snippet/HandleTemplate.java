@@ -1,4 +1,4 @@
-package leetcode.afirst;
+package leetcode.snippet;
 
 public interface HandleTemplate {
 
