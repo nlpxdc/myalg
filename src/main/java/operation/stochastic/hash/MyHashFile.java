@@ -2,7 +2,7 @@ package operation.stochastic.hash;
 
 import java.nio.ByteBuffer;
 
-//伪散列
+//伪散列 空间函数 位置确定，映射值确定
 //对地址处理，显式地址，可预期，生成
 //也可对值处理，签名验签 摘要
 //散列三把刀 乘法（可位移，用素数质数） 移位（换块，高低位，非位移） 终混（混合，混淆）

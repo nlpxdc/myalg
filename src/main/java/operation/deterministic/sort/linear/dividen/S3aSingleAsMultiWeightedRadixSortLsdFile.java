@@ -1,4 +1,4 @@
-package operation.deterministic.sort.dividen;
+package operation.deterministic.sort.linear.dividen;
 
 public class S3aSingleAsMultiWeightedRadixSortLsdFile {
 }
