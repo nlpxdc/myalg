@@ -12,4 +12,10 @@ public class SnippetUtil {
         ary[idxRight] = t;
     }
 
+    public static void swap1(int[] ary, int idxLeft, int idxRight) {
+        ary[idxLeft] = ary[idxLeft] + ary[idxRight];
+        ary[idxRight] = ary[idxLeft] - ary[idxRight];
+        ary[idxLeft] = ary[idxLeft] - ary[idxRight];
+    }
+
 }
