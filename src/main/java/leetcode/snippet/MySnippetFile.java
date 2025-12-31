@@ -8,6 +8,11 @@ public class MySnippetFile {
 
     }
 
-    
+    public static void swap(int[] ary, int idxLeft, int idxRight) {
+        if (idxLeft == idxRight) return;
+        int t = ary[idxLeft];
+        ary[idxLeft] = ary[idxRight];
+        ary[idxRight] = t;
+    }
 
 }
