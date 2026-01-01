@@ -92,8 +92,11 @@ public class SnippetUtil {
         return first > second ? new int[] {second, first} : new int[]{first, second};
     }
 
-    public static long key3() {
-        return 0;
+    public static long key3(int x, int y, int z) {
+        if (x > y) {int t=x;x=y;y=t;}
+        if (x > z) {int t=x;x=z;z=t;}
+        if (y > z) {int t=y;y=z;z=t;}
+        return ((long) x << 42) | ((long) y << 21) | z;
     }
 
 }
