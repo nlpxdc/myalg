@@ -15,7 +15,7 @@ public class MySnippetFile {
         ary[idxRight] = t;
     }
 
-    public static long key2unorderedS2b(int x, int y) {
+    public static long key2(int x, int y) {
         if (x > y) {
             int t = x;
             x = y;
