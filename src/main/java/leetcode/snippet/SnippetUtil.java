@@ -1,5 +1,8 @@
 package leetcode.snippet;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class SnippetUtil {
 
     public static void main(String[] args) {
@@ -132,5 +135,17 @@ public class SnippetUtil {
 //            throw new RuntimeException();
 //        }
 //    }
+
+    public static String keyN(int... ary) {
+        return null;
+    }
+
+    public static String keyN0(int ...ary) {
+        String key = Arrays.stream(ary)
+                .sorted()
+                .mapToObj(Integer::toString)
+                .collect(Collectors.joining());
+        return key;
+    }
 
 }
