@@ -137,7 +137,8 @@ public class SnippetUtil {
 //    }
 
     public static String keyN(int... ary) {
-        return null;
+        String key = keyN0(ary);
+        return key;
     }
 
     public static String keyN0(int ...ary) {
@@ -152,6 +153,14 @@ public class SnippetUtil {
         int[] retAry = new int[ary.length];
         System.arraycopy(ary, 0, retAry, 0, ary.length);
         Arrays.sort(retAry);
+        return retAry;
+    }
+
+    public static int[] arycopy(int... ary) {
+        int[] retAry = new int[ary.length];
+        for (int i = 0; i < ary.length; i++) {
+            retAry[i] = ary[i];
+        }
         return retAry;
     }
 
