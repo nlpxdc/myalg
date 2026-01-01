@@ -28,8 +28,12 @@ public class SnippetUtil {
         double negativeInfinity1 = Double.NEGATIVE_INFINITY;
         float f = 1e-8f;
         double d = 1e-9;
-        double ulp = Math.ulp(1.0);
+        double ulp = Math.ulp(1.0d);
         float ulp1 = Math.ulp(1.0f);
+        double pi = Math.PI;
+        double e = Math.E;
+        double abs = Math.abs(6.5D - 5.4F);
+        boolean eq = abs < 1e-8d;
         int[] ints = {4, 5};
         long l = key23(ints);
         long l1 = key23(7, 8);
