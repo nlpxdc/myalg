@@ -220,12 +220,14 @@ public class SnippetUtil {
         return retInt;
     }
 
+    //时间O(1) 空间O(0)
     public static int digits1(int x) {
         if (x == 0) return 1;
         x = Math.abs(x);
         return (int) Math.log10(x)+1;
     }
 
+    //时间(1) 空间O(1)
     public static int digits(int x) {
         if (x == 0) return 1;
         int cnt = 0;
