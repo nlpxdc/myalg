@@ -26,6 +26,10 @@ public class SnippetUtil {
         double positiveInfinity1 = Double.POSITIVE_INFINITY;
         float negativeInfinity = Float.NEGATIVE_INFINITY;
         double negativeInfinity1 = Double.NEGATIVE_INFINITY;
+        float f = 1e-8f;
+        double d = 1e-9;
+        double ulp = Math.ulp(1.0);
+        float ulp1 = Math.ulp(1.0f);
         int[] ints = {4, 5};
         long l = key23(ints);
         long l1 = key23(7, 8);
