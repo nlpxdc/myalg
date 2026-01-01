@@ -166,7 +166,16 @@ public class SnippetUtil {
         return retAry;
     }
 
-    public static byte[] toByteAry(int x) {
+    public static byte[] toByteAry0(int x) {
+        byte[] retAry = new byte[4];
+        retAry[0] = (byte) (x >>> 24);
+        retAry[1] = (byte) (x >>> 12);
+        retAry[2] = (byte) (x >>> 8);
+        retAry[3] = (byte) x;
+        return retAry;
+    }
+
+    public static byte[] toByteAry1(int x) {
         byte[] retAry = new byte[4];
         ByteBuffer byteBuffer = ByteBuffer.wrap(retAry);
         ByteBuffer bigByteBuffer = byteBuffer.order(ByteOrder.BIG_ENDIAN);
