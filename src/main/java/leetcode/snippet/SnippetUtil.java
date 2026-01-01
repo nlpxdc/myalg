@@ -68,6 +68,7 @@ public class SnippetUtil {
         return key2unorderedS2b(x, y);
     }
 
+    //时间O(1) 空间O(1)
     public static long key2unorderedS2b(int x, int y) {
         if (x > y) {int t = x; x = y; y = t;}
         return ((long) x << 32) | y;
