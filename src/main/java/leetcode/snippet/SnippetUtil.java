@@ -99,4 +99,11 @@ public class SnippetUtil {
         return ((long) x << 42) | ((long) y << 21) | z;
     }
 
+    public static int[] unpack3(long key) {
+        int z = (int) (key & 0x1F_FFFFL);
+        int y = (int) ((key >>> 21) & 0x1F_FFFFL);
+        int x = (int) (key >>> 42);
+        return new int[]{x, y, z};
+    }
+
 }

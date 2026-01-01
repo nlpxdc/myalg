@@ -27,7 +27,14 @@ public class MySnippetFile {
     public static int[] unpack2(long key) {
         int first = (int) (key >>> 32);
         int second = (int) (key & 0xFFFF_FFFFL);
-        return first > second ? new int[]{second, first} : new int[]{first, second};
+        return new int[]{first, second};
+    }
+
+    public static int[] unpack3(long key) {
+        int z = (int) (key & 0x1F_FFFFL);
+        int y = (int) ((key >>> 21) & 0x1F_FFFFL);
+        int x = (int) (key >>> 42);
+        return new int[]{x, y, z};
     }
 
 }
