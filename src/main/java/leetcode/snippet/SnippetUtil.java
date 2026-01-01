@@ -85,10 +85,15 @@ public class SnippetUtil {
         return new int[]{first, second};
     }
 
+    //时间O(1) 空间O(0)
     public static int[] unpack2unordered(long key) {
         int first = (int) (key >>> 32);
         int second = (int) (key & 0xFFFF_FFFFL);
         return first > second ? new int[] {second, first} : new int[]{first, second};
+    }
+
+    public static long key3() {
+        return 0;
     }
 
 }

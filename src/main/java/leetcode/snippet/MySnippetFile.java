@@ -24,4 +24,10 @@ public class MySnippetFile {
         return ((long) x << 32) | y;
     }
 
+    public static int[] unpack2(long key) {
+        int first = (int) (key >>> 32);
+        int second = (int) (key & 0xFFFF_FFFFL);
+        return first > second ? new int[]{second, first} : new int[]{first, second};
+    }
+
 }
