@@ -52,4 +52,42 @@ public class SnippetUtil {
         ary[idxLeft] ^= ary[idxRight];
     }
 
+    public static int key1(int x) {
+        return x;
+    }
+
+    public static int unpack1(int key) {
+        return key;
+    }
+
+    public static long key2ordered(int x, int y) {
+        return ((long) x << 32) | y;
+    }
+
+    public static long key2unordered(int x, int y) {
+        return key2unorderedS2b(x, y);
+    }
+
+    public static long key2unorderedS2b(int x, int y) {
+        if (x > y) {int t = x; x = y; y = t;}
+        return ((long) x << 32) | y;
+    }
+
+    public static long key2unorderedB2s(int x, int y) {
+        if (x < y) {int t = x; x = y; y = t;}
+        return ((long) x << 32) | y;
+    }
+
+    public static int[] unpack2ordered(long key) {
+        int first = (int) (key >>> 32);
+        int second = (int) (key & 0xFFFF_FFFFL);
+        return new int[]{first, second};
+    }
+
+    public static int[] unpack2unordered(long key) {
+        int first = (int) (key >>> 32);
+        int second = (int) (key & 0xFFFF_FFFFL);
+        return first > second ? new int[] {second, first} : new int[]{first, second};
+    }
+
 }
