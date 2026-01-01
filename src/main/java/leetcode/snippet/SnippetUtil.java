@@ -2,6 +2,12 @@ package leetcode.snippet;
 
 public class SnippetUtil {
 
+    public static void main(String[] args) {
+        int[] ints = {4, 5};
+        long l = key23(ints);
+        long l1 = key23(7, 8);
+    }
+
     //时间O(1) 空间O(1)
     public static void swap(int[] ary, int idxLeft, int idxRight) {
         if (idxLeft == idxRight) return;
@@ -99,11 +105,32 @@ public class SnippetUtil {
         return ((long) x << 42) | ((long) y << 21) | z;
     }
 
+    //时间O(1) 空间O(0)
     public static int[] unpack3(long key) {
         int z = (int) (key & 0x1F_FFFFL);
         int y = (int) ((key >>> 21) & 0x1F_FFFFL);
         int x = (int) (key >>> 42);
         return new int[]{x, y, z};
     }
+
+    public static long key23(int... ary) {
+        if (ary.length == 2) {
+            return key2unorderedS2b(ary[0], ary[1]);
+        } else if (ary.length == 3) {
+            return key3(ary[0], ary[1], ary[2]);
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+//    public static long key23ary(int[] ary) {
+//        if (ary.length == 2) {
+//            return key2unorderedS2b(ary[0], ary[1]);
+//        } else if (ary.length == 3) {
+//            return key3(ary[0], ary[1], ary[2]);
+//        } else {
+//            throw new RuntimeException();
+//        }
+//    }
 
 }
