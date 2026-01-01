@@ -237,4 +237,12 @@ public class SnippetUtil {
         return cnt;
     }
 
+    public static int digit(int x, int k) {
+        x = Math.abs(x);
+        for (int i = 0; i < k; i++) {
+            x /= 10;
+        }
+        return x%10;
+    }
+
 }
