@@ -148,4 +148,11 @@ public class SnippetUtil {
         return key;
     }
 
+    public static int[] keyN1(int ... ary) {
+        int[] retAry = new int[ary.length];
+        System.arraycopy(ary, 0, retAry, 0, ary.length);
+        Arrays.sort(retAry);
+        return retAry;
+    }
+
 }
