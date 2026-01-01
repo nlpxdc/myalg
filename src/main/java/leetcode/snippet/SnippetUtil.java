@@ -1,5 +1,7 @@
 package leetcode.snippet;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -162,6 +164,21 @@ public class SnippetUtil {
             retAry[i] = ary[i];
         }
         return retAry;
+    }
+
+    public static byte[] toByteAry(int x) {
+        byte[] retAry = new byte[4];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(retAry);
+        ByteBuffer bigByteBuffer = byteBuffer.order(ByteOrder.BIG_ENDIAN);
+        ByteBuffer byteBuffer1 = bigByteBuffer.putInt(x);
+        return retAry;
+    }
+
+    public static int toInt(byte[] bytes) {
+        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
+        ByteBuffer bigByteBuffer = byteBuffer.order(ByteOrder.BIG_ENDIAN);
+        int retInt = bigByteBuffer.getInt();
+        return retInt;
     }
 
 }
