@@ -8,6 +8,24 @@ import java.util.stream.Collectors;
 public class SnippetUtil {
 
     public static void main(String[] args) {
+        int i = Float.floatToRawIntBits(7.8f);
+        long l2 = Double.doubleToRawLongBits(8.9);
+        float v = Float.intBitsToFloat(i);
+        double v1 = Double.longBitsToDouble(l2);
+        float maxValue = Float.MAX_VALUE;
+        double minValue = Double.MIN_VALUE;
+        float minValue1 = Float.MIN_VALUE;
+        double minValue2 = Double.MIN_VALUE;
+        int maxExponent = Float.MAX_EXPONENT;
+        int maxExponent1 = Double.MAX_EXPONENT;
+        float minNormal = Float.MIN_NORMAL;
+        double minNormal1 = Double.MIN_NORMAL;
+        float naN = Float.NaN;
+        double naN1 = Double.NaN;
+        float positiveInfinity = Float.POSITIVE_INFINITY;
+        double positiveInfinity1 = Double.POSITIVE_INFINITY;
+        float negativeInfinity = Float.NEGATIVE_INFINITY;
+        double negativeInfinity1 = Double.NEGATIVE_INFINITY;
         int[] ints = {4, 5};
         long l = key23(ints);
         long l1 = key23(7, 8);
