@@ -220,4 +220,19 @@ public class SnippetUtil {
         return retInt;
     }
 
+    public static int digits1(int x) {
+        if (x == 0) return 1;
+        x = Math.abs(x);
+        return (int) Math.log10(x)+1;
+    }
+
+    public static int digits(int x) {
+        if (x == 0) return 1;
+        int cnt = 0;
+        for (x = Math.abs(x); x != 0; x /=10) {
+            cnt++;
+        }
+        return cnt;
+    }
+
 }
