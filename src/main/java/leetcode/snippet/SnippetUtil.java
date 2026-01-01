@@ -33,7 +33,7 @@ public class SnippetUtil {
         double pi = Math.PI;
         double e = Math.E;
         double abs = Math.abs(6.5D - 5.4F);
-        boolean eq = abs < 1e-8d;
+        boolean eq = abs < 1e-8;
         int[] ints = {4, 5};
         long l = key23(ints);
         long l1 = key23(7, 8);
