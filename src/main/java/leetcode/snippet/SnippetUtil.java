@@ -183,7 +183,11 @@ public class SnippetUtil {
         return retAry;
     }
 
-    public static int toInt(byte[] bytes) {
+    public static int toInt0(byte[] bytes) {
+        return ((bytes[0] & 0xFF) << 24) | ((bytes[1] & 0xFF) << 16) | (bytes[2] & 0xFF) << 8 | (bytes[3] & 0xFF) ;
+    }
+
+    public static int toInt1(byte[] bytes) {
         ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
         ByteBuffer bigByteBuffer = byteBuffer.order(ByteOrder.BIG_ENDIAN);
         int retInt = bigByteBuffer.getInt();
