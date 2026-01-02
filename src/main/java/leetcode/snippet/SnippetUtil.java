@@ -227,7 +227,7 @@ public class SnippetUtil {
         return (int) Math.log10(x)+1;
     }
 
-    //时间(1) 空间O(1)
+    //时间O(1) 空间O(1)
     public static int digits(int x) {
         if (x == 0) return 1;
         int cnt = 0;
@@ -237,6 +237,7 @@ public class SnippetUtil {
         return cnt;
     }
 
+    //时间O(1) 空间O(0)
     public static int digit(int x, int k) {
         x = Math.abs(x);
         for (int i = 0; i < k; i++) {
