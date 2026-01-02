@@ -30,4 +30,22 @@ class ReverseIntApp {
             return (int) -reverseInt;
         }
     }
+
+    public static int reverse0(int x) {
+        long longX = x;
+        long reverseInt = 0;
+        if (longX == 0) {
+            return 0;
+        } else {
+            for ( ; longX != 0; longX/=10) {
+                long mod = longX%10L;
+                reverseInt = reverseInt*10L+mod;
+            }
+            if (reverseInt < Integer.MIN_VALUE || Integer.MAX_VALUE < reverseInt) {
+                return 0;
+            }
+            return (int) reverseInt;
+        }
+    }
+
 }
