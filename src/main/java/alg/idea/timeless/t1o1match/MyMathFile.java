@@ -1,4 +1,4 @@
-package alg.idea.math;
+package alg.idea.timeless.t1o1match;
 
 //数学 O(1)
 class MyMathApp {

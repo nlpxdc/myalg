@@ -1,4 +1,4 @@
-package alg.idea.repeat.split.independent;
+package alg.idea.timeless.t2olognconquer;
 
 //conquer 多数据结构本身（线性 向量 广义表 树 森林？图本身？） 少算法
 //和日常coding最有关系 也应该是考的重点 medium 技术本身相关

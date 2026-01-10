@@ -1,4 +1,4 @@
-package alg.idea.repeat.split.independent.decrease;
+package alg.idea.timeless.t2olognconquer.decrease;
 
 //拆解 也叫reduce
 public class MyDecreaseFile {

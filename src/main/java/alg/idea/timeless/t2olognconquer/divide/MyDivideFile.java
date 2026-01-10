@@ -1,4 +1,4 @@
-package alg.idea.repeat.split.independent.divide;
+package alg.idea.timeless.t2olognconquer.divide;
 
 //拆解 分治
 public class MyDivideFile {
