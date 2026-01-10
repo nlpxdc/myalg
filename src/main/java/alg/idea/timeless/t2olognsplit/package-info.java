@@ -1,4 +1,4 @@
-package alg.idea.timeless.t2olognconquer;
+package alg.idea.timeless.t2olognsplit;
 
 //一般用于t业务，tx业务，transaction业务，要求快，ologn以内
 //独立split

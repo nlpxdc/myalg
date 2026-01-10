@@ -1,4 +1,4 @@
-package alg.idea.timeless.t2olognconquer;
+package alg.idea.timeless.t2olognsplit;
 
 class MyConquerApp {
     public static void main(String[] args) {

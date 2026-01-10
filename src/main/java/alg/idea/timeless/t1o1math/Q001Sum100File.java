@@ -1,4 +1,4 @@
-package alg.idea.timeless.t1o1match;
+package alg.idea.timeless.t1o1math;
 
 class Q001Sum100App {
     public static void main(String[] args) {

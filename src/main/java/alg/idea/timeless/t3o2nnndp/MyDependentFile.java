@@ -1,4 +1,4 @@
-package alg.idea.repeat.split.dependent;
+package alg.idea.timeless.t3o2nnndp;
 
 //最重要前提空气 马尔可夫性质
 //有依赖
