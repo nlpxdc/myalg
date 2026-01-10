@@ -1,4 +1,4 @@
-package alg.idea.repeat.method.recurrence;
+package alg.idea.flowcontrol.repeat.recurrence;
 
 class Q001Sum100File {
 
