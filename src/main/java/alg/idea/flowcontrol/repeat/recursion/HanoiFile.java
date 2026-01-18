@@ -1,11 +1,11 @@
 package alg.idea.flowcontrol.repeat.recursion;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 class HanoiApp {
     public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        Collections.shuffle(list);
 //        System.out.println("aa");
         move(3);
         System.out.println("---");
