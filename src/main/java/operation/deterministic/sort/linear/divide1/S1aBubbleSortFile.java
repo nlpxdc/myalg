@@ -1,11 +1,13 @@
 package operation.deterministic.sort.linear.divide1;
 
-public class S1aBubbleSortFile {
+class S1aBubbleSortApp {
     public static void main(String[] args) {
-
+        S1aBubbleSortApp app = new S1aBubbleSortApp();
+        int[] ary = {9,8,7,6,5,4,3,2,1};
+        app.bubbleSort(ary);
     }
 
-    private static void bubbleSort(int[] ary) {
+    public static void bubbleSort(int[] ary) {
         for (int i = 0;
              i < ary.length-1;
              i++) {
