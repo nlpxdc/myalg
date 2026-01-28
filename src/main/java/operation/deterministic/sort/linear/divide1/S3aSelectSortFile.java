@@ -29,12 +29,11 @@ class S3aSelectSortApp {
     }
 
     private static void swap(int[] ary, int idxA, int idxB) {
-        if (idxA == idxB) {
-            return;
+        if (idxA != idxB) {
+            int t = ary[idxA];
+            ary[idxA] = ary[idxB];
+            ary[idxB] = t;
         }
-        int t = ary[idxA];
-        ary[idxA] = ary[idxB];
-        ary[idxB] = t;
     }
 
 }

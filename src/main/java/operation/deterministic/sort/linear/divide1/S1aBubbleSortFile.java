@@ -35,9 +35,11 @@ class S1aBubbleSortApp {
     }
 
     private static void swap(int[] ary, int idxA, int idxB) {
-        int t = ary[idxA];
-        ary[idxA] = ary[idxB];
-        ary[idxB] = t;
+        if (idxA != idxB) {
+            int t = ary[idxA];
+            ary[idxA] = ary[idxB];
+            ary[idxB] = t;
+        }
     }
 
 }
