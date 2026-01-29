@@ -1,4 +1,4 @@
 package operation.deterministic.sort.linear.divide1;
 
-public class S2bBubbleSortFile {
+public class S2bCombSortFile {
 }
