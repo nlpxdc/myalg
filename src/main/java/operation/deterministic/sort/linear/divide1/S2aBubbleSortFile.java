@@ -1,10 +1,10 @@
 package operation.deterministic.sort.linear.divide1;
 
-class S1aBubbleSortApp {
+class S2aBubbleSortApp {
     public static void main(String[] args) {
 //        S1aBubbleSortApp app = new S1aBubbleSortApp();
         int[] ary = {9,8,7,6,5,4,3,2,1};
-        S1aBubbleSortApp.bubbleSort(ary);
+        S2aBubbleSortApp.bubbleSort(ary);
     }
 
     public static void bubbleSort(int[] ary) {

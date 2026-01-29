@@ -1,10 +1,10 @@
 package operation.deterministic.sort.linear.divide1;
 
-class S2aInsertSortApp {
+class S1aInsertSortApp {
     public static void main(String[] args) {
         System.out.println("aa");
         int[] ary = {9,8,7,6,5,4,3,2,1};
-        S2aInsertSortApp.insertSort(ary);
+        S1aInsertSortApp.insertSort(ary);
     }
 
     public static void insertSort(int[] ary) {
