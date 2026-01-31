@@ -41,6 +41,7 @@ class SearchInsertApp {
                 } else if (midtarget < target) {
                     if (leftIdx != midIdx) {
                         leftIdx = midIdx;
+                        continue;
                     } else {
                         break;
                     }
