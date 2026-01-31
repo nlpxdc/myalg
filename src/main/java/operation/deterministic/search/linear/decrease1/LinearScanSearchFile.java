@@ -49,9 +49,12 @@ class LinearScanSearchApp {
             return ary.length;
         }
 
-        for (int i = 0; i < ary.length-1; i++) {
-            if (ary[i] < val && val <= ary[i+1]) {
+        for (int i = 0, j = ary.length-1; i < ary.length-1 && j >= 1 && i < j ; i++,j--) {
+            if (ary[i] <= val && val < ary[i+1]) {
                 return i+1;
+            }
+            if (ary[j-1] <= val && val < ary[j]) {
+                return j;
             }
         }
         return ary.length;
