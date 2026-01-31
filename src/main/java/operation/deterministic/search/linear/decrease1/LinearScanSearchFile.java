@@ -44,23 +44,21 @@ class LinearScanSearchApp {
         }
         if (val < ary[0]) {
             return 0;
-        }
-        if (val == ary[0]) {
+        } else if (val == ary[0]) {
             return 1;
-        }
-        if (val >= ary[ary.length-1]) {
+        } else if (val >= ary[ary.length-1]) {
             return ary.length;
-        }
-
-        for (int i = 0, j = ary.length-1; i < ary.length-1 && j >= 1 && i < j ; i++,j--) {
-            if (ary[i] <= val && val < ary[i+1]) {
-                return i+1;
+        } else {
+            for (int i = 0, j = ary.length-1; i < ary.length-1 && j >= 1 && i < j ; i++,j--) {
+                if (ary[i] <= val && val < ary[i+1]) {
+                    return i+1;
+                }
+                if (ary[j-1] <= val && val < ary[j]) {
+                    return j;
+                }
             }
-            if (ary[j-1] <= val && val < ary[j]) {
-                return j;
-            }
+            return -1;
         }
-        return ary.length;
     }
 
 }
