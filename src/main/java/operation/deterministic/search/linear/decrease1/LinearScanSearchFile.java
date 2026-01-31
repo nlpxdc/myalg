@@ -45,7 +45,10 @@ class LinearScanSearchApp {
         if (val < ary[0]) {
             return 0;
         }
-        if (val > ary[ary.length-1]) {
+        if (val == ary[0]) {
+            return 1;
+        }
+        if (val >= ary[ary.length-1]) {
             return ary.length;
         }
 
