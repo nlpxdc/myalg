@@ -38,4 +38,46 @@ class BinarySearchApp {
         }
         return -1;
     }
+
+    int binarySearchIdx2(int[] ary, int val) {
+        if (val < ary[0]) {
+            return 0;
+        } else if (ary[ary.length-1] < val) {
+            return ary.length;
+        } else if (val == ary[0]) {
+            return 1;
+        } else if (val == ary[ary.length-1]) {
+            return ary.length;
+        } else {
+            int leftIdx = 0, rightIdx=ary.length-1;
+            for (
+                 ; leftIdx < ary.length && rightIdx >= 0 && leftIdx<rightIdx;
+            ) {
+                //获取中间位置
+                int midIdx = (leftIdx+rightIdx)/2;
+                int midVal = ary[midIdx];
+                if (val < midVal) {
+                    rightIdx = midIdx;
+                    continue;
+                } else if (midVal < val) {
+                    leftIdx = midIdx;
+                    continue;
+                } else if (val == ary[midIdx]) {
+                    leftIdx = rightIdx = midIdx;
+                    break;
+                } else {
+                    //noway
+                }
+            }
+            if (leftIdx==rightIdx) {
+                return leftIdx+1;
+            } else if (leftIdx < rightIdx){
+                return rightIdx;
+            } else {
+                //noway
+            }
+        }
+        return -1;
+    }
+
 }
