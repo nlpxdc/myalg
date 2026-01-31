@@ -15,6 +15,29 @@ class LinearScanSearchApp {
         return -1;
     }
 
+    int searchIdxL2(int[] ary, int val) {
+        for (int j = ary.length-1; j >= 0; j--) {
+            if (ary[j] == val) {
+                return j;
+            }
+        }
+        return -1;
+    }
+
+    int searchIdxL3(int[] ary, int val) {
+        for ( int i = 0, j = ary.length-1 ; i < ary.length && j >= 0 && i <= j ; i++, j--) {
+            if (ary[i] == val) {
+                return i;
+            }
+            if (i != j) {
+                if (ary[j] == val) {
+                    return j;
+                }
+            }
+        }
+        return -1;
+    }
+
     int searchIdx2(int[] ary, int val) {
         if (ary == null || ary.length==0) {
             return -1;
