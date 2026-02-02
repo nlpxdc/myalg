@@ -19,7 +19,24 @@ class AryBinaryHeap {
     }
 
     void addVal(int val) {
+        //先把值追加到末尾
+        ary[size] = val;
+        //进行上浮操作
+        for (int currIdx = size; currIdx>=0; ) {
+//            int parentIdx =
+        }
+    }
 
+    int depth(int idx) {
+        return 31-Integer.numberOfTrailingZeros(idx+1);
+    }
+
+    int height(int idx) {
+        return depth(size-1) - depth(idx);
+    }
+
+    int treeHeight() {
+        return height(0);
     }
 
     //大顶堆
@@ -33,10 +50,12 @@ class AryBinaryHeap {
     int pull() {
         int currMax = getMax();
 
-        //删除idx=0的值，直接覆盖，用最后一个值覆盖
-        ary[0] = ary[--size];
+        //删除idx=0的值，直接覆盖，用最后一个值覆盖，并清空最后一个值
+        ary[0] = ary[size-1];
+        ary[size-1] = 0;
+        size--;
         //替换后，用新值进行下沉操作
-        for (int currIdx = 0; currIdx < size; ) {
+        for (int depth = 0, currIdx=0; depth < treeHeight() ; depth++ ) {
             int leftIdx = 2*currIdx+1;
             int rightIdx = 2*currIdx+2;
             int currVal = ary[currIdx];
