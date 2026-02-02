@@ -20,7 +20,7 @@ class AryBinaryHeap {
 
     void addVal(int val) {
         //先把值追加到末尾
-        ary[size] = val;
+        ary[size++] = val;
         //进行上浮操作
         for (int currIdx = size; currIdx>=0; ) {
 //            int parentIdx =
