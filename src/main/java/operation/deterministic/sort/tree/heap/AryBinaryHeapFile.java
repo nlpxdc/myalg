@@ -28,7 +28,7 @@ class AryBinaryHeap {
     }
 
     int depth(int idx) {
-        return 31-Integer.numberOfTrailingZeros(idx+1);
+        return 31-Integer.numberOfLeadingZeros(idx+1);
     }
 
     int height(int idx) {
@@ -56,23 +56,39 @@ class AryBinaryHeap {
         size--;
         //替换后，用新值进行下沉操作
         for (int depth = 0, currIdx=0; depth < treeHeight() ; depth++ ) {
+            int lastIdx = size-1;
             int leftIdx = 2*currIdx+1;
             int rightIdx = 2*currIdx+2;
             int currVal = ary[currIdx];
-            int leftVal = ary[2*currIdx+1];
-            int rightVal = ary[2*currIdx+2];
-            int maxChildVal = Math.max(leftVal, rightVal);
-            if (currVal < maxChildVal) {
-                if (leftVal > rightVal) {
-                    swap(currIdx, leftIdx);
-                    currIdx = leftIdx;
-                    continue;
+
+            if (rightIdx <= lastIdx) {
+                //两节点都有值
+                int leftVal = ary[leftIdx];
+                int rightVal = ary[rightIdx];
+                int maxChildVal = Math.max(leftVal, rightVal);
+                if (currVal < maxChildVal) {
+                    if (leftVal > rightVal) {
+                        swap(currIdx, leftIdx);
+                        currIdx = leftIdx;
+                        continue;
+                    } else {
+                        swap(currIdx, rightIdx);
+                        currIdx = rightIdx;
+                        continue;
+                    }
                 } else {
-                    swap(currIdx, rightIdx);
-                    currIdx = rightIdx;
-                    continue;
+                    //无需继续下沉
+                    break;
                 }
-            } else {
+            } else if (leftIdx <= lastIdx && lastIdx < rightIdx) {
+                //只有左节点有值，右节点无值
+                int leftVal = ary[leftIdx];
+                if (currVal < leftVal) {
+                    swap(currIdx, leftIdx);
+                    break;
+                }
+            } else if (lastIdx < leftIdx) {
+                //两个左右节点都无值，无序操作，直接返回，跳出
                 break;
             }
         }
