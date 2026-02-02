@@ -22,12 +22,49 @@ class AryBinaryHeap {
 
     }
 
+    //大顶堆
     int getMax() {
+        if (size > 0) {
+            return ary[0];
+        }
         return -1;
     }
 
     int pull() {
-        return -1;
+        int currMax = getMax();
+
+        //删除idx=0的值，直接覆盖，用最后一个值覆盖
+        ary[0] = ary[--size];
+        //替换后，用新值进行下沉操作
+        for (int currIdx = 0; currIdx < size; ) {
+            int leftIdx = 2*currIdx+1;
+            int rightIdx = 2*currIdx+2;
+            int currVal = ary[currIdx];
+            int leftVal = ary[2*currIdx+1];
+            int rightVal = ary[2*currIdx+2];
+            int maxChildVal = Math.max(leftVal, rightVal);
+            if (currVal < maxChildVal) {
+                if (leftVal > rightVal) {
+                    swap(currIdx, leftIdx);
+                    currIdx = leftIdx;
+                    continue;
+                } else {
+                    swap(currIdx, rightIdx);
+                    currIdx = rightIdx;
+                    continue;
+                }
+            } else {
+                break;
+            }
+        }
+
+        return currMax;
+    }
+
+    private void swap(int idxA, int idxB) {
+        int t = ary[idxA];
+        ary[idxA] = ary[idxB];
+        ary[idxB] = t;
     }
 
     //堆化一个数组（原地）
