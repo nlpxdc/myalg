@@ -22,8 +22,8 @@ class AryBinaryHeap {
         //先把值追加到末尾
         ary[size++] = val;
         //进行上浮操作
-        for (int depth = treeHeight(), currIdx=size-1; depth >=0 ; depth--) {
-
+        for (int depth = treeHeight(), currIdx=size-1; depth >0 ; depth--) {
+            int parentIdx = (currIdx-1)/2;
         }
     }
 
@@ -57,8 +57,10 @@ class AryBinaryHeap {
         //替换后，用新值进行下沉操作
         for (int depth = 0, currIdx=0; depth < treeHeight() ; depth++ ) {
             int lastIdx = size-1;
-            int leftIdx = 2*currIdx+1;
-            int rightIdx = 2*currIdx+2;
+//            int leftIdx = 2*currIdx+1;
+//            int rightIdx = 2*currIdx+2;
+            int leftIdx = (currIdx<<1)+1;
+            int rightIdx = (currIdx<<1)+2;
             int currVal = ary[currIdx];
 
             if (rightIdx <= lastIdx) {
