@@ -23,7 +23,16 @@ class AryBinaryHeap {
         ary[size++] = val;
         //进行上浮操作
         for (int depth = treeHeight(), currIdx=size-1; depth >0 ; depth--) {
-            int parentIdx = (currIdx-1)/2;
+//            int parentIdx = (currIdx-1)/2;
+            int parentIdx = (currIdx-1) >>> 1;
+            int parentVal = ary[parentIdx];
+            if (val > parentVal) {
+                swap(currIdx, parentIdx);
+                currIdx = parentIdx;
+                continue;
+            } else {
+                break;
+            }
         }
     }
 
