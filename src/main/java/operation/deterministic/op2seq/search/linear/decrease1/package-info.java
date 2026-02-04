@@ -1,1 +1,0 @@
-package operation.deterministic.op2seq.search.linear.decrease1;
