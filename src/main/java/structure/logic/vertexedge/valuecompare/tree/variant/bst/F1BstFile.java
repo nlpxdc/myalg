@@ -1,6 +1,6 @@
-package structure.logic.vertexedge.valuecompare.tree.variant;
+package structure.logic.vertexedge.valuecompare.tree.variant.bst;
 
-class MyRedBlackTree {
+class F1BstApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

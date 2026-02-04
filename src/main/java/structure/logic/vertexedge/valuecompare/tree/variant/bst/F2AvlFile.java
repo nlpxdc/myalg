@@ -1,6 +1,6 @@
-package structure.logic.vertexedge.valuecompare.tree.variant;
+package structure.logic.vertexedge.valuecompare.tree.variant.bst;
 
-class MyAvlApp {
+class F2AvlApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
