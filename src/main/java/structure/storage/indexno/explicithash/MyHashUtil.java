@@ -1,4 +1,4 @@
-package structure.storage.indexno.hash;
+package structure.storage.indexno.explicithash;
 
 import com.google.common.hash.Hashing;
 

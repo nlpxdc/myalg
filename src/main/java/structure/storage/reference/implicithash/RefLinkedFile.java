@@ -1,4 +1,4 @@
-package structure.storage.reference.random;
+package structure.storage.reference.implicithash;
 
 import structure.storage.common.TListAdt;
 
