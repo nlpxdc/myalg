@@ -1,4 +1,4 @@
-package alg.timeless;
+package alg.timecost;
 
 class MyFactorialApp {
     public static void main(String[] args) {

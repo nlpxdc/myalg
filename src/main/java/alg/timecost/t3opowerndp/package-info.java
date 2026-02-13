@@ -1,5 +1,6 @@
-package alg.timeless.t3o2nnndp;
+package alg.timecost.t3opowerndp;
 
+//含阶乘
 //属于a(A)问题，analysis问题，耗时长，
 //非独立split，一般解最优问题，关键状态转移，依赖前一个或者前多个
 // 可以数据结构化，有模板方法，有通用套路，图论

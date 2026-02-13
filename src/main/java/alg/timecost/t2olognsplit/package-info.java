@@ -1,4 +1,4 @@
-package alg.timeless.t2olognsplit;
+package alg.timecost.t2olognsplit;
 
 //一般用于t业务，tx业务，transaction业务，要求快，ologn以内
 //独立split

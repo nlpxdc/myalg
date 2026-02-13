@@ -1,4 +1,4 @@
-package alg.timeless.t3o2nnndp;
+package alg.timecost.t3opowerndp;
 
 //最重要前提空气 马尔可夫性质
 //有依赖

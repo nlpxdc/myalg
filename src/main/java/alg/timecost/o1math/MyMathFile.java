@@ -1,4 +1,4 @@
-package alg.timeless.t1o1math;
+package alg.timecost.o1math;
 
 //数学 O(1)
 class MyMathApp {

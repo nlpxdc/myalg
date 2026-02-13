@@ -1,6 +1,7 @@
-package alg.timeless;
+package alg.timecost.t2olognsplit.divide;
 
-class MyFibonacciApp {
+//拆解 分治
+public class MyDivideFile {
     public static void main(String[] args) {
         System.out.println("aa");
     }

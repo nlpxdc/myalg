@@ -1,4 +1,4 @@
-package alg.timeless.t1o1math;
+package alg.timecost.o1math;
 
 class Q001Sum100App {
     public static void main(String[] args) {

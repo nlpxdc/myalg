@@ -1,4 +1,4 @@
-package alg.timeless.t2olognsplit.decrease;
+package alg.timecost.t2olognsplit.decrease;
 
 //拆解 也叫reduce
 public class MyDecreaseFile {
