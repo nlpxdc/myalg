@@ -1,4 +1,4 @@
-package alg.timecost.t3opowerndp.dp;
+package alg.timecost.ofntraverse.clever.opowerndp.dp;
 
 //最优 系统设计 少见 离线 非实时t+1
 class MyDpApp {

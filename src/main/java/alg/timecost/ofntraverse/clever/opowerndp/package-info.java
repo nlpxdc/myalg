@@ -1,5 +1,7 @@
-package alg.timecost.t3opowerndp;
+package alg.timecost.ofntraverse.clever.opowerndp;
 
+//原基准复杂度 O(cpowern) 或更大 O(n!) 或更更大O(n的n次方)
+//一般针对图或组合排列，能省则省，能少则少，把条件下的不必要不可能的去掉不遍历，减小状态空间，优化实际平均
 //含阶乘
 //属于a(A)问题，analysis问题，耗时长，
 //非独立split，一般解最优问题，关键状态转移，依赖前一个或者前多个

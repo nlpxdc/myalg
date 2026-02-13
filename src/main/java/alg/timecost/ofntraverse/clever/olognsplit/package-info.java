@@ -1,5 +1,7 @@
-package alg.timecost.t2olognsplit;
+package alg.timecost.ofntraverse.clever.olognsplit;
 
+//原基准复杂度 O(n)
+//一般针对线性 树？ 进行二分操作，对半分，或者利用结构树
 //一般用于t业务，tx业务，transaction业务，要求快，ologn以内
 //独立split
 //分治都要处理，最后串行合并，受到阿达姆定律限制，例如归并排序

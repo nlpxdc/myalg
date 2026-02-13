@@ -1,4 +1,4 @@
-package alg.timecost.t2olognsplit.divide;
+package alg.timecost.ofntraverse.clever.olognsplit.divide;
 
 //拆解 分治
 public class MyDivideFile {
