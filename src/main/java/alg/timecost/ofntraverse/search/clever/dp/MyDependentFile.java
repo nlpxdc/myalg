@@ -1,4 +1,4 @@
-package alg.timecost.ofntraverse.clever.opowerndp;
+package alg.timecost.ofntraverse.search.clever.dp;
 
 //最重要前提空气 马尔可夫性质
 //有依赖

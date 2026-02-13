@@ -1,4 +1,4 @@
-package alg.timecost.ofntraverse.clever.olognsplit.decrease;
+package alg.timecost.ofntraverse.scan.clever.split.decrease;
 
 //拆解 也叫reduce
 public class MyDecreaseFile {
