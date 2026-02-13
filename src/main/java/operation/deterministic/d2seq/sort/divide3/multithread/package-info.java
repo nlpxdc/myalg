@@ -1,0 +1,2 @@
+package operation.deterministic.d2seq.sort.divide3.multithread;
+//merge 单线程 外排 败者树，减少io次数常数

@@ -1,1 +1,0 @@
-package operation.deterministicbigsmallorder.op2seq.search.linear.decrease1unsorted;
