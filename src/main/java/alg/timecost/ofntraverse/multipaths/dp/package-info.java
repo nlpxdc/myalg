@@ -20,3 +20,7 @@ package alg.timecost.ofntraverse.multipaths.dp;
 
 //dp greedy是思想，也就是cut，切割，剪切，greedy更严格，要数学证明
 //回溯backtrack，a* ida*等是具体实现方式
+
+//限制条件，嵌入模板代码中，
+// 比较一个是固定死的规则调济安
+//一个是比较比当前最优值更优

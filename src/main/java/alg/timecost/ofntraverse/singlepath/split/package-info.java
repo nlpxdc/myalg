@@ -9,3 +9,6 @@ package alg.timecost.ofntraverse.singlepath.split;
 //减治处理一个
 //内存通常二分即可，三分更高效，四分后的边际效益骤减，二分即可，面试通常二分即可，但可以三向有个等于=
 //split是思想，decrease和divide是具体方式
+
+//切分确定性算法切
+//概率性算法切，平均性，切成大致相同范围
