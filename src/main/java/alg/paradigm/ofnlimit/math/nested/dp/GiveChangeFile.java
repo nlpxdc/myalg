@@ -1,40 +1,14 @@
-package alg.paradigm.ofnlimit.math.nested.greedy;
+package alg.paradigm.ofnlimit.math.nested.dp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 class GiveChangeApp {
 
-//    static int[] denominations = {100,50,20,10,5,2,1};
     static int[] denominations = {4,3,1};
 
     public static void main(String[] args) {
-        int change = 6;
-        int i = minCntGiveChange(change);
-        System.out.println(i);
-        List<Integer> list = detailGiveChange(change);
-//        System.out.println(IntStream.of(ints).boxed().collect(Collectors.toList()));
-        System.out.println(list);
-    }
-
-    static int minCntGiveChange(int change) {
-        int minCnt = 0;
-        //根据面值大小，从大到小取出来看下做选择
-        int remain = change;
-        for (int i = 0; i < change; i++) {
-            int maxVal = getMaxVal(remain);
-            if (maxVal > 0) {
-                minCnt++;
-                remain -= maxVal;
-            } else {
-                break;
-            }
-        }
-
-        return minCnt;
+        System.out.println("aa");
     }
 
     static List<Integer> detailGiveChange(int change) {
