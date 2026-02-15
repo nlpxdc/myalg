@@ -8,10 +8,11 @@ import java.util.stream.IntStream;
 
 class GiveChangeApp {
 
-    static int[] denominations = {100,50,20,10,5,2,1};
+//    static int[] denominations = {100,50,20,10,5,2,1};
+    static int[] denominations = {4,3,1};
 
     public static void main(String[] args) {
-        int change = 22;
+        int change = 6;
         int i = minCntGiveChange(change);
         System.out.println(i);
         List<Integer> list = detailGiveChange(change);
