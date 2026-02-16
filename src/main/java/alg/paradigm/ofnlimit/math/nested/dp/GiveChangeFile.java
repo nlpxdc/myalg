@@ -16,29 +16,11 @@ class GiveChangeApp {
         //根据面值大小，从大到小取出来看下做选择
         int remain = change;
         for (int i = 0; i < change; i++) {
-            int maxVal = getMaxVal(remain);
-            if (maxVal > 0) {
-                retAry.add(maxVal);
-                remain -= maxVal;
-            } else {
-                break;
-            }
+
         }
 
         return retAry;
     }
 
-    static int getMaxVal(int remain) {
-        if (remain<=0) {
-            return 0;
-        }
-        for (int i = 0; i < denominations.length; i++) {
-            int denomination = denominations[i];
-            if (denomination <= remain) {
-                return denomination;
-            }
-        }
-        return 1;
-    }
 
 }
