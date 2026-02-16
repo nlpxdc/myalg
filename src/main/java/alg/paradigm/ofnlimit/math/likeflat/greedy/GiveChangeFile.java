@@ -1,4 +1,4 @@
-package alg.paradigm.ofnlimit.math.nested.greedy;
+package alg.paradigm.ofnlimit.math.likeflat.greedy;
 
 import java.util.ArrayList;
 import java.util.Arrays;

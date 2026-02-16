@@ -1,5 +1,7 @@
 package alg.paradigm.ofnlimit;
 
+//本质都是nested，特殊性质下likeflat
+
 //explicit
 //依赖前置结果
 //从顶向下分解 递归 需要记忆化前置结果
