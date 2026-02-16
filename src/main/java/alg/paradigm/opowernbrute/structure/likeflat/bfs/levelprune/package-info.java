@@ -1,0 +1,1 @@
+package alg.paradigm.opowernbrute.structure.likeflat.bfs.levelprune;
