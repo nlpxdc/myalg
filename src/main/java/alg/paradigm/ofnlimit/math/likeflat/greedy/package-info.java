@@ -5,3 +5,4 @@ package alg.paradigm.ofnlimit.math.likeflat.greedy;
 //一般都是相当于指定
 //正向剪枝
 //可以剪枝，按层剪枝
+//也是后序
