@@ -1,4 +1,5 @@
-package alg.paradigm.ofnlimit.structure.nested.backtrack;
+package alg.paradigm.ofnbrute.structure.nested.backtrack;
+
 //前序
 // 依赖规则限制，或者边界条件
 //反向剪枝 按单线路径
