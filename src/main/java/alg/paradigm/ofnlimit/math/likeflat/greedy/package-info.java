@@ -6,3 +6,6 @@ package alg.paradigm.ofnlimit.math.likeflat.greedy;
 //正向剪枝
 //可以剪枝，按层剪枝
 //也是后序
+
+//有递归 单分支 写法 没必要 上到下
+//也有迭代 写法 所以几乎是这个 下到上
