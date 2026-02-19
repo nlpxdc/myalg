@@ -1,1 +1,0 @@
-package alg.paradigm.olognsplit.structure;

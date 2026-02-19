@@ -1,1 +1,0 @@
-package alg.paradigm.opowernbrute.structure.likeflat;
