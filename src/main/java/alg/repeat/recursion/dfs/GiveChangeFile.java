@@ -106,9 +106,10 @@ class GiveChangeApp3 {
         if (remain < 0) {
             return;
         } else if (remain == 0) {
-            List<Integer> copyPath = new ArrayList<>(path);
-            Collections.sort(copyPath);
-            result.add(copyPath);
+//            List<Integer> copyPath = new ArrayList<>(path);
+//            Collections.sort(copyPath);
+//            result.add(copyPath);
+            result.add(new ArrayList<>(path));
             return;
         } else {
             if (sortCoins[coinStart] > remain) {
