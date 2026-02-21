@@ -137,7 +137,8 @@ class GiveChangeApp4 {
     }
 
     static List<Integer> giveChange(int[] coins, int sum) {
-        AtomicReference<List<Integer>> minCntListRef = new AtomicReference<>();
+//        AtomicReference<List<Integer>> minCntListRef = new AtomicReference<>();
+        ThreadLocal<List<Integer>> minCntListRef = new ThreadLocal<>();
         Arrays.sort(coins);
 //        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
         List<Integer> path = new ArrayList<>();
@@ -145,7 +146,7 @@ class GiveChangeApp4 {
         return minCntListRef.get();
     }
 
-    static void backtrack(int[] sortCoins, int coinStart, int remain, List<Integer> path, AtomicReference<List<Integer>> minCntListRef) {
+    static void backtrack(int[] sortCoins, int coinStart, int remain, List<Integer> path, ThreadLocal<List<Integer>> minCntListRef) {
         if (sortCoins == null || sortCoins.length == 0) {
             return;
         }
