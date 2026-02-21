@@ -85,4 +85,43 @@ class GiveChangeApp2 {
 
 }
 
+class GiveChangeApp3 {
+    public static void main(String[] args) {
+        System.out.println("aa");
+        Set<List<Integer>> lists = startBackTrack(new int[]{1, 3, 4}, 6);
+    }
 
+    static Set<List<Integer>> startBackTrack(int[] coins, int sum) {
+        Set<List<Integer>> result = new HashSet<>();
+        Arrays.sort(coins);
+        List<Integer> path = new ArrayList<>();
+        backtrack(coins, sum, 0, path, result);
+        return result;
+    }
+
+    static void backtrack(int[] sortCoins, int remain, int coinStart, List<Integer> path, Set<List<Integer>> result) {
+        if (sortCoins == null || sortCoins.length == 0) {
+            return;
+        }
+        if (remain < 0) {
+            return;
+        } else if (remain == 0) {
+            List<Integer> copyPath = new ArrayList<>(path);
+            Collections.sort(copyPath);
+            result.add(copyPath);
+            return;
+        } else {
+            if (sortCoins[coinStart] > remain) {
+                return;
+            }
+            for (int i = coinStart; i < sortCoins.length; i++) {
+                int coin = sortCoins[i];
+                path.add(coin);
+                int depRemain = remain - coin;
+                backtrack(sortCoins, depRemain, i, path, result);
+                path.remove(path.size()-1);
+            }
+        }
+    }
+
+}
