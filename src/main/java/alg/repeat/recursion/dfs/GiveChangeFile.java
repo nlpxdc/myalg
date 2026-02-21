@@ -1,6 +1,9 @@
 package alg.repeat.recursion.dfs;
 
+import java.lang.ref.Reference;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.stream.IntStream;
 
 class GiveChangeApp {
@@ -86,15 +89,17 @@ class GiveChangeApp2 {
 }
 
 class GiveChangeApp3 {
+
     public static void main(String[] args) {
         System.out.println("aa");
         Set<List<Integer>> lists = startBackTrack(new int[]{1, 3, 4}, 6);
     }
 
     static Set<List<Integer>> startBackTrack(int[] coins, int sum) {
-        Set<List<Integer>> result = new HashSet<>();
+
         Arrays.sort(coins);
         List<Integer> path = new ArrayList<>();
+        Set<List<Integer>> result = new HashSet<>();
         backtrack(coins, 0, sum, path, result);
         return result;
     }
@@ -126,33 +131,34 @@ class GiveChangeApp3 {
 
 class GiveChangeApp4 {
 
-    static List<Integer> minCntList;
-
     public static void main(String[] args) {
         System.out.println("aa");
         List<Integer> list = giveChange(new int[]{1, 3, 4}, 6);
     }
 
     static List<Integer> giveChange(int[] coins, int sum) {
-//        List<Integer> result = null;
+        AtomicReference<List<Integer>> minCntListRef = new AtomicReference<>();
         Arrays.sort(coins);
 //        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
         List<Integer> path = new ArrayList<>();
-        backtrack(coins, 0, sum, path);
-        return minCntList;
+        backtrack(coins, 0, sum, path, minCntListRef);
+        return minCntListRef.get();
     }
 
-    static void backtrack(int[] sortCoins, int coinStart, int remain, List<Integer> path) {
+    static void backtrack(int[] sortCoins, int coinStart, int remain, List<Integer> path, AtomicReference<List<Integer>> minCntListRef) {
         if (sortCoins == null || sortCoins.length == 0) {
             return;
         }
         if (remain < 0) {
             return;
         } else if (remain == 0) {
-            if (minCntList == null) {
-                minCntList = new ArrayList<>(path);
+            if (minCntListRef.get() == null) {
+//                minCntList = new ArrayList<>(path);
+                minCntListRef.set(new ArrayList<>(path));
             } else {
-                minCntList = path.size() < minCntList.size() ? new ArrayList<>(path) : minCntList;
+//                minCntList = path.size() < minCntList.size() ? new ArrayList<>(path) : minCntList;
+                List<Integer> minCntList = minCntListRef.get();
+                minCntListRef.set(path.size() < minCntList.size() ? new ArrayList<>(path) : minCntList);
             }
             return;
         } else {
@@ -163,7 +169,7 @@ class GiveChangeApp4 {
                 int coin = sortCoins[i];
                 path.add(coin);
                 int depRemain = remain - coin;
-                backtrack(sortCoins, i, depRemain, path);
+                backtrack(sortCoins, i, depRemain, path, minCntListRef);
                 path.remove(path.size()-1);
             }
         }
