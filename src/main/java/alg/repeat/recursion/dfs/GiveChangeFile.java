@@ -95,20 +95,17 @@ class GiveChangeApp3 {
         Set<List<Integer>> result = new HashSet<>();
         Arrays.sort(coins);
         List<Integer> path = new ArrayList<>();
-        backtrack(coins, sum, 0, path, result);
+        backtrack(coins, 0, sum, path, result);
         return result;
     }
 
-    static void backtrack(int[] sortCoins, int remain, int coinStart, List<Integer> path, Set<List<Integer>> result) {
+    static void backtrack(int[] sortCoins, int coinStart, int remain, List<Integer> path, Set<List<Integer>> result) {
         if (sortCoins == null || sortCoins.length == 0) {
             return;
         }
         if (remain < 0) {
             return;
         } else if (remain == 0) {
-//            List<Integer> copyPath = new ArrayList<>(path);
-//            Collections.sort(copyPath);
-//            result.add(copyPath);
             result.add(new ArrayList<>(path));
             return;
         } else {
@@ -119,7 +116,7 @@ class GiveChangeApp3 {
                 int coin = sortCoins[i];
                 path.add(coin);
                 int depRemain = remain - coin;
-                backtrack(sortCoins, depRemain, i, path, result);
+                backtrack(sortCoins, i, depRemain, path, result);
                 path.remove(path.size()-1);
             }
         }
