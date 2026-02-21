@@ -136,7 +136,7 @@ class GiveChangeApp4 {
     static List<Integer> giveChange(int[] coins, int sum) {
 //        List<Integer> result = null;
         Arrays.sort(coins);
-        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
+//        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
         List<Integer> path = new ArrayList<>();
         backtrack(coins, 0, sum, path);
         return minCntList;
