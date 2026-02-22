@@ -7,6 +7,7 @@ class FibonacciApp {
             long val = fibonacci(i);
             if (val < 0) {
                 System.out.println("end break");
+                break;
             }
             System.out.println(String.format("%d->%d", i, val));
         }
