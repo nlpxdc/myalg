@@ -1,5 +1,6 @@
 package operation;
 
+//structure和algorithm的具体表现形式，比较通用常见的操作研究
 //ologn可以人为约等于o1
 //主要用来处理t问题
 //含预处理
