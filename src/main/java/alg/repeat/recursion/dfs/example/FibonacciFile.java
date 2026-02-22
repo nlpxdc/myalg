@@ -41,6 +41,7 @@ class FibonacciApp2 {
     static long dfs(long n, long[] dp) {
         long cache = dp[(int) n];
         if (cache > 0) {
+            System.out.println(String.format("n:%d, cache:%d", n, cache));
             return cache;
         }
         if (n == 0) {
