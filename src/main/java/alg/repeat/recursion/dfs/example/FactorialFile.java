@@ -21,7 +21,7 @@ class FactorialApp {
         if (n < 1) throw new RuntimeException();
         if (n == 1) return 1;
 //        if (n >= 2) return n * dfs(n-1);
-        if (n >= 2) return n + dfs(n-1);
+        if (n >= 2) return n * dfs(n-1);
         return -1;
     }
 
