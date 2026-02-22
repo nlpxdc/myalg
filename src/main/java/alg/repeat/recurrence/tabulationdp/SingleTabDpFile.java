@@ -1,4 +1,4 @@
 package alg.repeat.recurrence.tabulationdp;
 
-public class TreeDpFile {
+public class SingleTabDpFile {
 }
