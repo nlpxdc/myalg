@@ -1,4 +1,4 @@
-package alg.repeat.recurrence.bfs;
+package alg.repeat.recurrence.bfs.example;
 
 import java.util.ArrayList;
 import java.util.List;
