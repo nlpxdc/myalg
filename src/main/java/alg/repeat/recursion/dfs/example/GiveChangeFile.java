@@ -147,6 +147,7 @@ class GiveChangeApp4 {
         return minCntListRef.get();
     }
 
+    //这里错了，可能存在数量相同的不同组合，所以要定义一个容器，另外赋值逻辑要变一下
     static void backtrack(int[] sortCoins, int coinStart, int remain, List<Integer> path, ThreadLocal<List<Integer>> minCntListRef) {
         if (sortCoins == null || sortCoins.length == 0) {
             return;
@@ -178,3 +179,5 @@ class GiveChangeApp4 {
     }
 
 }
+
+//只给出数量即可，可以不考虑不同组合
