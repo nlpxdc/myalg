@@ -36,25 +36,25 @@ class FibonacciApp2 {
     }
 
     static long fibonacci(int n) {
-        long[] dp = new long[10000];
-        return dfs(n, dp);
+        long[] memo = new long[10000];
+        return dfs(n, memo);
     }
 
-    static long dfs(int n, long[] dp) {
-        long cache = dp[n];
+    static long dfs(int n, long[] memo) {
+        long cache = memo[n];
         if (cache > 0) {
 //            System.out.println(String.format("n:%d, cache:%d", n, cache));
             return cache;
         }
         if (n == 0) {
-            dp[0] = 0;
+            memo[0] = 0;
             return 0;
         } else if (n == 1) {
-            dp[1] = 1;
+            memo[1] = 1;
             return 1;
         } else if (n >= 2) {
-            long result = dfs(n-2, dp) + dfs(n-1, dp);
-            dp[n] = result;
+            long result = dfs(n-2, memo) + dfs(n-1, memo);
+            memo[n] = result;
             return result;
         }
         return -1;
