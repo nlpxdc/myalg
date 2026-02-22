@@ -29,6 +29,7 @@ class FibonacciApp2 {
             long val = fibonacci(i);
             if (val < 0) {
                 System.out.println("end break");
+                break;
             }
             System.out.println(String.format("%d->%d", i, val));
         }
@@ -42,7 +43,7 @@ class FibonacciApp2 {
     static long dfs(int n, long[] dp) {
         long cache = dp[n];
         if (cache > 0) {
-            System.out.println(String.format("n:%d, cache:%d", n, cache));
+//            System.out.println(String.format("n:%d, cache:%d", n, cache));
             return cache;
         }
         if (n == 0) {
@@ -52,7 +53,9 @@ class FibonacciApp2 {
             dp[1] = 1;
             return 1;
         } else if (n >= 2) {
-            return dfs(n-2, dp) + dfs(n-1, dp);
+            long result = dfs(n-2, dp) + dfs(n-1, dp);
+            dp[n] = result;
+            return result;
         }
         return -1;
     }
