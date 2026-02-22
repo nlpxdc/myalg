@@ -33,13 +33,13 @@ class FibonacciApp2 {
         }
     }
 
-    static long fibonacci(long n) {
+    static long fibonacci(int n) {
         long[] dp = new long[10000];
         return dfs(n, dp);
     }
 
-    static long dfs(long n, long[] dp) {
-        long cache = dp[(int) n];
+    static long dfs(int n, long[] dp) {
+        long cache = dp[n];
         if (cache > 0) {
             System.out.println(String.format("n:%d, cache:%d", n, cache));
             return cache;
