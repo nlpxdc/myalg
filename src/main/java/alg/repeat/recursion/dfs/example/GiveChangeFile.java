@@ -152,6 +152,7 @@ class GiveChangeApp4 {
         if (sortCoins == null || sortCoins.length == 0) {
             return;
         }
+        //prune
         if (remain < 0) {
             return;
         } else if (remain == 0) {
@@ -165,6 +166,7 @@ class GiveChangeApp4 {
             }
             return;
         } else {
+            //bound
             if (sortCoins[coinStart] > remain) {
                 return;
             }
@@ -173,6 +175,61 @@ class GiveChangeApp4 {
                 path.add(coin);
                 int depRemain = remain - coin;
                 backtrack(sortCoins, i, depRemain, path, minCntListRef);
+                path.remove(path.size()-1);
+            }
+        }
+    }
+
+}
+
+class GiveChangeApp5 {
+
+    public static void main(String[] args) {
+        System.out.println("aa");
+        Set<List<Integer>> set = giveChange(new int[]{1, 3, 4}, 6);
+    }
+
+    static Set<List<Integer>> giveChange(int[] coins, int sum) {
+//        AtomicReference<List<Integer>> minCntListRef = new AtomicReference<>();
+        ThreadLocal<Set<List<Integer>>> minCntListSet = new ThreadLocal<>();
+        Arrays.sort(coins);
+//        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
+        List<Integer> path = new ArrayList<>();
+        backtrack(coins, 0, sum, path, minCntListSet);
+        return minCntListSet.get();
+    }
+
+    //这里错了，可能存在数量相同的不同组合，所以要定义一个容器，另外赋值逻辑要变一下
+    static void backtrack(int[] sortCoins, int coinStart, int remain, List<Integer> path, ThreadLocal<Set<List<Integer>>> minCntListSetRef) {
+        if (sortCoins == null || sortCoins.length == 0) {
+            return;
+        }
+        //prune
+        if (remain < 0) {
+            return;
+        } else if (remain == 0) {
+            Set<List<Integer>> minCntListSet = minCntListSetRef.get();
+            if (minCntListSet == null || minCntListSet.isEmpty()) {
+                minCntListSetRef.set(new HashSet<>(Collections.singletonList(path)));
+            } else {
+                List<Integer> firstMinCntList = minCntListSet.stream().findFirst().orElse(null);
+                if (path.size() < firstMinCntList.size()) {
+                    minCntListSetRef.set(new HashSet<>(Collections.singletonList(path)));
+                } else if (path.size() == firstMinCntList.size()) {
+                    minCntListSet.add(new ArrayList<>(path));
+                }
+            }
+            return;
+        } else {
+            //bound
+            if (sortCoins[coinStart] > remain) {
+                return;
+            }
+            for (int i = coinStart; i < sortCoins.length; i++) {
+                int coin = sortCoins[i];
+                path.add(coin);
+                int depRemain = remain - coin;
+                backtrack(sortCoins, i, depRemain, path, minCntListSetRef);
                 path.remove(path.size()-1);
             }
         }
