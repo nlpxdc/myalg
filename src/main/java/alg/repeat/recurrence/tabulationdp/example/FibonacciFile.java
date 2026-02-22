@@ -18,13 +18,13 @@ class FibonacciApp {
         } else if (n == 1) {
             return 1;
         } else if (n >= 2) {
-            long prev2Dp = 0, prev1Dp = 1;
+            long prev2Tab = 0, prev1Tab = 1;
             for (int i = 2; i < n; i++) {
-                long t = prev1Dp;
-                prev1Dp += prev2Dp;
-                prev2Dp = t;
+                long t = prev1Tab;
+                prev1Tab += prev2Tab;
+                prev2Tab = t;
             }
-            return prev2Dp + prev1Dp;
+            return prev2Tab + prev1Tab;
         }
 
         return -1;

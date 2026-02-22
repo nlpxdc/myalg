@@ -40,21 +40,21 @@ class FibonacciApp2 {
         return dfs(n, linearDp);
     }
 
-    static long dfs(int n, long[] linearDp) {
-        long cache = linearDp[n];
+    static long dfs(int n, long[] linearTab) {
+        long cache = linearTab[n];
         if (cache > 0) {
 //            System.out.println(String.format("n:%d, cache:%d", n, cache));
             return cache;
         }
         if (n == 0) {
-            linearDp[0] = 0;
+            linearTab[0] = 0;
             return 0;
         } else if (n == 1) {
-            linearDp[1] = 1;
+            linearTab[1] = 1;
             return 1;
         } else if (n >= 2) {
-            long result = dfs(n-2, linearDp) + dfs(n-1, linearDp);
-            linearDp[n] = result;
+            long result = dfs(n-2, linearTab) + dfs(n-1, linearTab);
+            linearTab[n] = result;
             return result;
         }
         return -1;
