@@ -18,8 +18,7 @@ class FibonacciApp {
         } else if (n == 1) {
             return 1;
         } else if (n >= 2) {
-            long prev2 = 0;
-            long prev1 = 1;
+            long prev2 = 0, prev1 = 1;
             for (int i = 2; i < n; i++) {
                 long t = prev1;
                 prev1 += prev2;
