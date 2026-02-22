@@ -1,7 +1,6 @@
-package operation;
+package operation.retvoid.sort;
 
-//经常用在预处理？
-class MyOperationApp {
+class LinkAdvRefSortApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }

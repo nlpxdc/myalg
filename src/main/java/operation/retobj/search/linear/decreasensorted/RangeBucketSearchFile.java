@@ -1,7 +1,6 @@
-package operation;
+package operation.retobj.search.linear.decreasensorted;
 
-//经常用在预处理？
-class MyOperationApp {
+class RangeBucketSearchApp {
     public static void main(String[] args) {
         System.out.println("aa");
     }
