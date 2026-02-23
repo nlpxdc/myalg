@@ -457,69 +457,6 @@ class GiveChangeApp6d {
     }
 }
 
-class GiveChangeApp7 {
-
-    public static void main(String[] args) {
-        System.out.println("aa");
-        Integer minCnt = giveChange(new int[]{1, 3, 4}, 6);
-    }
-
-    static Integer giveChange(int[] coins, int sum) {
-//        AtomicReference<List<Integer>> minCntListRef = new AtomicReference<>();
-        ThreadLocal<Integer> minCntRef = new ThreadLocal<>();
-        Arrays.sort(coins);
-//        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
-        int[] linearTab = new int[sum];
-        Arrays.fill(linearTab, sum+1);
-//        List<Integer> path = new ArrayList<>();
-        backtrack(coins, 0, sum, linearTab, sum, 0, minCntRef);
-        return minCntRef.get();
-    }
-
-    //这里错了，可能存在数量相同的不同组合，所以要定义一个容器，另外赋值逻辑要变一下
-    static void backtrack(int[] sortCoins, int coinStart, int remain, int[] linearTab, int sum, Integer pathCnt, ThreadLocal<Integer> minCntRef) {
-        if (sortCoins == null || sortCoins.length == 0) {
-            return;
-        }
-        if (coinStart >= sortCoins.length) {
-            return;
-        }
-        int cache = linearTab[remain];
-        if (cache < sum+1) {
-            return;
-        }
-        //prune
-        if (remain < 0) {
-            return;
-        } else if (remain == 0) {
-            Integer minCnt = minCntRef.get();
-            if (minCnt == null) {
-                linearTab[remain] = pathCnt;
-                minCntRef.set(pathCnt);
-            } else {
-                if (pathCnt < minCnt) {
-                    linearTab[remain] = pathCnt;
-                    minCntRef.set(pathCnt);
-                }
-            }
-            return;
-        } else {
-            //bound
-            if (sortCoins[coinStart] > remain) {
-                return;
-            }
-            for (int i = coinStart; i < sortCoins.length; i++) {
-                int coin = sortCoins[i];
-                pathCnt++;
-                int depRemain = remain - coin;
-                backtrack(sortCoins, i, depRemain, linearTab, sum, pathCnt, minCntRef);
-                pathCnt--;
-            }
-        }
-    }
-
-}
-
 //记录选择信息，进行选择回溯，一个，以及所有
 
 //只给出数量即可，可以不考虑不同组合
