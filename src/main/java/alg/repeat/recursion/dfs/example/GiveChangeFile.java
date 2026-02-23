@@ -383,7 +383,10 @@ class GiveChangeApp6c {
                 int coin = sortCoins[i];
                 pathCnt++;
                 int depRemain = remain - coin;
-                minCnt = Math.min(minCnt, backtrack(sum, sortCoins, i, depRemain, dp, pathCnt, minCnt)) ;
+                minCnt = Math.min(minCnt, backtrack(sum, sortCoins, i,
+                        depRemain, dp,
+                        pathCnt,
+                        minCnt)) ;
                 pathCnt--;
             }
             return minCnt;
