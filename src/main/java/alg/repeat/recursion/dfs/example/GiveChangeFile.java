@@ -384,12 +384,75 @@ class GiveChangeApp6c {
                 pathCnt++;
                 int depRemain = remain - coin;
                 minCnt = Math.min(minCnt, backtrack(sum, sortCoins, i,
-                        depRemain, dp,
-                        pathCnt,
-                        minCnt)) ;
+                                                    depRemain, dp,
+                                                    pathCnt,
+                                                    minCnt)) ;
                 pathCnt--;
             }
             return minCnt;
+        }
+    }
+}
+
+class GiveChangeApp6d {
+
+    public static void main(String[] args) {
+        System.out.println("aa");
+        int minCnt = giveChange(new int[]{1, 3, 4}, 6);
+    }
+
+    static int giveChange(int[] coins, final int sum) {
+        AtomicReference<Integer> minCntRef = new AtomicReference<>();
+        minCntRef.set(sum+1);
+        Arrays.sort(coins);
+//        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
+//        List<Integer> path = new ArrayList<>();
+        int[] dp = new int[sum+1];
+        Arrays.fill(dp, sum+1);
+        backtrack(sum, coins, 0, sum, dp, 0, minCntRef);
+        return minCntRef.get();
+    }
+
+    //这里错了，可能存在数量相同的不同组合，所以要定义一个容器，另外赋值逻辑要变一下
+    static void backtrack(final int sum, int[] sortCoins, int coinStart,
+                         int remain, int[] dp,
+                         int pathCnt,
+                         AtomicReference<Integer> minCntRef) {
+        Integer minCnt = minCntRef.get();
+        if (sortCoins == null || sortCoins.length == 0) {
+            return;
+        }
+        //prune
+        if (remain < 0) {
+            return;
+        } else if (remain == 0) {
+            minCnt = Math.min(pathCnt, minCnt);
+            dp[remain] = minCnt;
+            minCntRef.set(minCnt);
+//            if (minCntRef.get() > minCnt) {
+//                minCntRef.set(minCnt);
+//            }
+            return;
+        } else {
+            //bound
+            int cache = dp[remain];
+            if (cache < sum+1) {
+                return;
+            }
+            if (sortCoins[coinStart] > remain) {
+                dp[remain] = minCnt;
+                return;
+            }
+            for (int i = coinStart; i < sortCoins.length; i++) {
+                int coin = sortCoins[i];
+                pathCnt++;
+                int depRemain = remain - coin;
+                backtrack(sum, sortCoins, i,
+                        depRemain, dp,
+                        pathCnt,
+                        minCntRef);
+                pathCnt--;
+            }
         }
     }
 }
