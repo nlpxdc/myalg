@@ -186,7 +186,7 @@ class GiveChangeApp5 {
 
     public static void main(String[] args) {
         System.out.println("aa");
-        Set<List<Integer>> set = giveChange(new int[]{1, 3, 4}, 6);
+        Set<List<Integer>> set = giveChange(new int[]{1,2, 3, 4}, 5);
     }
 
     static Set<List<Integer>> giveChange(int[] coins, int sum) {
@@ -210,11 +210,11 @@ class GiveChangeApp5 {
         } else if (remain == 0) {
             Set<List<Integer>> minCntListSet = minCntListSetRef.get();
             if (minCntListSet == null || minCntListSet.isEmpty()) {
-                minCntListSetRef.set(new HashSet<>(Collections.singletonList(path)));
+                minCntListSetRef.set(new HashSet<>(Collections.singletonList(new ArrayList<>(path))));
             } else {
                 List<Integer> firstMinCntList = minCntListSet.stream().findFirst().orElse(null);
                 if (path.size() < firstMinCntList.size()) {
-                    minCntListSetRef.set(new HashSet<>(Collections.singletonList(path)));
+                    minCntListSetRef.set(new HashSet<>(Collections.singletonList(new ArrayList<>(path))));
                 } else if (path.size() == firstMinCntList.size()) {
                     minCntListSet.add(new ArrayList<>(path));
                 }
