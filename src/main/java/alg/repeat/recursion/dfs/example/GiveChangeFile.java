@@ -289,6 +289,56 @@ class GiveChangeApp6 {
 
 }
 
+class GiveChangeApp6b {
+
+    public static void main(String[] args) {
+        System.out.println("aa");
+        Integer minCnt = giveChange(new int[]{1, 3, 4}, 6);
+    }
+
+    static Integer giveChange(int[] coins, final int sum) {
+//        AtomicReference<List<Integer>> minCntListRef = new AtomicReference<>();
+        Arrays.sort(coins);
+//        minCntList = new ArrayList<>(Collections.nCopies(sum, 1));
+        List<Integer> path = new ArrayList<>();
+        int minCnt = backtrack(sum, coins, 0, sum, 0, sum + 1);
+        return minCnt;
+    }
+
+    //这里错了，可能存在数量相同的不同组合，所以要定义一个容器，另外赋值逻辑要变一下
+    static int backtrack(final int sum, int[] sortCoins, int coinStart, int remain, Integer pathCnt, int minCnt) {
+        if (sortCoins == null || sortCoins.length == 0) {
+            return minCnt;
+        }
+        //prune
+        if (remain < 0) {
+            return minCnt;
+        } else if (remain == 0) {
+            if (minCnt >= sum+1) {
+                return pathCnt;
+            } else {
+                if (pathCnt < minCnt) {
+                    return pathCnt;
+                }
+            }
+            return minCnt;
+        } else {
+            //bound
+            if (sortCoins[coinStart] > remain) {
+                return minCnt;
+            }
+            for (int i = coinStart; i < sortCoins.length; i++) {
+                int coin = sortCoins[i];
+                pathCnt++;
+                int depRemain = remain - coin;
+                minCnt = backtrack(sum, sortCoins, i, depRemain, pathCnt, minCnt);
+                pathCnt--;
+            }
+            return minCnt;
+        }
+    }
+}
+
 class GiveChangeApp7 {
 
     public static void main(String[] args) {
