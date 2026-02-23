@@ -1,4 +1,4 @@
-package alg.repeat.recurrence.tabulationdp.example;
+package alg.repeat.recurrence.downtopdp.example;
 
 class FactorialApp {
     public static void main(String[] args) {

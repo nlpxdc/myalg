@@ -1,4 +1,4 @@
-package alg.repeat.recurrence.tabulationdp.example;
+package alg.repeat.recurrence.downtopdp.example;
 
 class FibonacciApp {
     public static void main(String[] args) {
