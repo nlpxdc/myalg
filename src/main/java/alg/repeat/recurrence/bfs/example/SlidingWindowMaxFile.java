@@ -131,3 +131,45 @@ class Node {
     }
 
 }
+
+class SlidingWindowMaxApp4 {
+    public static void main(String[] args) {
+        SlidingWindowMaxApp4 app = new SlidingWindowMaxApp4();
+        int[] ints = {1, 3, -1, -3, 5, 3, 6, 7};
+        int[] ints1 = app.maxSlidingWindow(ints, 3);
+    }
+
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        final int retLen = nums.length-k+1;
+        int[] ret = new int[retLen];
+
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        for (int idx = 0; idx < nums.length; idx++) {
+            int val = nums[idx];
+            while (!deque.isEmpty()) {
+                Integer dequeLastIdx = deque.peekLast();
+                if (nums[dequeLastIdx] <= val) {
+                    deque.pollLast();
+                    continue;
+                } else {
+                    break;
+                }
+            }
+
+            deque.offerLast(idx);
+
+            int windowLeftIdx = idx-(k-1);
+            Integer dequeFirstIdx = deque.peekFirst();
+            if (dequeFirstIdx < windowLeftIdx) {
+                deque.pollFirst();
+            }
+
+            if (idx>=(k-1)) {
+                ret[idx-(k-1)] = nums[deque.peekFirst()];
+            }
+        }
+
+        return ret;
+    }
+
+}
