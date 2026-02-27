@@ -77,3 +77,57 @@ class SlidingWindowMaxApp2 {
     }
 
 }
+
+class SlidingWindowMaxApp3 {
+    public static void main(String[] args) {
+        SlidingWindowMaxApp3 app = new SlidingWindowMaxApp3();
+        int[] ints = {1, 3, -1, -3, 5, 3, 6, 7};
+        int[] ints1 = app.maxSlidingWindow(ints, 3);
+    }
+
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        final int retLen = nums.length-k+1;
+        int[] ret = new int[retLen];
+
+        ArrayDeque<Node> deque = new ArrayDeque<>();
+        for (int idx = 0; idx < nums.length; idx++) {
+            int val = nums[idx];
+            while (!deque.isEmpty()) {
+                Node dequeLastNode = deque.peekLast();
+                if (dequeLastNode.val <= val) {
+                    deque.pollLast();
+                    continue;
+                } else {
+                    break;
+                }
+            }
+
+            Node node = new Node(idx, val);
+            deque.offerLast(node);
+
+            int windowLeftIdx = idx-(k-1);
+            Node dequeFirstNode = deque.peekFirst();
+            if (dequeFirstNode.idx < windowLeftIdx) {
+                deque.pollFirst();
+            }
+
+            if (idx>=(k-1)) {
+                ret[idx-(k-1)] = deque.peekFirst().val;
+            }
+        }
+
+        return ret;
+    }
+
+}
+
+class Node {
+    int idx;
+    int val;
+
+    Node(int idx, int val) {
+        this.idx = idx;
+        this.val = val;
+    }
+
+}
