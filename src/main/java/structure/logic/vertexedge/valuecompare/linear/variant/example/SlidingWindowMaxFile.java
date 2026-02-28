@@ -1,8 +1,7 @@
-package alg.repeat.recurrence.bfs.example;
+package structure.logic.vertexedge.valuecompare.linear.variant.example;
 
 import java.util.ArrayDeque;
 import java.util.Comparator;
-import java.util.Deque;
 import java.util.PriorityQueue;
 
 class SlidingWindowMaxApp {
