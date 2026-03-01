@@ -40,3 +40,44 @@ class NoRepeatCharLongestSubstringApp {
     }
 
 }
+
+class NoRepeatCharLongestSubstringApp2 {
+    public static void main(String[] args) {
+        System.out.println("aa");
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null || s.isEmpty()) {
+            return 0;
+        }
+        int maxCnt = 1;
+        HashSet<Character> set = new HashSet<>();
+        for (int leftIdx = 0, rightIdx = 0;
+             leftIdx < s.length() && rightIdx < s.length() && leftIdx <= rightIdx;
+             rightIdx++) {
+            char rightChar = s.charAt(rightIdx);
+            while (set.contains(rightChar)) {
+                set.remove(s.charAt(leftIdx));
+                leftIdx++;
+            }
+            set.add(rightChar);
+            maxCnt = Math.max(maxCnt, rightIdx-leftIdx+1);
+        }
+
+        return maxCnt;
+    }
+
+    boolean hasSameChar(String s, int startIdx, int endIdx) {
+        HashSet<Character> set = new HashSet<>();
+        for (int idx = startIdx; idx <= endIdx; idx++) {
+            char c = s.charAt(idx);
+            if (set.contains(c)) {
+                return true;
+            } else {
+                set.add(c);
+            }
+        }
+        return false;
+    }
+
+}
