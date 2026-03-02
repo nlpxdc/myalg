@@ -1,5 +1,7 @@
 package alg.repeat.recurrence.dfs.example;
 
+import java.util.Arrays;
+
 class LongestPalindromeSubstringApp {
 
     public static void main(String[] args) {
@@ -38,6 +40,78 @@ class LongestPalindromeSubstringApp {
             }
         }
         return true;
+    }
+
+}
+
+class LongestPalindromeSubstringApp2 {
+
+    public static void main(String[] args) {
+        LongestPalindromeSubstringApp2 app = new LongestPalindromeSubstringApp2();
+        String str = app.longestPalindrome("abb");
+    }
+
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() <= 1) {
+            return s;
+        }
+
+        //奇偶预处理
+        String preStr = preHandleStr(s);
+
+        //中心点循环枚举
+        int max = 0;
+        int[] maxObj = new int[]{max, 0, 0};
+        for (int midIdx = 1; midIdx < preStr.length()-1; midIdx++) {
+            int[] midMaxObj = bePalindrome(preStr, midIdx);
+            if (midMaxObj[0] > max) {
+                max = midMaxObj[0];
+                maxObj = midMaxObj;
+            }
+        }
+
+        //中心扩散判断，同时剪枝
+        if (maxObj[0] > 0) {
+            String substring = preStr.substring(maxObj[1], maxObj[2] + 1);
+            String replace = substring.replace("#", "");
+            return replace;
+        } else {
+            return s.substring(0,1);
+        }
+    }
+
+    String preHandleStr(String s) {
+
+        char[] charAry = new char[s.length() + s.length() + 1];
+        charAry[0] = '^';
+        for (int i = 0; i < s.length(); i++) {
+            charAry[2*i+1] = s.charAt(i);
+        }
+        for (int i = 0; i < s.length()-1; i++) {
+            charAry[2*i+2] = '#';
+        }
+        charAry[charAry.length-1] = '$';
+        return new String(charAry);
+    }
+
+    int[] bePalindrome(String s, int midIdx) {
+        int max = 1;
+        int[] maxObj = new int[]{max, midIdx, midIdx};
+        for (int leftIdx = midIdx-1, rightIdx = midIdx+1;
+             leftIdx >= 0 && rightIdx <= s.length()-1 && s.charAt(leftIdx) != '^' && s.charAt(rightIdx) != '$' ;
+             leftIdx--,rightIdx++) {
+            char leftVal = s.charAt(leftIdx);
+            char rightVal = s.charAt(rightIdx);
+            if (leftVal == rightVal) {
+                ++max;
+                maxObj[0] = max;
+                maxObj[1] = leftIdx;
+                maxObj[2] = rightIdx;
+            } else {
+                break;
+            }
+        }
+        return maxObj;
     }
 
 }
