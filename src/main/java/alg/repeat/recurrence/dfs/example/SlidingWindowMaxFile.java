@@ -1,4 +1,4 @@
-package structure.logic.vertexedge.valuecompare.linear.variant.example;
+package alg.repeat.recurrence.dfs.example;
 
 import java.util.ArrayDeque;
 import java.util.Comparator;
