@@ -1,6 +1,4 @@
-package alg.repeat.recurrence.dfs.example;
-
-import java.util.Arrays;
+package structure.storage.twoptrs.rangeprune.example;
 
 class LongestPalindromeSubstringApp {
 

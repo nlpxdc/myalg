@@ -1,4 +1,4 @@
-package alg.repeat.recurrence.dfs.example;
+package structure.storage.twoptrs.rangeprune.example;
 
 import java.util.HashSet;
 
