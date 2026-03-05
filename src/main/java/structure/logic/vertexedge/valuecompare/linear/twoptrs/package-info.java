@@ -1,1 +1,0 @@
-package structure.logic.vertexedge.valuecompare.linear.twoptrs;

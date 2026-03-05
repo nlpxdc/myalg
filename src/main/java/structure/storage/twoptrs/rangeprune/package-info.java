@@ -1,4 +1,4 @@
-package alg.repeat.recurrence.dfs.twoptrs;
+package structure.storage.twoptrs.rangeprune;
 
 //同向 同速 定长滑动窗口 非双指针技巧 单调结构技巧
 
