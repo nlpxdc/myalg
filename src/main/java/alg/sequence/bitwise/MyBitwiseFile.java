@@ -1,4 +1,4 @@
-package leetcode.technique.bitwise;
+package alg.sequence.bitwise;
 
 import java.math.BigInteger;
 
