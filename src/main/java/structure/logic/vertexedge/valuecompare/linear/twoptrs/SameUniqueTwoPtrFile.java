@@ -1,4 +1,4 @@
-package structure.logic.vertexedge.valuecompare.linear.common;
+package structure.logic.vertexedge.valuecompare.linear.twoptrs;
 
 //用时间换空间 判断环形特性
 class SameUniqueTwoPtrFile {
