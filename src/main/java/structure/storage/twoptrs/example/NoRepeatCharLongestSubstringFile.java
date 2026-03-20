@@ -1,4 +1,4 @@
-package structure.storage.twoptrs.rangeprune.example;
+package structure.storage.twoptrs.example;
 
 import java.util.HashSet;
 
