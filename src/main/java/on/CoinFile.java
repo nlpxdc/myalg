@@ -21,14 +21,19 @@ class CoinApp {
 
     static List<List<Integer>> coin0(int target) {
         List<List<Integer>> result = new ArrayList<>();
+        int[] descDimos = Arrays.stream(dimos)
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .mapToInt(Integer::intValue)
+                .toArray();
 
         ArrayList<Integer> choseCoins = new ArrayList<>();
-        coinDfs(choseCoins, target, result);
+        coinDfs(descDimos, choseCoins, target, result);
 
         return result;
     }
 
-    static void coinDfs(List<Integer> chosenCoins, int remain, List<List<Integer>> result) {
+    static void coinDfs(int[] descDimos, List<Integer> chosenCoins, int remain, List<List<Integer>> result) {
 
     }
 
