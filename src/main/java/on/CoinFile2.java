@@ -55,13 +55,10 @@ class CoinApp2 {
         }
         //可以选中过滤出很多个可能
         //降序拿第一个就好
-        int nextChoseCoin = Arrays.stream(coins)
-                .filter(t -> t <= remain)
-                .findFirst()
-                .orElse(0);
-        if (nextChoseCoin != 0) {
-            choseCoins.add(nextChoseCoin);
-            coinDfs(coins, choseCoins, remain-nextChoseCoin, retList);
+        for (int i = 0; i < coins.length; i++) {
+            int coin = coins[i];
+            choseCoins.add(coin);
+            coinDfs(coins, choseCoins, remain-coin, retList);
             choseCoins.remove(choseCoins.size()-1);
         }
 
