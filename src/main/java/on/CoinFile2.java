@@ -8,7 +8,7 @@ class CoinApp2 {
         System.out.println("aa");
         CoinApp2 app = new CoinApp2();
 //        int[] coins = {1,2,5};
-        int i = app.coinChange(new int[]{2}, 3);
+        int i = app.coinChange(new int[]{186,419,83,408}, 6249);
     }
 
     public int coinChange(int[] coins, int amount) {
@@ -59,12 +59,11 @@ class CoinApp2 {
                 .filter(t -> t <= remain)
                 .findFirst()
                 .orElse(0);
-        if (nextChoseCoin == 0) {
-            return;
+        if (nextChoseCoin != 0) {
+            choseCoins.add(nextChoseCoin);
+            coinDfs(coins, choseCoins, remain-nextChoseCoin, retList);
+            choseCoins.remove(choseCoins.size()-1);
         }
-        choseCoins.add(nextChoseCoin);
-        coinDfs(coins, choseCoins, remain-nextChoseCoin, retList);
-        choseCoins.remove(choseCoins.size()-1);
 
     }
 
