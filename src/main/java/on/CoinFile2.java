@@ -8,23 +8,24 @@ class CoinApp2 {
         System.out.println("aa");
         CoinApp2 app = new CoinApp2();
 //        int[] coins = {1,2,5};
-        int i = app.coinChange(new int[]{186,419,83,408}, 6249);
+        int i = app.coinChange(new int[]{1,2,5}, 100);
     }
 
     public int coinChange(int[] coins, int amount) {
         if (amount == 0) {
             return 0;
         }
-        //降序排列
-        int[] descDenos = Arrays.stream(coins)
-                .boxed()
-                .sorted(Collections.reverseOrder())
-                .mapToInt(Integer::intValue)
-                .toArray();
+//        //降序排列
+//        int[] descDenos = Arrays.stream(coins)
+//                .boxed()
+//                .sorted(Collections.reverseOrder())
+//                .mapToInt(Integer::intValue)
+//                .toArray();
+        Arrays.sort(coins);
         List<Integer> choseCoinList = new ArrayList<>();
         List<List<Integer>> retList = new ArrayList<>();
 
-        coinDfs(descDenos, choseCoinList, amount, retList);
+        coinDfs(coins, choseCoinList, amount, retList);
 
 //        List<Integer> list = retList.stream()
 //                .min(Comparator.comparingInt(List::size))
@@ -57,6 +58,9 @@ class CoinApp2 {
         //降序拿第一个就好
         for (int i = 0; i < coins.length; i++) {
             int coin = coins[i];
+            if (coin > remain) {
+                break;
+            }
             choseCoins.add(coin);
             coinDfs(coins, choseCoins, remain-coin, retList);
             choseCoins.remove(choseCoins.size()-1);
