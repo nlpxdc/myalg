@@ -23,25 +23,20 @@ class CoinApp3 {
     void coinDfs(int[] coins,
                 int remain, int selectedSize,
                 ThreadLocal<Integer> minSizeRef) {
-
-        for (int i = 0; i < coins.length; i++) {
-            int coin = coins[i];
-            if (coin == remain) {
-                Integer currMinSize = minSizeRef.get();
-                if (currMinSize == null) {
-                    minSizeRef.set(selectedSize+1);
-                } else {
-                    int retMinSize = Math.min(currMinSize, selectedSize + 1);
-                    minSizeRef.set(retMinSize);
-                }
-                return;
-            } else if (coin > remain) {
-                continue;
+        if (remain == 0) {
+            Integer currMinSize = minSizeRef.get();
+            if (currMinSize == null) {
+                minSizeRef.set(selectedSize);
             } else {
+                int retMinSize = Math.min(currMinSize, selectedSize);
+                minSizeRef.set(retMinSize);
+            }
+        } else {
+            for (int i = 0; i < coins.length; i++) {
+                int coin = coins[i];
                 coinDfs(coins, remain-coin, selectedSize+1, minSizeRef);
             }
         }
-
     }
 
 }
