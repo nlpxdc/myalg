@@ -11,33 +11,22 @@ class CoinApp4 {
     }
 
     public int coinChange(int[] coins, int amount) {
-        ThreadLocal<Integer> minSizeRef = new ThreadLocal<>();
-        coinDfs(amount, 0, amount, 0, coins, minSizeRef);
-        return minSizeRef.get() == null ? -1 : minSizeRef.get();
+        int ret = coinDfs(coins, amount);
+        return ret;
     }
 
-    void coinDfs(int parentRemain, int parentCoin,
-                 int remain, int selectedSize, int[] coins,
-                 ThreadLocal<Integer> minSizeRef) {
-        System.out.println("enter fun"+remain);
-        if (remain == 0) {
-            Integer minSize = minSizeRef.get();
-            if (minSize == null) {
-                minSizeRef.set(selectedSize);
-                return;
-            } else {
-                int retMinSize = Math.min(selectedSize, minSize);
-                minSizeRef.set(retMinSize);
-                return;
-            }
-        } else if (remain < 0) {
-            return;
-        } else {
-            for (int i = 0; i < coins.length; i++) {
-                int coin = coins[i];
-                coinDfs(remain, coin, remain-coin, selectedSize+1, coins, minSizeRef);
-            }
+    int coinDfs(int[] coins, int remain) {
+        if (remain == 0) return 0;
+        if (remain < 0) return -1;
+
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < coins.length; i++) {
+            int coin = coins[i];
+            int min0 = coinDfs(coins, remain - coin);
+            if (min0 != -1) min = Math.min(min, min0 + 1);
         }
+
+        return min == Integer.MAX_VALUE ? -1 : min;
     }
 
 }
