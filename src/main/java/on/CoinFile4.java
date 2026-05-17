@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class CoinApp4 {
+    private int[] memo;
     public static void main(String[] args) {
         System.out.println("aa");
         CoinApp4 app = new CoinApp4();

@@ -1,5 +1,6 @@
 package on;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,41 +11,29 @@ class CoinApp5 {
         int i = app.coinChange(new int[]{5,2,1}, 11);
     }
 
+    private int[] memo;
     public int coinChange(int[] coins, int amount) {
-        HashMap<Integer, Integer> dp = new HashMap<>();
-        dp.put(0,0);
-        coinDfs(amount, 0, amount, 0, coins, dp);
-        return dp.get(amount) == null ? -1 : dp.get(amount);
+        memo = new int[amount + 1];
+        Arrays.fill(memo, -2);
+        int ret = coinDfs(coins, amount);
+        return ret;
     }
 
-    void coinDfs(int parentRemain, int parentCoin,
-                 int remain, int selectedSize, int[] coins,
-                 Map<Integer, Integer> dp) {
-        System.out.println("enter fun"+remain);
+    int coinDfs(int[] coins, int target) {
+        if (target == 0) return 0;
+        if (target < 0) return -1;
+        if (memo[target] != -2) return memo[target];  // 查缓存
 
-        if (remain == 0) {
-            Integer minSize = dp.get(parentRemain);
-            if (minSize == null) {
-                dp.put(parentRemain, 1);
-                return;
-            } else {
-                Math.min(minSize, s)
-            }
-            dp.put(parentRemain, )
-            return;
-        } else if (remain < 0) {
-            dp.put(parentRemain, -1);
-            return;
-        } else {
-            Integer minSize = dp.get(remain);
-            if (minSize != null) {
-                return;
-            }
-            for (int i = 0; i < coins.length; i++) {
-                int coin = coins[i];
-                coinDfs(remain, coin, remain-coin, selectedSize+1, coins, dp);
+        int min = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            int res = coinDfs(coins, target - coin);
+            if (res != -1) {
+                min = Math.min(min, res + 1);
             }
         }
+
+        memo[target] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return memo[target];
     }
 
 }
