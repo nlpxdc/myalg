@@ -5,7 +5,6 @@ import java.util.Collections;
 
 class CoinApp3 {
     public static void main(String[] args) {
-        System.out.println("aa");
         CoinApp3 app = new CoinApp3();
         int i = app.coinChange(new int[]{1}, 0);
     }
