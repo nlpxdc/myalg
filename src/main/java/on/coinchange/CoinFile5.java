@@ -1,8 +1,6 @@
-package on;
+package on.coinchange;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 class CoinApp5 {
     public static void main(String[] args) {

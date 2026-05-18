@@ -1,4 +1,4 @@
-package on;
+package on.coinchange;
 
 import java.util.*;
 

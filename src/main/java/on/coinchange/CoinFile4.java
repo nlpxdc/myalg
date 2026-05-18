@@ -1,7 +1,4 @@
-package on;
-
-import java.util.HashMap;
-import java.util.Map;
+package on.coinchange;
 
 class CoinApp4 {
     private int[] memo;

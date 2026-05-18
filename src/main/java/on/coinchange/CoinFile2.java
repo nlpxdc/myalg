@@ -1,7 +1,6 @@
-package on;
+package on.coinchange;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 class CoinApp2 {
     public static void main(String[] args) {
