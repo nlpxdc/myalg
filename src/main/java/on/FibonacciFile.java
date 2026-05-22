@@ -23,6 +23,18 @@ class FibonacciApp {
         return -1;
     }
 
+    //O(n) dp 自底向上 全结果缓存
+    long fibo4(int n) {
+        int[] dp = new int[n+1];
+        dp[0] = 0;
+        dp[1] = 1;
+
+        for (int i = 2; i < n; i++) {
+            dp[n] = dp[n-1]+dp[n-2];
+        }
+        return dp[n];
+    }
+
     //O(n) dp 自底向上
     long fibo5(int n) {
         if (n == 0) {
@@ -42,10 +54,10 @@ class FibonacciApp {
         return -1;
     }
 
-    //无贪心，不借助贪心，不借助辅助结果存储
-    int fibo4() {
-        return -1;
-    }
+//    //无贪心，不借助贪心，不借助辅助结果存储
+//    int fibo4() {
+//        return -1;
+//    }
 
     //O(1) 数学公式
     int fibo2(int n) {
