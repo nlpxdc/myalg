@@ -60,8 +60,9 @@ class KnapsackApp2 {
         int notPick = knapsackDfs(vw, idx + 1, remain);
 
         int pick = 0;
-        if (v <= remain) {
-            pick = Math.max(pick, knapsackDfs(vw, idx+1, remain-v)+w);
+        if (remain >= v) {
+            int depPick = knapsackDfs(vw, idx + 1, remain - v);
+            pick = Math.max(pick, depPick+w);
         }
 
         return Math.max(notPick, pick);
