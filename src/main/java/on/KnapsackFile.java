@@ -46,26 +46,30 @@ class KnapsackApp2 {
     }
 
     public int knapsack (int V, int n, int[][] vw) {
-        int max = knapsackDfs(vw, 0, V);
+        int[][] dp = new int[vw.length][V+1];
+        int max = knapsackDfs(vw, 0, V, dp);
         return max;
     }
 
-    int knapsackDfs(int[][] vw, int idx, int remain) {
+    int knapsackDfs(int[][] vw, int idx, int remain, int[][] dp) {
         if (idx >= vw.length) return 0;
+
+        if (dp[idx][remain] != 0) return dp[idx][remain];
 
         int[] obj = vw[idx];
         int v = obj[0];
         int w = obj[1];
 
-        int notPick = knapsackDfs(vw, idx + 1, remain);
+        int notPick = knapsackDfs(vw, idx + 1, remain, dp);
 
         int pick = 0;
         if (remain >= v) {
-            int depPick = knapsackDfs(vw, idx + 1, remain - v);
+            int depPick = knapsackDfs(vw, idx + 1, remain - v, dp);
             pick = Math.max(pick, depPick+w);
         }
 
-        return Math.max(notPick, pick);
+
+        return dp[idx][remain] =  Math.max(notPick, pick);
     }
 
 }
