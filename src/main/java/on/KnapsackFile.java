@@ -39,3 +39,32 @@ class KnapsackApp {
     }
 
 }
+
+class KnapsackApp2 {
+    public static void main(String[] args) {
+        System.out.println("aa");
+    }
+
+    public int knapsack (int V, int n, int[][] vw) {
+        int max = knapsackDfs(vw, 0, V);
+        return max;
+    }
+
+    int knapsackDfs(int[][] vw, int idx, int remain) {
+        if (idx >= vw.length) return 0;
+
+        int[] obj = vw[idx];
+        int v = obj[0];
+        int w = obj[1];
+
+        int notPick = knapsackDfs(vw, idx + 1, remain);
+
+        int pick = 0;
+        if (v <= remain) {
+            pick = Math.max(pick, knapsackDfs(vw, idx+1, remain-v)+w);
+        }
+
+        return Math.max(notPick, pick);
+    }
+
+}
