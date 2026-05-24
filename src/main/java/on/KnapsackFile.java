@@ -80,13 +80,24 @@ class KnapsackApp3 {
     }
 
     public int knapsack (int V, int n, int[][] vw) {
-        int[][] dp = new int[vw.length][V+1];
+        int[][] dp = new int[V+1][vw.length+1];
 
         for (int i = 1; i <= V; i++) {
+            for (int j = 1; j <= vw.length; j++) {
+                int[] obj = vw[j-1];
+                int v = obj[0];
+                int w = obj[1];
 
+                int notPickMax = dp[i-1][j];
+                int pickMax = 0;
+                if (j >= v) {
+                    pickMax = Math.max(pickMax, dp[i-1][j-v]+w);
+                }
+                dp[i][j] = Math.max(notPickMax, pickMax);
+            }
         }
 
-        return dp[vw.length-1][V];
+        return dp[V][vw.length];
     }
 
 
@@ -125,6 +136,31 @@ class KnapsackApp4 {
         }
 
         return dp[vw.length][V];
+    }
+
+
+
+}
+
+class KnapsackApp5 {
+    public static void main(String[] args) {
+        KnapsackApp5 app = new KnapsackApp5();
+        app.knapsack(10, 2, new int[][]{{1,3},{10,4}});
+        System.out.println("aa");
+    }
+
+    public int knapsack (int V, int n0, int[][] vw) {
+        int n = vw.length;
+        int[] dp = new int[V + 1];
+
+        for (int i = 0; i < n; i++) {
+            // 必须从右往左！保证每个物品只选一次
+            for (int j = V; j >= vw[i][0]; j--) {
+                dp[j] = Math.max(dp[j], dp[j - vw[i][0]] + vw[i][1]);
+            }
+        }
+
+        return dp[V];
     }
 
 
