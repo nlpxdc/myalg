@@ -73,3 +73,60 @@ class KnapsackApp2 {
     }
 
 }
+
+class KnapsackApp3 {
+    public static void main(String[] args) {
+        System.out.println("aa");
+    }
+
+    public int knapsack (int V, int n, int[][] vw) {
+        int[][] dp = new int[vw.length][V+1];
+
+        for (int i = 1; i <= V; i++) {
+
+        }
+
+        return dp[vw.length-1][V];
+    }
+
+
+
+}
+
+class KnapsackApp4 {
+    public static void main(String[] args) {
+        KnapsackApp4 app = new KnapsackApp4();
+        app.knapsack(10, 2, new int[][]{{1,3},{10,4}});
+        System.out.println("aa");
+    }
+
+    public int knapsack (int V, int n, int[][] vw) {
+        int[][] dp = new int[vw.length+1][V+1];
+//        for (int i = 0; i < V + 1; i++) {
+//            vw[0][i] = 0;
+//        }
+//        for (int i = 0; i < vw.length+1; i++) {
+//            vw[i][0] = 0;
+//        }
+
+        for (int i = 1; i <= vw.length; i++) {
+            int[] obj = vw[i-1];
+            int v = obj[0];
+            int w = obj[1];
+
+            for (int j = 1; j <= V; j++) {
+                int notPickMax = dp[i-1][j];
+                int pickMax = 0;
+                if (j >= v) {
+                    pickMax = Math.max(pickMax, dp[i-1][j-v]+w);
+                }
+                dp[i][j] = Math.max(notPickMax, pickMax);
+            }
+        }
+
+        return dp[vw.length][V];
+    }
+
+
+
+}
